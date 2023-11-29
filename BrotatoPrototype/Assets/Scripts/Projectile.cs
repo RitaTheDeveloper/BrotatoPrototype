@@ -37,13 +37,11 @@ public class Projectile : MonoBehaviour
 
     private void OutHitObject(RaycastHit hit)
     {
-        IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
+        IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
         if (damageableObject != null)
         {
-            Debug.Log("bax");
             damageableObject.TakeHit(damage, hit);
         }
-        //damageableObject.TakeHit(damage, hit);
         GameObject.Destroy(gameObject);
     }
 }

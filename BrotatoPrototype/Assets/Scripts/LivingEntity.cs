@@ -10,11 +10,16 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         health = startingHealth;
     }
+
     public void TakeHit(float damage, RaycastHit hit)
     {
-        Debug.Log("popali");
         health -= damage;
         if (health <= 0f && !dead)
         {
