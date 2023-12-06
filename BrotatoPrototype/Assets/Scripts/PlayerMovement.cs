@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed = 5f;
 
     private CharacterController characterController;
+    private float yPosition;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        yPosition = transform.position.y;
     }
 
     private void FixedUpdate()
@@ -20,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Rotation();
+        
+    }
+    private void LateUpdate()
+    {
+        
     }
 
     private void Move()
@@ -29,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(x, 0, z);
 
         characterController.Move(move * _speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
     }
 
     private void Rotation()
