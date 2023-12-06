@@ -7,7 +7,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed = 20f;
     [SerializeField] float damage = 1;
     [SerializeField] LayerMask collisionMask;
-    
+
+    private void Start()
+    {
+        Destroy(gameObject, 2f);
+    }
+
     public void SetSpeed(float newSpeed)
     {
         _speed = newSpeed;
@@ -16,7 +21,7 @@ public class Projectile : MonoBehaviour
     private void Update()
     {
         Move();
-        CheckCollsion(_speed * Time.deltaTime);
+        CheckCollsion(_speed * Time.deltaTime);        
     }
 
     private void Move()
