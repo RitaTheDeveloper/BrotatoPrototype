@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        Rotation();
+       // Rotation();
         
     }
     private void LateUpdate()

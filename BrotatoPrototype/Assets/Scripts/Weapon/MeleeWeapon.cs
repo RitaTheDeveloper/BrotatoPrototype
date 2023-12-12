@@ -5,7 +5,6 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     [SerializeField] private float _msBetweenAttacks = 1;
-    [SerializeField] private float _speedAttack = 5f;
     [SerializeField] private Animator animator;
 
     private BoxCollider _collider;
@@ -13,18 +12,20 @@ public class MeleeWeapon : Weapon
     private void Start()
     {
         // Attack();
+        Init();
         _collider = GetComponent<BoxCollider>();
     }
 
     private void Update()
     {
-
+        FindTheNearestEnemy();
     }
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime)
+        if (Time.time > _nextShotTime && nearestEnemy)
         {
+            RotateWeaponHolder();
             Attack();
             _nextShotTime = Time.time + _msBetweenAttacks;
         }
@@ -35,20 +36,5 @@ public class MeleeWeapon : Weapon
     {
         //animator.SetBool("Attack", true);
         animator.SetTrigger("Hit");
-    }
-
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-
-    //}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            Destroy(other.gameObject);
-        }
-
     }
 }

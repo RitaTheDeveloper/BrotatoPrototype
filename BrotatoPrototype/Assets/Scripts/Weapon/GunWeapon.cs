@@ -11,16 +11,23 @@ public class GunWeapon : Weapon
 
     private float _nextShotTime;
 
+    private void Start()
+    {
+        Init();
+    }
+
     private void Update()
     {
+        FindTheNearestEnemy();
         Attack();
     }
 
     public override void Attack()
     {
         
-        if (Time.time > _nextShotTime)
+        if (Time.time > _nextShotTime && nearestEnemy)
         {
+            RotateWeaponHolder();
             _nextShotTime = Time.time + _msBetweenShots / 1000;
             Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
             newProjectile.SetSpeed(muzzleVelocity);
