@@ -36,12 +36,14 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
 
-        if (Time.time > nextAttackTime)
+        if (Time.time > nextAttackTime && target)
         {
+
             if (Vector3.Distance(target.position, transform.position) < attackDistance)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
-                StartCoroutine(Attack());
+                //StartCoroutine(Attack());
+                target.GetComponent<LivingEntity>().TakeHit(1f);
             }
         }
     }

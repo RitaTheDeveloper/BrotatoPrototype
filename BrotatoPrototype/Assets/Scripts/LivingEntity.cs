@@ -26,10 +26,22 @@ public class LivingEntity : MonoBehaviour, IDamageable
             Die();
         }
     }
+    public void TakeHit(float damage)
+    {
+        health -= damage;
+        if (health <= 0f && !dead)
+        {
+            Die();
+        }
+    }
 
     public void Die()
     {
         dead = true;
         Destroy(gameObject);
+        if(gameObject.tag == "Player")
+        {
+            GameManager.instance.Lose();
+        }
     }
 }

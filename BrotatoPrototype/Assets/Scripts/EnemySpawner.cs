@@ -20,22 +20,43 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private int amountOfEnemies;
 
+    [SerializeField] private GameObject mark;
+    private float markDisplayTime = 1f;
+
 
     private float _timeUntilSpawn;
 
     private void Awake()
     {
         SetTimeUntilSpawn();
+        MarkOff();
     }
 
     private void FixedUpdate()
     {
         _timeUntilSpawn -= Time.deltaTime;
+
+        if (_timeUntilSpawn <= markDisplayTime)
+        {
+            MarkOn();
+        }
+
         if (_timeUntilSpawn <= 0)
         {
+            MarkOff();
             Spawn(spawnType);
             SetTimeUntilSpawn();
         }
+    }
+
+    private void MarkOn()
+    {
+        mark.SetActive(true);
+    }
+
+    private void MarkOff()
+    {
+        mark.SetActive(false);
     }
 
     private void SetTimeUntilSpawn()
