@@ -118,7 +118,6 @@ MonoBehaviour:
   attackRange: 0
   nearestEnemy: {fileID: 0}
   _msBetweenAttacks: 1
-  _speedAttack: 5
   animator: {fileID: 110900041698812164}
 --- !u!95 &110900041698812164
 Animator:
@@ -267,7 +266,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -374,7 +373,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

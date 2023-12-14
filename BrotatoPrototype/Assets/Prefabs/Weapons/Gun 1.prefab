@@ -130,7 +130,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -235,7 +235,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -287,6 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a718bb89814e1a3449d502b25c5ca86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0
+  nearestEnemy: {fileID: 0}
   _muzzle: {fileID: 2032807186437202128}
   _projectile: {fileID: 1331408556871749274, guid: 5a0ca2148c81f244087fc9c39ecc025f,
     type: 3}
@@ -425,7 +427,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

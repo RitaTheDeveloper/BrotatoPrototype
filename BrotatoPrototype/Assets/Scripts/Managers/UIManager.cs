@@ -54,4 +54,10 @@ public class UIManager : MonoBehaviour
     {
 
     }
+
+    public void TakeAbility()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed = player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed + 10;
+    }
 }

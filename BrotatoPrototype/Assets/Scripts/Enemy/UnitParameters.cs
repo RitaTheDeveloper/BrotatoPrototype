@@ -23,7 +23,7 @@ public class UnitParameters : MonoBehaviour
     }
 
     private float _currentMoveSpeed;
-    public float CurrentMovespeed
+    public float CurrentMoveSpeed
     {
         get { return _currentMoveSpeed; }
         set { _currentMoveSpeed = value; }

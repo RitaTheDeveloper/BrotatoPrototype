@@ -27,14 +27,22 @@ public class Weapon : MonoBehaviour
 
         if (allEnemies.Length > 0)
         {
+
             for (int i = 0; i < allEnemies.Length; i++)
             {
                 distance = Vector3.Distance(transform.position, allEnemies[i].transform.position);
 
                 if (distance < attackRange)
                 {
-                    // добавляем в словарь врага, которого можем бить
-                    distanceAndEnemy.Add(distance, allEnemies[i]);
+                    try
+                    {
+                        // добавляем в словарь врагов по дистанции
+                        distanceAndEnemy.Add(distance, allEnemies[i]);
+                    }
+                    catch (System.ArgumentException)
+                    {
+                        Debug.Log("враги на одинаковом расстоянии");
+                    }
                 }
             }
         }
