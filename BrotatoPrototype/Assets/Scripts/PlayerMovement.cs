@@ -21,8 +21,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       // Rotation();
         
+        // Rotation();
+
     }
     private void LateUpdate()
     {
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(x, 0, z);
 
         characterController.Move(move * _speed * Time.deltaTime);
-        transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+       // transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
     }
 
     private void Rotation()
