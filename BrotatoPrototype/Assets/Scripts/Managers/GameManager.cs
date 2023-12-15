@@ -98,8 +98,16 @@ public class GameManager : MonoBehaviour
         _player = Instantiate(playerPrefab, playerStartingSpawnPoint.position, Quaternion.identity);
     }
 
+
     public void Restart()
     {
+        if(_player != null)
+        {
+            Destroy(_player);
+        }
 
+        RemoveAllEnemies();
+        Init();
+        ContinueTime();
     }
 }

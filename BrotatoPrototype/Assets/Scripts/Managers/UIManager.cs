@@ -12,10 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject restartBtn;
 
     private void Awake()
     {
         instance = this;
+        AllOff();
     }
 
     public void ShowTime(float currentTime)
@@ -43,21 +45,31 @@ public class UIManager : MonoBehaviour
     public void Win()
     {
         winPanel.SetActive(true);
+        restartBtn.SetActive(true);
     }
 
     public void Lose()
     {
         losePanel.SetActive(true);
+        restartBtn.SetActive(true);
     }
 
     public void OnClickRestart()
     {
-
+        AllOff();
+        GameManager.instance.Restart();
     }
 
     public void TakeAbility()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed = player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed + 10;
+    }
+
+    private void AllOff()
+    {
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
+        restartBtn.SetActive(false);
     }
 }
