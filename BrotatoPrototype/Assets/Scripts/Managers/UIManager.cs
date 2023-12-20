@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -13,6 +14,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject restartBtn;
+
+    [Header("for player:")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private TextMeshProUGUI healthTxt;
+
+    [SerializeField] private Slider levelSlider;
+    [SerializeField] private TextMeshProUGUI levelTxt;
 
     private void Awake()
     {
@@ -71,5 +79,22 @@ public class UIManager : MonoBehaviour
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
+    }
+
+    public void DisplayHealth(float currentHp, float startHp)
+    {
+        if (currentHp < 0)
+        {
+            currentHp = 0;
+        }
+
+        healthSlider.value = currentHp / startHp;
+        healthTxt.text = currentHp + "/" + startHp;
+    }
+
+    public void DisplayLevel(int currentLvl, float XpPercentage)
+    {
+        levelSlider.value = XpPercentage;
+        levelTxt.text = "LV." + currentLvl;
     }
 }

@@ -7,6 +7,7 @@ public class UnitParameters : MonoBehaviour
     [SerializeField] private float _maxHp;
     [SerializeField] private float _hpRegen;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _amountOfExperience;
 
     private float _currentHp;
     public float CurrentHp
@@ -28,4 +29,6 @@ public class UnitParameters : MonoBehaviour
         get { return _currentMoveSpeed; }
         set { _currentMoveSpeed = value; }
     }
+
+    public float AmountOfExperience { get { return _amountOfExperience; } }
 }

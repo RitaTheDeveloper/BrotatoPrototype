@@ -224,9 +224,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6345853525943046481}
   - component: {fileID: 1560313684261224616}
-  - component: {fileID: 4058339005025658832}
   - component: {fileID: 2011630342255361014}
   - component: {fileID: 7818460468963780944}
+  - component: {fileID: -4450890373304782599}
+  - component: {fileID: 6232884369586852045}
   m_Layer: 6
   m_Name: Enemy2
   m_TagString: Enemy
@@ -272,21 +273,6 @@ NavMeshAgent:
   m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4058339005025658832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3763709360490025800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7ca6f17c118b544b9edb45ca04454f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 10
-  health: 0
-  dead: 0
 --- !u!114 &2011630342255361014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 3
   timeBetweenAttacks: 1
+  target: {fileID: 0}
 --- !u!65 &7818460468963780944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +309,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3, y: 1.5, z: 1.7}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4450890373304782599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763709360490025800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1e8cafdccc9342b5234eab20a0c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 5
+  health: 0
+  dead: 0
+--- !u!114 &6232884369586852045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763709360490025800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 5
+  _hpRegen: 0
+  _moveSpeed: 0
+  _amountOfExperience: 1
 --- !u!1 &5265559646351309900
 GameObject:
   m_ObjectHideFlags: 0

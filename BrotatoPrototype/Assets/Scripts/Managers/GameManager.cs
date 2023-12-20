@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void StartNextWave()
     {
+        _player.GetComponent<PlayerHealth>().Init();
+        _player.GetComponent<PlayerHealth>().DisplayHealth();
         ContinueTime();
         _currentWave = _waves[_waveCounter];
         _waves[_waveCounter].StartWave();

@@ -1,32 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    [SerializeField] float startingHealth;
-    [SerializeField] float health;
+    [SerializeField] protected float startingHealth;
+    [SerializeField] protected float health;
+    
     public bool dead;
 
-    private void Start()
+    protected virtual void Start()
     {
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         health = startingHealth;
     }
 
-    public void TakeHit(float damage, RaycastHit hit)
+    public virtual void TakeHit(float damage, RaycastHit hit)
     {
         health -= damage;
         if (health <= 0f && !dead)
         {
             Die();
         }
+
     }
-    public void TakeHit(float damage)
+    public virtual void TakeHit(float damage)
     {
         health -= damage;
         if (health <= 0f && !dead)
@@ -35,13 +38,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         dead = true;
-        Destroy(gameObject);
-        if(gameObject.tag == "Player")
-        {
-            GameManager.instance.Lose();
-        }
+        Destroy(gameObject);       
     }
+
+    
 }

@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 1f;
 
     private NavMeshAgent navMeshAgent;
-    private Transform target;
+    public Transform target;
     private LivingEntity livingEntity;
 
     private float nextAttackTime;
