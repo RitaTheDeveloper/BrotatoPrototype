@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WaveController[] _waves;
     [SerializeField] WaveController _currentWave;
 
-    private GameObject _player;
+    public GameObject player;
     private int _waveCounter;
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
@@ -61,15 +61,16 @@ public class GameManager : MonoBehaviour
         else
         {
             UIManager.instance.AbilitySelectionPanelOn();
-            RemoveAllEnemies();
+            RemoveAllEnemies();            
         }
               
     }
 
     public void StartNextWave()
     {
-        _player.GetComponent<PlayerHealth>().Init();
-        _player.GetComponent<PlayerHealth>().DisplayHealth();
+        player.GetComponent<PlayerHealth>().Init();
+        player.GetComponent<PlayerHealth>().DisplayHealth();
+        RemoveAllCurrency();
         ContinueTime();
         _currentWave = _waves[_waveCounter];
         _waves[_waveCounter].StartWave();
@@ -97,19 +98,26 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        _player = Instantiate(playerPrefab, playerStartingSpawnPoint.position, Quaternion.identity);
+        player = Instantiate(playerPrefab, playerStartingSpawnPoint.position, Quaternion.identity);
     }
 
 
     public void Restart()
     {
-        if(_player != null)
+        if(player != null)
         {
-            Destroy(_player);
+            Destroy(player);
         }
 
         RemoveAllEnemies();
+        RemoveAllCurrency();
         Init();
         ContinueTime();
+    }
+
+    private void RemoveAllCurrency()
+    {
+        Debug.Log("Удалить нахуй всю валюту с поля");
+        PoolObject.instance.RemoveAllObjectsFromScene();
     }
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerCharacteristics : MonoBehaviour
 {
-    [SerializeField] private float _maxHp;
-    [SerializeField] private float _hpRegen;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _startMaxHp;
+    [SerializeField] private float _startHpRegen;
+    [SerializeField] private float _startMoveSpeed;
+    [SerializeField] private float _startMagnetDistance;
  
     private float _currentMaxHp;
     public float CurrentMaxHp
@@ -22,10 +23,25 @@ public class PlayerCharacteristics : MonoBehaviour
         set { _currentHpRegen = value; }
     }
 
-    public float _currentMoveSpeed;
+    private float _currentMoveSpeed;
     public float CurrentMoveSpeed
     {
         get { return _currentMoveSpeed; }
         set { _currentMoveSpeed = value; }
+    }
+
+    private float _currentMagnetDistance;
+    public float CurrentMagnetDistance
+    {
+        get { return _currentMagnetDistance; }
+        set { _currentMagnetDistance = value; }
+    }
+
+    private void Awake()
+    {
+        _currentMoveSpeed = _startMoveSpeed;
+        _currentMaxHp = _startMaxHp;
+        _currentHpRegen = _startHpRegen;
+        _currentMagnetDistance = _startMagnetDistance;
     }
 }

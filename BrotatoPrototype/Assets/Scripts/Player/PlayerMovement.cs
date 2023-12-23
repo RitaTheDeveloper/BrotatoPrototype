@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
-
+    private float _speed;
+    private PlayerCharacteristics playerCharacteristics;
     private CharacterController characterController;
     private float yPosition;
 
-    private void Start()
+    private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerCharacteristics = GetComponent<PlayerCharacteristics>();
+    }
+
+    private void Start()
+    {        
+        _speed = playerCharacteristics.CurrentMoveSpeed;        
         yPosition = transform.position.y;
     }
 
@@ -23,11 +29,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         // Rotation();
-
     }
-    private void LateUpdate()
+
+    public void SetSpeed(float speed)
     {
-        
+        _speed = speed;
     }
 
     private void Move()
@@ -38,6 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(move * _speed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+        //Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 10f * Time.deltaTime);
+        //transform.LookAt(move, Vector3.right);
+        if (move != Vector3.zero)
+        {
+            transform.LookAt(transform.position + move);         
+        }          
     }
 
     private void Rotation()

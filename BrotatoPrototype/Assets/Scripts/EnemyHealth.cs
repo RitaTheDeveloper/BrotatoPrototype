@@ -7,6 +7,7 @@ public class EnemyHealth : LivingEntity
     private float xpForKill;
     private GameObject player;
     private LevelSystem playerLevelSystem;
+   
 
     protected override void Start()
     {
@@ -18,7 +19,9 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-
-        playerLevelSystem.IncreaseCurrentExperience(xpForKill);
+        var currency = PoolObject.instance.currencyPool.Get();
+        currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
+        currency.SetXP(xpForKill);
+        //playerLevelSystem.IncreaseCurrentExperience(xpForKill);
     }
 }
