@@ -17,25 +17,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _magnetDistance);
-
-        for (int i = 0; i < hitColliders.Length; i++)
-        {
-            if (hitColliders[i].gameObject.tag == "Currency")
-            {               
-                Transform currency = hitColliders[i].gameObject.transform;
-                currency.position = Vector3.MoveTowards(currency.position, transform.position, 40f * Time.deltaTime);
-
-                if (Vector3.Distance(currency.position, transform.position) < 1f)
-                {
-                    var xp = currency.GetComponent<Currency>().GetXP();
-                    IncreaseCurrentExperience(xp);
-                    currency.GetComponent<Currency>().PutAwayFromScene();
-                }
-            }
-        }
-        
-
+        ConsumeAllCurrencyInRange(_magnetDistance);        
     }
 
     private void Init()
@@ -44,6 +26,29 @@ public class LevelSystem : MonoBehaviour
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
         DisplayLevel();
+    }
+
+    private void ConsumeAllCurrencyInRange(float range)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].gameObject.tag == "Currency")
+            {
+                Transform currency = hitColliders[i].gameObject.transform;
+                Vector3 targetPosition = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
+                currency.position = Vector3.MoveTowards(currency.position, targetPosition, 40f * Time.deltaTime);
+
+                if (Vector3.Distance(currency.position, transform.position) < 3f)
+                {
+                    var xp = currency.GetComponent<Currency>().GetXP();
+                    IncreaseCurrentExperience(xp);
+                    Debug.Log("xp = " + xp + "; currentXp = " + _currentXp);
+                    currency.GetComponent<Currency>().PutAwayFromScene();
+                }
+            }
+        }
     }
 
     public float GetRequiredXp(int currentLvl)

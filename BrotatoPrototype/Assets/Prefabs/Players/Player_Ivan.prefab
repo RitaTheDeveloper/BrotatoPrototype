@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 10
+  _startMaxHp: 12
   _startHpRegen: 0
   _startMoveSpeed: 6
   _startMagnetDistance: 0
@@ -423,8 +423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8444e8d15e848dc46a0fa47518627337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10
+  startingHealth: 2
   health: 0
+  regenOn: 1
+  hpRegenPerSecond: 0
   dead: 0
 --- !u!114 &441092538454667266
 MonoBehaviour:
@@ -442,7 +444,7 @@ MonoBehaviour:
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0
-  _magnetDistance: 10
+  _magnetDistance: 5.5
 --- !u!65 &3915830021258526795
 BoxCollider:
   m_ObjectHideFlags: 0

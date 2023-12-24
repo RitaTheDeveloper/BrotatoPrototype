@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour
 
     private void RemoveAllCurrency()
     {
-        Debug.Log("Удалить нахуй всю валюту с поля");
         PoolObject.instance.RemoveAllObjectsFromScene();
     }
 }

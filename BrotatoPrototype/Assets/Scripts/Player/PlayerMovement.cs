@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
         // Rotation();
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed()
     {
-        _speed = speed;
+        _speed = playerCharacteristics.CurrentMoveSpeed;
     }
 
     private void Move()

@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
 
+    [SerializeField] private CharacteristicsUI characteristicsUI;
+
     private void Awake()
     {
         instance = this;
@@ -42,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void AbilitySelectionPanelOn()
     {
+        characteristicsUI.UpdateCharacterisctics();
         abilitySelectionPanel.SetActive(true);
     }
 
@@ -68,12 +71,6 @@ public class UIManager : MonoBehaviour
         GameManager.instance.Restart();
     }
 
-    public void TakeAbility()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed = player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed + 10;
-    }
-
     private void AllOff()
     {
         losePanel.SetActive(false);
@@ -89,7 +86,7 @@ public class UIManager : MonoBehaviour
         }
 
         healthSlider.value = currentHp / startHp;
-        healthTxt.text = currentHp + "/" + startHp;
+        healthTxt.text = (int)currentHp + "/" + (int)startHp;
     }
 
     public void DisplayLevel(int currentLvl, float XpPercentage)

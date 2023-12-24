@@ -7,6 +7,8 @@ public class PlayerHealth : LivingEntity
 {
     protected override void Start()
     {
+        SetMaxHP();
+        SetHpRegenPerSecond();
         base.Start();
         DisplayHealth();
     }
@@ -15,6 +17,12 @@ public class PlayerHealth : LivingEntity
     {
         base.Die();
         GameManager.instance.Lose();
+    }
+
+    public override void HpRegen()
+    {
+        base.HpRegen();
+        DisplayHealth();
     }
 
     public void DisplayHealth()
@@ -26,5 +34,15 @@ public class PlayerHealth : LivingEntity
     {
         base.TakeHit(damage);
         DisplayHealth();
+    }
+
+    public void SetHpRegenPerSecond()
+    {
+        hpRegenPerSecond = GetComponent<PlayerCharacteristics>().CurrentHpRegen;
+    }
+
+    public void SetMaxHP()
+    {
+        startingHealth = GetComponent<PlayerCharacteristics>().CurrentMaxHp;
     }
 }

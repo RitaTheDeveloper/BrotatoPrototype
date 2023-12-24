@@ -7,6 +7,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float startingHealth;
     [SerializeField] protected float health;
+    [SerializeField] protected bool regenOn = false;
+    [SerializeField] protected float hpRegenPerSecond = 0f;
     
     public bool dead;
 
@@ -15,9 +17,22 @@ public class LivingEntity : MonoBehaviour, IDamageable
         Init();
     }
 
+    protected virtual void FixedUpdate()
+    {
+        if (regenOn && health < startingHealth && !dead)
+        {
+            HpRegen();
+        }
+    }
+
     public void Init()
     {
         health = startingHealth;
+    }
+
+    public virtual void HpRegen()
+    {
+        health += hpRegenPerSecond * Time.deltaTime;
     }
 
     public virtual void TakeHit(float damage, RaycastHit hit)
@@ -43,6 +58,5 @@ public class LivingEntity : MonoBehaviour, IDamageable
         dead = true;
         Destroy(gameObject);       
     }
-
     
 }
