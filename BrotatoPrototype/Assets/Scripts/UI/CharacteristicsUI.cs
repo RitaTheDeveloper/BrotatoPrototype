@@ -9,6 +9,7 @@ public class CharacteristicsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI parameterOfMaxHp;
     [SerializeField] private TextMeshProUGUI parameterOfSpeed;
     [SerializeField] private TextMeshProUGUI parameterOfHpRegen;
+    [SerializeField] private TextMeshProUGUI parameterOfAttackSpeed;
 
     private PlayerCharacteristics _playerCharacteristics;
 
@@ -30,5 +31,9 @@ public class CharacteristicsUI : MonoBehaviour
 
         // for hpRegen
         parameterOfHpRegen.text = _playerCharacteristics.CurrentHpRegen.ToString();
+
+        // for attackSpeed
+        var paramOfAttackSpeed = Mathf.Round(_playerCharacteristics.CurrentAttackSpeedPercentage * 10) / 10;
+        parameterOfAttackSpeed.text = paramOfAttackSpeed.ToString();
     }
 }

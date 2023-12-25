@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    [SerializeField] private float _msBetweenAttacks = 1;
     [SerializeField] private Animator animator;
 
     private BoxCollider _collider;
     private float _nextShotTime;
     private void Start()
     {
-        // Attack();
         Init();
         _collider = GetComponent<BoxCollider>();
     }
@@ -27,7 +25,8 @@ public class MeleeWeapon : Weapon
         {
             RotateWeaponHolder();
             Attack();
-            _nextShotTime = Time.time + _msBetweenAttacks;
+            SetAttackSpeed();
+            _nextShotTime = Time.time + 1 / currentAttackSpeed;
         }
     }
 

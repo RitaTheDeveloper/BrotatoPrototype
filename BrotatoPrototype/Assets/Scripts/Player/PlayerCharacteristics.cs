@@ -8,6 +8,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startHpRegen;
     [SerializeField] private float _startMoveSpeed;
     [SerializeField] private float _startMagnetDistance;
+    [SerializeField] private float _startAttackSpeedPercentage;
  
     private float _currentMaxHp;
     public float CurrentMaxHp
@@ -37,11 +38,19 @@ public class PlayerCharacteristics : MonoBehaviour
         set { _currentMagnetDistance = value; }
     }
 
+    private float _currentAttackSpeedPercentage;
+    public float CurrentAttackSpeedPercentage
+    {
+        get { return _currentAttackSpeedPercentage; }
+        set { _currentAttackSpeedPercentage = value; }
+    }
+
     private void Awake()
     {
         _currentMoveSpeed = _startMoveSpeed;
         _currentMaxHp = _startMaxHp;
         _currentHpRegen = _startHpRegen;
         _currentMagnetDistance = _startMagnetDistance;
+        _currentAttackSpeedPercentage = _startAttackSpeedPercentage;
     }
 }

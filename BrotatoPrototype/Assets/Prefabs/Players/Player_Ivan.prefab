@@ -411,6 +411,7 @@ MonoBehaviour:
   _startHpRegen: 0
   _startMoveSpeed: 6
   _startMagnetDistance: 0
+  _startAttackSpeedPercentage: 0
 --- !u!114 &7351408195582360582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +647,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
         type: 3}
+      propertyPath: attackSpeed
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
+        type: 3}
+      propertyPath: _attackSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
+        type: 3}
       propertyPath: _msBetweenShots
       value: 200
       objectReference: {fileID: 0}
@@ -704,6 +715,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4626340512655144254, guid: 3e369ee1721f1a74aa92c148e7621eec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -727,6 +743,16 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
+        type: 3}
+      propertyPath: attackSpeed
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
+        type: 3}
+      propertyPath: _attackSpeed
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -5460484677250142245, guid: 3e369ee1721f1a74aa92c148e7621eec,
         type: 3}

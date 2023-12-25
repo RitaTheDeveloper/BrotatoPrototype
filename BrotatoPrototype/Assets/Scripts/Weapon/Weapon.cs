@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 public class Weapon : MonoBehaviour
-{
-    public float attackRange;
+{    
+    public float attackRange; 
     public GameObject nearestEnemy;
+    [Header("количество атак в секунду")]
+    [SerializeField] protected float startAttackSpeed;
+    [SerializeField] protected float currentAttackSpeed;
     private GameObject[] allEnemies;
     private float distance;
     private Transform weaponHolder;
-
+    private PlayerCharacteristics playerCharacteristics;
     public virtual void Attack()
     {
 
@@ -18,6 +21,8 @@ public class Weapon : MonoBehaviour
     public void Init()
     {
         weaponHolder = transform.parent;
+        playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
+        SetAttackSpeed();
     }
 
     public void FindTheNearestEnemy()
@@ -60,5 +65,10 @@ public class Weapon : MonoBehaviour
         {
             weaponHolder.LookAt(nearestEnemy.transform);
         }        
+    }
+
+    public void SetAttackSpeed()
+    {
+        currentAttackSpeed = startAttackSpeed + startAttackSpeed * playerCharacteristics.CurrentAttackSpeedPercentage / 100f;
     }
 }

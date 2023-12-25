@@ -44,7 +44,6 @@ public class LevelSystem : MonoBehaviour
                 {
                     var xp = currency.GetComponent<Currency>().GetXP();
                     IncreaseCurrentExperience(xp);
-                    Debug.Log("xp = " + xp + "; currentXp = " + _currentXp);
                     currency.GetComponent<Currency>().PutAwayFromScene();
                 }
             }

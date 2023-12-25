@@ -6,13 +6,14 @@ public class GunWeapon : Weapon
 {
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Projectile _projectile;
-    [SerializeField] private float _msBetweenShots = 100f;
     [SerializeField] private float muzzleVelocity = 35f;
 
     private float _nextShotTime;
+    private Transform _container;
 
     private void Start()
     {
+        _container = GameObject.Find("Bullets").transform;
         Init();
     }
 
@@ -28,8 +29,10 @@ public class GunWeapon : Weapon
         if (Time.time > _nextShotTime && nearestEnemy)
         {
             RotateWeaponHolder();
-            _nextShotTime = Time.time + _msBetweenShots / 1000;
+            SetAttackSpeed();
+            _nextShotTime = Time.time + 1 / currentAttackSpeed;
             Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
+            newProjectile.transform.parent = _container;
             newProjectile.SetSpeed(muzzleVelocity);
         }
 

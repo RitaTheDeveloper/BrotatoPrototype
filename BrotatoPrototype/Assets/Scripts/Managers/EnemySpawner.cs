@@ -23,13 +23,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject mark;
     private float markDisplayTime = 1f;
 
-
+    private Transform container;
     private float _timeUntilSpawn;
 
     private void Awake()
     {
         SetTimeUntilSpawn();
         MarkOff();
+        container = GameObject.Find("Enemies").transform;
     }
 
     private void FixedUpdate()
@@ -79,7 +80,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnOneEnemy(Vector3 position)
     {
-        Instantiate(_enemyPrefab, position, transform.rotation);
+       var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
+        enemy.transform.parent = container;
     }
 
     private void SpawnInGroup()
