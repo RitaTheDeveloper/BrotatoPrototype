@@ -5,8 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 20f;
-    [SerializeField] float damage = 1;
     [SerializeField] LayerMask collisionMask;
+
+    private float _damage;
 
     private void Start()
     {
@@ -16,6 +17,11 @@ public class Projectile : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         _speed = newSpeed;
+    }
+
+    public void SetDamage(float damage)
+    {
+        _damage = damage;
     }
 
     private void Update()
@@ -45,7 +51,7 @@ public class Projectile : MonoBehaviour
         IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
         if (damageableObject != null)
         {
-            damageableObject.TakeHit(damage, hit);
+            damageableObject.TakeHit(_damage, hit);
         }
         GameObject.Destroy(gameObject);
     }

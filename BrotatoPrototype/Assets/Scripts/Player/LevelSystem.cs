@@ -40,7 +40,7 @@ public class LevelSystem : MonoBehaviour
                 Vector3 targetPosition = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
                 currency.position = Vector3.MoveTowards(currency.position, targetPosition, 40f * Time.deltaTime);
 
-                if (Vector3.Distance(currency.position, transform.position) < 3f)
+                if (Vector3.Distance(currency.position, targetPosition) < 1f)
                 {
                     var xp = currency.GetComponent<Currency>().GetXP();
                     IncreaseCurrentExperience(xp);
@@ -60,7 +60,6 @@ public class LevelSystem : MonoBehaviour
         _currentLvl++;
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
-
     }
 
     public void IncreaseCurrentExperience(float xp)

@@ -5,20 +5,18 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     [SerializeField] private Animator animator;
-    Type type;
+    [SerializeField] private Type typeOfWeapon;
+    [Range(0,100)]
+    [SerializeField] private float percantageOfMelleDamage = 100;
     private float _nextShotTime;
-    private Quaternion startRotation;
     private float timeOfAttack = 0.27f; // for bur это время нужно не хардкордить и анимацию ускорять, когда ускоряем
     private float timer;
 
     private void Start()
     {
         Init();
-        type = Type.mellee;
-        startRotation = weaponHolder.transform.rotation;
         animator.speed = animator.speed * currentAttackSpeed;
         timeOfAttack = timeOfAttack / currentAttackSpeed;
-        Debug.Log(timeOfAttack);
     }
 
     private void Update()
@@ -31,8 +29,9 @@ public class MeleeWeapon : Weapon
         if (Time.time > _nextShotTime && nearestEnemy)
         {
             RotateWeaponHolder();
-            Attack();
             SetAttackSpeed();
+            SetDamage();
+            Attack();
             _nextShotTime = Time.time + 1 / currentAttackSpeed;
         }
 
@@ -40,7 +39,7 @@ public class MeleeWeapon : Weapon
 
         if (timer >= timeOfAttack)
         {
-            weaponHolder.rotation = startRotation;
+            ReturnWeponHolderRotationToStarting();
         }
     }
 
@@ -48,6 +47,12 @@ public class MeleeWeapon : Weapon
     {
         timer = 0f;
         animator.SetTrigger("Hit");      
+    }
+
+    public override void SetDamage()
+    {
+        base.SetDamage();
+        currentDamage = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,9 +66,9 @@ public class MeleeWeapon : Weapon
         //}
         if (other.tag == "Enemy")
         {
-
-            other.GetComponent<LivingEntity>().TakeHit(0.5f);
-            Debug.Log("ударить " + other + " " + this);
+            other.GetComponent<LivingEntity>().TakeHit(currentDamage);
         }
     }
+
+    
 }

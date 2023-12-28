@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelTxt;
 
     [SerializeField] private CharacteristicsUI characteristicsUI;
+    [SerializeField] private AllAbilities allAbilities;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
     public void OkOnClick()
     {
         AbilitySelectionPanelOff();
+        allAbilities.ChooseAbilitiesForProposeAbilities();
         GameManager.instance.StartNextWave();
     }
 

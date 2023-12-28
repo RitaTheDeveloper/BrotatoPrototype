@@ -5,15 +5,18 @@ using System.Linq;
 public class Weapon : MonoBehaviour
 {
     public enum Type { mellee, range};
-    public float attackRange; 
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float startDamage;
+    [SerializeField] protected float currentDamage;
     public GameObject nearestEnemy;
     [Header("количество атак в секунду")]
     [SerializeField] protected float startAttackSpeed;
     [SerializeField] protected float currentAttackSpeed;
     private GameObject[] allEnemies;
     private float distance;
+    protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
-    private PlayerCharacteristics playerCharacteristics;
+    protected PlayerCharacteristics playerCharacteristics;
 
     public virtual void Attack()
     {
@@ -25,6 +28,8 @@ public class Weapon : MonoBehaviour
         weaponHolder = transform.parent;
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
         SetAttackSpeed();
+        currentDamage = startDamage;
+        startRotationWeaponHolder = weaponHolder.rotation;
     }
 
     public void FindTheNearestEnemy()
@@ -73,6 +78,16 @@ public class Weapon : MonoBehaviour
     public void SetAttackSpeed()
     {
         currentAttackSpeed = startAttackSpeed + startAttackSpeed * playerCharacteristics.CurrentAttackSpeedPercentage / 100f;
+    }
+
+    public virtual void SetDamage()
+    {
+        
+    }
+
+    protected virtual void ReturnWeponHolderRotationToStarting()
+    {
+        weaponHolder.rotation = startRotationWeaponHolder;
     }
 
 }

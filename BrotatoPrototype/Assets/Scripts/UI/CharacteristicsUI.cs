@@ -10,6 +10,8 @@ public class CharacteristicsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI parameterOfSpeed;
     [SerializeField] private TextMeshProUGUI parameterOfHpRegen;
     [SerializeField] private TextMeshProUGUI parameterOfAttackSpeed;
+    [SerializeField] private TextMeshProUGUI parameterOfMelleeDamage;
+    [SerializeField] private TextMeshProUGUI parameterOfRangedDamage;
 
     private PlayerCharacteristics _playerCharacteristics;
 
@@ -35,5 +37,11 @@ public class CharacteristicsUI : MonoBehaviour
         // for attackSpeed
         var paramOfAttackSpeed = Mathf.Round(_playerCharacteristics.CurrentAttackSpeedPercentage * 10) / 10;
         parameterOfAttackSpeed.text = paramOfAttackSpeed.ToString();
+
+        // for melleeDamage
+        parameterOfMelleeDamage.text = _playerCharacteristics.CurrentMelleeDamage.ToString();
+
+        // for rangedDamage
+        parameterOfRangedDamage.text = _playerCharacteristics.CurrentRangedDamage.ToString();
     }
 }

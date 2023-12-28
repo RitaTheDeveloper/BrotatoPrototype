@@ -287,14 +287,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a718bb89814e1a3449d502b25c5ca86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0
+  attackRange: 10
+  startDamage: 1
+  currentDamage: 0
   nearestEnemy: {fileID: 0}
-  startAttackSpeed: 2
+  startAttackSpeed: 6
   currentAttackSpeed: 0
   _muzzle: {fileID: 2032807186437202128}
   _projectile: {fileID: 1331408556871749274, guid: 5a0ca2148c81f244087fc9c39ecc025f,
     type: 3}
   muzzleVelocity: 35
+  percantageOfRangedDamage: 100
 --- !u!1 &7669238555778718717
 GameObject:
   m_ObjectHideFlags: 0

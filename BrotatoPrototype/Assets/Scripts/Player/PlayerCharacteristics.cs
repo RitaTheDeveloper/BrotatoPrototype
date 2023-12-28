@@ -48,7 +48,7 @@ public class PlayerCharacteristics : MonoBehaviour
     }
 
     private float _currentMelleeDamage;
-    private float CurrentMelleeDamage
+    public float CurrentMelleeDamage
     {
         get { return _currentMelleeDamage; }
         set { _currentMelleeDamage = value; }
