@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCharacteristics playerCharacteristics;
     private CharacterController characterController;
     private float yPosition;
-
+    [SerializeField] Transform model;
+    private Quaternion startRotationModel;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerCharacteristics = GetComponent<PlayerCharacteristics>();
+        startRotationModel = model.rotation;
     }
 
     private void Start()
@@ -49,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
         //transform.LookAt(move, Vector3.right);
         if (move != Vector3.zero)
         {
-            transform.LookAt(transform.position + move);         
+            model.transform.LookAt(transform.position + move);
+            model.rotation *= startRotationModel;
         }          
     }
 

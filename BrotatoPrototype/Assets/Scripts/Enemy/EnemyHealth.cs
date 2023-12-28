@@ -13,7 +13,7 @@ public class EnemyHealth : LivingEntity
     {
         base.Start();
         xpForKill = GetComponent<UnitParameters>().AmountOfExperience;
-        player = GetComponent<EnemyController>().target.gameObject;
+        player = GetComponent<EnemyController>().target.gameObject;       
         playerLevelSystem = player.GetComponent<LevelSystem>();
     }
     public override void Die()
