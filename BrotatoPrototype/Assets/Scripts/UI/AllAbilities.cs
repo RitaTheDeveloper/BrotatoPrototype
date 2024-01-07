@@ -19,12 +19,10 @@ public class AllAbilities : MonoBehaviour
     {
         _remainingAbilities = new List<Ability>();
         _remainingAbilities.AddRange(allAbilities.ToArray());
-        Debug.Log("count = " + _remainingAbilities.Count);
-        Debug.Log("allAbilitiescount = " + allAbilities.Count);
 
         for (int i = 0; i < proposedAbilities.Length; i++)
         {
-            int randIndex = (int)Random.Range(0, _remainingAbilities.Count - 1);
+            int randIndex = (int)Random.Range(0, _remainingAbilities.Count);
             proposedAbilities[i].ability = _remainingAbilities[randIndex];
             proposedAbilities[i].SetUIForProposedAbility();
             _remainingAbilities.Remove(_remainingAbilities[randIndex]);

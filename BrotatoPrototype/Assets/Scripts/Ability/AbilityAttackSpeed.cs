@@ -11,7 +11,6 @@ public class AbilityAttackSpeed : Ability
         GameObject player = GameManager.instance.player;
         var currentAttackSpeedPercentage = player.GetComponent<PlayerCharacteristics>().CurrentAttackSpeedPercentage;
         player.GetComponent<PlayerCharacteristics>().CurrentAttackSpeedPercentage = currentAttackSpeedPercentage + attackSpeedPercentage;
-        Debug.Log("attackSpeedPercentage " + currentAttackSpeedPercentage + attackSpeedPercentage);
         UIManager.instance.OkOnClick();
     }
 

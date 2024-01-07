@@ -5,13 +5,22 @@ using System.Linq;
 public class Weapon : MonoBehaviour
 {
     public enum Type { mellee, range};
+    [Header("Настраиваемые параметры: ")]
+    [Tooltip("дальность:")]
     [SerializeField] protected float attackRange;
+    [Tooltip("начальный урон:")]
     [SerializeField] protected float startDamage;
-    [SerializeField] protected float currentDamage;
-    public GameObject nearestEnemy;
-    [Header("количество атак в секунду")]
+    [Tooltip("кол-во атак в секунду:")]
     [SerializeField] protected float startAttackSpeed;
+    [Tooltip("вероятность крит шанса:")]
+    [Range(0,1)]
+    [SerializeField] protected float startCritChance;  
+
+    [Space]
     [SerializeField] protected float currentAttackSpeed;
+    [SerializeField] protected float currentDamage;
+    [SerializeField] protected float currentCritChance;
+    public GameObject nearestEnemy;
     private GameObject[] allEnemies;
     private float distance;
     protected Quaternion startRotationWeaponHolder;
@@ -28,6 +37,7 @@ public class Weapon : MonoBehaviour
         weaponHolder = transform.parent;
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
         SetAttackSpeed();
+        SetCritChance();
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
     }
@@ -78,6 +88,11 @@ public class Weapon : MonoBehaviour
     public void SetAttackSpeed()
     {
         currentAttackSpeed = startAttackSpeed + startAttackSpeed * playerCharacteristics.CurrentAttackSpeedPercentage / 100f;
+    }
+
+    public void SetCritChance()
+    {
+        currentCritChance = startCritChance + playerCharacteristics.CurrentCritChancePercentage / 100f;
     }
 
     public virtual void SetDamage()

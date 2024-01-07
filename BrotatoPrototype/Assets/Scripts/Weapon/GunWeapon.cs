@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GunWeapon : Weapon
 {
+    [Range(0, 100)]
+    [SerializeField] private float percantageOfRangedDamage = 100;
+
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Projectile _projectile;
     [SerializeField] private float muzzleVelocity = 35f;
-    [Range(0, 100)]
-    [SerializeField] private float percantageOfRangedDamage = 100;
+    
     private float timeOfAttack = 0.3f; 
     private float timer;
 
@@ -36,11 +38,25 @@ public class GunWeapon : Weapon
             RotateWeaponHolder();
             SetAttackSpeed();
             SetDamage();
+            SetCritChance();
             _nextShotTime = Time.time + 1 / currentAttackSpeed;
             Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
             newProjectile.transform.parent = _container;
             newProjectile.SetSpeed(muzzleVelocity);
-            newProjectile.SetDamage(currentDamage);
+            newProjectile.SetRange(attackRange);
+
+            //крит или не крит
+            if (Random.value < currentCritChance)
+            {
+                newProjectile.SetDamage(currentDamage * 2);
+                Debug.Log("крит! " + currentDamage * 2);
+            }
+            else
+            {
+                newProjectile.SetDamage(currentDamage);
+                Debug.Log("обычный " + currentDamage);
+            }
+            
         }
 
         timer += Time.deltaTime;

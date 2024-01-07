@@ -6,13 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
     [SerializeField] private WaveController[] _waves;
     [SerializeField] WaveController _currentWave;
 
     public GameObject player;
     private int _waveCounter;
+    private int _heroIndex = 0;
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
 
@@ -22,16 +23,22 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Init();
+        _heroIndex = 0;
+        //Init();
     }
 
-    private void Init()
+    public void Init()
     {
-        SpawnPlayer();
+        SpawnPlayer(_heroIndex);
         _gameIsOver = false;
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
         _waves[0].StartWave();
+    }
+
+    public void SetHeroIndex(int index)
+    {
+        _heroIndex = index;
     }
 
     public void Lose()
@@ -96,9 +103,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnPlayer()
+    private void SpawnPlayer(int index)
     {
-        player = Instantiate(playerPrefab, playerStartingSpawnPoint.position, Quaternion.identity);
+        if (player != null)
+        {
+            Destroy(player);            
+        }
+
+        player = Instantiate(playerPrefabs[index], playerStartingSpawnPoint.position, Quaternion.identity);
     }
 
 

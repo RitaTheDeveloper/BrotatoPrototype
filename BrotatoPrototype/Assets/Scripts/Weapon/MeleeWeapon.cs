@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
+    [Range(0, 100)]
+    [SerializeField] private float percantageOfMelleDamage = 100;
+
     [SerializeField] private Animator animator;
     [SerializeField] private Type typeOfWeapon;
-    [Range(0,100)]
-    [SerializeField] private float percantageOfMelleDamage = 100;
+    
     private float _nextShotTime;
     private float timeOfAttack = 0.27f; // for bur это время нужно не хардкордить и анимацию ускорять, когда ускоряем
     private float timer;
+    private bool isCritDamage = false;
 
     private void Start()
     {
@@ -31,7 +34,19 @@ public class MeleeWeapon : Weapon
             RotateWeaponHolder();
             SetAttackSpeed();
             SetDamage();
+            SetCritChance();
             Attack();
+
+            // крит или не крит
+            if (Random.value < currentCritChance)
+            {
+                isCritDamage = true;
+            }
+            else
+            {
+                isCritDamage = false;
+            }
+
             _nextShotTime = Time.time + 1 / currentAttackSpeed;
         }
 
@@ -66,7 +81,19 @@ public class MeleeWeapon : Weapon
         //}
         if (other.tag == "Enemy")
         {
-            other.GetComponent<LivingEntity>().TakeHit(currentDamage);
+            if (isCritDamage)
+            {
+                // наносим крит
+                other.GetComponent<LivingEntity>().TakeHit(currentDamage * 2);
+                Debug.Log("крит! " + currentDamage * 2);
+            }
+            else
+            {
+                // обычный урон
+                other.GetComponent<LivingEntity>().TakeHit(currentDamage);
+                Debug.Log("обычный урон " + currentDamage);
+            }
+            
         }
     }
 

@@ -12,6 +12,7 @@ public class CharacteristicsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI parameterOfAttackSpeed;
     [SerializeField] private TextMeshProUGUI parameterOfMelleeDamage;
     [SerializeField] private TextMeshProUGUI parameterOfRangedDamage;
+    [SerializeField] private TextMeshProUGUI parameterOfCritChance;
 
     private PlayerCharacteristics _playerCharacteristics;
 
@@ -43,5 +44,8 @@ public class CharacteristicsUI : MonoBehaviour
 
         // for rangedDamage
         parameterOfRangedDamage.text = _playerCharacteristics.CurrentRangedDamage.ToString();
+
+        // for critChance
+        parameterOfCritChance.text = _playerCharacteristics.CurrentCritChancePercentage.ToString();
     }
 }

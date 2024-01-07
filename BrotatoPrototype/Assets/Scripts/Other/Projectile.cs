@@ -5,13 +5,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 20f;
+    private float _range;
     [SerializeField] LayerMask collisionMask;
 
     private float _damage;
 
     private void Start()
     {
-        Destroy(gameObject, 2f);
+        Debug.Log(" t = " + _range / _speed);
+        Destroy(gameObject, _range / _speed);
     }
 
     public void SetSpeed(float newSpeed)
@@ -22,6 +24,11 @@ public class Projectile : MonoBehaviour
     public void SetDamage(float damage)
     {
         _damage = damage;
+    }
+
+    public void SetRange(float attackRange)
+    {
+        _range = attackRange;
     }
 
     private void Update()
