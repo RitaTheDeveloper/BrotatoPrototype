@@ -80,7 +80,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnOneEnemy(Vector3 position)
     {
-       var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
+        var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
+        var enemy =  Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
     }
 

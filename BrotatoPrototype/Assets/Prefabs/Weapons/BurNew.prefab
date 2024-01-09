@@ -156,15 +156,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
-  startDamage: 3
-  currentDamage: 0
-  critChance: 0.1
-  nearestEnemy: {fileID: 0}
-  startAttackSpeed: 1
+  startDamage: 5
+  startAttackSpeed: 0.68
+  startCritChance: 0
   currentAttackSpeed: 0
+  currentDamage: 0
+  currentCritChance: 0
+  nearestEnemy: {fileID: 0}
+  percantageOfMelleDamage: 81.2
   animator: {fileID: 8959612167846199774}
   typeOfWeapon: 0
-  percantageOfMelleDamage: 81.2
 --- !u!95 &8959612167846199774
 Animator:
   serializedVersion: 5

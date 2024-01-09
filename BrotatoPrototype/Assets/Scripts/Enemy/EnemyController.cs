@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     State currentState;
 
     [SerializeField] private float attackDistance = 1.5f;
-    [SerializeField] private float timeBetweenAttacks = 1f;
+    [SerializeField] private float timeBetweenAttacks = 0f;
 
     private NavMeshAgent navMeshAgent;
     public Transform target;
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
         if (Time.time > nextAttackTime && target)
         {
 
-            if (Vector3.Distance(target.position, transform.position) < attackDistance)
+            if (target && Vector3.Distance(target.position, transform.position) < attackDistance)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 //StartCoroutine(Attack());
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
         {
             if(currentState == State.Chasing)
             {
-                Vector3 targetPosition = new Vector3(target.position.x, target.position.y, target.position.z);
+                Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
                 if (!livingEntity.dead)
                 {
                     navMeshAgent.SetDestination(targetPosition);

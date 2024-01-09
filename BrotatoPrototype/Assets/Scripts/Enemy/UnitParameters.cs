@@ -31,4 +31,11 @@ public class UnitParameters : MonoBehaviour
     }
 
     public float AmountOfExperience { get { return _amountOfExperience; } }
+
+    private void Awake()
+    {
+        _currentHp = _maxHp;
+        _currentHpRegen = _hpRegen;
+        _currentMoveSpeed = _moveSpeed;
+    }
 }

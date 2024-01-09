@@ -319,8 +319,8 @@ MonoBehaviour:
   _startMagnetDistance: 0
   _startAttackSpeedPercentage: 0
   _startMelleeDamage: 0
-  _startRangedDamage: 3
-  _startCritChancePercentage: 10
+  _startRangedDamage: 0
+  _startCritChancePercentage: 0
 --- !u!114 &3599636771806896228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +338,9 @@ MonoBehaviour:
   regenOn: 1
   hpRegenPerSecond: 0
   dead: 0
+  invulnerability: 0
+  canTakeDmg: 0
+  timeOfInvulnerability: 0.5
 --- !u!114 &1648635527877058955
 MonoBehaviour:
   m_ObjectHideFlags: 0

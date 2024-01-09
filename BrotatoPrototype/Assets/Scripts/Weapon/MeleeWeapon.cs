@@ -85,17 +85,13 @@ public class MeleeWeapon : Weapon
             {
                 // наносим крит
                 other.GetComponent<LivingEntity>().TakeHit(currentDamage * 2);
-                Debug.Log("крит! " + currentDamage * 2);
             }
             else
             {
                 // обычный урон
                 other.GetComponent<LivingEntity>().TakeHit(currentDamage);
-                Debug.Log("обычный урон " + currentDamage);
-            }
-            
+            }            
         }
     }
-
     
 }

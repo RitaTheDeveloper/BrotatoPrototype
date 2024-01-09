@@ -5,12 +5,43 @@ using UnityEngine;
 
 public class PlayerHealth : LivingEntity
 {
+    public bool invulnerability;
+    public bool canTakeDmg;
+    [SerializeField] private float timeOfInvulnerability = 0.5f;
+    private float _timer;
+
     protected override void Start()
     {
+        _timer = 0f;
+        invulnerability = false;
+        canTakeDmg = false;
         SetMaxHP();
         SetHpRegenPerSecond();
         base.Start();
         DisplayHealth();
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        // для того, чтобы все враги которые рядом могли нанести урон в кадр
+        if (canTakeDmg)
+        {
+            invulnerability = true;
+            canTakeDmg = false;
+        }
+        
+        if (invulnerability)
+        {
+            _timer += Time.deltaTime;
+            if (_timer > timeOfInvulnerability)
+            {
+                _timer = 0f;
+                invulnerability = false;
+            }
+        }        
+       
     }
 
     public override void Die()
@@ -32,7 +63,12 @@ public class PlayerHealth : LivingEntity
 
     public override void TakeHit(float damage)
     {
-        base.TakeHit(damage);
+        if (!invulnerability)
+        {           
+            base.TakeHit(damage);
+            canTakeDmg = true;
+        }
+        
         DisplayHealth();
     }
 
