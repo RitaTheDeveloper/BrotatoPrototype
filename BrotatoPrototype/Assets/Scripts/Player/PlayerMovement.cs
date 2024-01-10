@@ -51,8 +51,9 @@ public class PlayerMovement : MonoBehaviour
         //transform.LookAt(move, Vector3.right);
         if (move != Vector3.zero)
         {
-            model.transform.LookAt(transform.position + move);
-            model.rotation *= startRotationModel;
+            //model.transform.LookAt(transform.position + move);
+            //model.rotation *= startRotationModel;
+            transform.LookAt(transform.position + move);
         }          
     }
 

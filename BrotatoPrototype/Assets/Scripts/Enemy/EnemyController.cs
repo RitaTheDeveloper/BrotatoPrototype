@@ -8,8 +8,10 @@ public class EnemyController : MonoBehaviour
     public enum State { Idle, Chasing, Attacking};
     State currentState;
 
-    [SerializeField] private float attackDistance = 1.5f;
-    [SerializeField] private float timeBetweenAttacks = 0f;
+    [SerializeField] protected float attackDistance = 1.5f;
+    [SerializeField] protected float timeBetweenAttacks = 0f;
+    [SerializeField] protected float refreshRateOfUpdatePath = 1f;
+    [SerializeField] protected Animator animator;
 
     private NavMeshAgent navMeshAgent;
     public Transform target;
@@ -18,7 +20,7 @@ public class EnemyController : MonoBehaviour
     private float nextAttackTime;
     private float myCollisionRadius;
     private float targetCollisionRadius;
-
+    
     private void Awake()
     {
         Init();
@@ -33,19 +35,46 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(UpdatePath());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-
         if (Time.time > nextAttackTime && target)
         {
-
             if (target && Vector3.Distance(target.position, transform.position) < attackDistance)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
-                //StartCoroutine(Attack());
-                target.GetComponent<LivingEntity>().TakeHit(1f);
+
+                if (animator != null)
+                {
+                    animator.SetBool("attack", true);
+                }
+
+                Attacking();
+            }
+            else
+            {
+                if (animator != null)
+                {
+                    animator.SetBool("attack", false);
+                }
             }
         }
+
+        if (target == null)
+        {
+            currentState = State.Idle;
+            navMeshAgent.enabled = false;
+        }
+    }
+
+    public virtual void Attacking()
+    {
+        currentState = State.Attacking;
+        navMeshAgent.enabled = false;     
+        
+        target.GetComponent<LivingEntity>().TakeHit(1f);
+
+        currentState = State.Chasing;
+        navMeshAgent.enabled = true;
     }
 
     private void Init()
@@ -82,7 +111,6 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator UpdatePath()
     {
-        float refreshRate = 1f;
 
         while(target != null)
         {
@@ -95,7 +123,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
             
-            yield return new WaitForSeconds(refreshRate);
+            yield return new WaitForSeconds(refreshRateOfUpdatePath);
         }
     }
 }

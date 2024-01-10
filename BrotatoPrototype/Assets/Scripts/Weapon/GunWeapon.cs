@@ -65,7 +65,6 @@ public class GunWeapon : Weapon
         {
             ReturnWeponHolderRotationToStarting();
         }
-
     }
 
     public override void SetDamage()

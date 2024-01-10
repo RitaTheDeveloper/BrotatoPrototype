@@ -96,6 +96,4 @@ public class EnemySpawner : MonoBehaviour
             SpawnOneEnemy(positionEnemy);
         }
     }
-
-
 }

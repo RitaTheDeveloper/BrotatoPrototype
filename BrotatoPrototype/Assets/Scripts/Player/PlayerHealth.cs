@@ -64,7 +64,8 @@ public class PlayerHealth : LivingEntity
     public override void TakeHit(float damage)
     {
         if (!invulnerability)
-        {           
+        {
+            Debug.Log("attacking");
             base.TakeHit(damage);
             canTakeDmg = true;
         }

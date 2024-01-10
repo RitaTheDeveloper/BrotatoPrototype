@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5143931292172823172}
   - component: {fileID: 2552466898307374902}
   - component: {fileID: 499080718781555479}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stupa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1636539191047193329}
   - component: {fileID: 5718780382127992796}
   - component: {fileID: 7933727000699149716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ivan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3362028032388202160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponHold 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 8295574430818672749}
   - component: {fileID: 4557942153770270040}
   - component: {fileID: 7724857888406253969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_Ivan_bur_new
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 15
+  _startMaxHp: 60
   _startHpRegen: 0
   _startMoveSpeed: 7
   _startMagnetDistance: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   dead: 0
   invulnerability: 0
   canTakeDmg: 0
-  timeOfInvulnerability: 0.5
+  timeOfInvulnerability: 1
 --- !u!114 &8295574430818672749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7573677172142062957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponHold 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590560674589424442}
   - component: {fileID: 7785386241150150641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ivan_v_stupe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,13 +486,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5785649874857289563}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponHold 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5785649874857289563
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010136071034176464}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponHold 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6499011628997200586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,6 +581,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5785649874857289563}
     m_Modifications:
+    - target: {fileID: 74330575354076772, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1104053687235787652, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -635,6 +640,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BurNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372829366908008283, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986215238079521119, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350885393328784173, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8908191337393620114, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
@@ -660,6 +680,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7573677172142062957}
     m_Modifications:
+    - target: {fileID: 74330575354076772, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1104053687235787652, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -714,6 +739,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BurNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372829366908008283, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986215238079521119, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350885393328784173, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8908191337393620114, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
@@ -739,6 +779,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3010136071034176464}
     m_Modifications:
+    - target: {fileID: 74330575354076772, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1104053687235787652, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -793,6 +838,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BurNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372829366908008283, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986215238079521119, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350885393328784173, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8908191337393620114, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
@@ -818,6 +878,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3362028032388202160}
     m_Modifications:
+    - target: {fileID: 74330575354076772, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1104053687235787652, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -872,6 +937,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BurNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372829366908008283, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986215238079521119, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350885393328784173, guid: 252b93d0f03717545a24fd7b3e7f1abd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8908191337393620114, guid: 252b93d0f03717545a24fd7b3e7f1abd,
         type: 3}

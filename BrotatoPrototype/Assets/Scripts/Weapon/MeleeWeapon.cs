@@ -12,7 +12,6 @@ public class MeleeWeapon : Weapon
     
     private float _nextShotTime;
     private float timeOfAttack = 0.27f; // for bur это время нужно не хардкордить и анимацию ускорять, когда ускоряем
-    private float timer;
     private bool isCritDamage = false;
 
     private void Start()
@@ -49,18 +48,10 @@ public class MeleeWeapon : Weapon
 
             _nextShotTime = Time.time + 1 / currentAttackSpeed;
         }
-
-        timer += Time.deltaTime;
-
-        if (timer >= timeOfAttack)
-        {
-            ReturnWeponHolderRotationToStarting();
-        }
     }
 
     public override void Attack()
     {
-        timer = 0f;
         animator.SetTrigger("Hit");      
     }
 
@@ -72,13 +63,7 @@ public class MeleeWeapon : Weapon
 
     private void OnTriggerEnter(Collider other)
     {
-        //IDamageable damageableObject = other.gameObject.GetComponent<IDamageable>();
-        //if (damageableObject != null)
-        //{
-        //    damageableObject.TakeHit(0.2f);
-        //    Debug.Log("ударить " +  other);
-        //    Destroy(other.gameObject);
-        //}
+
         if (other.tag == "Enemy")
         {
             if (isCritDamage)
