@@ -6,16 +6,16 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public enum State { Idle, Chasing, Attacking};
-    State currentState;
+    protected State currentState;
 
     [SerializeField] protected float attackDistance = 1.5f;
     [SerializeField] protected float timeBetweenAttacks = 0f;
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
 
-    private NavMeshAgent navMeshAgent;
+    protected NavMeshAgent navMeshAgent;
     public Transform target;
-    private LivingEntity livingEntity;
+    protected LivingEntity livingEntity;
 
     private float nextAttackTime;
     private float myCollisionRadius;
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public virtual void Attacking()
+    protected virtual void Attacking()
     {
         currentState = State.Attacking;
         navMeshAgent.enabled = false;     
@@ -109,9 +109,8 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.enabled = true;
     }
 
-    IEnumerator UpdatePath()
+    protected virtual IEnumerator UpdatePath()
     {
-
         while(target != null)
         {
             if(currentState == State.Chasing)

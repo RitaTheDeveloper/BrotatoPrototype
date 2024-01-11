@@ -8,7 +8,6 @@ public class EnemyHealth : LivingEntity
 
     private void Awake()
     {
-        Debug.Log("spawn! ");
         startingHealth = GetComponent<UnitParameters>().CurrentHp;
     }
 
