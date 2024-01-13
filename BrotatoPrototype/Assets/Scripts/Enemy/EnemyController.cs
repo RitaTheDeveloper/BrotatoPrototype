@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum State { Idle, Chasing, Attacking};
+    public enum State { Idle, Chasing, Attacking, RunAway};
     protected State currentState;
 
     [SerializeField] protected float attackDistance = 1.5f;

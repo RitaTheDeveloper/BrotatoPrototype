@@ -11,6 +11,22 @@ public class EnemyShooterController : EnemyController
 
     private Projectile _projectile;
 
+    private void Update()
+    {
+        if (currentState == State.RunAway)
+        {
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 newPos = transform.position - dirToTarget * 3f;
+            Vector3 newPosWithCorrectY = new Vector3(newPos.x, transform.position.y, newPos.z);
+            transform.position = Vector3.MoveTowards(transform.position, newPosWithCorrectY, Time.deltaTime * 8f);
+            
+            if (Vector3.Distance(transform.position, target.position) > navMeshAgent.stoppingDistance + 2f)
+            {
+                currentState = State.Chasing;
+            }
+        }
+    }
+
     protected override void Attacking()
     {
         _projectile = Instantiate(_projectilePrefab, _shootPoint.position, _shootPoint.rotation);
@@ -23,24 +39,10 @@ public class EnemyShooterController : EnemyController
         while (target != null)
         {
             if (currentState == State.Chasing)
-            {
-                //Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-                //if (!livingEntity.dead)
-                //{
-                //    navMeshAgent.SetDestination(targetPosition);
-                //}
-
-                if (Vector3.Distance(transform.position, target.position) < navMeshAgent.stoppingDistance + 2f)
+            {                
+                if (Vector3.Distance(transform.position, target.position) < navMeshAgent.stoppingDistance - 2f)
                 {
-                    Debug.Log("ух, близко");
-                     Vector3 dirToTarget = (target.position - transform.position).normalized;
-                    //Quaternion lookRotation = Quaternion.LookRotation(dirToTarget);
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-                    transform.LookAt(transform.position - dirToTarget);
-                    Vector3 newPos = transform.position - dirToTarget * 5f;
-                   // Debug.Log(newPos);
-                    //transform.position = Vector3.MoveTowards(transform.position, newPos, Time.deltaTime * 7f);
-                   // navMeshAgent.SetDestination(newPos);
+                    currentState = State.RunAway;
                 }
                 else
                 {
@@ -48,7 +50,6 @@ public class EnemyShooterController : EnemyController
                     navMeshAgent.SetDestination(targetPosition);
                 }
             }
-
 
             yield return new WaitForSeconds(refreshRateOfUpdatePath);
         }

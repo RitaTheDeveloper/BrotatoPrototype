@@ -65,7 +65,6 @@ public class PlayerHealth : LivingEntity
     {
         if (!invulnerability)
         {
-            Debug.Log("attacking");
             base.TakeHit(damage);
             canTakeDmg = true;
         }
