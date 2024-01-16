@@ -72,10 +72,8 @@ public class MeleeWeapon : Weapon
 
     public override void Attack()
     {
-        Debug.Log("start attack");
         _collider.enabled = true;
         _timer = 0;
-        Debug.Log("_timer " + _timer);
         animator.SetTrigger("Hit");      
     }
 

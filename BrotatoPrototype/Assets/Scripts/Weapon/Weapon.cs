@@ -113,7 +113,6 @@ public class Weapon : MonoBehaviour
     {
         if (nearestEnemy)
         {
-            Debug.Log("look at the enemy");
             weaponHolder.LookAt(nearestEnemy.transform);
         }        
     }
