@@ -77,10 +77,43 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public void FindTheNearestEnemy2()
+    {
+        nearestEnemy = null;
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Dictionary<float, GameObject> distanceAndEnemy = new Dictionary<float, GameObject>();
+
+        if (allEnemies.Length > 0)
+        {
+
+            for (int i = 0; i < allEnemies.Length; i++)
+            {
+                try
+                {
+                    distance = Vector3.Distance(transform.position, allEnemies[i].transform.position);
+                    distanceAndEnemy.Add(distance, allEnemies[i]);
+                }
+                catch (System.ArgumentException)
+                {
+                    Debug.Log("враги на одинаковом расстоянии");
+                }
+                
+            }
+        }
+
+        if (distanceAndEnemy.Count > 0)
+        {
+            float minDistance = distanceAndEnemy.Keys.Min();
+            nearestEnemy = distanceAndEnemy[minDistance];
+        }
+    }
+
+
     public void RotateWeaponHolder()
     {
         if (nearestEnemy)
         {
+            Debug.Log("look at the enemy");
             weaponHolder.LookAt(nearestEnemy.transform);
         }        
     }
