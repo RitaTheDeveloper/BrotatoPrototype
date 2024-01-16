@@ -80,7 +80,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.63
-  m_Speed: 2.3
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -272,7 +272,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: edcfb49e4cf926c4ebaa62922596fcd0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6518414292957413699}
   m_SourcePrefab: {fileID: 100100000, guid: edcfb49e4cf926c4ebaa62922596fcd0, type: 3}
 --- !u!4 &6219490402742851522 stripped
 Transform:
@@ -280,3 +284,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5898212397147828265}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6709168538470321528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: edcfb49e4cf926c4ebaa62922596fcd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5898212397147828265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6518414292957413699
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6709168538470321528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7c96df2da5f9654585f1e2737628fbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
