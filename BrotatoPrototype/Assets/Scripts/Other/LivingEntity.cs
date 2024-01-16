@@ -44,6 +44,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
 
     }
+
     public virtual void TakeHit(float damage)
     {
         health -= damage;

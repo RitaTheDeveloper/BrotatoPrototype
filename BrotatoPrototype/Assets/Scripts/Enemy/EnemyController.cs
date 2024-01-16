@@ -14,9 +14,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected Animator animator;
 
     protected NavMeshAgent navMeshAgent;
+    protected UnitParameters unitParameters;
     public Transform target;
     protected LivingEntity livingEntity;
-
+    protected float damage;
     private float nextAttackTime;
     private float myCollisionRadius;
     private float targetCollisionRadius;
@@ -31,7 +32,6 @@ public class EnemyController : MonoBehaviour
         myCollisionRadius = navMeshAgent.stoppingDistance;
         currentState = State.Chasing;
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        //_targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
         StartCoroutine(UpdatePath());
     }
 
@@ -71,7 +71,7 @@ public class EnemyController : MonoBehaviour
         currentState = State.Attacking;
         navMeshAgent.enabled = false;     
         
-        target.GetComponent<LivingEntity>().TakeHit(1f);
+        target.GetComponent<LivingEntity>().TakeHit(damage);
 
         currentState = State.Chasing;
         navMeshAgent.enabled = true;
@@ -81,6 +81,8 @@ public class EnemyController : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         livingEntity = GetComponent<LivingEntity>();
+        unitParameters = GetComponent<UnitParameters>();
+        damage = unitParameters.CurrentDamage;
     }
 
     IEnumerator Attack()

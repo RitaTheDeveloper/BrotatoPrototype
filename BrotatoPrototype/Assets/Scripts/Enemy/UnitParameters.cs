@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitParameters : MonoBehaviour
 {
     [SerializeField] private float _maxHp;
+    [SerializeField] private float _startDamage;
     [SerializeField] private float _hpRegen;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _amountOfExperience;
@@ -30,6 +31,9 @@ public class UnitParameters : MonoBehaviour
         set { _currentMoveSpeed = value; }
     }
 
+    private float _currentDamage;
+    public float CurrentDamage { get => _currentDamage; set => _currentDamage = value; }
+
     public float AmountOfExperience { get { return _amountOfExperience; } }
 
     private void Awake()
@@ -37,5 +41,6 @@ public class UnitParameters : MonoBehaviour
         _currentHp = _maxHp;
         _currentHpRegen = _hpRegen;
         _currentMoveSpeed = _moveSpeed;
+        _currentDamage = _startDamage;
     }
 }

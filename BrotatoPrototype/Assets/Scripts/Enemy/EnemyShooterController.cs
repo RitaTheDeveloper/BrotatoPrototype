@@ -6,7 +6,6 @@ public class EnemyShooterController : EnemyController
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private Projectile _projectilePrefab;
-    [SerializeField] private float damage;
     [SerializeField] private float range;
 
     private Projectile _projectile;
