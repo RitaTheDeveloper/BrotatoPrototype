@@ -113,8 +113,14 @@ public class Weapon : MonoBehaviour
     {
         if (nearestEnemy)
         {
-            weaponHolder.LookAt(nearestEnemy.transform);
-        }        
+            Vector3 dir = nearestEnemy.transform.position - transform.position;
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 6f * Time.deltaTime);
+            rotation.x = 0f;
+            rotation.z = 0f;
+            weaponHolder.rotation = rotation;
+
+            //weaponHolder.LookAt(nearestEnemy.transform);
+        }
     }
 
     public void SetAttackSpeed()
