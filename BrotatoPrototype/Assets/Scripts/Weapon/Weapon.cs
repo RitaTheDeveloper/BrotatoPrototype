@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
 
             for (int i = 0; i < allEnemies.Length; i++)
             {
-                distance = Vector3.Distance(transform.position, allEnemies[i].transform.position);
+                distance = Vector3.Distance(weaponHolder.position, allEnemies[i].transform.position);
 
                 if (distance < attackRange)
                 {
@@ -85,19 +85,17 @@ public class Weapon : MonoBehaviour
 
         if (allEnemies.Length > 0)
         {
-
             for (int i = 0; i < allEnemies.Length; i++)
             {
                 try
                 {
-                    distance = Vector3.Distance(transform.position, allEnemies[i].transform.position);
+                    distance = Vector3.Distance(weaponHolder.position, allEnemies[i].transform.position);
                     distanceAndEnemy.Add(distance, allEnemies[i]);
                 }
                 catch (System.ArgumentException)
                 {
                     Debug.Log("враги на одинаковом расстоянии");
-                }
-                
+                }                
             }
         }
 
@@ -108,13 +106,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-
     public void RotateWeaponHolder()
     {
         if (nearestEnemy)
         {
-            Vector3 dir = nearestEnemy.transform.position - transform.position;
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 6f * Time.deltaTime);
+            Vector3 dir = nearestEnemy.transform.position - weaponHolder.position;
+            Quaternion rotation = Quaternion.Slerp(weaponHolder.rotation, Quaternion.LookRotation(dir), 6f * Time.deltaTime);
             rotation.x = 0f;
             rotation.z = 0f;
             weaponHolder.rotation = rotation;
