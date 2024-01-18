@@ -106,7 +106,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void RotateWeaponHolder()
+    protected virtual void RotateWeaponHolder()
     {
         if (nearestEnemy)
         {

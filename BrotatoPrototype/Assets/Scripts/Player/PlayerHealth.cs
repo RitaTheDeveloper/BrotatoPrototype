@@ -40,8 +40,7 @@ public class PlayerHealth : LivingEntity
                 _timer = 0f;
                 invulnerability = false;
             }
-        }        
-       
+        }               
     }
 
     public override void Die()

@@ -12,7 +12,7 @@ public class EnemyShooterController : EnemyController
 
     private void Update()
     {
-        if (currentState == State.RunAway)
+        if (currentState == State.RunAway && target)
         {
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             Vector3 newPos = transform.position - dirToTarget * 3f;
@@ -46,6 +46,7 @@ public class EnemyShooterController : EnemyController
                 else
                 {
                     Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+                    navMeshAgent.enabled = true;
                     navMeshAgent.SetDestination(targetPosition);
                 }
             }
