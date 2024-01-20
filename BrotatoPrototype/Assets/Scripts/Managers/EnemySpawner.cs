@@ -12,6 +12,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Тип спавна")]
     [SerializeField] private SpawnType spawnType;
 
+    [Header("Хаотично или в конкретном месте")]
+    [SerializeField] private bool isRandom = true;
+
     [Header("Минимальное время и максимальное время спавна")]
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
@@ -25,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform container;
     private float _timeUntilSpawn;
+    private Vector3 randomPosition;
 
     private void Awake()
     {
@@ -38,14 +42,14 @@ public class EnemySpawner : MonoBehaviour
         _timeUntilSpawn -= Time.deltaTime;
 
         if (_timeUntilSpawn <= markDisplayTime)
-        {
+        {           
             MarkOn();
         }
 
         if (_timeUntilSpawn <= 0)
         {
-            MarkOff();
             Spawn(spawnType);
+            MarkOff();
             SetTimeUntilSpawn();
         }
     }
@@ -57,6 +61,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void MarkOff()
     {
+        if (isRandom)
+        {
+            randomPosition = RandomPosition();
+            mark.transform.position = randomPosition;
+        }
         mark.SetActive(false);
     }
 
@@ -69,31 +78,58 @@ public class EnemySpawner : MonoBehaviour
     {
         if (spawnType == SpawnType.Single)
         {
-            SpawnOneEnemy(transform.position);
+            if (isRandom)
+            {
+                SpawnOneEnemy(randomPosition);
+            }
+            else
+            {
+                SpawnOneEnemy(transform.position);
+            }
         }
         else if(spawnType == SpawnType.Group)
         {
-            SpawnInGroup();
-        }
-        
+            if (isRandom)
+            {
+                SpawnInGroup(randomPosition);
+            }
+            else
+            {
+                SpawnInGroup(transform.position);
+            }
+        }       
     }
 
     private void SpawnOneEnemy(Vector3 position)
     {
-        var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
-        var enemy =  Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
+        var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
         enemy.transform.parent = container;
     }
 
-    private void SpawnInGroup()
+    private void SpawnInGroup(Vector3 position)
     {
         Vector3 posRandomInCircle;
         Vector3 positionEnemy;
         for (int i = 0; i < amountOfEnemies; i++)
         {
             posRandomInCircle = Random.insideUnitCircle * radius;
-            positionEnemy = new Vector3(posRandomInCircle.x + transform.position.x, transform.position.y, posRandomInCircle.y + transform.position.z);
+            positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
             SpawnOneEnemy(positionEnemy);
         }
+    }
+
+    private Vector3 RandomPosition()
+    {
+        float boundary = 18f;
+        float x;
+        float z;
+        float y;
+        x = Random.Range(-boundary, boundary);
+        z = Random.Range(-boundary, boundary);
+        y = _enemyPrefab.transform.position.y;
+
+        Vector3 randomPos = new Vector3(x,y,z);
+
+        return randomPos;
     }
 }

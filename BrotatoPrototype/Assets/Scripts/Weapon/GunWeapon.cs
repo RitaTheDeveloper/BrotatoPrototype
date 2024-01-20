@@ -9,10 +9,7 @@ public class GunWeapon : Weapon
 
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Projectile _projectile;
-    [SerializeField] private float muzzleVelocity = 35f;
-    
-    private float timeOfAttack = 0.3f; 
-    private float timer;
+    [SerializeField] private float muzzleVelocity = 45f;
 
     private float _nextShotTime;
     private Transform _container;
@@ -25,45 +22,47 @@ public class GunWeapon : Weapon
 
     private void Update()
     {
-        FindTheNearestEnemy();
-        Attack();
+        FindTheNearestEnemy2();
+        RotateWeaponHolder();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
+        {
+            Attack();
+        }
     }
 
     public override void Attack()
     {
-        
-        if (Time.time > _nextShotTime && nearestEnemy)
-        {
-            timer = 0f;
-            RotateWeaponHolder();
-            SetAttackSpeed();
-            SetDamage();
-            SetCritChance();
-            _nextShotTime = Time.time + 1 / currentAttackSpeed;
-            Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
-            newProjectile.transform.parent = _container;
-            newProjectile.SetSpeed(muzzleVelocity);
-            newProjectile.SetRange(attackRange);
+        SetAttackSpeed();
+        SetDamage();
+        SetCritChance();
+        _nextShotTime = Time.time + 1 / currentAttackSpeed;
+        Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
+        newProjectile.transform.parent = _container;
+        newProjectile.SetSpeed(muzzleVelocity);
+        newProjectile.SetRange(attackRange);
 
-            //крит или не крит
-            if (Random.value < currentCritChance)
-            {
-                newProjectile.SetDamage(currentDamage * 2);
-                Debug.Log("крит! " + currentDamage * 2);
-            }
-            else
-            {
-                newProjectile.SetDamage(currentDamage);
-                Debug.Log("обычный " + currentDamage);
-            }
-            
+        //крит или не крит
+        if (Random.value < currentCritChance)
+        {
+            newProjectile.SetDamage(currentDamage * 2);
         }
-
-        timer += Time.deltaTime;
-
-        if (timer >= timeOfAttack)
+        else
         {
-            ReturnWeponHolderRotationToStarting();
+            newProjectile.SetDamage(currentDamage);
+        }
+    }
+
+    protected override void RotateWeaponHolder()
+    {
+        if (nearestEnemy)
+        {
+            Vector3 dir = nearestEnemy.transform.position - weaponHolder.position;
+            Quaternion rotation = Quaternion.Slerp(weaponHolder.rotation, Quaternion.LookRotation(dir), 30f * Time.deltaTime);
+            weaponHolder.rotation = rotation;
         }
     }
 

@@ -205,10 +205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 3
+  time: 60
   enemySpawners:
   - {fileID: 1838639760}
   - {fileID: 1966598794}
+  - {fileID: 1180779907}
 --- !u!1 &19859417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,6 +2722,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8909365758776171659, guid: 9e7fc796da601cc4fa516ad4ced8b3f0,
     type: 3}
   spawnType: 1
+  isRandom: 1
   _minSpawnTime: 2
   _maxSpawnTime: 3
   radius: 2
@@ -4101,6 +4103,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 3763709360490025800, guid: 04cab62df0099f0449d0ec7263bf0133,
     type: 3}
   spawnType: 0
+  isRandom: 1
   _minSpawnTime: 2
   _maxSpawnTime: 3
   radius: 2
@@ -6228,6 +6231,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 8909365758776171659, guid: 9e7fc796da601cc4fa516ad4ced8b3f0,
     type: 3}
   spawnType: 1
+  isRandom: 1
   _minSpawnTime: 5
   _maxSpawnTime: 7
   radius: 3
@@ -7690,6 +7694,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9140256688558971335, guid: 9db5b38f9cd142f4bb865cadedf49ad5,
         type: 3}
+      propertyPath: isRandom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140256688558971335, guid: 9db5b38f9cd142f4bb865cadedf49ad5,
+        type: 3}
       propertyPath: spawnType
       value: 1
       objectReference: {fileID: 0}
@@ -7702,12 +7711,12 @@ PrefabInstance:
     - target: {fileID: 9140256688558971335, guid: 9db5b38f9cd142f4bb865cadedf49ad5,
         type: 3}
       propertyPath: _maxSpawnTime
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9140256688558971335, guid: 9db5b38f9cd142f4bb865cadedf49ad5,
         type: 3}
       propertyPath: _minSpawnTime
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9140256688558971335, guid: 9db5b38f9cd142f4bb865cadedf49ad5,
         type: 3}

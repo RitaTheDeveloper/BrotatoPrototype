@@ -32,13 +32,18 @@ public class MeleeWeapon : Weapon
     private void Update()
     {
         FindTheNearestEnemy2();
-    }
-    private void LateUpdate()
-    {
+
         if (_timer >= _currentTimeOfAttack)
         {
             RotateWeaponHolder();
         }
+    }
+    private void LateUpdate()
+    {
+        //if (_timer >= _currentTimeOfAttack)
+        //{
+        //    RotateWeaponHolder();
+        //}
     }
 
     private void FixedUpdate()
