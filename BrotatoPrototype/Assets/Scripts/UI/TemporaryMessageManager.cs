@@ -57,9 +57,13 @@ public class TemporaryMessageManager : MonoBehaviour
 
             if (message.Message_Timer <= 0.0f)
             {
+                if (node.List.Count != 0 && node.Previous != null)
+                {
+                    node = node.Previous;
+                }
                 message.Message.gameObject.SetActive(false);
-                node = node.Previous;
                 Storage_Message.Remove(message);
+                Destroy(message.Message.gameObject, 0.0f);
             }
             else
             {
@@ -69,13 +73,13 @@ public class TemporaryMessageManager : MonoBehaviour
 
                 message.MoveText(Current_Cumera);
             }
-            if (node.Next != null)
+            if (node.Next == null)
             {
-                node = node.Next;
+                break;
             }
             else
             {
-                break;
+                node = node.Next;
             }
         }
     }
@@ -84,15 +88,16 @@ public class TemporaryMessageManager : MonoBehaviour
     {
         TextMeshProUGUI message_ui = Instantiate(Text_Prefab, Current_Transform);
         message_ui.gameObject.SetActive(true);
-        message_ui.text = message;
+        message_ui.text = "-" + message;
 
         TemporaryMessageConfig message_config = new TemporaryMessageConfig();
         message_config.Message_Life_Time = 1.0f;
         message_config.Message_Timer = 1.0f;
         message_config.Message = message_ui;
-        message_config.Message_Position = position + Vector3.up;
+        message_config.Message_Position = position + (Vector3.up + Vector3.right);
 
         message_config.MoveText(Current_Cumera);
+
         Storage_Message.AddLast(message_config);
     }
 }
