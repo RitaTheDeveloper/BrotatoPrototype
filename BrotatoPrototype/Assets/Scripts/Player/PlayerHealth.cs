@@ -66,6 +66,7 @@ public class PlayerHealth : LivingEntity
         if (!invulnerability)
         {
             base.TakeHit(damage);
+            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position);
             canTakeDmg = true;
         }
         
