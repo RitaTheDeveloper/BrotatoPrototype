@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
 
+    public int WaveCounter { get => _waveCounter; }
+
     private void Awake()
     {
         instance = this;
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
         _currentWave = _waves[_waveCounter];
         _waves[0].StartWave();
     }
+
+    
 
     public void SetHeroIndex(int index)
     {
@@ -113,6 +117,17 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefabs[index], playerStartingSpawnPoint.position, Quaternion.identity);
     }
 
+    public void DestroyGameScene()
+    {
+        if (player != null)
+        {
+            Destroy(player);
+        }
+
+        RemoveAllEnemies();
+        RemoveAllCurrency();
+        ContinueTime();
+    }
 
     public void Restart()
     {

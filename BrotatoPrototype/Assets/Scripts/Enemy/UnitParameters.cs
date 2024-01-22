@@ -5,7 +5,9 @@ using UnityEngine;
 public class UnitParameters : MonoBehaviour
 {
     [SerializeField] private float _maxHp;
+    [SerializeField] private float _amountOfHpPerWave;
     [SerializeField] private float _startDamage;
+    [SerializeField] private float _amountOfDamagePerWave;
     [SerializeField] private float _hpRegen;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _amountOfExperience;
@@ -38,9 +40,10 @@ public class UnitParameters : MonoBehaviour
 
     private void Awake()
     {
-        _currentHp = _maxHp;
+        int indexOfWave = GameManager.instance.WaveCounter;
+        _currentHp = _maxHp + indexOfWave * _amountOfHpPerWave;
+        _currentDamage = _startDamage + indexOfWave * _amountOfDamagePerWave;
         _currentHpRegen = _hpRegen;
         _currentMoveSpeed = _moveSpeed;
-        _currentDamage = _startDamage;
     }
 }

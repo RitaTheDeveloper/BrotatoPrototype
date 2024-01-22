@@ -19,7 +19,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     protected virtual void FixedUpdate()
     {
-        if (regenOn && health < startingHealth && !dead)
+        if (regenOn && health < startingHealth && !dead && health > 0f)
         {
             HpRegen();
         }

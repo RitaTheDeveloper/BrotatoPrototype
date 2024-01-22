@@ -46,6 +46,7 @@ public class PlayerHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        DisplayHealth();
         GameManager.instance.Lose();
     }
 
@@ -80,4 +81,5 @@ public class PlayerHealth : LivingEntity
     {
         startingHealth = GetComponent<PlayerCharacteristics>().CurrentMaxHp;
     }
+
 }

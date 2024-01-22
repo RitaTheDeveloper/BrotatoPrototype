@@ -60,6 +60,7 @@ public class LevelSystem : MonoBehaviour
         _currentLvl++;
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
+        GetComponent<PlayerCharacteristics>().LevelUp();
     }
 
     public void IncreaseCurrentExperience(float xp)

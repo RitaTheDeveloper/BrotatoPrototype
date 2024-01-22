@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject restartBtn;
+    [SerializeField] private GameObject menuBtn;
 
     [Header("for player:")]
     [SerializeField] private Slider healthSlider;
@@ -59,18 +61,25 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
+        menuBtn.SetActive(true);
     }
 
     public void Lose()
     {
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
+        menuBtn.SetActive(true);
     }
 
     public void OnClickRestart()
     {
         AllOff();
         GameManager.instance.Restart();
+    }
+
+    public void OnClickMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void AllOff()

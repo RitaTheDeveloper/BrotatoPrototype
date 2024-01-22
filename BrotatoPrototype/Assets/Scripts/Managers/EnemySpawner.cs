@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("’аотично или в конкретном месте")]
     [SerializeField] private bool isRandom = true;
 
+    [Header("врем€ перед самым первым спавном")]
+    [SerializeField] private float _startSpawnTime;
+
     [Header("ћинимальное врем€ и максимальное врем€ спавна")]
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
@@ -29,9 +32,11 @@ public class EnemySpawner : MonoBehaviour
     private Transform container;
     private float _timeUntilSpawn;
     private Vector3 randomPosition;
+    private bool isBeginningOfWave;
 
     private void Awake()
     {
+        isBeginningOfWave = true;
         SetTimeUntilSpawn();
         MarkOff();
         container = GameObject.Find("Enemies").transform;
@@ -48,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (_timeUntilSpawn <= 0)
         {
+            isBeginningOfWave = false;
             Spawn(spawnType);
             MarkOff();
             SetTimeUntilSpawn();
@@ -71,7 +77,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetTimeUntilSpawn()
     {
-        _timeUntilSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
+        if (isBeginningOfWave)
+        {
+            _timeUntilSpawn = _startSpawnTime;
+        }
+        else
+        {
+            _timeUntilSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
+        }
     }
 
     private void Spawn(SpawnType spawnType)

@@ -78,4 +78,12 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentRangedDamage = _startRangedDamage;
         _currentCritChancePercentage = _startCritChancePercentage;
     }
+
+    public void LevelUp()
+    {
+        _currentMaxHp += 1;
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.SetMaxHP();
+        playerHealth.DisplayHealth();
+    }
 }
