@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleted()
     {
+        LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
+        int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         Debug.Log("Wave Completed");
         StopTime();
         _waveCounter++;
@@ -71,7 +73,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            UIManager.instance.AbilitySelectionPanelOn();
+            UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
+            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
             RemoveAllEnemies();            
         }
               

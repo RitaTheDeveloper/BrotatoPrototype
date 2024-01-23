@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private TextMeshProUGUI timeTxt;
+    [SerializeField] private GameObject waveCompletedMenu;
+    [SerializeField] private Button nextWaveBtn;
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
@@ -27,6 +29,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CharacteristicsUI characteristicsUI;
     [SerializeField] private AllAbilities allAbilities;
 
+    private int _numberOfLeveledUpForCurrentWave;
+
     private void Awake()
     {
         instance = this;
@@ -41,14 +45,43 @@ public class UIManager : MonoBehaviour
 
     public void OkOnClick()
     {
-        AbilitySelectionPanelOff();
-        allAbilities.ChooseAbilitiesForProposeAbilities();
+        WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
+        allAbilities.ChooseAbilitiesForProposeAbilities();       
+    }
+
+    public void OnClickNextWave()
+    {
+        AllOff();
         GameManager.instance.StartNextWave();
     }
 
-    public void AbilitySelectionPanelOn()
+    public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
-        characteristicsUI.UpdateCharacterisctics();
+        _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
+        waveCompletedMenu.SetActive(true);
+
+        if (_numberOfLeveledUpForCurrentWave > 0)
+        {
+            AbilitySelectionPanelOn();
+            characteristicsUI.UpdateCharacterisctics();
+            _numberOfLeveledUpForCurrentWave--;
+        }
+        else
+        {
+            AbilitySelectionPanelOff();
+            characteristicsUI.UpdateCharacterisctics();
+            nextWaveBtn.gameObject.SetActive(true);
+        }
+    }
+
+    public void WaveCompletedMenuOff()
+    {
+        waveCompletedMenu.SetActive(false);
+    }
+
+    private void AbilitySelectionPanelOn()
+    {
+        //characteristicsUI.UpdateCharacterisctics();
         abilitySelectionPanel.SetActive(true);
     }
 
@@ -87,6 +120,9 @@ public class UIManager : MonoBehaviour
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
+        waveCompletedMenu.SetActive(false);
+        menuBtn.SetActive(false);
+        nextWaveBtn.gameObject.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp)
