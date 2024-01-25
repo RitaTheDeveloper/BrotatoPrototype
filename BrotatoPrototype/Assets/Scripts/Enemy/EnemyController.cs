@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour
         myCollisionRadius = navMeshAgent.stoppingDistance;
         currentState = State.Chasing;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
         StartCoroutine(UpdatePath());
     }
 
@@ -69,8 +70,8 @@ public class EnemyController : MonoBehaviour
     protected virtual void Attacking()
     {
         currentState = State.Attacking;
-        navMeshAgent.enabled = false;     
-        
+        navMeshAgent.enabled = false;
+
         target.GetComponent<LivingEntity>().TakeHit(damage);
 
         currentState = State.Chasing;

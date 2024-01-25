@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
 
+    public int WaveCounter { get => _waveCounter; }
+
     private void Awake()
     {
         instance = this;
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
         _currentWave = _waves[_waveCounter];
         _waves[0].StartWave();
     }
+
+    
 
     public void SetHeroIndex(int index)
     {
@@ -58,6 +62,8 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleted()
     {
+        LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
+        int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         Debug.Log("Wave Completed");
         StopTime();
         _waveCounter++;
@@ -67,7 +73,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            UIManager.instance.AbilitySelectionPanelOn();
+            UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
+            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
             RemoveAllEnemies();            
         }
               
@@ -113,6 +120,17 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefabs[index], playerStartingSpawnPoint.position, Quaternion.identity);
     }
 
+    public void DestroyGameScene()
+    {
+        if (player != null)
+        {
+            Destroy(player);
+        }
+
+        RemoveAllEnemies();
+        RemoveAllCurrency();
+        ContinueTime();
+    }
 
     public void Restart()
     {

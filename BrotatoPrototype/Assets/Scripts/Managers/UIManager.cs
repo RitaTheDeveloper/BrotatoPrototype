@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private TextMeshProUGUI timeTxt;
+    [SerializeField] private GameObject waveCompletedMenu;
+    [SerializeField] private Button nextWaveBtn;
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject restartBtn;
+    [SerializeField] private GameObject menuBtn;
+    [SerializeField] private Transform levelUpMenu;
+    [SerializeField] private GameObject leveUpUiPrefab;
 
     [Header("for player:")]
     [SerializeField] private Slider healthSlider;
@@ -24,6 +30,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private CharacteristicsUI characteristicsUI;
     [SerializeField] private AllAbilities allAbilities;
+
+    private int _numberOfLeveledUpForCurrentWave;
 
     private void Awake()
     {
@@ -39,14 +47,43 @@ public class UIManager : MonoBehaviour
 
     public void OkOnClick()
     {
-        AbilitySelectionPanelOff();
-        allAbilities.ChooseAbilitiesForProposeAbilities();
+        WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
+        allAbilities.ChooseAbilitiesForProposeAbilities();       
+    }
+
+    public void OnClickNextWave()
+    {
+        AllOff();
         GameManager.instance.StartNextWave();
     }
 
-    public void AbilitySelectionPanelOn()
+    public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
-        characteristicsUI.UpdateCharacterisctics();
+        _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
+        waveCompletedMenu.SetActive(true);
+
+        if (_numberOfLeveledUpForCurrentWave > 0)
+        {
+            AbilitySelectionPanelOn();
+            characteristicsUI.UpdateCharacterisctics();
+            _numberOfLeveledUpForCurrentWave--;
+        }
+        else
+        {
+            AbilitySelectionPanelOff();
+            characteristicsUI.UpdateCharacterisctics();
+            nextWaveBtn.gameObject.SetActive(true);
+        }
+    }
+
+    public void WaveCompletedMenuOff()
+    {
+        waveCompletedMenu.SetActive(false);
+    }
+
+    private void AbilitySelectionPanelOn()
+    {
+        //characteristicsUI.UpdateCharacterisctics();
         abilitySelectionPanel.SetActive(true);
     }
 
@@ -59,12 +96,14 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
+        menuBtn.SetActive(true);
     }
 
     public void Lose()
     {
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
+        menuBtn.SetActive(true);
     }
 
     public void OnClickRestart()
@@ -73,11 +112,19 @@ public class UIManager : MonoBehaviour
         GameManager.instance.Restart();
     }
 
+    public void OnClickMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     private void AllOff()
     {
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
+        waveCompletedMenu.SetActive(false);
+        menuBtn.SetActive(false);
+        nextWaveBtn.gameObject.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp)
@@ -95,5 +142,10 @@ public class UIManager : MonoBehaviour
     {
         levelSlider.value = XpPercentage;
         levelTxt.text = "LV." + currentLvl;
+    }
+
+    public void DisplayLevelUp()
+    {
+
     }
 }

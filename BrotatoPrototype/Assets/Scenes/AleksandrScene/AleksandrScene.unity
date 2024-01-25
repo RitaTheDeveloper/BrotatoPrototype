@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ad243833651a34c499ed30b25561e547, type: 2}
 --- !u!1 &10278381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1748,7 @@ MonoBehaviour:
     type: 3}
   spawnType: 0
   isRandom: 1
+  _startSpawnTime: 0
   _minSpawnTime: 2
   _maxSpawnTime: 3
   radius: 2
@@ -2355,6 +2356,7 @@ MonoBehaviour:
   winPanel: {fileID: 784228957}
   losePanel: {fileID: 1107668033}
   restartBtn: {fileID: 1615173682}
+  menuBtn: {fileID: 0}
   healthSlider: {fileID: 1011367540}
   healthTxt: {fileID: 1310194978}
   levelSlider: {fileID: 1757032328}
@@ -6134,6 +6136,7 @@ MonoBehaviour:
     type: 3}
   spawnType: 1
   isRandom: 1
+  _startSpawnTime: 0
   _minSpawnTime: 2
   _maxSpawnTime: 3
   radius: 2
@@ -6340,6 +6343,7 @@ MonoBehaviour:
     type: 3}
   spawnType: 1
   isRandom: 1
+  _startSpawnTime: 0
   _minSpawnTime: 5
   _maxSpawnTime: 7
   radius: 3

@@ -9,7 +9,10 @@ public class LevelSystem : MonoBehaviour
     public float _currentXp;
     public float _requiredXp;
     public float _magnetDistance = 3f;
-  
+    private int numberOfLeveledUpForCurrentWave;
+
+    public int NumberOfLeveledUpForCurrentWave { get => numberOfLeveledUpForCurrentWave; set => numberOfLeveledUpForCurrentWave = value; }
+
     private void Start()
     {
         Init();
@@ -24,6 +27,7 @@ public class LevelSystem : MonoBehaviour
     {
         _currentLvl = _startLvl;
         _currentXp = 0;
+        numberOfLeveledUpForCurrentWave = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
         DisplayLevel();
     }
@@ -60,7 +64,10 @@ public class LevelSystem : MonoBehaviour
         _currentLvl++;
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
-    }
+        numberOfLeveledUpForCurrentWave++;
+        GetComponent<PlayerCharacteristics>().LevelUp();
+        // 
+    }  
 
     public void IncreaseCurrentExperience(float xp)
     {
@@ -70,6 +77,7 @@ public class LevelSystem : MonoBehaviour
         {
             LevelUp();
         }
+
         DisplayLevel();
     }
 
