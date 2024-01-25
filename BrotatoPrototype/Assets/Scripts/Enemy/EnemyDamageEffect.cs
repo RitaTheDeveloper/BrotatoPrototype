@@ -12,14 +12,24 @@ public class EnemyDamageEffect : MonoBehaviour
     private float damageTimer = 0.0f;
     private float currentAlpha = 0.0f;
     private int materialIndex = -1;
+    private bool isDamage = false;
+    private Material[] oldMaterials = null;
 
     public void DoDamageEffect()
     {
         damageTimer = damageTime;
         currentAlpha = startAlpha;
         damageMaterial.color = new Color(damageMaterial.color.r, damageMaterial.color.g, damageMaterial.color.b, startAlpha);
-        materialIndex = gameObject.GetComponent<Renderer>().materials.Length;
-        gameObject.GetComponent<Renderer>().materials.Append<Material>(damageMaterial);
+
+        MeshRenderer mr = this.gameObject.GetComponentInChildren<MeshRenderer>();
+        if (mr != null)
+        {
+            materialIndex = mr.materials.Length;
+            oldMaterials = mr.materials;
+            mr.materials = new[] { damageMaterial }.Concat(oldMaterials).ToArray();
+
+        }
+        isDamage = true;
     }
 
     // Start is called before the first frame update
@@ -31,17 +41,21 @@ public class EnemyDamageEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (damageTimer > 0.0f)
+        if (isDamage)
         {
-            damageTimer -= Time.deltaTime;
-            currentAlpha = startAlpha * (damageTimer / damageTime);
-            damageMaterial.color = new Color(damageMaterial.color.r, damageMaterial.color.g, damageMaterial.color.b, currentAlpha);
-        }
-        else
-        {
-            if (gameObject.GetComponent<Renderer>().materials[materialIndex] != null)
+            if (damageTimer > 0.0f)
             {
-                Destroy(gameObject.GetComponent<Renderer>().materials[materialIndex]);
+                damageTimer -= Time.deltaTime;
+                currentAlpha = startAlpha * (damageTimer / damageTime);
+                this.gameObject.GetComponentInChildren<MeshRenderer>().materials[0].color = new Color(damageMaterial.color.r, damageMaterial.color.g, damageMaterial.color.b, currentAlpha);
+            }
+            else
+            {
+                if (materialIndex > -1)
+                {
+                    MeshRenderer mr = this.gameObject.GetComponentInChildren<MeshRenderer>();
+                    mr.materials = oldMaterials;
+                }
             }
         }
     }
