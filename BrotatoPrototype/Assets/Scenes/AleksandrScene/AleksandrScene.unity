@@ -5729,6 +5729,7 @@ GameObject:
   - component: {fileID: 1289593298}
   - component: {fileID: 1289593300}
   - component: {fileID: 1289593299}
+  - component: {fileID: 1289593301}
   m_Layer: 5
   m_Name: CanvasTemporaryMessage
   m_TagString: Untagged
@@ -5767,6 +5768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ebfbb45c2d65b44b944fa2219acd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text_size: 20
+  text_color: {r: 1, g: 0, b: 0, a: 1}
+  message_time: 1
   Text_Prefab: {fileID: 8965745211161935099, guid: 4cca78f0622d3d646b74706a94494b0b,
     type: 3}
 --- !u!223 &1289593300
@@ -5792,6 +5796,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1289593301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289593297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ebfbb45c2d65b44b944fa2219acd8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_size: 18
+  text_color: {r: 1, g: 1, b: 1, a: 1}
+  message_time: 1
+  Text_Prefab: {fileID: 8965745211161935099, guid: 4cca78f0622d3d646b74706a94494b0b,
+    type: 3}
 --- !u!1 &1296487393
 GameObject:
   m_ObjectHideFlags: 0

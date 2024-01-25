@@ -58,7 +58,7 @@ public class Projectile : MonoBehaviour
         if (damageableObject != null)
         {
             damageableObject.TakeHit(_damage, hit);
-            TemporaryMessageManager.Instance.AddMessageOnScreen(_damage.ToString(), hit.point);
+            TemporaryMessageManager.Instance.AddMessageOnScreen(_damage.ToString(), hit.point, Color.red);
         }
         GameObject.Destroy(gameObject);
     }

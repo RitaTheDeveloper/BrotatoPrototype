@@ -20,6 +20,7 @@ public class EnemyHealth : LivingEntity
     public override void TakeHit(float damage)
     {
         base.TakeHit(damage);
+        TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
         EnemyDamageEffect effector = GetComponent<EnemyDamageEffect>();
         if (effector)
         {
