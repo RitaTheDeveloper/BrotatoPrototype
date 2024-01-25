@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private enum SpawnType { Single, Group};
-
     [Header("Префаб юнита")]
     [SerializeField] private GameObject _enemyPrefab;
 
-    [Header("Тип спавна")]
-    [SerializeField] private SpawnType spawnType;
-
-    [Header("Хаотично или в конкретном месте")]
-    [SerializeField] private bool isRandom = true;
+    [Header("Количество юнитов")]
+    [SerializeField] private int amountOfEnemies;
 
     [Header("время перед самым первым спавном")]
     [SerializeField] private float _startSpawnTime;
@@ -22,114 +17,106 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
 
-    [Header("Если тип спавна - группа, то укажите радиус и кол-во юнитов")]
-    [SerializeField] private float radius;
-    [SerializeField] private int amountOfEnemies;
+    [Header("Если спавнится за раз больше одного юнита, укажите радиус")]
+    [SerializeField] private float radius = 0f;
 
-    [SerializeField] private GameObject mark;
+    [SerializeField] private GameObject markPrefab;
     private float markDisplayTime = 1f;
 
     private Transform container;
-    private float _timeUntilSpawn;
-    private Vector3 randomPosition;
+    //private float _timeUntilSpawn;
+    //private Vector3 randomPosition;
     private bool isBeginningOfWave;
+    private Transform _target;
 
     private void Awake()
-    {
-        isBeginningOfWave = true;
-        SetTimeUntilSpawn();
-        MarkOff();
+    {        
         container = GameObject.Find("Enemies").transform;
+        isBeginningOfWave = true;
     }
 
-    private void FixedUpdate()
+    private void Start()
     {
-        _timeUntilSpawn -= Time.deltaTime;
+        _target = GameManager.instance.player.transform;
+        Spawn(RandomPosition());
+    }  
 
-        if (_timeUntilSpawn <= markDisplayTime)
-        {           
-            MarkOn();
-        }
-
-        if (_timeUntilSpawn <= 0)
-        {
-            isBeginningOfWave = false;
-            Spawn(spawnType);
-            MarkOff();
-            SetTimeUntilSpawn();
-        }
-    }
-
-    private void MarkOn()
-    {
-        mark.SetActive(true);
-    }
-
-    private void MarkOff()
-    {
-        if (isRandom)
-        {
-            randomPosition = RandomPosition();
-            mark.transform.position = randomPosition;
-        }
-        mark.SetActive(false);
-    }
-
-    private void SetTimeUntilSpawn()
+    private float SpawnTime()
     {
         if (isBeginningOfWave)
         {
-            _timeUntilSpawn = _startSpawnTime;
+            return _startSpawnTime;
         }
         else
         {
-            _timeUntilSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
+
+            return Random.Range(_minSpawnTime, _maxSpawnTime);
         }
+
     }
 
-    private void Spawn(SpawnType spawnType)
-    {
-        if (spawnType == SpawnType.Single)
-        {
-            if (isRandom)
-            {
-                SpawnOneEnemy(randomPosition);
-            }
-            else
-            {
-                SpawnOneEnemy(transform.position);
-            }
-        }
-        else if(spawnType == SpawnType.Group)
-        {
-            if (isRandom)
-            {
-                SpawnInGroup(randomPosition);
-            }
-            else
-            {
-                SpawnInGroup(transform.position);
-            }
-        }       
-    }
-
-    private void SpawnOneEnemy(Vector3 position)
+    private void SpawnEnemy(Vector3 position)
     {
         var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
         enemy.transform.parent = container;
     }
 
-    private void SpawnInGroup(Vector3 position)
+    private IEnumerator SpawnOneEnemy(Vector3 position)
     {
-        Vector3 posRandomInCircle;
-        Vector3 positionEnemy;
-        for (int i = 0; i < amountOfEnemies; i++)
+        while (_target)
         {
-            posRandomInCircle = Random.insideUnitCircle * radius;
-            positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
-            SpawnOneEnemy(positionEnemy);
+            
+            float time = SpawnTime();
+            yield return new WaitForSeconds(time - markDisplayTime);
+            GameObject mark = CreateMark(position);
+            mark.transform.parent = transform;
+
+            yield return new WaitForSeconds(markDisplayTime);
+            isBeginningOfWave = false;
+            DestroyMark(mark);
+            SpawnEnemy(position);
         }
     }
+
+    private GameObject CreateMark(Vector3 position)
+    {
+        return Instantiate(markPrefab, position, markPrefab.transform.rotation);
+    }
+
+    private void DestroyMark(GameObject mark)
+    {
+        Destroy(mark);
+    }
+
+    private void Spawn(Vector3 position)
+    {
+        for (int i= 0; i < amountOfEnemies; i++)
+        {
+            Vector3 posRandomInCircle;
+            Vector3 positionEnemy;
+
+            posRandomInCircle = Random.insideUnitCircle * radius;
+            positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
+
+            StartCoroutine(SpawnOneEnemy(positionEnemy));
+        }
+    }
+
+    //private IEnumerator SpawnInGroup(Vector3 position)
+    //{
+    //    Vector3 posRandomInCircle;
+    //    Vector3 positionEnemy;
+    //    //float time = SpawnTime();
+
+    //    for (int i = 0; i < amountOfEnemies; i++)
+    //    {
+    //        posRandomInCircle = Random.insideUnitCircle * radius;
+    //        positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
+    //        //SpawnOneEnemy(positionEnemy);
+    //        StartCoroutine(SpawnOneEnemy(positionEnemy));
+    //    }
+    //    yield return null;
+    //}
 
     private Vector3 RandomPosition()
     {

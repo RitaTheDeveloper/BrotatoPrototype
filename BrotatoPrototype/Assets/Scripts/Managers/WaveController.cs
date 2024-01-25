@@ -5,16 +5,16 @@ using UnityEngine;
 public class WaveController : MonoBehaviour
 {
     [SerializeField] private float time;
-    [SerializeField] private List<GameObject> enemySpawners;
+    [SerializeField] private List<EnemySpawner> enemySpawnersPrefabs;
 
     private float _currentTime;
     private bool _stopTime;
 
+    private List<EnemySpawner> _enemySpawners;
+
     private void Start()
     {
         _stopTime = true;
-        //_currentTime = time;
-        //AllSpawnersOn();
     }
 
     private void FixedUpdate()
@@ -41,17 +41,20 @@ public class WaveController : MonoBehaviour
 
     private void AllSpawnersOn()
     {
-        foreach(GameObject spawner in enemySpawners)
+        _enemySpawners = new List<EnemySpawner>();
+        foreach(EnemySpawner spawner in enemySpawnersPrefabs)
         {
-            spawner.SetActive(true);
+            Instantiate(spawner);
+            _enemySpawners.Add(spawner);
         }
     }
 
     private void AllSpawnersOff()
     {
-        foreach (GameObject spawner in enemySpawners)
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        foreach (var spawner in spawners)
         {
-            spawner.SetActive(false);
+            Destroy(spawner);
         }
     }
 
