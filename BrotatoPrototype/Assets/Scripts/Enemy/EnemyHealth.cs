@@ -17,6 +17,16 @@ public class EnemyHealth : LivingEntity
         xpForKill = GetComponent<UnitParameters>().AmountOfExperience;
     }
 
+    public override void TakeHit(float damage)
+    {
+        base.TakeHit(damage);
+        EnemyDamageEffect effector = GetComponent<EnemyDamageEffect>();
+        if (effector)
+        {
+            effector.DoDamageEffect();
+        }
+    }
+
     public override void Die()
     {
         base.Die();

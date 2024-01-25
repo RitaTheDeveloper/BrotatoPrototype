@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 3114105594728254152}
   - component: {fileID: 6270530320714088070}
   - component: {fileID: 7367641709781018464}
+  - component: {fileID: 4112793842961786853}
   m_Layer: 6
   m_Name: Enemy_Stump
   m_TagString: Enemy
@@ -193,6 +194,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4112793842961786853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909365758776171659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c953f0acaa59043bf534d6c45d3970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: a40def8b969a08540b33974af580031c, type: 2}
+  damageTime: 1
+  startAlpha: 128
 --- !u!1001 &5898212397147828265
 PrefabInstance:
   m_ObjectHideFlags: 0
