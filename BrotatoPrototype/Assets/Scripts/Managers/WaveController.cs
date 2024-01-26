@@ -44,17 +44,17 @@ public class WaveController : MonoBehaviour
         _enemySpawners = new List<EnemySpawner>();
         foreach(EnemySpawner spawner in enemySpawnersPrefabs)
         {
-            Instantiate(spawner);
-            _enemySpawners.Add(spawner);
+            var _enemySpawner = Instantiate(spawner);
+            _enemySpawners.Add(_enemySpawner);
+            _enemySpawner.transform.parent = transform;
         }
     }
 
     private void AllSpawnersOff()
     {
-        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
-        foreach (var spawner in spawners)
+        foreach (Transform spawner in transform)
         {
-            Destroy(spawner);
+            Destroy(spawner.gameObject);
         }
     }
 

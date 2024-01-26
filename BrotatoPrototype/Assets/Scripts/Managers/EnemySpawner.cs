@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Префаб юнита")]
     [SerializeField] private GameObject _enemyPrefab;
 
-    [Header("Количество юнитов")]
+    [Header("Минимальное и максимальное количество юнитов")]
     [SerializeField] private int amountOfEnemies;
 
     [Header("время перед самым первым спавном")]
@@ -17,17 +18,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
 
-    [Header("Если спавнится за раз больше одного юнита, укажите радиус")]
+    [Header("Радиус спавна от игрока")]
+    [SerializeField] private float _radiusFromPlayer = 5f;
+
+    [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     [SerializeField] private float radius = 0f;
 
     [SerializeField] private GameObject markPrefab;
     private float markDisplayTime = 1f;
 
     private Transform container;
-    //private float _timeUntilSpawn;
-    //private Vector3 randomPosition;
+    private Vector3 randomPosition;
     private bool isBeginningOfWave;
     private Transform _target;
+    private Transform _plane;
+    float _timeUntilSpawn;
 
     private void Awake()
     {        
@@ -38,21 +43,32 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _target = GameManager.instance.player.transform;
-        Spawn(RandomPosition());
-    }  
+        _plane = GameObject.Find("Plane").transform;
+        randomPosition = RandomPositionRelativeToPlayer(_radiusFromPlayer);
+        Spawn(randomPosition);
+        StartCoroutine(ChangeRandomPos());
+    }
+
+    private void Update()
+    {
+        Vector3 point;
+        if (RandomPoint(_target.position, _radiusFromPlayer, out point))
+        {
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+            
+        }
+    }
 
     private float SpawnTime()
     {
         if (isBeginningOfWave)
         {
-            return _startSpawnTime;
+            return Random.Range(_startSpawnTime - 0.2f, _startSpawnTime + 0.2f);
         }
         else
         {
-
             return Random.Range(_minSpawnTime, _maxSpawnTime);
         }
-
     }
 
     private void SpawnEnemy(Vector3 position)
@@ -61,20 +77,33 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.parent = container;
     }
 
-    private IEnumerator SpawnOneEnemy(Vector3 position)
+    private IEnumerator SpawnOneEnemy()
     {
         while (_target)
         {
-            
-            float time = SpawnTime();
-            yield return new WaitForSeconds(time - markDisplayTime);
-            GameObject mark = CreateMark(position);
+            _timeUntilSpawn = SpawnTime();
+                       
+            // делаем марку
+            yield return new WaitForSeconds(_timeUntilSpawn - markDisplayTime);
+            Vector3 positionEnemy;
+            Vector3 point;
+            if (RandomPoint(randomPosition, radius, out point))
+            {
+                positionEnemy = point;
+            }
+            else
+            {
+                Debug.Log("Не могу найти позицию 2");
+                positionEnemy = randomPosition;
+            }
+                GameObject mark = CreateMark(positionEnemy);
             mark.transform.parent = transform;
 
+            // спавним врага
             yield return new WaitForSeconds(markDisplayTime);
             isBeginningOfWave = false;
             DestroyMark(mark);
-            SpawnEnemy(position);
+            SpawnEnemy(positionEnemy);
         }
     }
 
@@ -92,44 +121,50 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i= 0; i < amountOfEnemies; i++)
         {
-            Vector3 posRandomInCircle;
-            Vector3 positionEnemy;
+            StartCoroutine(SpawnOneEnemy());
+        }
+    }    
 
-            posRandomInCircle = Random.insideUnitCircle * radius;
-            positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
-
-            StartCoroutine(SpawnOneEnemy(positionEnemy));
+    private IEnumerator ChangeRandomPos()
+    {
+        while (_target)
+        {
+            yield return new WaitForSeconds(markDisplayTime);
+            randomPosition = RandomPositionRelativeToPlayer(_radiusFromPlayer);
         }
     }
 
-    //private IEnumerator SpawnInGroup(Vector3 position)
-    //{
-    //    Vector3 posRandomInCircle;
-    //    Vector3 positionEnemy;
-    //    //float time = SpawnTime();
-
-    //    for (int i = 0; i < amountOfEnemies; i++)
-    //    {
-    //        posRandomInCircle = Random.insideUnitCircle * radius;
-    //        positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
-    //        //SpawnOneEnemy(positionEnemy);
-    //        StartCoroutine(SpawnOneEnemy(positionEnemy));
-    //    }
-    //    yield return null;
-    //}
-
-    private Vector3 RandomPosition()
+    private Vector3 RandomPositionRelativeToPlayer(float radius)
     {
-        float boundary = 18f;
-        float x;
-        float z;
-        float y;
-        x = Random.Range(-boundary, boundary);
-        z = Random.Range(-boundary, boundary);
-        y = _enemyPrefab.transform.position.y;
 
-        Vector3 randomPos = new Vector3(x,y,z);
+        Vector3 point;
+        Vector3 position;
+        if (RandomPoint(_target.position, radius, out point))
+        {
+            position = point;
+        }
+        else
+        {
+            Debug.Log("Не могу найти позицию 1");
+            position = _target.position;
+        }
+           
+        return position;
+    }
 
-        return randomPos;
+    private bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
     }
 }

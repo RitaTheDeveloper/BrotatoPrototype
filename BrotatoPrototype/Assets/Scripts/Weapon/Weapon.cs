@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
                 }
                 catch (System.ArgumentException)
                 {
-                    Debug.Log("враги на одинаковом расстоянии");
+                   // Debug.Log("враги на одинаковом расстоянии");
                 }                
             }
         }
