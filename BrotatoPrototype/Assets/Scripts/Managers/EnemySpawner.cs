@@ -21,6 +21,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Радиус спавна от игрока")]
     [SerializeField] private float _radiusFromPlayer = 5f;
 
+    [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
+    [SerializeField] private bool isNotRandom = false;
+
     [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     [SerializeField] private float radius = 0f;
 
@@ -35,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     float _timeUntilSpawn;
 
     private void Awake()
-    {        
+    {
         container = GameObject.Find("Enemies").transform;
         isBeginningOfWave = true;
     }
@@ -44,7 +47,8 @@ public class EnemySpawner : MonoBehaviour
     {
         _target = GameManager.instance.player.transform;
         _plane = GameObject.Find("Plane").transform;
-        randomPosition = RandomPositionRelativeToPlayer(_radiusFromPlayer);
+        randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
+        //randomPosition = RandomPositionOutCircle(25f, _target.position);
         Spawn(randomPosition);
         StartCoroutine(ChangeRandomPos());
     }
@@ -55,8 +59,11 @@ public class EnemySpawner : MonoBehaviour
         if (RandomPoint(_target.position, _radiusFromPlayer, out point))
         {
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-            
+
         }
+
+        //RandomPositionOutCircle(25f, _target.position);
+
     }
 
     private float SpawnTime()
@@ -73,7 +80,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 position)
     {
-        var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
+        var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
+        var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
     }
 
@@ -82,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
         while (_target)
         {
             _timeUntilSpawn = SpawnTime();
-                       
+
             // делаем марку
             yield return new WaitForSeconds(_timeUntilSpawn - markDisplayTime);
             Vector3 positionEnemy;
@@ -96,7 +104,7 @@ public class EnemySpawner : MonoBehaviour
                 Debug.Log("Не могу найти позицию 2");
                 positionEnemy = randomPosition;
             }
-                GameObject mark = CreateMark(positionEnemy);
+            GameObject mark = CreateMark(positionEnemy);
             mark.transform.parent = transform;
 
             // спавним врага
@@ -119,27 +127,28 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(Vector3 position)
     {
-        for (int i= 0; i < amountOfEnemies; i++)
+        for (int i = 0; i < amountOfEnemies; i++)
         {
             StartCoroutine(SpawnOneEnemy());
         }
-    }    
+    }
 
     private IEnumerator ChangeRandomPos()
     {
         while (_target)
         {
             yield return new WaitForSeconds(markDisplayTime);
-            randomPosition = RandomPositionRelativeToPlayer(_radiusFromPlayer);
+            randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
+            //randomPosition = RandomPositionOutCircle(25f, _target.position);
         }
     }
 
-    private Vector3 RandomPositionRelativeToPlayer(float radius)
+    private Vector3 RandomPositionInCircle(float radius, Vector3 target)
     {
 
         Vector3 point;
         Vector3 position;
-        if (RandomPoint(_target.position, radius, out point))
+        if (RandomPoint(target, radius, out point))
         {
             position = point;
         }
@@ -148,7 +157,25 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("Не могу найти позицию 1");
             position = _target.position;
         }
-           
+
+        return position;
+    }
+
+    private Vector3 RandomPositionOutCircle(float radius, Vector3 center)
+    {
+        float ang = Random.value * 360;
+        Vector3 position;
+        position.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        position.y = center.y;
+        position.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(position, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            position = hit.position;
+            
+        }
+       
+        Debug.DrawRay(position, Vector3.up, Color.red, 1.0f);
         return position;
     }
 
