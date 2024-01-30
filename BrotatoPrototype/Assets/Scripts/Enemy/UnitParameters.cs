@@ -42,7 +42,7 @@ public class UnitParameters : MonoBehaviour
     {
         int indexOfWave = GameManager.instance.WaveCounter;
         _currentHp = _maxHp + indexOfWave * _amountOfHpPerWave;
-        _currentDamage = _startDamage + indexOfWave * _amountOfDamagePerWave;
+        _currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave);
         _currentHpRegen = _hpRegen;
         _currentMoveSpeed = _moveSpeed;
     }

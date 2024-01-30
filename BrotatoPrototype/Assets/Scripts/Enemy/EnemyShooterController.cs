@@ -28,7 +28,8 @@ public class EnemyShooterController : EnemyController
 
     protected override void Attacking()
     {
-        transform.LookAt(target);
+        Vector3 position = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.LookAt(position);
         _projectile = Instantiate(_projectilePrefab, _shootPoint.position, _shootPoint.rotation);
         _projectile.SetRange(range);
         _projectile.SetDamage(damage);        
