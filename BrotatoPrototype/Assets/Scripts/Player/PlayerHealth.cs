@@ -61,12 +61,12 @@ public class PlayerHealth : LivingEntity
         UIManager.instance.DisplayHealth(health, startingHealth);
     }
 
-    public override void TakeHit(float damage)
+    public override void TakeHit(float damage, bool isCrit)
     {
         if (!invulnerability)
         {
-            base.TakeHit(damage);
-            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position);
+            base.TakeHit(damage, isCrit);
+            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.red);
             canTakeDmg = true;
         }
         

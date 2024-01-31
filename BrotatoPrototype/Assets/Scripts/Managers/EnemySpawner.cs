@@ -61,9 +61,6 @@ public class EnemySpawner : MonoBehaviour
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 
         }
-
-        //RandomPositionOutCircle(25f, _target.position);
-
     }
 
     private float SpawnTime()
@@ -155,7 +152,7 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             Debug.Log("Не могу найти позицию 1");
-            position = _target.position;
+            position = Vector3.zero;
         }
 
         return position;

@@ -123,12 +123,12 @@ public class MeleeWeapon : Weapon
             if (isCritDamage)
             {
                 // наносим крит
-                other.GetComponent<LivingEntity>().TakeHit(currentDamage * 2);
+                other.GetComponent<LivingEntity>().TakeHit(currentDamage * 2, true);
             }
             else
             {
                 // обычный урон
-                other.GetComponent<LivingEntity>().TakeHit(currentDamage);
+                other.GetComponent<LivingEntity>().TakeHit(currentDamage, false);
             }            
         }
     }
