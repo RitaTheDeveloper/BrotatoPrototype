@@ -22,6 +22,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (regenOn && health < startingHealth && !dead && health > 0f)
         {
             HpRegen();
+            
         }
     }
 
