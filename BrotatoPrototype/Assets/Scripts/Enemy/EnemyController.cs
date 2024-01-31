@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
         currentState = State.Attacking;
         navMeshAgent.enabled = false;
 
-        target.GetComponent<LivingEntity>().TakeHit(damage);
+        target.GetComponent<LivingEntity>().TakeHit(damage, false);
 
         currentState = State.Chasing;
         navMeshAgent.enabled = true;

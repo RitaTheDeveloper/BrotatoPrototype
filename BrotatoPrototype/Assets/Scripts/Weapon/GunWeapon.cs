@@ -51,10 +51,12 @@ public class GunWeapon : Weapon
         if (Random.value < currentCritChance)
         {
             newProjectile.SetDamage(currentDamage * 2);
+            newProjectile.IsCrit(true);
         }
         else
         {
             newProjectile.SetDamage(currentDamage);
+            newProjectile.IsCrit(false);
         }
     }
 
