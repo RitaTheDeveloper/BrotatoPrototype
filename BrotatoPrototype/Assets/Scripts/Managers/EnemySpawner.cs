@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _maxSpawnTime;
 
     [Header("Радиус спавна от игрока")]
-    [SerializeField] private float _radiusFromPlayer = 5f;
+    [SerializeField] private float _radiusFromPlayer = 15f;
 
     [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
     [SerializeField] private bool isNotRandom = false;
@@ -178,11 +178,11 @@ public class EnemySpawner : MonoBehaviour
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 35; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 3f, NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;
