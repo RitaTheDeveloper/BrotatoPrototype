@@ -22,6 +22,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (regenOn && health < startingHealth && !dead && health > 0f)
         {
             HpRegen();
+            
         }
     }
 
@@ -35,17 +36,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health += hpRegenPerSecond * Time.deltaTime;
     }
 
-    public virtual void TakeHit(float damage, RaycastHit hit)
-    {
-        health -= damage;
-        if (health <= 0f && !dead)
-        {
-            Die();
-        }
-
-    }
-
-    public virtual void TakeHit(float damage)
+    public virtual void TakeHit(float damage, bool isCrit)
     {
         health -= damage;
         if (health <= 0f && !dead)

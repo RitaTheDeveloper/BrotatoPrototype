@@ -35,4 +35,18 @@ public class EnemyHealth : LivingEntity
         currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
         currency.SetXP(xpForKill);
     }
+
+    public override void TakeHit(float damage, bool isCrit)
+    {
+        base.TakeHit(damage, isCrit);
+        if (isCrit)
+        {
+            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 23);
+        }
+        else
+        {
+            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
+        }
+        
+    }
 }

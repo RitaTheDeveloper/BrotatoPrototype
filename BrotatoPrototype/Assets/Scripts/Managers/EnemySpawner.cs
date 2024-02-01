@@ -1,19 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private enum SpawnType { Single, Group};
-
     [Header("Префаб юнита")]
     [SerializeField] private GameObject _enemyPrefab;
 
-    [Header("Тип спавна")]
-    [SerializeField] private SpawnType spawnType;
-
-    [Header("Хаотично или в конкретном месте")]
-    [SerializeField] private bool isRandom = true;
+    [Header("Минимальное и максимальное количество юнитов")]
+    [SerializeField] private int amountOfEnemies;
 
     [Header("время перед самым первым спавном")]
     [SerializeField] private float _startSpawnTime;
@@ -22,127 +18,177 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
 
-    [Header("Если тип спавна - группа, то укажите радиус и кол-во юнитов")]
-    [SerializeField] private float radius;
-    [SerializeField] private int amountOfEnemies;
+    [Header("Радиус спавна от игрока")]
+    [SerializeField] private float _radiusFromPlayer = 15f;
 
-    [SerializeField] private GameObject mark;
+    [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
+    [SerializeField] private bool isNotRandom = false;
+
+    [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
+    [SerializeField] private float radius = 0f;
+
+    [SerializeField] private GameObject markPrefab;
     private float markDisplayTime = 1f;
 
     private Transform container;
-    private float _timeUntilSpawn;
     private Vector3 randomPosition;
     private bool isBeginningOfWave;
+    private Transform _target;
+    private Transform _plane;
+    float _timeUntilSpawn;
 
     private void Awake()
     {
-        isBeginningOfWave = true;
-        SetTimeUntilSpawn();
-        MarkOff();
         container = GameObject.Find("Enemies").transform;
+        isBeginningOfWave = true;
     }
 
-    private void FixedUpdate()
+    private void Start()
     {
-        _timeUntilSpawn -= Time.deltaTime;
+        _target = GameManager.instance.player.transform;
+        _plane = GameObject.Find("Plane").transform;
+        randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
+        //randomPosition = RandomPositionOutCircle(25f, _target.position);
+        Spawn(randomPosition);
+        StartCoroutine(ChangeRandomPos());
+    }
 
-        if (_timeUntilSpawn <= markDisplayTime)
-        {           
-            MarkOn();
-        }
-
-        if (_timeUntilSpawn <= 0)
+    private void Update()
+    {
+        Vector3 point;
+        if (RandomPoint(_target.position, _radiusFromPlayer, out point))
         {
-            isBeginningOfWave = false;
-            Spawn(spawnType);
-            MarkOff();
-            SetTimeUntilSpawn();
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+
         }
     }
 
-    private void MarkOn()
-    {
-        mark.SetActive(true);
-    }
-
-    private void MarkOff()
-    {
-        if (isRandom)
-        {
-            randomPosition = RandomPosition();
-            mark.transform.position = randomPosition;
-        }
-        mark.SetActive(false);
-    }
-
-    private void SetTimeUntilSpawn()
+    private float SpawnTime()
     {
         if (isBeginningOfWave)
         {
-            _timeUntilSpawn = _startSpawnTime;
+            return Random.Range(_startSpawnTime - 0.2f, _startSpawnTime + 0.2f);
         }
         else
         {
-            _timeUntilSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
+            return Random.Range(_minSpawnTime, _maxSpawnTime);
         }
     }
 
-    private void Spawn(SpawnType spawnType)
+    private void SpawnEnemy(Vector3 position)
     {
-        if (spawnType == SpawnType.Single)
-        {
-            if (isRandom)
-            {
-                SpawnOneEnemy(randomPosition);
-            }
-            else
-            {
-                SpawnOneEnemy(transform.position);
-            }
-        }
-        else if(spawnType == SpawnType.Group)
-        {
-            if (isRandom)
-            {
-                SpawnInGroup(randomPosition);
-            }
-            else
-            {
-                SpawnInGroup(transform.position);
-            }
-        }       
-    }
-
-    private void SpawnOneEnemy(Vector3 position)
-    {
-        var enemy =  Instantiate(_enemyPrefab, position, transform.rotation);
+        var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
+        var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
     }
 
-    private void SpawnInGroup(Vector3 position)
+    private IEnumerator SpawnOneEnemy()
     {
-        Vector3 posRandomInCircle;
-        Vector3 positionEnemy;
-        for (int i = 0; i < amountOfEnemies; i++)
+        while (_target)
         {
-            posRandomInCircle = Random.insideUnitCircle * radius;
-            positionEnemy = new Vector3(posRandomInCircle.x + position.x, position.y, posRandomInCircle.y + position.z);
-            SpawnOneEnemy(positionEnemy);
+            _timeUntilSpawn = SpawnTime();
+
+            // делаем марку
+            yield return new WaitForSeconds(_timeUntilSpawn - markDisplayTime);
+            Vector3 positionEnemy;
+            Vector3 point;
+            if (RandomPoint(randomPosition, radius, out point))
+            {
+                positionEnemy = point;
+            }
+            else
+            {
+                Debug.Log("Не могу найти позицию 2");
+                positionEnemy = randomPosition;
+            }
+            GameObject mark = CreateMark(positionEnemy);
+            mark.transform.parent = transform;
+
+            // спавним врага
+            yield return new WaitForSeconds(markDisplayTime);
+            isBeginningOfWave = false;
+            DestroyMark(mark);
+            SpawnEnemy(positionEnemy);
         }
     }
 
-    private Vector3 RandomPosition()
+    private GameObject CreateMark(Vector3 position)
     {
-        float boundary = 18f;
-        float x;
-        float z;
-        float y;
-        x = Random.Range(-boundary, boundary);
-        z = Random.Range(-boundary, boundary);
-        y = _enemyPrefab.transform.position.y;
+        return Instantiate(markPrefab, position, markPrefab.transform.rotation);
+    }
 
-        Vector3 randomPos = new Vector3(x,y,z);
+    private void DestroyMark(GameObject mark)
+    {
+        Destroy(mark);
+    }
 
-        return randomPos;
+    private void Spawn(Vector3 position)
+    {
+        for (int i = 0; i < amountOfEnemies; i++)
+        {
+            StartCoroutine(SpawnOneEnemy());
+        }
+    }
+
+    private IEnumerator ChangeRandomPos()
+    {
+        while (_target)
+        {
+            yield return new WaitForSeconds(markDisplayTime);
+            randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
+            //randomPosition = RandomPositionOutCircle(25f, _target.position);
+        }
+    }
+
+    private Vector3 RandomPositionInCircle(float radius, Vector3 target)
+    {
+
+        Vector3 point;
+        Vector3 position;
+        if (RandomPoint(target, radius, out point))
+        {
+            position = point;
+        }
+        else
+        {
+            Debug.Log("Не могу найти позицию 1");
+            position = Vector3.zero;
+        }
+
+        return position;
+    }
+
+    private Vector3 RandomPositionOutCircle(float radius, Vector3 center)
+    {
+        float ang = Random.value * 360;
+        Vector3 position;
+        position.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        position.y = center.y;
+        position.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(position, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            position = hit.position;
+            
+        }
+       
+        Debug.DrawRay(position, Vector3.up, Color.red, 1.0f);
+        return position;
+    }
+
+    private bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 35; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 3f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
     }
 }

@@ -95,7 +95,8 @@ public class TemporaryMessageManager : MonoBehaviour
         message_ui.color = color;
         message_ui.fontSize = text_size;
         message_ui.gameObject.SetActive(true);
-        message_ui.text = "-" + message;
+        //message_ui.text = "-" + message;
+        message_ui.text = message;
 
         TemporaryMessageConfig message_config = new TemporaryMessageConfig();
         message_config.Message_Life_Time = life_time;
