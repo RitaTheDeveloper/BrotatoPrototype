@@ -6,12 +6,15 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 20f;
     [SerializeField] LayerMask collisionMask;
+
+    private bool _isCrit;
     private float _range;
 
     private float _damage;
 
     private void Start()
     {
+       // _isCrit = false;
         Destroy(gameObject, _range / _speed);
     }
 
@@ -28,6 +31,11 @@ public class Projectile : MonoBehaviour
     public void SetRange(float attackRange)
     {
         _range = attackRange;
+    }
+
+    public void IsCrit(bool isCrit)
+    {
+        _isCrit = isCrit;
     }
 
     private void Update()
@@ -57,7 +65,7 @@ public class Projectile : MonoBehaviour
         IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
         if (damageableObject != null)
         {
-            damageableObject.TakeHit(_damage, hit);
+            damageableObject.TakeHit(_damage, _isCrit);
         }
         GameObject.Destroy(gameObject);
     }

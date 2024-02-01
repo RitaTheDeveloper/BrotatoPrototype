@@ -9,6 +9,7 @@ public class PlayerHealth : LivingEntity
     public bool canTakeDmg;
     [SerializeField] private float timeOfInvulnerability = 0.5f;
     private float _timer;
+    private float _oneHp = 0;
 
     protected override void Start()
     {
@@ -53,6 +54,13 @@ public class PlayerHealth : LivingEntity
     public override void HpRegen()
     {
         base.HpRegen();
+
+        _oneHp += hpRegenPerSecond * Time.deltaTime;
+        if (_oneHp >= 1)
+        {
+            TemporaryMessageManager.Instance.AddMessageOnScreen("+" + ((int)_oneHp).ToString(), this.gameObject.transform.position, Color.green);
+            _oneHp = 0f;
+        }
         DisplayHealth();
     }
 
@@ -61,12 +69,12 @@ public class PlayerHealth : LivingEntity
         UIManager.instance.DisplayHealth(health, startingHealth);
     }
 
-    public override void TakeHit(float damage)
+    public override void TakeHit(float damage, bool isCrit)
     {
         if (!invulnerability)
         {
-            base.TakeHit(damage);
-            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position);
+            base.TakeHit(damage, isCrit);
+            TemporaryMessageManager.Instance.AddMessageOnScreen("-" + damage.ToString(), this.gameObject.transform.position, Color.red);
             canTakeDmg = true;
         }
         
