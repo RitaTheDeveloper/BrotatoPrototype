@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7087663693011414796}
+  - {fileID: 2388729304551773118}
   m_Father: {fileID: 5231774199386523250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8909365758776171659
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6270530320714088070}
   - component: {fileID: 7367641709781018464}
   m_Layer: 6
-  m_Name: Bruiser
+  m_Name: HelmetBruiser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.008726558, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6308965464502140255}
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 20
-  _amountOfHpPerWave: 11
+  _maxHp: 30
+  _amountOfHpPerWave: 22
   _startDamage: 2
   _amountOfDamagePerWave: 0.85
   _hpRegen: 0
@@ -193,7 +193,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &7338274670574930151
+--- !u!1001 &2786815402907448405
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -201,84 +201,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6308965464502140255}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.33333337
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.33333337
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: 919132149155446097, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
         type: 3}
       propertyPath: m_Name
-      value: Bruiser
+      value: HelmetBruiser
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b099a95c7fa1299439d07d7c6e35039f, type: 3}
---- !u!4 &7087663693011414796 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 15dad7a13b6a57c4b85af5d6fd844bf0, type: 3}
+--- !u!4 &2388729304551773118 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15dad7a13b6a57c4b85af5d6fd844bf0,
     type: 3}
-  m_PrefabInstance: {fileID: 7338274670574930151}
+  m_PrefabInstance: {fileID: 2786815402907448405}
   m_PrefabAsset: {fileID: 0}

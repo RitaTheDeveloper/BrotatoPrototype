@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7087663693011414796}
+  - {fileID: 4802677955098338883}
   m_Father: {fileID: 5231774199386523250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8909365758776171659
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6270530320714088070}
   - component: {fileID: 7367641709781018464}
   m_Layer: 6
-  m_Name: Bruiser
+  m_Name: Helmet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.008726558, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6308965464502140255}
@@ -89,7 +89,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2507237249245131685
 MonoBehaviour:
@@ -103,13 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 20
-  _amountOfHpPerWave: 11
-  _startDamage: 2
-  _amountOfDamagePerWave: 0.85
+  _maxHp: 8
+  _amountOfHpPerWave: 3
+  _startDamage: 1
+  _amountOfDamagePerWave: 1
   _hpRegen: 0
-  _moveSpeed: 20
-  _amountOfExperience: 3
+  _moveSpeed: 4
+  _amountOfExperience: 1
 --- !u!195 &1434326272372458326
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -119,16 +119,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 8909365758776171659}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 4.5
-  m_Acceleration: 8
+  m_Radius: 0.7
+  m_Speed: 5000
+  m_Acceleration: 7
   avoidancePriority: 50
-  m_AngularSpeed: 150
-  m_StoppingDistance: 2.5
+  m_AngularSpeed: 9000
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 22
+  m_Height: 0.5
   m_BaseOffset: 1.23
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 4
   timeBetweenAttacks: 0
-  refreshRateOfUpdatePath: 2
+  refreshRateOfUpdatePath: 0.0001
   animator: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &6270530320714088070
@@ -193,7 +193,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &7338274670574930151
+--- !u!1001 &4984415353300910504
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -201,84 +201,84 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6308965464502140255}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.33333337
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.33333337
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.33333334
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b099a95c7fa1299439d07d7c6e35039f,
+    - target: {fileID: 919132149155446097, guid: 4ec5a04e55322cf428d00c0064c10c99,
         type: 3}
       propertyPath: m_Name
-      value: Bruiser
+      value: Helmet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b099a95c7fa1299439d07d7c6e35039f, type: 3}
---- !u!4 &7087663693011414796 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 4ec5a04e55322cf428d00c0064c10c99, type: 3}
+--- !u!4 &4802677955098338883 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b099a95c7fa1299439d07d7c6e35039f,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ec5a04e55322cf428d00c0064c10c99,
     type: 3}
-  m_PrefabInstance: {fileID: 7338274670574930151}
+  m_PrefabInstance: {fileID: 4984415353300910504}
   m_PrefabAsset: {fileID: 0}
