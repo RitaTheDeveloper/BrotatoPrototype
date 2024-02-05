@@ -7,6 +7,7 @@ public class GunWeapon : Weapon
     [Range(0, 100)]
     [SerializeField] private float percantageOfRangedDamage = 100;
 
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Projectile _projectile;
     [SerializeField] private float muzzleVelocity = 45f;
@@ -36,6 +37,7 @@ public class GunWeapon : Weapon
 
     public override void Attack()
     {
+        animator.SetTrigger("Hit");
         SetAttackSpeed();
         SetDamage();
         SetCritChance();
@@ -49,10 +51,12 @@ public class GunWeapon : Weapon
         if (Random.value < currentCritChance)
         {
             newProjectile.SetDamage(currentDamage * 2);
+            newProjectile.IsCrit(true);
         }
         else
         {
             newProjectile.SetDamage(currentDamage);
+            newProjectile.IsCrit(false);
         }
     }
 

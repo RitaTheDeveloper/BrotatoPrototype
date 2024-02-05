@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
-        Vector3 move = new Vector3(x, 0, z);
+        Vector3 move = new Vector3(x, 0, z).normalized;
 
         characterController.Move(move * _speed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);

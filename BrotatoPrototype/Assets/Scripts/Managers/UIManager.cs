@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
 
+    [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private GameObject waveCompletedMenu;
     [SerializeField] private Button nextWaveBtn;
@@ -41,8 +42,18 @@ public class UIManager : MonoBehaviour
 
     public void ShowTime(float currentTime)
     {
-        string timeString = string.Format("{0:00}:{1:00}", (Mathf.CeilToInt(currentTime) / 60), (Mathf.CeilToInt(currentTime) % 60));
-        timeTxt.text = timeString;
+        // string timeString = string.Format("{0:00}:{1:00}", (Mathf.CeilToInt(currentTime) / 60), (Mathf.CeilToInt(currentTime) % 60));
+        int time = Mathf.CeilToInt(currentTime);
+        if (time < 6)
+        {
+            timeTxt.color = Color.red;
+        }
+        else
+        {
+            timeTxt.color = Color.white;
+        }
+
+        timeTxt.text = time.ToString();
     }
 
     public void OkOnClick()
@@ -138,6 +149,11 @@ public class UIManager : MonoBehaviour
         healthTxt.text = (int)currentHp + "/" + (int)startHp;
     }
 
+    public void DisplayWaveNumber(int waveNumber)
+    {
+        waveNumberTxt.text = "волна " + waveNumber;
+    }
+
     public void DisplayLevel(int currentLvl, float XpPercentage)
     {
         levelSlider.value = XpPercentage;
@@ -146,6 +162,14 @@ public class UIManager : MonoBehaviour
 
     public void DisplayLevelUp()
     {
+        Instantiate(leveUpUiPrefab, levelUpMenu.transform);
+    }
 
+    public void RemoveAllLevelUpElements()
+    {
+        foreach(Transform levelUpElement in levelUpMenu.transform)
+        {
+            Destroy(levelUpElement.gameObject);
+        }
     }
 }

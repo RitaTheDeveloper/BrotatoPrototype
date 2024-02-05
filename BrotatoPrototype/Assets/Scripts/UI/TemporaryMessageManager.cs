@@ -11,11 +11,12 @@ public class TemporaryMessageConfig
     public TextMeshProUGUI Message;
     public float Message_Life_Time;
     public float Message_Timer;
+    public float Message_Time;
     public Vector3 Message_Position;
 
     public void MoveText(Camera camera)
     {
-        float delta = 1.0f - (Message_Timer / Message_Life_Time);
+        float delta = Message_Time - (Message_Timer / Message_Life_Time);
         Vector3 position = Message_Position + new Vector3(delta, delta, 0.0f);
         position = camera.WorldToScreenPoint(position);
         position.z = 0.0f;
@@ -26,6 +27,10 @@ public class TemporaryMessageConfig
 
 public class TemporaryMessageManager : MonoBehaviour
 {
+    [SerializeField] protected int text_size = 20;
+    [SerializeField] protected Color text_color = Color.red;
+    [SerializeField] protected float message_time = 1;
+
     public static TemporaryMessageManager Instance { get; private set; }
 
     public TextMeshProUGUI Text_Prefab;
@@ -84,17 +89,21 @@ public class TemporaryMessageManager : MonoBehaviour
         }
     }
 
-    public void AddMessageOnScreen(string message, Vector3 position)
+    public void AddMessageOnScreen(string message, Vector3 position, Color color, float life_time = 1, int text_size = 20)
     {
         TextMeshProUGUI message_ui = Instantiate(Text_Prefab, Current_Transform);
+        message_ui.color = color;
+        message_ui.fontSize = text_size;
         message_ui.gameObject.SetActive(true);
-        message_ui.text = "-" + message;
+        //message_ui.text = "-" + message;
+        message_ui.text = message;
 
         TemporaryMessageConfig message_config = new TemporaryMessageConfig();
-        message_config.Message_Life_Time = 1.0f;
+        message_config.Message_Life_Time = life_time;
         message_config.Message_Timer = 1.0f;
         message_config.Message = message_ui;
         message_config.Message_Position = position + (Vector3.up + Vector3.right);
+        message_config.Message_Time = message_time;
 
         message_config.MoveText(Current_Cumera);
 

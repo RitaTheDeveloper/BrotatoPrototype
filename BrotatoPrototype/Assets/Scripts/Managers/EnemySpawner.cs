@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _maxSpawnTime;
 
     [Header("Радиус спавна от игрока")]
-    [SerializeField] private float _radiusFromPlayer = 5f;
+    [SerializeField] private float _radiusFromPlayer = 15f;
 
     [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
     [SerializeField] private bool isNotRandom = false;
@@ -61,9 +61,6 @@ public class EnemySpawner : MonoBehaviour
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 
         }
-
-        //RandomPositionOutCircle(25f, _target.position);
-
     }
 
     private float SpawnTime()
@@ -155,7 +152,7 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             Debug.Log("Не могу найти позицию 1");
-            position = _target.position;
+            position = Vector3.zero;
         }
 
         return position;
@@ -181,11 +178,11 @@ public class EnemySpawner : MonoBehaviour
 
     private bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 35; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 3f, NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;
