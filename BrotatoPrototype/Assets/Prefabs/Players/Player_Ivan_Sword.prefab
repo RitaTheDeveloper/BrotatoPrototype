@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 50
+  _startMaxHp: 20
   _startHpRegen: 0
   _startMoveSpeed: 13
   _startMagnetDistance: 0
@@ -376,9 +376,9 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.72
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 1
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0.01
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6766723645356877568
 MonoBehaviour:
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd1560d4aa733345b677a423abb3cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turnSpeed: 6
+  _turnSpeed: 12
   model: {fileID: 8775174370554501689}
 --- !u!114 &2557478859902054771
 MonoBehaviour:
