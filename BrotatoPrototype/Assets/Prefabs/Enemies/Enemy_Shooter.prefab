@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 7818460468963780944}
   - component: {fileID: 7960983997234060251}
   - component: {fileID: -4450890373304782599}
+  - component: {fileID: -7163011896019597420}
   m_Layer: 6
   m_Name: Enemy_Shooter
   m_TagString: Enemy
@@ -264,13 +265,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 8
-  _amountOfHpPerWave: 1
-  _startDamage: 1
-  _amountOfDamagePerWave: 1
+  _maxHp: 12
+  _amountOfHpPerWave: 3
+  _startDamage: 5
+  _amountOfDamagePerWave: 3
   _hpRegen: 0
   _moveSpeed: 8
-  _amountOfExperience: 1
+  _amountOfExperience: 4
 --- !u!195 &1560313684261224616
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -352,6 +353,21 @@ MonoBehaviour:
   regenOn: 0
   hpRegenPerSecond: 0
   dead: 0
+--- !u!114 &-7163011896019597420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763709360490025800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c953f0acaa59043bf534d6c45d3970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: a40def8b969a08540b33974af580031c, type: 2}
+  damageTime: 1
+  startAlpha: 128
 --- !u!1 &5265559646351309900
 GameObject:
   m_ObjectHideFlags: 0

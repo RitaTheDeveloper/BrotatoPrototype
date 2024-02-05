@@ -66,7 +66,7 @@ public class LevelSystem : MonoBehaviour
         _requiredXp = GetRequiredXp(_currentLvl);
         numberOfLeveledUpForCurrentWave++;
         GetComponent<PlayerCharacteristics>().LevelUp();
-        // 
+        UIManager.instance.DisplayLevelUp();
     }  
 
     public void IncreaseCurrentExperience(float xp)
