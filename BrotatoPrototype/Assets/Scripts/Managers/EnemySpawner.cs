@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Префаб юнита")]
     [SerializeField] private GameObject _enemyPrefab;
 
-    [Header("Минимальное и максимальное количество юнитов")]
+    [Header("количество юнитов")]
     [SerializeField] private int amountOfEnemies;
 
     [Header("время перед самым первым спавном")]
@@ -21,8 +21,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("Радиус спавна от игрока")]
     [SerializeField] private float _radiusFromPlayer = 15f;
 
-    [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
-    [SerializeField] private bool isNotRandom = false;
+    //[Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
+    //[SerializeField] private bool isNotRandom = false;
 
     [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     [SerializeField] private float radius = 0f;
@@ -34,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 randomPosition;
     private bool isBeginningOfWave;
     private Transform _target;
-    private Transform _plane;
     float _timeUntilSpawn;
 
     private void Awake()
@@ -46,7 +45,6 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _target = GameManager.instance.player.transform;
-        _plane = GameObject.Find("Plane").transform;
         randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
         //randomPosition = RandomPositionOutCircle(25f, _target.position);
         Spawn(randomPosition);

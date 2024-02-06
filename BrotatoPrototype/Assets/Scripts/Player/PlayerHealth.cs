@@ -66,7 +66,7 @@ public class PlayerHealth : LivingEntity
     }
 
     public void DisplayHealth()
-    {
+    {        
         UIManager.instance.DisplayHealth(health, startingHealth);
     }
 

@@ -144,6 +144,10 @@ public class UIManager : MonoBehaviour
         {
             currentHp = 0;
         }
+        else if (currentHp > 0f && currentHp < 1f)
+        {
+            currentHp = 1f;
+        }
 
         healthSlider.value = currentHp / startHp;
         healthTxt.text = (int)currentHp + "/" + (int)startHp;
