@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerHealth : LivingEntity
 {
@@ -65,7 +66,7 @@ public class PlayerHealth : LivingEntity
     }
 
     public void DisplayHealth()
-    {
+    {        
         UIManager.instance.DisplayHealth(health, startingHealth);
     }
 
@@ -75,6 +76,7 @@ public class PlayerHealth : LivingEntity
         {
             base.TakeHit(damage, isCrit);
             TemporaryMessageManager.Instance.AddMessageOnScreen("-" + damage.ToString(), this.gameObject.transform.position, Color.red);
+            Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
             canTakeDmg = true;
         }
         
