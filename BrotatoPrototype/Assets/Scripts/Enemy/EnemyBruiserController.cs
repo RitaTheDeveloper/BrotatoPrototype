@@ -20,50 +20,58 @@ public class EnemyBruiserController : EnemyController
             _timer += Time.deltaTime;
             if (_timer < _cdRushTime)
             {
-                Debug.Log("чейзим");
-                navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-                navMeshAgent.acceleration = 8f;
-                //Rotation(target.position);
-                navMeshAgent.SetDestination(target.position);
+                Chase();
 
             }
             else if (_timer > _cdRushTime && _timer < _cdRushTime + _stopTimeBeforeRush)
             {
-                dirToTarget = (target.position - transform.position);
-                Rotation(dirToTarget);
-                startPos = transform.position;
-                navMeshAgent.speed = 0f;
-                Debug.Log("готовимс€");
+                Stopping();
             }
             else
             {
-                
-                Debug.Log("бежим");
-                navMeshAgent.speed = _speedRush;
-                navMeshAgent.acceleration = 500f;
-                Vector3 newPos = startPos + dirToTarget.normalized * _distance;
-                navMeshAgent.SetDestination(newPos);
-                                                
-                if (!navMeshAgent.pathPending)
+                Rush();                
+            }            
+        }                       
+    }
+
+    private void Chase()
+    {
+        Debug.Log("чейзим");
+        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+        navMeshAgent.acceleration = 8f;
+        navMeshAgent.SetDestination(target.position);
+    }
+
+    private void Stopping()
+    {
+        dirToTarget = (target.position - transform.position);
+        Rotation(dirToTarget);
+        startPos = transform.position;
+        navMeshAgent.speed = 0f;
+        Debug.Log("готовимс€");
+    }
+
+    private void Rush()
+    {
+        navMeshAgent.speed = _speedRush;
+        navMeshAgent.acceleration = 500f;
+        Vector3 newPos = startPos + dirToTarget.normalized * _distance;
+        navMeshAgent.SetDestination(newPos);
+
+        if (!navMeshAgent.pathPending)
+        {
+            //if (Vector3.Distance(transform.position, target.position) <= navMeshAgent.stoppingDistance)
+            //{
+            //    _timer = 0f;
+            //}
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 0.3f)
                 {
-                    if (Vector3.Distance(transform.position, target.position) <= navMeshAgent.stoppingDistance)
-                    {
-                        Debug.Log("ќбнул€ю!!!!!!!");
-                        _timer = 0f;
-                    }
-                    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-                    {
-                        if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 0.3f)
-                        {
-                            Debug.Log("ќбнул€ю!");
-                            _timer = 0f;
-                        }
-                    }
+                    _timer = 0f;
                 }
             }
-
-            
-        }                       
+        }
     }
 
     protected override void Attacking()
@@ -75,7 +83,6 @@ public class EnemyBruiserController : EnemyController
     protected override void Init()
     {
         base.Init();
-       // material = GetComponentInChildren<MeshRenderer>().materials[0];
     }
     protected override IEnumerator UpdatePath()
     {
@@ -89,18 +96,5 @@ public class EnemyBruiserController : EnemyController
         rotation.x = 0f;
         rotation.z = 0f;
         transform.rotation = rotation;
-    }
-
-    private IEnumerator MoveToTarget(Transform obj, Vector3 target)
-    {
-        Vector3 startPosition = obj.position;
-        float t = 0f;
-
-        while(t < 1)
-        {
-            obj.position = Vector3.Lerp(startPosition, target, t * t * t);
-            t += Time.deltaTime / 1.5f;
-            yield return null;
-        }
     }
 }
