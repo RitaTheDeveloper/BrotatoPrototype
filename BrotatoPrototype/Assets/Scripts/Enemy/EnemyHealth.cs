@@ -41,11 +41,11 @@ public class EnemyHealth : LivingEntity
         base.TakeHit(damage, isCrit);
         if (isCrit)
         {
-            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
+            TemporaryMessageManager.Instance.AddMessageOnScreen(((int)damage).ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
         }
         else
         {
-            TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
+            TemporaryMessageManager.Instance.AddMessageOnScreen(((int)damage).ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
         }
         
     }
