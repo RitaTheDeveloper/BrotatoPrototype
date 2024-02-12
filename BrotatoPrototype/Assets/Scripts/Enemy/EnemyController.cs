@@ -69,6 +69,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Attacking()
     {
+        Debug.Log("атакуем");
         currentState = State.Attacking;
         navMeshAgent.enabled = false;
 
@@ -78,7 +79,7 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.enabled = true;
     }
 
-    private void Init()
+    protected virtual void Init()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         livingEntity = GetComponent<LivingEntity>();
