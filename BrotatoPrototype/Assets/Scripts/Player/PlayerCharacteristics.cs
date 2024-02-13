@@ -86,4 +86,28 @@ public class PlayerCharacteristics : MonoBehaviour
         playerHealth.SetMaxHP();
         playerHealth.DisplayHealth();
     }
+
+    public void AddBonus(PlayerCharacteristics bonus)
+    {
+        _currentMaxHp += bonus._currentMaxHp;
+        _currentHpRegen += bonus._currentHpRegen;
+        _currentMoveSpeed += bonus._currentMoveSpeed;
+        _currentMagnetDistance += bonus._currentMagnetDistance;
+        _currentAttackSpeedPercentage += bonus._currentAttackSpeedPercentage;
+        _currentMelleeDamage += bonus._currentMelleeDamage;
+        _currentRangedDamage += bonus._currentRangedDamage;
+        _currentCritChancePercentage += bonus._currentCritChancePercentage;
+    }
+
+    public void DeleteBonus(PlayerCharacteristics bonus)
+    {
+        _currentMaxHp -= bonus._currentMaxHp;
+        _currentHpRegen -= bonus._currentHpRegen;
+        _currentMoveSpeed -= bonus._currentMoveSpeed;
+        _currentMagnetDistance -= bonus._currentMagnetDistance;
+        _currentAttackSpeedPercentage -= bonus._currentAttackSpeedPercentage;
+        _currentMelleeDamage -= bonus._currentMelleeDamage;
+        _currentRangedDamage -= bonus._currentRangedDamage;
+        _currentCritChancePercentage -= bonus._currentCritChancePercentage;
+    }
 }
