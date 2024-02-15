@@ -19,8 +19,6 @@ public class EnemyController : MonoBehaviour
     protected LivingEntity livingEntity;
     protected float damage;
     private float nextAttackTime;
-    private float myCollisionRadius;
-    private float targetCollisionRadius;
     
     private void Awake()
     {
@@ -29,7 +27,6 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        myCollisionRadius = navMeshAgent.stoppingDistance;
         currentState = State.Chasing;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
@@ -69,7 +66,6 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Attacking()
     {
-        Debug.Log("атакуем");
         currentState = State.Attacking;
         navMeshAgent.enabled = false;
 
@@ -85,32 +81,6 @@ public class EnemyController : MonoBehaviour
         livingEntity = GetComponent<LivingEntity>();
         unitParameters = GetComponent<UnitParameters>();
         damage = unitParameters.CurrentDamage;
-    }
-
-    IEnumerator Attack()
-    {        
-        currentState = State.Attacking;
-        navMeshAgent.enabled = false;
-
-        Vector3 originalPosition = transform.position;
-        Vector3 dirToTarget = (target.position - transform.position).normalized;
-        Vector3 attackPosition = target.position - dirToTarget * (myCollisionRadius);
-        //Vector3 attackPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-
-        float attackSpeed = 2f;
-        float percent = 0f;
-
-        while (percent <= 1)
-        {
-            percent += attackSpeed * Time.deltaTime;
-            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
-            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
-
-            yield return null;
-        }
-
-        currentState = State.Chasing;
-        navMeshAgent.enabled = true;
     }
 
     protected virtual IEnumerator UpdatePath()
