@@ -36,7 +36,6 @@ public class EnemyBruiserController : EnemyController
 
     private void Chase()
     {
-        Debug.Log("קויחטל");
         navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
         navMeshAgent.acceleration = 8f;
         navMeshAgent.SetDestination(target.position);
@@ -48,7 +47,6 @@ public class EnemyBruiserController : EnemyController
         Rotation(dirToTarget);
         startPos = transform.position;
         navMeshAgent.speed = 0f;
-        Debug.Log("דמעמגטלסÿ");
     }
 
     private void Rush()

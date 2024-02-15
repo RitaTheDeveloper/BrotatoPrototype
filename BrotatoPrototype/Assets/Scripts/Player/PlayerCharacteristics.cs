@@ -12,6 +12,9 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startMelleeDamage;
     [SerializeField] private float _startRangedDamage;
     [SerializeField] private float _startCritChancePercentage;
+    [SerializeField] private float _startArmor;
+    [Range(0f, 100f)]
+    [SerializeField] private float _startProbabilityOfDodge;
  
     private float _currentMaxHp;
     public float CurrentMaxHp
@@ -65,7 +68,16 @@ public class PlayerCharacteristics : MonoBehaviour
     public float CurrentCritChancePercentage {
         get => _currentCritChancePercentage;
         set => _currentCritChancePercentage = value;
-    }    
+    }
+
+    private float _currentArmor;
+    public float CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
+
+    private float _currentProbabilityOfDodge;
+    public float CurrentProbabilityOfDodge{ 
+        get => _currentProbabilityOfDodge;
+        set => _currentProbabilityOfDodge = value;
+    }
 
     private void Awake()
     {
@@ -77,6 +89,8 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentMelleeDamage = _startMelleeDamage;
         _currentRangedDamage = _startRangedDamage;
         _currentCritChancePercentage = _startCritChancePercentage;
+        _currentArmor = _startArmor;
+        _currentProbabilityOfDodge = _startProbabilityOfDodge;
     }
 
     public void LevelUp()
