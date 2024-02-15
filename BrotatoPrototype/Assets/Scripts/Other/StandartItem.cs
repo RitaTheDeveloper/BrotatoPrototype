@@ -10,7 +10,7 @@ public class StandartItem : MonoBehaviour
     public Image IconItem;
     public PlayerCharacteristics CharacteristicsItem;
     public int RarityValueItem;
-    public BoxCollider2D Collider;
+    public BoxCollider2D Collider; // в будущем для нажатия в ui, может стоит убрать, но хз как хранить item к которому привязан collider
 
     // Start is called before the first frame update
     void Start()
