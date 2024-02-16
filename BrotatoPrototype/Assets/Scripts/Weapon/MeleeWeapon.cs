@@ -112,7 +112,13 @@ public class MeleeWeapon : Weapon
     public override void SetDamage()
     {
         base.SetDamage();
-        currentDamage = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
+        var dmg = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
+        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
+        currentDamage = Mathf.Round(currentDamage);
+        if (currentDamage < 1)
+        {
+            currentDamage = 1f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

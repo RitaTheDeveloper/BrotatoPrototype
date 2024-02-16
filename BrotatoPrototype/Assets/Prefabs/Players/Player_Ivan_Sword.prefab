@@ -349,12 +349,13 @@ MonoBehaviour:
   _startMaxHp: 160
   _startHpRegen: 0
   _startMoveSpeed: 15
-  _startMagnetDistance: 0
+  _startMagnetDistance: 2
   _startAttackSpeedPercentage: 0
+  _startDamagePercentage: 200
   _startMelleeDamage: 0
   _startRangedDamage: 0
   _startCritChancePercentage: 0
-  _startArmor: -2
+  _startArmor: 2
   _startProbabilityOfDodge: 30
 --- !u!143 &2984084794362211134
 CharacterController:
@@ -443,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLvl: 1
+  _maxMagnetDistance: 20
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0

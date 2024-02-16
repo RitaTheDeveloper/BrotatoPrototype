@@ -300,9 +300,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5210330863395485503}
   - component: {fileID: 2984084794362211134}
+  - component: {fileID: 695263862311495519}
   - component: {fileID: 6766723645356877568}
   - component: {fileID: 2557478859902054771}
-  - component: {fileID: 695263862311495519}
   - component: {fileID: 6837755424061646610}
   - component: {fileID: 3582812147201042717}
   - component: {fileID: 2914676839936780367}
@@ -360,6 +360,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &695263862311495519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448818648985575122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startMaxHp: 16
+  _startHpRegen: 0.5
+  _startMoveSpeed: 12
+  _startMagnetDistance: 2
+  _startAttackSpeedPercentage: 0
+  _startDamagePercentage: 0
+  _startMelleeDamage: 0
+  _startRangedDamage: 0
+  _startCritChancePercentage: 0
+  _startArmor: 0
+  _startProbabilityOfDodge: 0
 --- !u!114 &6766723645356877568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,26 +411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponHold: {fileID: 0}
   _startingGun: {fileID: 0}
---- !u!114 &695263862311495519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448818648985575122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startMaxHp: 16
-  _startHpRegen: 0.5
-  _startMoveSpeed: 12
-  _startMagnetDistance: 0
-  _startAttackSpeedPercentage: 0
-  _startMelleeDamage: 0
-  _startRangedDamage: 0
-  _startCritChancePercentage: 0
 --- !u!114 &6837755424061646610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLvl: 1
+  _maxMagnetDistance: 20
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0

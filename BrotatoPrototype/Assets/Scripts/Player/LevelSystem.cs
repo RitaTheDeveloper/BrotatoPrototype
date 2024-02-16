@@ -5,11 +5,14 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     [SerializeField] private int _startLvl = 0;
+    [SerializeField] private float _maxMagnetDistance = 20f;
     public int _currentLvl;
     public float _currentXp;
     public float _requiredXp;
     public float _magnetDistance = 3f;
     private int numberOfLeveledUpForCurrentWave;
+
+    private PlayerCharacteristics playerCharacteristics;
 
     public int NumberOfLeveledUpForCurrentWave { get => numberOfLeveledUpForCurrentWave; set => numberOfLeveledUpForCurrentWave = value; }
 
@@ -25,6 +28,8 @@ public class LevelSystem : MonoBehaviour
 
     private void Init()
     {
+        playerCharacteristics = GetComponent<PlayerCharacteristics>();
+        SetMagnetDistance();
         _currentLvl = _startLvl;
         _currentXp = 0;
         numberOfLeveledUpForCurrentWave = 0;
@@ -34,7 +39,8 @@ public class LevelSystem : MonoBehaviour
 
     private void ConsumeAllCurrencyInRange(float range)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+        Vector3 playerPosition = new Vector3(transform.position.x, 0f, transform.position.z);
+        Collider[] hitColliders = Physics.OverlapSphere(playerPosition, range);
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
@@ -65,7 +71,7 @@ public class LevelSystem : MonoBehaviour
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
         numberOfLeveledUpForCurrentWave++;
-        GetComponent<PlayerCharacteristics>().LevelUp();
+        playerCharacteristics.LevelUp();
         UIManager.instance.DisplayLevelUp();
     }  
 
@@ -87,4 +93,17 @@ public class LevelSystem : MonoBehaviour
         UIManager.instance.DisplayLevel(_currentLvl, xpPercentage);
     }
 
+    public void SetMagnetDistance()
+    {
+        _magnetDistance = playerCharacteristics.CurrentMagnetDistance;
+        if (_magnetDistance < 1f)
+        {
+            _magnetDistance = 1f;
+        }
+        else if(_magnetDistance > _maxMagnetDistance)
+        {
+            _magnetDistance = _maxMagnetDistance;
+        }
+
+    }
 }
