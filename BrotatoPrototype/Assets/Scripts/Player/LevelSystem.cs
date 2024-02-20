@@ -13,6 +13,7 @@ public class LevelSystem : MonoBehaviour
     private int numberOfLeveledUpForCurrentWave;
 
     private PlayerCharacteristics playerCharacteristics;
+    private CurrencyController currencyController;
 
     public int NumberOfLeveledUpForCurrentWave { get => numberOfLeveledUpForCurrentWave; set => numberOfLeveledUpForCurrentWave = value; }
 
@@ -28,6 +29,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Init()
     {
+        currencyController = GameObject.FindWithTag("GameManager").GetComponent<CurrencyController>();
         playerCharacteristics = GetComponent<PlayerCharacteristics>();
         SetMagnetDistance();
         _currentLvl = _startLvl;
@@ -53,6 +55,7 @@ public class LevelSystem : MonoBehaviour
                 if (Vector3.Distance(currency.position, targetPosition) < 1f)
                 {
                     var xp = currency.GetComponent<Currency>().GetXP();
+                    currencyController.ChangeTotalAmountOfCurrency(1);
                     IncreaseCurrentExperience(xp);
                     currency.GetComponent<Currency>().PutAwayFromScene();
                 }
