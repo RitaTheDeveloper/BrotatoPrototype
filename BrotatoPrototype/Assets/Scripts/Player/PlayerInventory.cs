@@ -6,6 +6,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] public Dictionary<string, StandartItem> inventory;
     [SerializeField] public GameObject Player;
+    public int MoneyPlayer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
-    void AddItem(StandartItem item)
+    public void AddItem(StandartItem item)
     {
         inventory.Add(item.KeyItem, item);
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
@@ -29,7 +30,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
     
-    void DeleteItem(StandartItem item)
+    public void DeleteItem(StandartItem item)
     {
         inventory.Remove(item.KeyItem);
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
@@ -37,5 +38,18 @@ public class PlayerInventory : MonoBehaviour
         {
             playerCharacteristics.DeleteBonus(item.CharacteristicsItem);
         }
+    }
+    public bool HaveNeedCost(int cost)
+    {
+        if (MoneyPlayer - cost >= 0)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    public void ChangeMoney(int cost)
+    {
+        MoneyPlayer += cost;
     }
 }

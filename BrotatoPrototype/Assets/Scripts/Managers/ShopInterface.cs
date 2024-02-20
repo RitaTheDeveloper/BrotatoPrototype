@@ -8,13 +8,13 @@ public interface IShopController
 
     void CalculateDropChance();
 
-    Dictionary<string, StandartItem> GetItemsForSale();
+    List<string> GetItemsForSale();
 
     void LockItem(string itemID);
 
-    void SellItem(string itemID);
+    bool SellItem(string itemID);
 
-    void BuyItem(string itemID);
+    bool BuyItem(string itemID);
 
     void UpgrateShop();
 }

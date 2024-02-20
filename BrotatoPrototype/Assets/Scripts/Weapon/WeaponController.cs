@@ -25,6 +25,10 @@ public class WeaponController : MonoBehaviour
         equppiedGun = Instantiate(gunToEquip, _weaponHold.position, _weaponHold.rotation);
         equppiedGun.transform.parent = _weaponHold;
     }
+    public void UnequipGun(Weapon gunToUnequip)
+    {
+        //TODO
+    }
 }
 
 

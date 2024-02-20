@@ -7,12 +7,45 @@ public class ShopController : MonoBehaviour, IShopController
     public int ShopSizeList = 4;
     public int ShopLevel = 1;
     public List<StandartItem> ItemList = new List<StandartItem>();
-    public Dictionary<int, StandartItem> SaleItemsDict = new Dictionary<int, StandartItem>();
+    public List<Weapon> WeaponList = new List<Weapon>();
+    public Dictionary<string, StandartItem> SaleItemsDict = new Dictionary<string, StandartItem>();
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
+    public Dictionary<string, Weapon> WeaponsDict = new Dictionary<string, Weapon>();
+    [SerializeField] public GameObject Player;
 
-    public void BuyItem(string itemID)
+
+    public bool BuyItem(string itemID)
     {
-        throw new System.NotImplementedException();
+        if (SaleItemsDict.ContainsKey(itemID))
+        {
+            PlayerInventory inventary = Player.GetComponent<PlayerInventory>();
+            if (inventary.HaveNeedCost(SaleItemsDict[itemID].Price))
+            {
+                inventary.ChangeMoney(SaleItemsDict[itemID].Price);
+                inventary.AddItem(SaleItemsDict[itemID]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (WeaponsDict.ContainsKey(itemID))
+        {
+            WeaponController weaponController = Player.GetComponent<WeaponController>();
+            PlayerInventory inventary = Player.GetComponent<PlayerInventory>();
+            if (inventary.HaveNeedCost(WeaponsDict[itemID].Price))
+            {
+                inventary.ChangeMoney(WeaponsDict[itemID].Price);
+                weaponController.EquipGun(WeaponsDict[itemID]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
 
     public void CalculateDropChance()
@@ -20,7 +53,7 @@ public class ShopController : MonoBehaviour, IShopController
         throw new System.NotImplementedException();
     }
 
-    public Dictionary<string, StandartItem> GetItemsForSale()
+    public List<string> GetItemsForSale()
     {
         throw new System.NotImplementedException();
     }
@@ -35,9 +68,15 @@ public class ShopController : MonoBehaviour, IShopController
         throw new System.NotImplementedException();
     }
 
-    public void SellItem(string itemID)
+    public bool SellItem(string itemID)
     {
-        throw new System.NotImplementedException();
+        if (WeaponsDict.ContainsKey(itemID))
+        {
+            PlayerInventory inventary = Player.GetComponent<PlayerInventory>();
+            WeaponController weaponController = Player.GetComponent<WeaponController>();
+            inventary.MoneyPlayer += WeaponsDict[itemID].Price * (WeaponsDict[itemID].DiscountProcent / 100);
+            weaponController.UnequipGun(WeaponsDict[itemID]);
+        }
     }
 
     public void UpgrateShop()
@@ -48,7 +87,7 @@ public class ShopController : MonoBehaviour, IShopController
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

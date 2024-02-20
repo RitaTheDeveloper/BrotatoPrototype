@@ -26,6 +26,11 @@ public class Weapon : MonoBehaviour
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
+    public string IdWeapon;
+    [Tooltip("Стоимость оружия:")]
+    [SerializeField] public int Price;
+    [Tooltip("Скидка при продаже %:")]
+    [SerializeField] public int DiscountProcent;
 
     public virtual void Attack()
     {
@@ -40,6 +45,7 @@ public class Weapon : MonoBehaviour
         SetCritChance();
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
+        IdWeapon = this.name;
     }
 
     public void FindTheNearestEnemy()
