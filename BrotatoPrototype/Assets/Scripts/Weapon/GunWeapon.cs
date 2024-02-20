@@ -37,7 +37,10 @@ public class GunWeapon : Weapon
 
     public override void Attack()
     {
-        animator.SetTrigger("Hit");
+        if (animator)
+        {
+            animator.SetTrigger("Hit");
+        }
         SetAttackSpeed();
         SetDamage();
         SetCritChance();

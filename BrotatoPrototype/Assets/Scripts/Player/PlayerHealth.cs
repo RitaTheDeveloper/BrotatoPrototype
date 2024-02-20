@@ -13,6 +13,7 @@ public class PlayerHealth : LivingEntity
     private float _oneHp = 0;
     private float _probabilityOfDodge;
     private float _armor;
+    private float _lifeStealPercentage;
 
     private PlayerCharacteristics playerCharacteristics;
 

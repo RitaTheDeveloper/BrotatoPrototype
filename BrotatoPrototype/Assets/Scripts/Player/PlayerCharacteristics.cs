@@ -29,7 +29,9 @@ public class PlayerCharacteristics : MonoBehaviour
     [Header("Уклоние:")]
     [Range(0f, 100f)]
     [SerializeField] private float _startProbabilityOfDodge;
- 
+    [Header("% к краже жизни:")]
+    [SerializeField] private float _startLifeStealPercentage;
+
     private float _currentMaxHp;
     public float CurrentMaxHp
     {
@@ -93,9 +95,11 @@ public class PlayerCharacteristics : MonoBehaviour
         set => _currentProbabilityOfDodge = value;
     }
     public float CurrentDamagePercentage { get => _currentDamagePercentage; set => _currentDamagePercentage = value; }
-
+   
     private float _currentDamagePercentage;
 
+    private float _currentLifeStealPercentage;
+    public float CurrentLifeStealPercentage { get => _currentLifeStealPercentage; set => _currentLifeStealPercentage = value; }
 
     private void Awake()
     {
