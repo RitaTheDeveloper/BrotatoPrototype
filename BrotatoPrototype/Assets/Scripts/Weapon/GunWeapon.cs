@@ -37,7 +37,10 @@ public class GunWeapon : Weapon
 
     public override void Attack()
     {
-        animator.SetTrigger("Hit");
+        if (animator)
+        {
+            animator.SetTrigger("Hit");
+        }
         SetAttackSpeed();
         SetDamage();
         SetCritChance();
@@ -73,6 +76,13 @@ public class GunWeapon : Weapon
     public override void SetDamage()
     {
         base.SetDamage();
-        currentDamage = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f;
+        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f;
+        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
+        currentDamage = Mathf.Round(currentDamage);
+        if(currentDamage < 1)
+        {
+            currentDamage = 1f;
+        }
+
     }
 }
