@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(StandartItem item)
     {
-        inventory.Add(item.KeyItem, item);
+        inventory.Add(item.IdItem, item);
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
         if (Player && playerCharacteristics)
         {
@@ -33,7 +33,7 @@ public class PlayerInventory : MonoBehaviour
     
     public void DeleteItem(StandartItem item)
     {
-        inventory.Remove(item.KeyItem);
+        inventory.Remove(item.IdItem);
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
         if (Player && playerCharacteristics)
         {
