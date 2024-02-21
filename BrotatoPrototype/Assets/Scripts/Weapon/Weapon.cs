@@ -27,12 +27,12 @@ public class Weapon : MonoBehaviour
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
 
-    public virtual void Attack()
+    protected virtual void Attack()
     {
 
     }
 
-    public void Init()
+    protected void Init()
     {
         weaponHolder = transform.parent;
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
@@ -42,42 +42,7 @@ public class Weapon : MonoBehaviour
         startRotationWeaponHolder = weaponHolder.rotation;
     }
 
-    public void FindTheNearestEnemy()
-    {
-        nearestEnemy = null;
-        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Dictionary<float, GameObject> distanceAndEnemy = new Dictionary<float, GameObject>();
-
-        if (allEnemies.Length > 0)
-        {
-
-            for (int i = 0; i < allEnemies.Length; i++)
-            {
-                distance = Vector3.Distance(weaponHolder.position, allEnemies[i].transform.position);
-
-                if (distance < attackRange)
-                {
-                    try
-                    {
-                        // добавляем в словарь врагов по дистанции
-                        distanceAndEnemy.Add(distance, allEnemies[i]);
-                    }
-                    catch (System.ArgumentException)
-                    {
-                        Debug.Log("враги на одинаковом расстоянии");
-                    }
-                }
-            }
-        }
-
-        if (distanceAndEnemy.Count > 0)
-        {
-            float minDistance = distanceAndEnemy.Keys.Min();
-            nearestEnemy = distanceAndEnemy[minDistance];
-        }
-    }
-
-    public void FindTheNearestEnemy2()
+    protected void FindTheNearestEnemy()
     {
         nearestEnemy = null;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -120,17 +85,17 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void SetAttackSpeed()
+    protected void SetAttackSpeed()
     {
         currentAttackSpeed = startAttackSpeed + startAttackSpeed * playerCharacteristics.CurrentAttackSpeedPercentage / 100f;
     }
 
-    public void SetCritChance()
+    protected void SetCritChance()
     {
         currentCritChance = startCritChance + playerCharacteristics.CurrentCritChancePercentage / 100f;
     }
 
-    public virtual void SetDamage()
+    protected virtual void SetDamage()
     {
         
     }

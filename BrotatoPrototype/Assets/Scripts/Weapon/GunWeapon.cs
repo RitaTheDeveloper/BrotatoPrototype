@@ -23,7 +23,7 @@ public class GunWeapon : Weapon
 
     private void Update()
     {
-        FindTheNearestEnemy2();
+        FindTheNearestEnemy();
         RotateWeaponHolder();
     }
 
@@ -35,7 +35,7 @@ public class GunWeapon : Weapon
         }
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         if (animator)
         {
@@ -73,7 +73,7 @@ public class GunWeapon : Weapon
         }
     }
 
-    public override void SetDamage()
+    protected override void SetDamage()
     {
         base.SetDamage();
         var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f;

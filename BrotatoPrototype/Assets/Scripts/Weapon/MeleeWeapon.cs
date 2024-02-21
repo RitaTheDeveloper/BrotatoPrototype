@@ -24,14 +24,14 @@ public class MeleeWeapon : Weapon
         _timer = 0;
         _collider = GetComponent<BoxCollider>();
         _collider.enabled = false;
-        _startAnimationSpeed = animator.speed;
+        _startAnimationSpeed = animator.speed;        
         SetAnimationSpeed(currentAttackSpeed);
         SetTimeOfAnimation(currentAttackSpeed);
     }
 
     private void Update()
     {
-        FindTheNearestEnemy2();
+        FindTheNearestEnemy();
 
         if (_timer >= _currentTimeOfAttack)
         {
@@ -80,7 +80,7 @@ public class MeleeWeapon : Weapon
         }
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         _collider.enabled = true;
         _timer = 0;
@@ -109,7 +109,7 @@ public class MeleeWeapon : Weapon
         }
     }
 
-    public override void SetDamage()
+    protected override void SetDamage()
     {
         base.SetDamage();
         var dmg = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
