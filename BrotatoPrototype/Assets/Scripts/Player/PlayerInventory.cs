@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] public Dictionary<string, StandartItem> inventory;
     [SerializeField] public GameObject Player;
     public int MoneyPlayer = 0;
+    public int WoodPlayer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +52,17 @@ public class PlayerInventory : MonoBehaviour
     public void ChangeMoney(int cost)
     {
         MoneyPlayer += cost;
+    }
+    public bool HaveNeedWood(int wood)
+    {
+        if (WoodPlayer - wood >= 0)
+        {
+            return true;
+        }
+        else return false;
+    }
+    public void ChangeWood(int wood)
+    {
+        WoodPlayer += wood;
     }
 }

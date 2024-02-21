@@ -6,13 +6,16 @@ using UnityEngine.UIElements;
 
 public class StandartItem : MonoBehaviour
 {
-    public string KeyItem;
-    public Image IconItem;
-    public PlayerCharacteristics CharacteristicsItem;
-    public int RarityValueItem;
-    public int Price;
-    public int DiscountPercentageItem;
-    public BoxCollider2D Collider; // в будущем для нажатия в ui, может стоит убрать, но хз как хранить item к которому привязан collider
+    [SerializeField] public string IdItem;
+    [SerializeField] public Image IconItem;
+    [SerializeField] public PlayerCharacteristics CharacteristicsItem;
+    [SerializeField] public int RarityValueItem;
+    [Tooltip("Стоимость предмета:")]
+    [SerializeField] public int Price;
+    [Tooltip("Скидка при продаже %:")]
+    [SerializeField] public int DiscountPercentageItem;
+    [Tooltip("Уровень предмета:")]
+    [SerializeField] public int LevelItem;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +29,9 @@ public class StandartItem : MonoBehaviour
         
     }
 
+    public int GetPrice(int wave)
+    {
+        return Price + wave + (int)(Price * wave * 0.01f); // расчет цены за определенную волну (wave)
+    }
     
 }

@@ -72,9 +72,14 @@ public class WeaponController : MonoBehaviour
             newWeapon.transform.localRotation = listOfWeapons[i].transform.rotation;
         }
     }
+    public void EquipGun(Weapon gunToEquip)
+    {
+        //TODO магазин передает префаб, надо добавить в список
+    }
+
     public void UnequipGun(Weapon gunToUnequip)
     {
-        //TODO
+        //TODO магазин передает префаб, надо убрать из списка
     }
 }
 

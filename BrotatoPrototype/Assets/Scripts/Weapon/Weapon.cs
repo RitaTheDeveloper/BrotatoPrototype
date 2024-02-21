@@ -26,11 +26,16 @@ public class Weapon : MonoBehaviour
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
+
     public string IdWeapon;
     [Tooltip("Стоимость оружия:")]
     [SerializeField] public int Price;
     [Tooltip("Скидка при продаже %:")]
     [SerializeField] public int DiscountProcent;
+    [Tooltip("Уровень предмета:")]
+    [SerializeField] public int LevelItem;
+    [Tooltip("Минимальная волна:")]
+    [SerializeField] public int MinWave;
 
     public virtual void Attack()
     {
@@ -146,4 +151,8 @@ public class Weapon : MonoBehaviour
         weaponHolder.rotation = startRotationWeaponHolder;
     }
 
+    public int GetPrice(int wave)
+    {
+        return Price + wave + (int)(Price * wave * 0.01f); // расчет цены за определенную волну (wave)
+    }
 }
