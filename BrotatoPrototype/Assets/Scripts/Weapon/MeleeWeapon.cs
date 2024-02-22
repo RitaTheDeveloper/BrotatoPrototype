@@ -8,7 +8,6 @@ public class MeleeWeapon : Weapon
     [SerializeField] private float percantageOfMelleDamage = 100;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private Type typeOfWeapon;
     [SerializeField] private float timeOfAttack = 0.5f; // for sword это время нужно не хардкордить и анимацию ускорять, когда ускоряем
 
     private float _startAnimationSpeed;
@@ -37,13 +36,6 @@ public class MeleeWeapon : Weapon
         {
             RotateWeaponHolder();
         }
-    }
-    private void LateUpdate()
-    {
-        //if (_timer >= _currentTimeOfAttack)
-        //{
-        //    RotateWeaponHolder();
-        //}
     }
 
     private void FixedUpdate()

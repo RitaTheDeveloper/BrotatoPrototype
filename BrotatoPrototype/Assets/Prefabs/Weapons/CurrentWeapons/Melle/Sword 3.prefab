@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6459088100143395243}
   - component: {fileID: 4045245801649021}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: Sword 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a2b8a76eb4e94e9122c266e79cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 2
+  weaponModifiers: {fileID: 11400000, guid: 7c7d40e68bf9c414ab0052408a6e484b, type: 2}
   attackRange: 6
   startDamage: 5
   startAttackSpeed: 1.6
@@ -58,7 +60,6 @@ MonoBehaviour:
   nearestEnemy: {fileID: 0}
   percantageOfMelleDamage: 100
   animator: {fileID: 7522623501473152233}
-  typeOfWeapon: 0
   timeOfAttack: 0.7
 --- !u!95 &7522623501473152233
 Animator:

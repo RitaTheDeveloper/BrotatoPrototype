@@ -4,7 +4,11 @@ using UnityEngine;
 using System.Linq;
 public class Weapon : MonoBehaviour
 {
-    public enum Type { mellee, range};
+    public enum Tier { one, two, three, four }
+    [SerializeField] private Tier tier;
+    [SerializeField] WeaponModifiers weaponModifiers;
+    Dictionary<Tier, WeaponModifiers.Modifiers> modifiers = new Dictionary<Tier, WeaponModifiers.Modifiers>();
+        
     [Header("Ќастраиваемые параметры: ")]
     [Tooltip("дальность:")]
     [SerializeField] protected float attackRange;
@@ -27,9 +31,10 @@ public class Weapon : MonoBehaviour
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
 
-    protected virtual void Attack()
+    
+    private void Awake()
     {
-
+        SetCharacteristicsDependingOnTier();
     }
 
     protected void Init()
@@ -40,6 +45,11 @@ public class Weapon : MonoBehaviour
         SetCritChance();
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
+    }
+
+    protected virtual void Attack()
+    {
+
     }
 
     protected void FindTheNearestEnemy()
@@ -103,6 +113,19 @@ public class Weapon : MonoBehaviour
     protected virtual void ReturnWeponHolderRotationToStarting()
     {
         weaponHolder.rotation = startRotationWeaponHolder;
+    }
+
+    private void SetCharacteristicsDependingOnTier()
+    {
+        modifiers.Add(Tier.one, weaponModifiers.modifiers[0]);
+        modifiers.Add(Tier.two, weaponModifiers.modifiers[1]);
+        modifiers.Add(Tier.three, weaponModifiers.modifiers[2]);
+        modifiers.Add(Tier.four, weaponModifiers.modifiers[3]);
+
+        var myWeaponModifiers = modifiers[tier];
+        startDamage = startDamage * myWeaponModifiers.forDamage;
+        startAttackSpeed = startAttackSpeed * myWeaponModifiers.forAttackSpeed;
+        startCritChance = startCritChance * myWeaponModifiers.forCritChance;
     }
 
 }
