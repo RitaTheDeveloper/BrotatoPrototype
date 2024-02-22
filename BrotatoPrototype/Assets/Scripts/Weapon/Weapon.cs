@@ -21,17 +21,20 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float startCritChance;  
 
     [Space]
-    [SerializeField] protected float currentAttackSpeed;
-    [SerializeField] protected float currentDamage;
-    [SerializeField] protected float currentCritChance;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected float timeOfAttack = 0.5f; // for sword это время нужно не хардкордить и анимацию ускорять, когда ускоряем
+    protected float currentAttackSpeed;
+    protected float currentDamage;
+    protected float currentCritChance;
     public GameObject nearestEnemy;
     private GameObject[] allEnemies;
     private float distance;
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
+    private float _startAnimationSpeed;
+    protected float _currentTimeOfAttack;
 
-    
     private void Awake()
     {
         SetCharacteristicsDependingOnTier();
@@ -41,8 +44,11 @@ public class Weapon : MonoBehaviour
     {
         weaponHolder = transform.parent;
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
+        _startAnimationSpeed = animator.speed;
         SetAttackSpeed();
         SetCritChance();
+        SetAnimationSpeed(currentAttackSpeed);
+        SetTimeOfAnimation(currentAttackSpeed);
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
     }
@@ -127,5 +133,27 @@ public class Weapon : MonoBehaviour
         startAttackSpeed = startAttackSpeed * myWeaponModifiers.forAttackSpeed;
         startCritChance = startCritChance * myWeaponModifiers.forCritChance;
     }
+    protected void SetAnimationSpeed(float currentAttackSpeed)
+    {
+        // нам не нужно уменьшать скорость анимации, только увеличивать
+        if (currentAttackSpeed > 1)
+        {
+            animator.speed = _startAnimationSpeed * currentAttackSpeed;
+            //animator.SetFloat("Speed", _startAnimationSpeed * currentAttackSpeed);
+            //Debug.Log("multiplier"+ _startAnimationSpeed * currentAttackSpeed);
+        }
+    }
 
+    protected void SetTimeOfAnimation(float currentAttackSpeed)
+    {
+        // нам не нужно уменьшать время анимации, только увеличивать
+        if (currentAttackSpeed > 1)
+        {
+            _currentTimeOfAttack = timeOfAttack / currentAttackSpeed;
+        }
+        else
+        {
+            _currentTimeOfAttack = timeOfAttack;
+        }
+    }
 }
