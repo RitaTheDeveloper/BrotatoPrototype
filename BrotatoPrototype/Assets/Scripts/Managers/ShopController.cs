@@ -43,6 +43,20 @@ public class ShopController : MonoBehaviour, IShopController
     private List<float> LevelsChance;
     private List<float> accumulateChance = new List<float>();
 
+    [SerializeField] UIShop uiShop;
+    [SerializeField] DataForShop dataForShop;
+    void Start()
+    {
+        uiShop.SetWaveNumberText(dataForShop.waveNumber);
+        uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
+        uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
+        uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
+        uiShop.SetNumberOfPossibleWeapons(dataForShop.maxNumberOfWeapons);
+        uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
+        uiShop.CreateWeaponElements(dataForShop.numberOfCurrentWeapons);
+    }
+
+
     public bool BuyItem(string itemID)
     {
         if (SaleItemsDict.ContainsKey(itemID))

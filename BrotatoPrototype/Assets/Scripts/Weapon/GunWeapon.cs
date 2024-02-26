@@ -6,8 +6,6 @@ public class GunWeapon : Weapon
 {
     [Range(0, 100)]
     [SerializeField] private float percantageOfRangedDamage = 100;
-
-    [SerializeField] private Animator animator;
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Projectile _projectile;
     [SerializeField] private float muzzleVelocity = 45f;
@@ -23,7 +21,7 @@ public class GunWeapon : Weapon
 
     private void Update()
     {
-        FindTheNearestEnemy2();
+        FindTheNearestEnemy();
         RotateWeaponHolder();
     }
 
@@ -35,15 +33,17 @@ public class GunWeapon : Weapon
         }
     }
 
-    public override void Attack()
-    {
+    protected override void Attack()
+    {        
+        SetAttackSpeed();
+        SetAnimationSpeed(currentAttackSpeed);
+        SetTimeOfAnimation(currentAttackSpeed);
+        SetDamage();
+        SetCritChance();
         if (animator)
         {
             animator.SetTrigger("Hit");
         }
-        SetAttackSpeed();
-        SetDamage();
-        SetCritChance();
         _nextShotTime = Time.time + 1 / currentAttackSpeed;
         Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
         newProjectile.transform.parent = _container;
@@ -73,7 +73,7 @@ public class GunWeapon : Weapon
         }
     }
 
-    public override void SetDamage()
+    protected override void SetDamage()
     {
         base.SetDamage();
         var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f;

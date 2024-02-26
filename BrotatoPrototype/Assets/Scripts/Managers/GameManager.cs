@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
 
         RemoveAllEnemies();
         RemoveAllCurrency();
+
         Init();
         ContinueTime();
     }
