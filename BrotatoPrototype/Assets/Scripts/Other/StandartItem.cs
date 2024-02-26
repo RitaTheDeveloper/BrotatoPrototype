@@ -7,9 +7,8 @@ using UnityEngine.UIElements;
 public class StandartItem : MonoBehaviour
 {
     [SerializeField] public string IdItem;
-    [SerializeField] public Image IconItem;
+    [SerializeField] public Sprite IconItem;
     [SerializeField] public PlayerCharacteristics CharacteristicsItem;
-    [SerializeField] public int RarityValueItem;
     [Tooltip("Стоимость предмета:")]
     [SerializeField] public int Price;
     [Tooltip("Скидка при продаже %:")]

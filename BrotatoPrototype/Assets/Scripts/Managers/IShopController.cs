@@ -28,4 +28,6 @@ public interface IShopController
 
     int GetShopLevelUpCost();
 
+    int GetRerollCost();
+
 }

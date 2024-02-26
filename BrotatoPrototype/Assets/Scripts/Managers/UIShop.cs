@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UIShop : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject weaponElementPrefab;
 
     List<Transform> listSlotsOfWeapons = new List<Transform>();
+
+    private IShopController shopController;
 
     public void ChangeUIParametersOfShop()
     {
@@ -78,5 +81,27 @@ public class UIShop : MonoBehaviour
         {
             var weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
         }
+    }
+
+    public void OnCreateShopInterface()
+    {
+        shopController.CalculateDropChance();
+        shopController.PickItemsForSale();
+
+        Dictionary<int, string> items_to_slot = shopController.GetItemsForSale();
+
+        SlotItemForSaleData[] items = GetComponents<SlotItemForSaleData>();
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            Image image = items[i].GetComponentInChildren<Image>();
+
+        }
+    }
+
+    void Start()
+    {
+        shopController = GetComponent<ShopController>();
+        OnCreateShopInterface();
     }
 }

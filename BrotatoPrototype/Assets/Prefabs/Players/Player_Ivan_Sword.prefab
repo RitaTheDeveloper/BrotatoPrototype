@@ -376,10 +376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3838893a73b877e4b88c3f9ca05d2036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponHoldPrefab: {fileID: 8795632086350564576, guid: ba01fda79b71d834fae8278d60e0a653,
-    type: 3}
+  weaponHoldPrefab: {fileID: 6353475294224445612}
   containerOfWeaponHolds: {fileID: 4387614623523332243}
   listOfWeapons:
+  - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
@@ -470,8 +470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b102e3517f293d2408cd2a3c4b0c41a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: -8907051537149127036, guid: 278fa408cca8ca746ad48e33218dbad5, type: 3}
+  Player: {fileID: 0}
+  MoneyPlayer: 0
+  WoodPlayer: 0
 --- !u!1 &6353475294224445612
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387614623523332243}
-  - component: {fileID: 901248151305307762}
   m_Layer: 7
   m_Name: WeaponHolds
   m_TagString: Untagged
@@ -495,7 +495,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7430289916808079279}
+  m_GameObject: {fileID: 6353475294224445612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.5, z: 0}

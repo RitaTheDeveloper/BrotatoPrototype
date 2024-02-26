@@ -160,6 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9082569258377318887}
+  - component: {fileID: 5268855856443588485}
   m_Layer: 5
   m_Name: WeaponElement
   m_TagString: Untagged
@@ -187,3 +188,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5268855856443588485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589504463520194840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867be283692db82469ceee2c9c531ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tier: 0
+  weaponModifiers: {fileID: 0}
+  attackRange: 0
+  startDamage: 0
+  startAttackSpeed: 0
+  startCritChance: 0
+  animator: {fileID: 0}
+  timeOfAttack: 0.5
+  nearestEnemy: {fileID: 0}
+  IdWeapon: 
+  Price: 0
+  DiscountProcent: 0
+  LevelItem: 0
+  MinWave: 0
