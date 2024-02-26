@@ -26,4 +26,6 @@ public interface IShopController
 
     StandartItem GetItem(string id);
 
+    int GetShopLevelUpCost();
+
 }
