@@ -110,15 +110,15 @@ public class ShopController : MonoBehaviour, IShopController
             LevelsChance.Add(0);
             accumulateChance.Add(0);    
         }
-        GameManager manager = GameManager.instance;
+
         for (int i = (maxRareLevel - 1); i >= 0; i--)
         {
-            if (manager.WaveCounter + 1 < RareData[i].firstWave)
+            if (dataForShop.waveNumber + 1 < RareData[i].firstWave)
             {
                 LevelsChance[i] = 0;
                 continue;
             }
-            float value = ((RareData[i].waveChance * (manager.WaveCounter + 1 - RareData[i].minimalWave)) + RareData[i].baseChance) * ((100 + ShopChance[ShopLevel]) / 100);
+            float value = ((RareData[i].waveChance * (dataForShop.waveNumber + 1 - RareData[i].minimalWave)) + RareData[i].baseChance) * ((100 + ShopChance[ShopLevel]) / 100);
             for (int j = i + 1; j < maxRareLevel; j++)
             {
                 value -= LevelsChance[j];
