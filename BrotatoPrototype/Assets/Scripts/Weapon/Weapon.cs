@@ -92,7 +92,7 @@ public class Weapon : MonoBehaviour
         if (nearestEnemy)
         {
             Vector3 dir = nearestEnemy.transform.position - weaponHolder.position;
-            Quaternion rotation = Quaternion.Slerp(weaponHolder.rotation, Quaternion.LookRotation(dir), 6f * Time.deltaTime);
+            Quaternion rotation = Quaternion.Slerp(weaponHolder.rotation, Quaternion.LookRotation(dir), 20f * Time.deltaTime);
             rotation.x = 0f;
             rotation.z = 0f;
             weaponHolder.rotation = rotation;

@@ -7,8 +7,15 @@ public class GunWeapon : Weapon
     [Range(0, 100)]
     [SerializeField] private float percantageOfRangedDamage = 100;
     [SerializeField] private Transform _muzzle;
+    [Tooltip("Префаб пули")]
     [SerializeField] private Projectile _projectile;
-    [SerializeField] private float muzzleVelocity = 45f;
+    [Tooltip("Скорость пули")]
+    [SerializeField] private float _muzzleVelocity = 45f;
+    [Tooltip("Количество пуль за выстрел")]
+    [SerializeField] private int _numberOfBulletsPershot;
+    [Tooltip("Разброс угла выстрела")]
+    [SerializeField] private float _maxAngleDispersion;
+
 
     private float _nextShotTime;
     private Transform _container;
@@ -45,22 +52,12 @@ public class GunWeapon : Weapon
             animator.SetTrigger("Hit");
         }
         _nextShotTime = Time.time + 1 / currentAttackSpeed;
-        Projectile newProjectile = Instantiate(_projectile, _muzzle.position, _muzzle.rotation);
-        newProjectile.transform.parent = _container;
-        newProjectile.SetSpeed(muzzleVelocity);
-        newProjectile.SetRange(attackRange);
 
-        //крит или не крит
-        if (Random.value < currentCritChance)
+        for(int i = 0; i < _numberOfBulletsPershot; i++)
         {
-            newProjectile.SetDamage(currentDamage * 2);
-            newProjectile.IsCrit(true);
+            CreateBulletAndPassParametersToIt();
         }
-        else
-        {
-            newProjectile.SetDamage(currentDamage);
-            newProjectile.IsCrit(false);
-        }
+        
     }
 
     protected override void RotateWeaponHolder()
@@ -84,5 +81,28 @@ public class GunWeapon : Weapon
             currentDamage = 1f;
         }
 
+    }
+
+    private void CreateBulletAndPassParametersToIt()
+    {
+        var tg = Mathf.Tan(Mathf.Deg2Rad * _maxAngleDispersion);
+        float dispersion = tg * Random.Range(-1f, 1f);
+        Vector3 direction = (_muzzle.forward + Vector3.right * dispersion).normalized;
+        Projectile newProjectile = Instantiate(_projectile, _muzzle.position, Quaternion.LookRotation(direction));
+        newProjectile.transform.parent = _container;
+        newProjectile.SetSpeed(_muzzleVelocity);
+        newProjectile.SetRange(attackRange);
+
+        //крит или не крит
+        if (Random.value < currentCritChance)
+        {
+            newProjectile.SetDamage(currentDamage * 2);
+            newProjectile.IsCrit(true);
+        }
+        else
+        {
+            newProjectile.SetDamage(currentDamage);
+            newProjectile.IsCrit(false);
+        }
     }
 }
