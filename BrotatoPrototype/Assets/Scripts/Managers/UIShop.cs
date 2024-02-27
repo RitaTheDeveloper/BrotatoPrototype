@@ -91,12 +91,28 @@ public class UIShop : MonoBehaviour
 
         Dictionary<int, string> items_to_slot = shopController.GetItemsForSale();
 
-        SlotItemForSaleData[] items = GetComponents<SlotItemForSaleData>();
+        List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
+        GetComponentsInChildren<SlotItemForSaleData>(items);
 
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            
-
+            items[i].SlotEntytiID = items_to_slot[items[i].SlotNumber];
+            if (shopController.IsWeapon(items[i].SlotEntytiID))
+            {
+                Weapon w = shopController.GetWeapon(items[i].SlotEntytiID);
+                items[i].textName.text = w.NameWeapon;
+                items[i].textType.text = w.TypeWeapon;
+                items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
+                items[i].image.sprite = w.IconWeapon;
+            }
+            else if (shopController.IsItem(items[i].SlotEntytiID))
+            {
+                StandartItem it = shopController.GetItem(items[i].SlotEntytiID);
+                items[i].textName.text = it.NameItem;
+                items[i].textType.text = it.TypeItem;
+                items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
+                items[i].image.sprite = it.IconItem;
+            }
         }
     }
 

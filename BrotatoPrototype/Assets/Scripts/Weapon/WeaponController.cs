@@ -75,11 +75,13 @@ public class WeaponController : MonoBehaviour
     public void EquipGun(Weapon gunToEquip)
     {
         //TODO магазин передает префаб, надо добавить в список
+        listOfWeapons.Add(gunToEquip);
     }
 
     public void UnequipGun(Weapon gunToUnequip)
     {
         //TODO магазин передает префаб, надо убрать из списка
+        listOfWeapons.Remove(gunToUnequip);
     }
 }
 

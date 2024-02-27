@@ -30,4 +30,6 @@ public interface IShopController
 
     int GetRerollCost();
 
+    public int GetCurrentWawe();
+
 }

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class StandartItem : MonoBehaviour
 {
     [SerializeField] public string IdItem;
-    [SerializeField] public Sprite IconItem;
+
     [SerializeField] public PlayerCharacteristics CharacteristicsItem;
     [Tooltip("Стоимость предмета:")]
     [SerializeField] public int Price;
@@ -15,6 +15,14 @@ public class StandartItem : MonoBehaviour
     [SerializeField] public int DiscountPercentageItem;
     [Tooltip("Уровень предмета:")]
     [SerializeField] public int LevelItem;
+
+    [Header("Параметры отображения: ")]
+    [Tooltip("Название предмета:")]
+    [SerializeField] public string NameItem;
+    [Tooltip("Тип предмета:")]
+    [SerializeField] public string TypeItem;
+    [Tooltip("Иконка предмета:")]
+    [SerializeField] public Sprite IconItem;
 
     // Start is called before the first frame update
     void Start()

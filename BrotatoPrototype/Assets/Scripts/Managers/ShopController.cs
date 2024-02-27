@@ -57,7 +57,6 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
         uiShop.SetNumberOfPossibleWeapons(dataForShop.maxNumberOfWeapons);
         uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
-        uiShop.CreateWeaponElements(dataForShop.numberOfCurrentWeapons);
         uiShop.OnCreateShopInterface();
     }
 
@@ -145,7 +144,7 @@ public class ShopController : MonoBehaviour, IShopController
     public void PickItemsForSale()
     {
         //вывбор оружия в зависимости от уровня волны
-        int wawe = GameManager.instance.WaveCounter + 1;
+        int wawe = dataForShop.waveNumber;
         //1 и 2 уровень
         if (wawe == 1 || wawe == 2)
         {
@@ -420,5 +419,10 @@ public class ShopController : MonoBehaviour, IShopController
     public int GetRerollCost()
     {
         return BaseRerollCost;
+    }
+
+    public int GetCurrentWawe()
+    {
+        return dataForShop.waveNumber; 
     }
 }
