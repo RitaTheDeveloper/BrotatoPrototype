@@ -10,4 +10,6 @@ public class DataForShop : MonoBehaviour
     public int priceForReroll;
     public int maxNumberOfWeapons;
     public int numberOfCurrentWeapons;
+    public PlayerInventory playerInventory;
+    public WeaponController weaponController;
 }

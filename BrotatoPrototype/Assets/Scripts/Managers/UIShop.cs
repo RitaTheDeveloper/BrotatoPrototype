@@ -85,6 +85,7 @@ public class UIShop : MonoBehaviour
 
     public void OnCreateShopInterface()
     {
+        shopController.GetRerollCost();
         shopController.CalculateDropChance();
         shopController.PickItemsForSale();
 
@@ -94,7 +95,7 @@ public class UIShop : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
-            Image image = items[i].GetComponentInChildren<Image>();
+            
 
         }
     }
@@ -102,6 +103,5 @@ public class UIShop : MonoBehaviour
     void Start()
     {
         shopController = GetComponent<ShopController>();
-        OnCreateShopInterface();
     }
 }
