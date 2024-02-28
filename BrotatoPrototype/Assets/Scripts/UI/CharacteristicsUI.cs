@@ -10,9 +10,13 @@ public class CharacteristicsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI parameterOfSpeed;
     [SerializeField] private TextMeshProUGUI parameterOfHpRegen;
     [SerializeField] private TextMeshProUGUI parameterOfAttackSpeed;
+    [SerializeField] private TextMeshProUGUI parameterOfDamagePercentage;
     [SerializeField] private TextMeshProUGUI parameterOfMelleeDamage;
     [SerializeField] private TextMeshProUGUI parameterOfRangedDamage;
     [SerializeField] private TextMeshProUGUI parameterOfCritChance;
+    [SerializeField] private TextMeshProUGUI parameterOfProbabilityOfDodge;
+    [SerializeField] private TextMeshProUGUI parameterOfArmor;
+    [SerializeField] private TextMeshProUGUI parameterOfMagnetDistance;
 
     private PlayerCharacteristics _playerCharacteristics;
 
@@ -39,6 +43,9 @@ public class CharacteristicsUI : MonoBehaviour
         var paramOfAttackSpeed = Mathf.Round(_playerCharacteristics.CurrentAttackSpeedPercentage * 10) / 10;
         parameterOfAttackSpeed.text = paramOfAttackSpeed.ToString();
 
+        // for damage percentage
+        parameterOfDamagePercentage.text = _playerCharacteristics.CurrentDamagePercentage.ToString();
+
         // for melleeDamage
         parameterOfMelleeDamage.text = _playerCharacteristics.CurrentMelleeDamage.ToString();
 
@@ -47,5 +54,15 @@ public class CharacteristicsUI : MonoBehaviour
 
         // for critChance
         parameterOfCritChance.text = _playerCharacteristics.CurrentCritChancePercentage.ToString();
+
+        // for Dodge
+        parameterOfProbabilityOfDodge.text = _playerCharacteristics.CurrentProbabilityOfDodge.ToString();
+
+        // for Armor
+        parameterOfArmor.text = _playerCharacteristics.CurrentArmor.ToString();
+
+        // for Magnet Distance
+        parameterOfMagnetDistance.text = _playerCharacteristics.CurrentMagnetDistance.ToString();
+
     }
 }

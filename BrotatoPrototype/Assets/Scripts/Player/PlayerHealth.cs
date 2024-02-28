@@ -11,14 +11,22 @@ public class PlayerHealth : LivingEntity
     [SerializeField] private float timeOfInvulnerability = 0.5f;
     private float _timer;
     private float _oneHp = 0;
+    private float _probabilityOfDodge;
+    private float _armor;
+    private float _lifeStealPercentage;
+
+    private PlayerCharacteristics playerCharacteristics;
 
     protected override void Start()
     {
+        playerCharacteristics = GetComponent<PlayerCharacteristics>();
         _timer = 0f;
         invulnerability = false;
         canTakeDmg = false;
         SetMaxHP();
         SetHpRegenPerSecond();
+        SetArmor();
+        SetProbabilityOfDodge();
         base.Start();
         DisplayHealth();
     }
@@ -74,9 +82,18 @@ public class PlayerHealth : LivingEntity
     {
         if (!invulnerability)
         {
-            base.TakeHit(damage, isCrit);
-            TemporaryMessageManager.Instance.AddMessageOnScreen("-" + damage.ToString(), this.gameObject.transform.position, Color.red);
-            Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+            if (IsDodge())
+            {
+                TemporaryMessageManager.Instance.AddMessageOnScreen("уклонение", this.gameObject.transform.position, Color.blue);
+            }
+            else
+            {
+                var resultDamage = GetDamageAfterArmor(damage, _armor);
+                base.TakeHit(resultDamage, isCrit);
+                TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
+                Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+            }
+            
             canTakeDmg = true;
         }
         
@@ -85,12 +102,58 @@ public class PlayerHealth : LivingEntity
 
     public void SetHpRegenPerSecond()
     {
-        hpRegenPerSecond = GetComponent<PlayerCharacteristics>().CurrentHpRegen;
+        hpRegenPerSecond = playerCharacteristics.CurrentHpRegen;
     }
 
     public void SetMaxHP()
     {
-        startingHealth = GetComponent<PlayerCharacteristics>().CurrentMaxHp;
+        startingHealth = playerCharacteristics.CurrentMaxHp;
     }
 
+    public void SetProbabilityOfDodge()
+    {
+        float probDodge = playerCharacteristics.CurrentProbabilityOfDodge;
+
+        if (probDodge < 0f)
+        {
+            _probabilityOfDodge = 0f;
+            Debug.Log("уклонение не может отрицательным");
+        }
+        else if (probDodge > 60f)
+        {
+            _probabilityOfDodge = 60f;
+            Debug.Log("уклонение не может быть больше 60 %");
+        }
+        else
+        {
+            _probabilityOfDodge = probDodge;
+            Debug.Log("уклонение равно = " + probDodge);
+        }
+    }
+        
+    private float GetDamageAfterArmor(float damage, float armor)
+    {
+        float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
+        float resultDamage = damage - percentageOfDamageTaken * damage;
+        return Mathf.Round(resultDamage);
+    }
+
+    public void SetArmor()
+    {
+        _armor = playerCharacteristics.CurrentArmor;
+    }
+
+    private bool IsDodge()
+    {
+        float random = Random.Range(0, 100);
+
+        if(random <= _probabilityOfDodge)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
