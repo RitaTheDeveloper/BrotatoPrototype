@@ -61,12 +61,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        Vector3 point;
-        if (RandomPoint(_target.position, _radiusFromPlayer, out point))
-        {
-            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+        //Vector3 point;
+        //if (RandomPoint(_target.position, _radiusFromPlayer, out point))
+        //{
+        //    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 
-        }
+        //}
     }
 
     private float SpawnTime()
