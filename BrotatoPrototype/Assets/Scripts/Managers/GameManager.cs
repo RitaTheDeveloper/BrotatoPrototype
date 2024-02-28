@@ -75,8 +75,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
             playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
             RemoveAllEnemies();            
-        }
-              
+        }              
     }
 
     public void StartNextWave()
@@ -142,6 +141,7 @@ public class GameManager : MonoBehaviour
 
         RemoveAllEnemies();
         RemoveAllCurrency();
+
         Init();
         ContinueTime();
     }
