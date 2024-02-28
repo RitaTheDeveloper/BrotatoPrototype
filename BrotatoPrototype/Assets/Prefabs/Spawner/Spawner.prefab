@@ -147,9 +147,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 3763709360490025800, guid: 981af84f27e03864fa6e2d8ee17db38c,
     type: 3}
-  spawnType: 0
+  amountOfEnemies: 0
+  _startSpawnTime: 0
   _minSpawnTime: 1
   _maxSpawnTime: 3
+  _radiusFromPlayer: 10
+  isNotRandom: 0
   radius: 0
-  amountOfEnemies: 0
-  mark: {fileID: 462520855923331247}
+  markPrefab: {fileID: 0}
+  markDisplayTime: 1
