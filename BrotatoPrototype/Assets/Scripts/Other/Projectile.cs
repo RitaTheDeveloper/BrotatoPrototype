@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 20f;
-    [SerializeField] private int penetration = 1;
     [SerializeField] LayerMask collisionMask;
 
     private bool _isCrit;
@@ -13,12 +12,9 @@ public class Projectile : MonoBehaviour
 
     private float _damage;
 
-    Vector3 direction;
-
     private void Start()
     {
-        // _isCrit = false;
-        direction = Vector3.forward;
+       // _isCrit = false;
         Destroy(gameObject, _range / _speed);
     }
 
@@ -50,7 +46,7 @@ public class Projectile : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(direction * Time.deltaTime * _speed);
+        transform.Translate(Vector3.forward * Time.deltaTime * _speed);
     }
 
     private void CheckCollsion(float moveDistance)
@@ -71,13 +67,6 @@ public class Projectile : MonoBehaviour
         {
             damageableObject.TakeHit(_damage, _isCrit);
         }
-        penetration -= 1;
-
-        Debug.Log("penetration = " + penetration);
-        if (penetration <= 0)
-        {            
-            GameObject.Destroy(gameObject);
-        }
-        
+        GameObject.Destroy(gameObject);
     }
 }

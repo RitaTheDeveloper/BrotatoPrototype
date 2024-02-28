@@ -6,9 +6,14 @@ public class MeleeWeapon : Weapon
 {
     [Range(0, 100)]
     [SerializeField] private float percantageOfMelleDamage = 100;
-    
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private Type typeOfWeapon;
+    [SerializeField] private float timeOfAttack = 0.5f; // for sword это время нужно не хардкордить и анимацию ускорять, когда ускоряем
+
+    private float _startAnimationSpeed;
     private float _nextShotTime;
+    private float _currentTimeOfAttack; 
     private bool isCritDamage = false;
     private float _timer;
     private BoxCollider _collider;
@@ -18,26 +23,36 @@ public class MeleeWeapon : Weapon
         Init();
         _timer = 0;
         _collider = GetComponent<BoxCollider>();
-        _collider.enabled = false;      
+        _collider.enabled = false;
+        _startAnimationSpeed = animator.speed;
+        SetAnimationSpeed(currentAttackSpeed);
+        SetTimeOfAnimation(currentAttackSpeed);
     }
 
     private void Update()
     {
-        FindTheNearestEnemy();
+        FindTheNearestEnemy2();
 
         if (_timer >= _currentTimeOfAttack)
         {
             RotateWeaponHolder();
         }
     }
+    private void LateUpdate()
+    {
+        //if (_timer >= _currentTimeOfAttack)
+        //{
+        //    RotateWeaponHolder();
+        //}
+    }
 
     private void FixedUpdate()
     {
         if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
-        {            
-            SetAttackSpeed();
+        {
             SetAnimationSpeed(currentAttackSpeed);
             SetTimeOfAnimation(currentAttackSpeed);
+            SetAttackSpeed();
             SetDamage();
             SetCritChance();
             Attack();
@@ -65,45 +80,39 @@ public class MeleeWeapon : Weapon
         }
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         _collider.enabled = true;
         _timer = 0;
         animator.SetTrigger("Hit");      
     }
 
-    //private void SetAnimationSpeed(float currentAttackSpeed)
-    //{
-    //    // нам не нужно уменьшать скорость анимации, только увеличивать
-    //    if (currentAttackSpeed > 1)
-    //    {
-    //        animator.speed = _startAnimationSpeed * currentAttackSpeed;
-    //    }
-    //}
+    private void SetAnimationSpeed(float currentAttackSpeed)
+    {
+        // нам не нужно уменьшать скорость анимации, только увеличивать
+        if (currentAttackSpeed > 1)
+        {
+            animator.speed = _startAnimationSpeed * currentAttackSpeed;
+        }
+    }
 
-    //private void SetTimeOfAnimation(float currentAttackSpeed)
-    //{
-    //    // нам не нужно уменьшать время анимации, только увеличивать
-    //    if (currentAttackSpeed > 1)
-    //    {
-    //        _currentTimeOfAttack = timeOfAttack / currentAttackSpeed;
-    //    }
-    //    else
-    //    {
-    //        _currentTimeOfAttack = timeOfAttack;
-    //    }
-    //}
+    private void SetTimeOfAnimation(float currentAttackSpeed)
+    {
+        // нам не нужно уменьшать время анимации, только увеличивать
+        if (currentAttackSpeed > 1)
+        {
+            _currentTimeOfAttack = timeOfAttack / currentAttackSpeed;
+        }
+        else
+        {
+            _currentTimeOfAttack = timeOfAttack;
+        }
+    }
 
-    protected override void SetDamage()
+    public override void SetDamage()
     {
         base.SetDamage();
-        var dmg = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
-        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
-        currentDamage = Mathf.Round(currentDamage);
-        if (currentDamage < 1)
-        {
-            currentDamage = 1f;
-        }
+        currentDamage = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
     }
 
     private void OnTriggerEnter(Collider other)

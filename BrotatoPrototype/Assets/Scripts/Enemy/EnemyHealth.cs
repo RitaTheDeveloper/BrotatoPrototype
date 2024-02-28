@@ -31,12 +31,9 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        SpawnCurrency();
-        LootSpawner lootSpawner = GetComponent<LootSpawner>();
-        if (lootSpawner)
-        {
-            lootSpawner.SpawnLoot();
-        }
+        var currency = PoolObject.instance.currencyPool.Get();
+        currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
+        currency.SetXP(xpForKill);
     }
 
     public override void TakeHit(float damage, bool isCrit)
@@ -49,13 +46,7 @@ public class EnemyHealth : LivingEntity
         else
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-        }        
-    }
-
-    private void SpawnCurrency()
-    {
-        var currency = PoolObject.instance.currencyPool.Get();
-        currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
-        currency.SetXP(xpForKill);
+        }
+        
     }
 }

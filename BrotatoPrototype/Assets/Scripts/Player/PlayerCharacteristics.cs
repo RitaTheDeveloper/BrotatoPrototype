@@ -4,34 +4,15 @@ using UnityEngine;
 
 public class PlayerCharacteristics : MonoBehaviour
 {
-    [Header("Начальные параметры героя:")]
-    [Space(20)]
-    [Header("Здоровье:")]
     [SerializeField] private float _startMaxHp;
-    [Header("Регенерация:")]
     [SerializeField] private float _startHpRegen;
-    [Header("Скорость передвижения:")]
     [SerializeField] private float _startMoveSpeed;
-    [Header("Радиус сбора:")]
     [SerializeField] private float _startMagnetDistance;
-    [Header("% к скорости атаки:")]
     [SerializeField] private float _startAttackSpeedPercentage;
-    [Header("% к урону:")]
-    [SerializeField] private float _startDamagePercentage;
-    [Header("+ к урону в ближнем бою:")]
     [SerializeField] private float _startMelleeDamage;
-    [Header("+ к урону в дальнем бою:")]
     [SerializeField] private float _startRangedDamage;
-    [Header("+ % к крит шансу:")]
     [SerializeField] private float _startCritChancePercentage;
-    [Header("Броня:")]
-    [SerializeField] private float _startArmor;
-    [Header("Уклоние:")]
-    [Range(0f, 100f)]
-    [SerializeField] private float _startProbabilityOfDodge;
-    [Header("% к краже жизни:")]
-    [SerializeField] private float _startLifeStealPercentage;
-
+ 
     private float _currentMaxHp;
     public float CurrentMaxHp
     {
@@ -84,22 +65,7 @@ public class PlayerCharacteristics : MonoBehaviour
     public float CurrentCritChancePercentage {
         get => _currentCritChancePercentage;
         set => _currentCritChancePercentage = value;
-    }
-
-    private float _currentArmor;
-    public float CurrentArmor { get => _currentArmor; set => _currentArmor = value; }
-
-    private float _currentProbabilityOfDodge;
-    public float CurrentProbabilityOfDodge{ 
-        get => _currentProbabilityOfDodge;
-        set => _currentProbabilityOfDodge = value;
-    }
-    public float CurrentDamagePercentage { get => _currentDamagePercentage; set => _currentDamagePercentage = value; }
-   
-    private float _currentDamagePercentage;
-
-    private float _currentLifeStealPercentage;
-    public float CurrentLifeStealPercentage { get => _currentLifeStealPercentage; set => _currentLifeStealPercentage = value; }
+    }    
 
     private void Awake()
     {
@@ -108,12 +74,9 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentHpRegen = _startHpRegen;
         _currentMagnetDistance = _startMagnetDistance;
         _currentAttackSpeedPercentage = _startAttackSpeedPercentage;
-        _currentDamagePercentage = _startDamagePercentage;
         _currentMelleeDamage = _startMelleeDamage;
         _currentRangedDamage = _startRangedDamage;
         _currentCritChancePercentage = _startCritChancePercentage;
-        _currentArmor = _startArmor;
-        _currentProbabilityOfDodge = _startProbabilityOfDodge;
     }
 
     public void LevelUp()

@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyBruiser : EnemyController
+{
+    [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Projectile _projectilePrefab;
+    [SerializeField] private float range;
+
+    private Projectile _projectile;
+
+    private void Update()
+    {
+        if (currentState == State.RunAway && target)
+        {
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            Vector3 newPos = transform.position + dirToTarget * 3f;
+            Vector3 newPosWithCorrectY = new Vector3(newPos.x, transform.position.y, newPos.z);
+            transform.LookAt(newPosWithCorrectY);
+            transform.position = Vector3.MoveTowards(transform.position, newPosWithCorrectY, Time.deltaTime * 50f);
+
+            if (Vector3.Distance(transform.position, newPosWithCorrectY) < 2f)
+            {
+                Debug.Log("чейзим");
+                currentState = State.Chasing;
+            }
+            
+        }
+    }
+
+    protected override IEnumerator UpdatePath()
+    {
+        while (target != null)
+        {
+            if (currentState == State.Chasing)
+            {
+                if (Vector3.Distance(transform.position, target.position) < attackDistance)
+                {
+
+                    Debug.Log("attack");
+                    Attacking();
+                }
+                else if (Vector3.Distance(transform.position, target.position) < range)
+                {
+                    Debug.Log("бежим");
+                    currentState = State.RunAway;
+                }
+                else
+                {
+                    Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+                    navMeshAgent.enabled = true;
+                    navMeshAgent.SetDestination(targetPosition);
+                }
+            }
+
+            yield return new WaitForSeconds(refreshRateOfUpdatePath);
+        }
+    }
+}

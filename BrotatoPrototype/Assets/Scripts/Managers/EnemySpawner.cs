@@ -21,14 +21,14 @@ public class EnemySpawner : MonoBehaviour
     [Header("Радиус спавна от игрока")]
     [SerializeField] private float _radiusFromPlayer = 15f;
 
-    [Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
-    [SerializeField] private bool isNotRandom = false;
+    //[Header("Галочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
+    //[SerializeField] private bool isNotRandom = false;
 
     [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     [SerializeField] private float radius = 0f;
 
     [SerializeField] private GameObject markPrefab;
-    [SerializeField] private float markDisplayTime = 1f;
+    private float markDisplayTime = 1f;
 
     private Transform container;
     private Vector3 randomPosition;
@@ -45,28 +45,20 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _target = GameManager.instance.player.transform;
-        if (isNotRandom)
-        {
-            randomPosition = transform.position;
-        }
-        else
-        {
-            randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
-        }
+        randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
         //randomPosition = RandomPositionOutCircle(25f, _target.position);
-        StartCoroutine(ChangeRandomPos());
         Spawn(randomPosition);
-       // StartCoroutine(ChangeRandomPos());
+        StartCoroutine(ChangeRandomPos());
     }
 
     private void Update()
     {
-        //Vector3 point;
-        //if (RandomPoint(_target.position, _radiusFromPlayer, out point))
-        //{
-        //    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+        Vector3 point;
+        if (RandomPoint(_target.position, _radiusFromPlayer, out point))
+        {
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 
-        //}
+        }
     }
 
     private float SpawnTime()
@@ -120,7 +112,6 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject CreateMark(Vector3 position)
     {
-        Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
         return Instantiate(markPrefab, position, markPrefab.transform.rotation);
     }
 
@@ -142,15 +133,7 @@ public class EnemySpawner : MonoBehaviour
         while (_target)
         {
             yield return new WaitForSeconds(markDisplayTime);
-            if (isNotRandom)
-            {
-                randomPosition = transform.position;
-            }
-            else
-            {
-                randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
-            }
-            
+            randomPosition = RandomPositionInCircle(_radiusFromPlayer, _target.position);
             //randomPosition = RandomPositionOutCircle(25f, _target.position);
         }
     }

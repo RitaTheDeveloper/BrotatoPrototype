@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilityMelleeDamage : Ability
 {
-    public float melleeDamage = 2f;
+    public float melleeDamage = 2;
 
     public override void UseAbility()
     {

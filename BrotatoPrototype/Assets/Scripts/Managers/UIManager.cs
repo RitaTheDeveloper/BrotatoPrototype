@@ -21,7 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuBtn;
     [SerializeField] private Transform levelUpMenu;
     [SerializeField] private GameObject leveUpUiPrefab;
-    [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
 
     [Header("for player:")]
     [SerializeField] private Slider healthSlider;
@@ -163,11 +162,6 @@ public class UIManager : MonoBehaviour
     {
         levelSlider.value = XpPercentage;
         levelTxt.text = "LV." + currentLvl;
-    }
-
-    public void DisplayAmountOfCurrency(int totalAmountOfCurrency)
-    {
-        amountOfCurrencyTxt.text = totalAmountOfCurrency.ToString();
     }
 
     public void DisplayLevelUp()
