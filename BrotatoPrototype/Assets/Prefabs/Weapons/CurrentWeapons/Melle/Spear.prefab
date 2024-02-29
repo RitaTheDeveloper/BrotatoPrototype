@@ -48,14 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a2b8a76eb4e94e9122c266e79cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 0
+  tier: 1
   weaponModifiers: {fileID: 11400000, guid: 213026b170911e84b9d93614dd29cdc2, type: 2}
-  attackRange: 12
+  attackRange: 8
   startDamage: 20
-  startAttackSpeed: 0.5
+  startAttackSpeed: 1
   startCritChance: 0.03
   animator: {fileID: 6266584965842136858}
-  timeOfAttack: 2.367
+  timeOfAttack: 0.533
   nearestEnemy: {fileID: 0}
   percantageOfMelleDamage: 81.2
 --- !u!95 &6266584965842136858
@@ -125,7 +125,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.67, y: 0.35, z: 2.08}
+  m_Size: {x: 0.67, y: 0.7, z: 2.4}
   m_Center: {x: 0, y: 0, z: 2.47}
 --- !u!1 &7009765969724869977
 GameObject:
