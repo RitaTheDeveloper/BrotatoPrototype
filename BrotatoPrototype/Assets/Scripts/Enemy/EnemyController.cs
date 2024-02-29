@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IKnockbackable
 {
     public enum State { Idle, Chasing, Attacking, RunAway};
     protected State currentState;
@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour
     protected LivingEntity livingEntity;
     protected float damage;
     private float nextAttackTime;
+    private Coroutine MoveCoroutine;
+    private Rigidbody _rigidbody;
+    private float startPositionY;
     
     private void Awake()
     {
@@ -28,9 +31,10 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         currentState = State.Chasing;
+        _rigidbody = GetComponent<Rigidbody>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        StartCoroutine(UpdatePath());
+        MoveCoroutine = StartCoroutine(UpdatePath());
     }
 
     private void FixedUpdate()
@@ -81,6 +85,7 @@ public class EnemyController : MonoBehaviour
         livingEntity = GetComponent<LivingEntity>();
         unitParameters = GetComponent<UnitParameters>();
         damage = unitParameters.CurrentDamage;
+        startPositionY = transform.position.y;
     }
 
     protected virtual IEnumerator UpdatePath()
@@ -98,5 +103,47 @@ public class EnemyController : MonoBehaviour
             
             yield return new WaitForSeconds(refreshRateOfUpdatePath);
         }
+    }
+
+    public void StopMoving()
+    {
+        if (MoveCoroutine != null)
+        {
+            StopCoroutine(MoveCoroutine);
+        }
+        navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+    }
+
+    public void GetKnocked(Vector3 force)
+    {
+        StopCoroutine(MoveCoroutine);
+        MoveCoroutine = StartCoroutine(ApplyKnock(force));
+    }
+
+    private IEnumerator ApplyKnock(Vector3 force)
+    {
+        yield return null;
+
+        navMeshAgent.enabled = false;
+        _rigidbody.useGravity = true;
+        _rigidbody.isKinematic = false;
+        Physics.gravity = new Vector3(0, -2.5F, 0);
+        _rigidbody.AddForce(force);
+
+        yield return new WaitForFixedUpdate();
+        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
+        yield return new WaitForSeconds(0.5f);
+
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.useGravity = false;
+        _rigidbody.isKinematic = true;
+        navMeshAgent.Warp(transform.position);
+        navMeshAgent.enabled = true;
+
+        yield return null;
+
+        MoveCoroutine = StartCoroutine(UpdatePath());
     }
 }

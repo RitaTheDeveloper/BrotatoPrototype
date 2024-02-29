@@ -36,9 +36,13 @@ public class EnemyBruiserController : EnemyController
 
     private void Chase()
     {
-        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        navMeshAgent.acceleration = 8f;
-        navMeshAgent.SetDestination(target.position);
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+            navMeshAgent.acceleration = 8f;
+            navMeshAgent.SetDestination(target.position);
+        }
+        
     }
 
     private void Stopping()
@@ -51,25 +55,29 @@ public class EnemyBruiserController : EnemyController
 
     private void Rush()
     {
-        navMeshAgent.speed = _speedRush;
-        navMeshAgent.acceleration = 500f;
-        Vector3 newPos = startPos + dirToTarget.normalized * _distance;
-        navMeshAgent.SetDestination(newPos);
-
-        if (!navMeshAgent.pathPending)
+        if(navMeshAgent.enabled)
         {
-            //if (Vector3.Distance(transform.position, target.position) <= navMeshAgent.stoppingDistance)
-            //{
-            //    _timer = 0f;
-            //}
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            navMeshAgent.speed = _speedRush;
+            navMeshAgent.acceleration = 500f;
+            Vector3 newPos = startPos + dirToTarget.normalized * _distance;
+            navMeshAgent.SetDestination(newPos);
+
+            if (!navMeshAgent.pathPending)
             {
-                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 0.3f)
+                //if (Vector3.Distance(transform.position, target.position) <= navMeshAgent.stoppingDistance)
+                //{
+                //    _timer = 0f;
+                //}
+                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
                 {
-                    _timer = 0f;
+                    if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude < 0.3f)
+                    {
+                        _timer = 0f;
+                    }
                 }
             }
         }
+        
     }
 
     protected override void Attacking()
