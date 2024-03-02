@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] public Dictionary<string, StandartItem> inventory;
+    [SerializeField] public Dictionary<string, StandartItem> inventory = new Dictionary<string, StandartItem>();
+    [SerializeField] public Dictionary<string, int> countItems = new Dictionary<string, int>();
     [SerializeField] public GameObject Player;
     public int MoneyPlayer = 0;
     public int WoodPlayer = 0;
@@ -21,9 +22,17 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
-    public void AddItem(StandartItem item)
+    public virtual void AddItem(StandartItem item)
     {
-        inventory.Add(item.IdItem, item);
+        if (inventory.ContainsKey(item.IdItem))
+        {
+            countItems[item.IdItem]++;
+        }
+        else
+        {
+            inventory.Add(item.IdItem, item);
+            countItems[item.IdItem] = 1;
+        }
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
         if (Player && playerCharacteristics)
         {
@@ -31,9 +40,18 @@ public class PlayerInventory : MonoBehaviour
         }
     }
     
-    public void DeleteItem(StandartItem item)
+    public virtual void DeleteItem(StandartItem item)
     {
         inventory.Remove(item.IdItem);
+        if (countItems.ContainsKey(item.IdItem) && countItems[item.IdItem] > 1)
+        {
+            countItems[item.IdItem]--;
+        }
+        else if (countItems.ContainsKey(item.IdItem) && countItems[item.IdItem] == 1)
+        {
+            inventory.Remove(item.IdItem);
+            countItems.Remove(item.IdItem);
+        }
         PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
         if (Player && playerCharacteristics)
         {

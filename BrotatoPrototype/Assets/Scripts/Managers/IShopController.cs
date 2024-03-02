@@ -12,11 +12,21 @@ public interface IShopController
 
     void LockItem(int slot);
 
+    void SoldSlot(int slot);
+
+    bool StotIsLocked(int slot);
+
+    bool AllSlotSold();
+
+    bool IsSlotSold(int slot);
+
     bool SellItem(string itemID);
 
     bool BuyItem(string itemID);
 
     void UpgrateShop();
+
+    void RerollShop();
 
     bool IsItem(string id);
 
@@ -32,4 +42,9 @@ public interface IShopController
 
     public int GetCurrentWawe();
 
+    public WeaponController GetWeaponController();
+
+    public PlayerInventory GetPlayerInventory();
+
+    public List<RareItemsDataStruct> GetRareItemsDataStruct();
 }

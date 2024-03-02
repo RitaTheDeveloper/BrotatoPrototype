@@ -83,6 +83,11 @@ public class WeaponController : MonoBehaviour
         //TODO магазин передает префаб, надо убрать из списка
         listOfWeapons.Remove(gunToUnequip);
     }
+
+    public List<Weapon> GetAllWeapons()
+    {
+        return listOfWeapons;
+    }
 }
 
 

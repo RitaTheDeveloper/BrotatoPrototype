@@ -10,4 +10,5 @@ public class RareItemsDataStruct : MonoBehaviour
     public float baseChance;
     public float waveChance;
     public float maxChance;
+    public Color BackgroundColor;
 }

@@ -12,6 +12,8 @@ public class SlotItemForSaleData : MonoBehaviour
     public TextMeshProUGUI textType;
     public TextMeshProUGUI textCost;
     public Image image;
+    public TextMeshProUGUI lockButtonText;
+    public Image backgroud;
 
     private void Awake()
     {
