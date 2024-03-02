@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
 
+    [SerializeField] BoxCollider boxCollider;
     protected NavMeshAgent navMeshAgent;
     protected UnitParameters unitParameters;
     public Transform target;
@@ -115,28 +116,58 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         navMeshAgent.enabled = false;
     }
 
-    public void GetKnocked(Vector3 force)
+    public void GetKnockedUp(Vector3 force)
     {
         StopCoroutine(MoveCoroutine);
-        MoveCoroutine = StartCoroutine(ApplyKnock(force));
+        MoveCoroutine = StartCoroutine(ApplyKnockUp(force));
     }
 
-    private IEnumerator ApplyKnock(Vector3 force)
+    private IEnumerator ApplyKnockUp(Vector3 force)
     {
         yield return null;
 
         navMeshAgent.enabled = false;
-        _rigidbody.useGravity = true;
+        _rigidbody.useGravity = true; //for back true = for up
         _rigidbody.isKinematic = false;
-        Physics.gravity = new Vector3(0, -2.5F, 0);
         _rigidbody.AddForce(force);
-
         yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
-        yield return new WaitForSeconds(0.5f);
-
+        // yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
+        //Debug.Log("nowY = " + transform.position.y + "; startY = " + startPositionY);
+        yield return new WaitUntil(() => transform.position.y < startPositionY + 0.2f);
+        //yield return new WaitForSeconds(0.25f);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.useGravity = false;
+        _rigidbody.isKinematic = true;
+        navMeshAgent.Warp(transform.position);
+        navMeshAgent.enabled = true;
+
+        yield return null;
+
+        MoveCoroutine = StartCoroutine(UpdatePath());
+    }
+
+    public void GetKnockedBack(Vector3 force)
+    {
+        StopCoroutine(MoveCoroutine);
+        MoveCoroutine = StartCoroutine(ApplyKnockBack(force));
+    }
+
+    private IEnumerator ApplyKnockBack(Vector3 force)
+    {
+        yield return null;
+
+        navMeshAgent.enabled = false;
+        boxCollider.enabled = true;
+        _rigidbody.useGravity = true; //for back true = for up
+        _rigidbody.isKinematic = false;
+        _rigidbody.AddForce(force);
+        yield return new WaitForFixedUpdate();
+        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
+        yield return new WaitForSeconds(0.25f);
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        boxCollider.enabled = false;
         _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
         navMeshAgent.Warp(transform.position);

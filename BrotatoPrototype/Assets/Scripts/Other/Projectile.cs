@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed = 20f;
     [SerializeField] private int penetration = 1;
     [SerializeField] LayerMask collisionMask;
+    [SerializeField] private bool knockBack = false;
 
     private bool _isCrit;
     private float _range;
@@ -66,11 +67,21 @@ public class Projectile : MonoBehaviour
 
     private void OutHitObject(RaycastHit hit)
     {
-        IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
+        IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();              
         if (damageableObject != null)
         {
             damageableObject.TakeHit(_damage, _isCrit);
         }
+
+        if (knockBack)
+        {
+            IKnockbackable knockbackableObject = hit.collider.GetComponentInParent<IKnockbackable>();
+            if (knockbackableObject != null)
+            {
+                knockbackableObject.GetKnockedBack(transform.forward.normalized * 500f);
+            }
+        }
+        
         penetration -= 1;
 
         Debug.Log("penetration = " + penetration);

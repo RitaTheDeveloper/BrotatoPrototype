@@ -5,61 +5,44 @@ using UnityEngine.AI;
 
 public class Explosion : MonoBehaviour
 {
-    public bool isActive;
-    [SerializeField] float radius;
-    [SerializeField] float dmg;
     [SerializeField] LayerMask layerMask;
     [SerializeField] Transform effectsTransform;
     [SerializeField] GameObject explosionEffect;
+    [SerializeField] DrawCircle drawCircleForRadiusDmg;
     [SerializeField] AudioSource audioSource;
 
-
-    private void Update()
+    public void Explode(float _radius, float _dmg)
     {
-    //    if (isActive)
-    //    {
-    //        Explode();
-    //        isActive = false;
-    //    }
-    }
-    public void Explode()
-    {
-        Collider[] numColliders = Physics.OverlapSphere(transform.position, radius, layerMask);
+        Collider[] numColliders = Physics.OverlapSphere(transform.position, _radius, layerMask);
 
         if (numColliders.Length > 0)
         {
             for (int i = 0; i < numColliders.Length; i++)
             {
-                numColliders[i].GetComponent<EnemyHealth>().TakeHit(dmg, false);
+                numColliders[i].GetComponent<EnemyHealth>().TakeHit(_dmg, false);
 
                 if (numColliders[i].TryGetComponent(out IKnockbackable knockbackable))
                 {
-                    knockbackable.GetKnocked(new Vector3(0, 120f, 0));
-                    //numColliders[i].GetComponent<NavMeshAgent>().enabled = false; ;
-                    //rb.useGravity = true;
-                    //rb.isKinematic = false;
-                    //// rb.AddExplosionForce(2000f, transform.position, 10f, 10f);
-                    //rb.AddForce(numColliders[i].transform.up * 2000f);
-                    //Debug.Log("бабабабааббах")
-
+                    knockbackable.GetKnockedUp(new Vector3(0, 400f, 0));
                 }
             }
         }
         
 
-        DisplayExplosion();
+        DisplayExplosion(_radius);
        // audioSource.Play();
     }
 
-    private void DisplayExplosion()
+    private void DisplayExplosion(float _radius)
     {
-        Instantiate(explosionEffect, effectsTransform.position, Quaternion.identity);
-    }
+        if (explosionEffect)
+        {
+           var explosion = Instantiate(explosionEffect, transform.position, explosionEffect.transform.rotation);
+            explosion.transform.localScale = explosion.transform.localScale * _radius;
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Explode();
-        Destroy(gameObject);
+        drawCircleForRadiusDmg.DrawTheCircle(_radius);
+
     }
 
 }
