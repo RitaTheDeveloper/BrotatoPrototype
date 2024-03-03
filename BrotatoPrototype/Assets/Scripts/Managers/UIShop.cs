@@ -61,12 +61,18 @@ public class UIShop : MonoBehaviour
     {
         DestroyAllSlotsForWeapons();
 
-        WeaponController playW = shopController.GetWeaponController();
+        //WeaponController playW = shopController.GetWeaponController();
+        List<Weapon> wl = shopController.GetWeaponController().GetAllWeapons();
 
         for (int i = 0; i < _maxNumberOfWeapons; i++)
         {
             GameObject slot = Instantiate(slotForWeaponPrefab, panelOfWeapons);
             listSlotsOfWeapons.Add(slot.transform);
+            if (i < wl.Count)
+            {
+                Image image = slot.GetComponent<Image>();
+                image.sprite = wl[i].IconWeapon;
+            }
         }
     }
 
@@ -82,14 +88,10 @@ public class UIShop : MonoBehaviour
 
     public void CreateWeaponElements(int _numberOfCurrentWeapons)
     {
-        List<Weapon> wl = shopController.GetWeaponController().GetAllWeapons();
+
         for(int i = 0; i < _numberOfCurrentWeapons; i++)
         {
             var weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
-            if (i < wl.Count)
-            {
-                weaponElement.GetComponent<Image>().sprite = wl[i].IconWeapon;
-            }
         }
     }
 

@@ -91,6 +91,7 @@ public class ShopController : MonoBehaviour, IShopController
             {
                 inventary.ChangeMoney(WeaponsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
                 weaponController.EquipGun(WeaponsDict[itemID]);
+                uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                 return true;
             }
             else
