@@ -70,6 +70,8 @@ public class UIShop : MonoBehaviour
             listSlotsOfWeapons.Add(slot.transform);
             if (i < wl.Count)
             {
+                //Вот тут будет ошибка, т.к. невозможно запросить image в prefab
+                //Пока не нашел способа побороть это
                 Image image = slot.GetComponent<Image>();
                 image.sprite = wl[i].IconWeapon;
             }
