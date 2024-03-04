@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 7367641709781018464}
   - component: {fileID: 4891025128272274422}
   - component: {fileID: 2852716920124425334}
+  - component: {fileID: -5059672607002301848}
   m_Layer: 6
   m_Name: Enemy_Stump_LootSpawner
   m_TagString: Enemy
@@ -256,6 +257,7 @@ MonoBehaviour:
   regenOn: 0
   hpRegenPerSecond: 0
   dead: 0
+  dieEffecrt: {fileID: 0}
 --- !u!54 &7367641709781018464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -281,7 +283,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &4891025128272274422
 MonoBehaviour:
@@ -314,7 +316,29 @@ MonoBehaviour:
   timeBetweenAttacks: 0
   refreshRateOfUpdatePath: 1
   animator: {fileID: 0}
+  boxCollider: {fileID: -5059672607002301848}
   target: {fileID: 0}
   _distanceFromPlayer: 15
   _escapeDelaytime: 1
   _escapeSpeed: 15
+--- !u!65 &-5059672607002301848
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909365758776171659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

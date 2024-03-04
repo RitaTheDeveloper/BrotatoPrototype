@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IKnockbackable
 {
-    public void GetKnocked(Vector3 force);
+    public void GetKnockedUp(Vector3 force);
+
+    public void GetKnockedBack(Vector3 force);
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : LivingEntity
 {
     private float xpForKill;
-
+    [SerializeField] private GameObject dieEffecrt;
     private void Awake()
     {
         startingHealth = GetComponent<UnitParameters>().CurrentHp;
@@ -31,6 +31,11 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        if(dieEffecrt != null)
+        {
+            Instantiate(dieEffecrt, transform.position, Quaternion.identity);
+        }
+        
         SpawnCurrency();
         LootSpawner lootSpawner = GetComponent<LootSpawner>();
         if (lootSpawner)
