@@ -31,12 +31,14 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+
         SpawnPlayer(_heroIndex);
         _gameIsOver = false;
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         _waves[0].StartWave();
+        AudioManager.instance.Play("Theme");
     }
     
     public void SetHeroIndex(int index)

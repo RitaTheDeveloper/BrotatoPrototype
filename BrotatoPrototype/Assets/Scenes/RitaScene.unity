@@ -254,11 +254,9 @@ MonoBehaviour:
   time: 80
   enemySpawnersPrefabs:
   - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
 --- !u!1 &19859417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,6 +2993,82 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 146747183}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &949276457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949276459}
+  - component: {fileID: 949276458}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &949276458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949276457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83085c4711dae2f45b301a43185b6c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsEveryWhere:
+  - soundName: Theme
+    clip: {fileID: 8300000, guid: 74affbfb4b0670e41958a84248455773, type: 3}
+    volume: 0.02
+    pitch: 1
+    loop: 1
+    audioSource: {fileID: 0}
+  - soundName: Coin
+    clip: {fileID: 8300000, guid: 328d9916b6baa6e40987cb351b6799e1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  soundsPositionMatter:
+  - soundName: TakeHit
+    clip: {fileID: 8300000, guid: 176a4fd9ad5c40f4fafc3dc3291c51d4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - soundName: TakeCritHit
+    clip: {fileID: 8300000, guid: 176a4fd9ad5c40f4fafc3dc3291c51d4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - soundName: EnemyDeath
+    clip: {fileID: 8300000, guid: ac36bae6156759c4c9dc56d4e2db370d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+--- !u!4 &949276459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949276457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952497134
 GameObject:
   m_ObjectHideFlags: 0
@@ -10250,6 +10324,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
+  - {fileID: 949276459}
   - {fileID: 1676732650}
   - {fileID: 705507995}
   - {fileID: 415540025}

@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
 
-    [SerializeField] BoxCollider boxCollider;
+    [SerializeField] BoxCollider boxCollider;    
     protected NavMeshAgent navMeshAgent;
     protected UnitParameters unitParameters;
     public Transform target;
