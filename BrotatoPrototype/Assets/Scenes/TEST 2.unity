@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 578920529}
   - component: {fileID: 578920530}
   m_Layer: 0
-  m_Name: Wave7
+  m_Name: Wave6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2610,8 +2610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
-  enemySpawnersPrefabs: []
+  time: 45
+  enemySpawnersPrefabs:
+  - {fileID: 3991001894752413389, guid: 8c8b703eadf7ee245ab019b734ec1fe6, type: 3}
+  - {fileID: 3991001894752413389, guid: f855fea3ed6a77349bd9ba9351c51ee8, type: 3}
 --- !u!4 &593958436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3032790314171610061, guid: 41505d4980c8f3541a6f7bd3f293c764,
@@ -3280,10 +3282,10 @@ MonoBehaviour:
   - {fileID: 6707278682496988613, guid: b6003b1cbb19e984b8f56af0167e9ab4, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
   _waves:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 578920530}
+  - {fileID: 1132892320}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _currentWave: {fileID: 0}
@@ -3815,7 +3817,7 @@ GameObject:
   - component: {fileID: 1132892319}
   - component: {fileID: 1132892320}
   m_Layer: 0
-  m_Name: Wave6
+  m_Name: Wave5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3848,11 +3850,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 45
+  time: 40
   enemySpawnersPrefabs:
-  - {fileID: 3991001894752413389, guid: 66724984fd33290439700d1485a9b5da, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3991001894752413389, guid: 039a6c3e4d4e12245878fc35053dbf0c, type: 3}
+  - {fileID: 3991001894752413389, guid: 3a1499b1c809ec34483721cfc196f8a9, type: 3}
+  - {fileID: 3991001894752413389, guid: ec23cb8b5f6ec1b4ca6691293ce6de80, type: 3}
 --- !u!1001 &1133038685
 PrefabInstance:
   m_ObjectHideFlags: 0
