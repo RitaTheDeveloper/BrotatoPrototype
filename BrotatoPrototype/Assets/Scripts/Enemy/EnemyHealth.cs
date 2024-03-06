@@ -33,13 +33,13 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
+        SpawnCurrency();
+       // audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
         if (dieEffecrt != null)
         {
             Instantiate(dieEffecrt, transform.position, Quaternion.identity);
         }
         
-        SpawnCurrency();
         LootSpawner lootSpawner = GetComponent<LootSpawner>();
         if (lootSpawner)
         {
@@ -72,6 +72,7 @@ public class EnemyHealth : LivingEntity
 
     private void SpawnCurrency()
     {
+        Debug.Log("заспавнить");
         var currency = PoolObject.instance.currencyPool.Get();
         currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
         currency.SetXP(xpForKill);

@@ -121,6 +121,7 @@ public class UIManager : MonoBehaviour
     public void OnClickRestart()
     {
         AllOff();
+        RemoveAllLevelUpElements();
         GameManager.instance.Restart();
     }
 
