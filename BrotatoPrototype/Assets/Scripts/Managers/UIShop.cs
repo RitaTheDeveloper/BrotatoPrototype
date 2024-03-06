@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
+    public static UIShop instance; 
+
     [SerializeField] private TextMeshProUGUI waveNumberText;
     [SerializeField] private TextMeshProUGUI totalAmountOfGoldText;
     [SerializeField] private TextMeshProUGUI totalAmountOfWoodText;
@@ -16,12 +18,24 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform panelOfWeapons;
     [SerializeField] private GameObject slotForWeaponPrefab;
     [SerializeField] private GameObject weaponElementPrefab;
+    [SerializeField] private GameObject itemInfoPrefab;
+    [SerializeField] private Transform canvas;
+    [SerializeField] private float XmovePosOfInfoPanel;
+    [SerializeField] private float YmovePosOfInfoPanel;
 
     List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     List<Transform> listSlotsOfWeapons = new List<Transform>();
 
+
     private IShopController shopController;
+
+    private GameObject _currentInfoItem = null;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void ChangeUIParametersOfShop()
     {
@@ -67,14 +81,7 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i < _maxNumberOfWeapons; i++)
         {
             GameObject slot = Instantiate(slotForWeaponPrefab, panelOfWeapons);
-            listSlotsOfWeapons.Add(slot.transform);
-            if (i < wl.Count)
-            {
-                //Вот тут будет ошибка, т.к. невозможно запросить image в prefab
-                //Пока не нашел способа побороть это
-                Image image = slot.GetComponent<Image>();
-                image.sprite = wl[i].IconWeapon;
-            }
+            listSlotsOfWeapons.Add(slot.transform);            
         }
     }
 
@@ -88,13 +95,15 @@ public class UIShop : MonoBehaviour
         listSlotsOfWeapons.Clear();
     }
 
-    public void CreateWeaponElements(int _numberOfCurrentWeapons)
+    public void CreateWeaponElements(List<Weapon> _currentWeapons)
     {
 
-        for(int i = 0; i < _numberOfCurrentWeapons; i++)
+        for (int i = 0; i < _currentWeapons.Count; i++)
         {
-            var weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
+            GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
+            weaponElement.GetComponent<ItemSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
         }
+
     }
 
     public void OnCreateShopInterface()
@@ -223,5 +232,22 @@ public class UIShop : MonoBehaviour
     {
         shopController.SellItem(name);
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
+    }
+
+    public void DisplayItemInfo(string nameItem, Sprite icon, Color tierColor, string description, Vector2 btnPosition)
+    {
+        DestroyItemInfo();
+        btnPosition.x += XmovePosOfInfoPanel;
+        btnPosition.y += YmovePosOfInfoPanel;
+        _currentInfoItem = Instantiate(itemInfoPrefab, btnPosition, Quaternion.identity, canvas);
+        _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(nameItem, icon, tierColor, description);
+    }
+
+    public void DestroyItemInfo()
+    {
+        if(_currentInfoItem != null)
+        {
+            Destroy(_currentInfoItem.gameObject);
+        }
     }
 }

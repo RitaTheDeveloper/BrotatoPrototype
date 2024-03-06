@@ -9,6 +9,7 @@ public class WeaponController : MonoBehaviour
     //[SerializeField] private Weapon _startingGun;
     [SerializeField] List<Weapon> listOfWeapons;
     [SerializeField] private float radisOfWeaponHold = 3f;
+    [SerializeField] private int maxNumberOfWeapons = 6;
     private Weapon equppiedGun;
 
     private void Start()
@@ -18,7 +19,7 @@ public class WeaponController : MonoBehaviour
         //    EquipGun(_startingGun);
         //}
         //SetWeapons(listOfWeapons);
-        SetWeaponsInWeaponHolders(listOfWeapons);
+        //SetWeaponsInWeaponHolders(listOfWeapons);
     }
     //public void EquipGun(Weapon gunToEquip)
     //{
@@ -87,6 +88,11 @@ public class WeaponController : MonoBehaviour
     public List<Weapon> GetAllWeapons()
     {
         return listOfWeapons;
+    }
+
+    public int GetMaxNumberOfweapons()
+    {
+        return maxNumberOfWeapons;
     }
 }
 

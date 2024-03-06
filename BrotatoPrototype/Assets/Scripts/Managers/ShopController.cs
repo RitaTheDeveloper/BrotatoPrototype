@@ -61,8 +61,9 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
         uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
         uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
-        uiShop.SetNumberOfPossibleWeapons(dataForShop.maxNumberOfWeapons);
-        uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
+        uiShop.SetNumberOfPossibleWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
+        uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
+        uiShop.CreateWeaponElements(dataForShop.weaponController.GetAllWeapons());
         uiShop.OnCreateShopInterface();
     }
 
@@ -91,7 +92,8 @@ public class ShopController : MonoBehaviour, IShopController
             {
                 inventary.ChangeMoney(WeaponsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
                 weaponController.EquipGun(WeaponsDict[itemID]);
-                uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
+                //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
+                uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
                 return true;
             }
             else
