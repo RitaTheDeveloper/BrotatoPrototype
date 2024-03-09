@@ -35,24 +35,6 @@ public class Weapon : MonoBehaviour
     private float _startAnimationSpeed;
     protected float _currentTimeOfAttack;
 
-    public string IdWeapon;
-    [Tooltip("Стоимость оружия:")]
-    [SerializeField] public int Price;
-    [Tooltip("Скидка при продаже %:")]
-    [SerializeField] public int DiscountProcent;
-    [Tooltip("Уровень предмета:")]
-    [SerializeField] public int LevelItem;
-    [Tooltip("Минимальная волна:")]
-    [SerializeField] public int MinWave;
-
-    [Header("Параметры отображения: ")]
-    [Tooltip("Название оружия:")]
-    [SerializeField] public string NameWeapon;
-    [Tooltip("Тип оружия:")]
-    [SerializeField] public string TypeWeapon;
-    [Tooltip("Иконка оружия:")]
-    [SerializeField] public Sprite IconWeapon;
-
     private void Awake()
     {
         SetCharacteristicsDependingOnTier();
@@ -69,7 +51,6 @@ public class Weapon : MonoBehaviour
         SetTimeOfAnimation(currentAttackSpeed);
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
-        IdWeapon = this.name;
     }
 
     protected virtual void Attack()
@@ -174,9 +155,5 @@ public class Weapon : MonoBehaviour
         {
             _currentTimeOfAttack = timeOfAttack;
         }
-    }
-    public int GetPrice(int wave)
-    {
-        return Price + wave + (int)(Price * wave * 0.01f); // расчет цены за определенную волну (wave)
     }
 }

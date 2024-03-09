@@ -34,6 +34,8 @@ public interface IShopController
 
     Weapon GetWeapon(string id);
 
+    ItemShopInfo GetUiInfo(string id);
+
     StandartItem GetItem(string id);
 
     int GetShopLevelUpCost();
@@ -47,4 +49,12 @@ public interface IShopController
     public PlayerInventory GetPlayerInventory();
 
     public List<RareItemsDataStruct> GetRareItemsDataStruct();
+
+    public int maxWeaponCount();
+
+    public void ResetsSlots();
+
+    public int GetShopLevel();
+
+    public Dictionary<string, StandartItem> GetInventory();
 }

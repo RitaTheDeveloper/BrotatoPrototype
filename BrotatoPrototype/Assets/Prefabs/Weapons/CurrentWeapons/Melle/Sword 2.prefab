@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7522623501473152233}
   - component: {fileID: 6459088100143395243}
   - component: {fileID: 4045245801649021}
+  - component: {fileID: 1547807224759480580}
   m_Layer: 0
   m_Name: Sword 2
   m_TagString: Untagged
@@ -57,14 +58,6 @@ MonoBehaviour:
   animator: {fileID: 7522623501473152233}
   timeOfAttack: 0.7
   nearestEnemy: {fileID: 0}
-  IdWeapon: secondSword
-  Price: 60
-  DiscountProcent: 50
-  LevelItem: 2
-  MinWave: 2
-  NameWeapon: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u044B\u0439 \u043C\u0435\u0447"
-  TypeWeapon: "\u041C\u0435\u0447"
-  IconWeapon: {fileID: 21300000, guid: 100ed309ca9f7354e99a1ce9c28e4930, type: 3}
   percantageOfMelleDamage: 100
 --- !u!95 &7522623501473152233
 Animator:
@@ -135,6 +128,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.67, y: 0.5, z: 2.4}
   m_Center: {x: 0, y: 0, z: 0.6334499}
+--- !u!114 &1547807224759480580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678555817528853990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: sword2
+  Price: 150
+  DiscountProcent: 50
+  LevelItem: {fileID: 7236866929510234708, guid: 3de72545a5f47cd47aeb016ecc89fde9,
+    type: 3}
+  MinWave: 3
+  NameWeapon: "\u043C\u0435\u0447 2"
+  TypeWeapon: "\u043C\u0435\u0447"
+  IconWeapon: {fileID: 21300000, guid: 100ed309ca9f7354e99a1ce9c28e4930, type: 3}
 --- !u!1 &7798779393218843148
 GameObject:
   m_ObjectHideFlags: 0

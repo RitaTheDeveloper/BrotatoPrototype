@@ -4,15 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemInfoPanelWithSellBtn : MonoBehaviour
+public class ItemInfoPanelWithoutSellBtn : MonoBehaviour
 {
     public Image icon;
     public Image background;
     public TextMeshProUGUI nameItem;
     public TextMeshProUGUI typeItem;
-    public TextMeshProUGUI description;    
-    public Button sellBtn;
-    public TextMeshProUGUI price;
+    public TextMeshProUGUI description;
     public string id;
 
     public void SetUp(ItemShopInfo itemInfo, string _description)
@@ -22,16 +20,6 @@ public class ItemInfoPanelWithSellBtn : MonoBehaviour
         nameItem.text = itemInfo.NameWeapon;
         typeItem.text = itemInfo.TypeWeapon;
         description.text = _description;
-        price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
-        sellBtn.onClick.RemoveAllListeners();
-        // вот тут нужно повесить на кнопку метод с индексом продаваемого оружия
-       // sellBtn.onClick.AddListener()
-       sellBtn.onClick.AddListener(SellItem);
-    }
-
-    void SellItem()
-    {
-        UIShop.instance.ButtonSoldSlot(id);
     }
 }

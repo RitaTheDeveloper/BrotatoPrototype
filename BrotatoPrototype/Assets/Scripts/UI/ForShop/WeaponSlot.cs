@@ -1,26 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image icon;
     public Image background;
 
     public ItemShopInfo itemInfo;
-    public void AddItem(StandartItem _itemInfo)
+    public void AddItem(ItemShopInfo _itemInfo)
     {
-        itemInfo = gameObject.AddComponent<ItemShopInfo>();
-
-        itemInfo.IdWeapon = _itemInfo.IdItem;
-        itemInfo.LevelItem = _itemInfo.LevelItem;
-        itemInfo.TypeWeapon = _itemInfo.TypeItem;
-        itemInfo.IconWeapon = _itemInfo.IconItem;
-
-        icon.sprite = _itemInfo.IconItem;
+        itemInfo = _itemInfo;
+        icon.sprite = _itemInfo.IconWeapon;
         background.color = _itemInfo.LevelItem.BackgroundColor;
     }
 
@@ -31,7 +24,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo, itemInfo.TypeWeapon, transform.position);
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, itemInfo.TypeWeapon, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

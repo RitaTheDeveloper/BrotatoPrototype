@@ -43,10 +43,13 @@ public class ShopController : MonoBehaviour, IShopController
     [SerializeField] UIShop uiShop;
     [SerializeField] DataForShop dataForShop;
 
+    private List<Weapon> weaponsList;
+
     private void Awake()
     {
         InitRareStorage();
         ListStorageToDict();
+        weaponsList = dataForShop.weaponController.GetAllWeapons();
 
         for (int i = 0; i < ShopSizeList; i++)
         {
@@ -63,8 +66,15 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
         uiShop.SetNumberOfPossibleWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
+        uiShop.CreateSlotsForItems();
         uiShop.CreateWeaponElements(dataForShop.weaponController.GetAllWeapons());
+        uiShop.CreateItemsElements(dataForShop.playerInventory.inventory);
         uiShop.OnCreateShopInterface();
+
+        for (int i = 0; i < weaponsList.Count; i++)
+        {
+            weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber);
+        }
     }
 
 
@@ -77,6 +87,7 @@ public class ShopController : MonoBehaviour, IShopController
             {
                 inventary.ChangeMoney(SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
                 inventary.AddItem(SaleItemsDict[itemID]);
+                uiShop.CreateItemsElements(inventary.inventory);
                 return true;
             }
             else
@@ -88,10 +99,10 @@ public class ShopController : MonoBehaviour, IShopController
         {
             WeaponController weaponController = dataForShop.weaponController;
             PlayerInventory inventary = dataForShop.playerInventory;
-            if (inventary.HaveNeedCost(WeaponsDict[itemID].Price))
+            if (inventary.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price) && weaponsList.Count < weaponController.GetMaxNumberOfweapons())
             {
-                inventary.ChangeMoney(WeaponsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
-                weaponController.EquipGun(WeaponsDict[itemID]);
+                inventary.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber) * -1);
+                weaponsList.Add(WeaponsDict[itemID]);
                 //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                 uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
                 return true;
@@ -328,8 +339,9 @@ public class ShopController : MonoBehaviour, IShopController
         {
             PlayerInventory inventary = dataForShop.playerInventory;
             WeaponController weaponController = dataForShop.weaponController;
-            inventary.MoneyPlayer += WeaponsDict[itemID].GetPrice(dataForShop.waveNumber) * (WeaponsDict[itemID].DiscountProcent / 100);
-            weaponController.UnequipGun(WeaponsDict[itemID]);
+            inventary.MoneyPlayer += WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber) * (WeaponsDict[itemID].GetComponent<ItemShopInfo>().DiscountProcent / 100);
+            weaponsList.Remove(WeaponsDict[itemID]);
+            uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
@@ -362,19 +374,19 @@ public class ShopController : MonoBehaviour, IShopController
     {
         for (int i = 0; i < ItemList.Count; i++)
         {
-            if (!LevelToItems.ContainsKey(ItemList[i].LevelItem))
+            if (!LevelToItems.ContainsKey(ItemList[i].LevelItem.level))
             {
-                LevelToItems[ItemList[i].LevelItem] = new List<string>();
+                LevelToItems[ItemList[i].LevelItem.level] = new List<string>();
             }
-            LevelToItems[ItemList[i].LevelItem].Add(ItemList[i].IdItem);
+            LevelToItems[ItemList[i].LevelItem.level].Add(ItemList[i].IdItem);
         }
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            if (!LevelToWeapons.ContainsKey(WeaponList[i].LevelItem))
+            if (!LevelToWeapons.ContainsKey(WeaponList[i].GetComponent<ItemShopInfo>().LevelItem.level))
             {
-                LevelToWeapons[WeaponList[i].LevelItem] = new List<string>();
+                LevelToWeapons[WeaponList[i].GetComponent<ItemShopInfo>().LevelItem.level] = new List<string>();
             }
-            LevelToWeapons[WeaponList[i].LevelItem].Add(WeaponList[i].IdWeapon);
+            LevelToWeapons[WeaponList[i].GetComponent<ItemShopInfo>().LevelItem.level].Add(WeaponList[i].GetComponent<ItemShopInfo>().IdWeapon);
         }
     }
 
@@ -422,7 +434,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            WeaponsDict[WeaponList[i].IdWeapon] = WeaponList[i];
+            WeaponsDict[WeaponList[i].GetComponent<ItemShopInfo>().IdWeapon] = WeaponList[i];
         }
     }
 
@@ -493,5 +505,33 @@ public class ShopController : MonoBehaviour, IShopController
     public bool IsSlotSold(int slot)
     {
         return SoldItemsDict[slot];
+    }
+
+    public ItemShopInfo GetUiInfo(string id)
+    {
+        return WeaponsDict[id].GetComponent<ItemShopInfo>();
+    }
+
+    public int maxWeaponCount()
+    {
+        return dataForShop.weaponController.GetMaxNumberOfweapons();
+    }
+
+    public void ResetsSlots()
+    {
+        for (int i = 0; i < ShopSizeList; i++)
+        {
+            SoldItemsDict[i] = false;
+        }
+    }
+
+    public int GetShopLevel()
+    {
+        return ShopLevel;
+    }
+
+    public Dictionary<string, StandartItem> GetInventory()
+    {
+        return dataForShop.playerInventory.inventory;
     }
 }

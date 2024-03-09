@@ -14,7 +14,7 @@ public class StandartItem : MonoBehaviour
     [Tooltip("Скидка при продаже %:")]
     [SerializeField] public int DiscountPercentageItem;
     [Tooltip("Уровень предмета:")]
-    [SerializeField] public int LevelItem;
+    [SerializeField] public RareItemsDataStruct LevelItem;
 
     [Header("Параметры отображения: ")]
     [Tooltip("Название предмета:")]
@@ -33,12 +33,19 @@ public class StandartItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    private int currentPrice;
 
     public int GetPrice(int wave)
     {
-        return Price + wave + (int)(Price * wave * 0.01f); // расчет цены за определенную волну (wave)
+        currentPrice = Price + wave + (int)(Price * wave * 0.01f);
+        return currentPrice; // расчет цены за определенную волну (wave)
     }
-    
+
+    public int GetSalePrice()
+    {
+        return currentPrice - (int)((float)currentPrice * ((float)DiscountPercentageItem / 100.0f));
+    }
 }
