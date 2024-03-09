@@ -24,7 +24,7 @@ public interface IShopController
 
     bool BuyItem(string itemID);
 
-    void UpgrateShop();
+    bool UpgrateShop();
 
     void RerollShop();
 
@@ -56,5 +56,5 @@ public interface IShopController
 
     public int GetShopLevel();
 
-    public Dictionary<string, StandartItem> GetInventory();
+    public List<StandartItem> GetInventory();
 }

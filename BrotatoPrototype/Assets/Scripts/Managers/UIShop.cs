@@ -141,12 +141,16 @@ public class UIShop : MonoBehaviour
         listSlotsOfItems.Clear();
     }
 
-    public void CreateItemsElements(Dictionary<string, StandartItem> _items)
+    public void CreateItemsElements(List<StandartItem> _items)
     {
-        foreach (var item in _items)
+        if (items.Count > listSlotsOfItems.Count)
         {
-            GameObject itemElement = Instantiate(itemElementPrefab, listSlotsOfItems[0]);
-            itemElement.GetComponent<ItemSlot>().AddItem(item.Value);
+            CreateSlotsForItems();
+        }
+        for (int i = 0; i < _items.Count; i++)
+        {
+            GameObject itemElement = Instantiate(itemElementPrefab, listSlotsOfItems[i]);
+            itemElement.GetComponent<ItemSlot>().AddItem(_items[i].GetComponent<ItemShopInfo>());
         }
     }
 
@@ -190,10 +194,12 @@ public class UIShop : MonoBehaviour
 
     public void LevelUpClick()
     {
-        shopController.UpgrateShop();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
-        priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
-        shopLevelValue.text = shopController.GetShopLevel().ToString();
+        if (shopController.UpgrateShop())
+        {
+            totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+            priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
+            shopLevelValue.text = (shopController.GetShopLevel()).ToString();
+        }
     }
 
     public void RerollClick()
@@ -235,11 +241,11 @@ public class UIShop : MonoBehaviour
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
                 StandartItem it = shopController.GetItem(items[i].SlotEntytiID);
-                items[i].textName.text = it.NameItem;
-                items[i].textType.text = it.TypeItem;
+                items[i].textName.text = it.ShopInfoItem.NameWeapon;
+                items[i].textType.text = it.ShopInfoItem.TypeWeapon;
                 items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
-                items[i].image.sprite = it.IconItem;
-                items[i].backgroud.color = it.LevelItem.BackgroundColor;
+                items[i].image.sprite = it.ShopInfoItem.IconWeapon;
+                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
             }
         }
     }
@@ -264,6 +270,7 @@ public class UIShop : MonoBehaviour
         }
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+        numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + maxCountWeapons + ")";
     }
 
     public void ButtonSoldSlot(string name)

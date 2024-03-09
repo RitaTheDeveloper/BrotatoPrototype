@@ -83,7 +83,7 @@ public class ShopController : MonoBehaviour, IShopController
         if (SaleItemsDict.ContainsKey(itemID))
         {
             PlayerInventory inventary = dataForShop.playerInventory;
-            if (inventary.HaveNeedCost(SaleItemsDict[itemID].Price))
+            if (inventary.HaveNeedCost(SaleItemsDict[itemID].ShopInfoItem.Price))
             {
                 inventary.ChangeMoney(SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
                 inventary.AddItem(SaleItemsDict[itemID]);
@@ -347,21 +347,26 @@ public class ShopController : MonoBehaviour, IShopController
         else if (SaleItemsDict.ContainsKey(itemID))
         {
             PlayerInventory inventary = dataForShop.playerInventory;
-            inventary.MoneyPlayer += SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * (SaleItemsDict[itemID].DiscountPercentageItem / 100);
+            inventary.MoneyPlayer += SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100);
             inventary.DeleteItem(SaleItemsDict[itemID]);
             return true;
         }
         return false;
     }
 
-    public void UpgrateShop()
+    public bool UpgrateShop()
     {
-        PlayerInventory inventary = dataForShop.playerInventory;
-        if (inventary.HaveNeedWood(GetShopLevelUpCost()))
+        if (ShopLevel < ShopMaxLevel)
         {
-            inventary.ChangeWood(GetShopLevelUpCost() * -1);
-            ShopLevel += 1;
+            PlayerInventory inventary = dataForShop.playerInventory;
+            if (inventary.HaveNeedWood(GetShopLevelUpCost()))
+            {
+                inventary.ChangeWood(GetShopLevelUpCost() * -1);
+                ShopLevel += 1;
+                return true;
+            }
         }
+        return false;
     }
 
     // Update is called once per frame
@@ -374,11 +379,11 @@ public class ShopController : MonoBehaviour, IShopController
     {
         for (int i = 0; i < ItemList.Count; i++)
         {
-            if (!LevelToItems.ContainsKey(ItemList[i].LevelItem.level))
+            if (!LevelToItems.ContainsKey(ItemList[i].ShopInfoItem.LevelItem.level))
             {
-                LevelToItems[ItemList[i].LevelItem.level] = new List<string>();
+                LevelToItems[ItemList[i].ShopInfoItem.LevelItem.level] = new List<string>();
             }
-            LevelToItems[ItemList[i].LevelItem.level].Add(ItemList[i].IdItem);
+            LevelToItems[ItemList[i].ShopInfoItem.LevelItem.level].Add(ItemList[i].IdItem);
         }
         for (int i = 0; i < WeaponList.Count; i++)
         {
@@ -530,7 +535,7 @@ public class ShopController : MonoBehaviour, IShopController
         return ShopLevel;
     }
 
-    public Dictionary<string, StandartItem> GetInventory()
+    public List<StandartItem> GetInventory()
     {
         return dataForShop.playerInventory.inventory;
     }
