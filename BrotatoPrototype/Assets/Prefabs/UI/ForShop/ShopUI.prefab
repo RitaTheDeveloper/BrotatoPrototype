@@ -4596,7 +4596,6 @@ MonoBehaviour:
   priceForRerollTxt: {fileID: 6376873735197295689}
   numberOfWeapons: {fileID: 7936543105883650863}
   shopLevelValue: {fileID: 6939192330685166334}
-  currentAmountWeapons: {fileID: 7936543105883650863}
   panelOfWeapons: {fileID: 5740816276300323426}
   panelOfItems: {fileID: 4182328243986671710}
   slotForWeaponPrefab: {fileID: 3877476790183567064, guid: 261ee47c98b3c0d40ab000999dc3fb90,
@@ -4605,15 +4604,15 @@ MonoBehaviour:
     type: 3}
   weaponElementPrefab: {fileID: 7589504463520194840, guid: b3135483fbebcdd45b03e8d331db5f59,
     type: 3}
-  itemElementPrefab: {fileID: 3054243104967860037, guid: 62e9bbb5ea44e3c4eba4cdb5c3500348,
+  itemElementPrefab: {fileID: 7589504463520194840, guid: c0d7ee5cc2808e74ab70f717748dd248,
     type: 3}
   weaponInfoPrefab: {fileID: 7342962261877830630, guid: a10ce9ca50c7a3040b63ab50431d57ef,
     type: 3}
   itemInfoPrefab: {fileID: 5512437306044978148, guid: 9948d587d34f0e54b84fc33559ef894a,
     type: 3}
   canvas: {fileID: 0}
-  XmovePosOfInfoPanel: -100
-  YmovePosOfInfoPanel: 400
+  XmovePosOfInfoPanel: 0
+  YmovePosOfInfoPanel: 170
 --- !u!114 &7361519129627773554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4657,7 +4656,8 @@ MonoBehaviour:
   LateWeaponChance: 35
   BaseRerollCost: 5
   uiShop: {fileID: 4981825721432366957}
-  dataForShop: {fileID: 0}
+  dataForShop: {fileID: 7757065592603399736, guid: cceb277a1c3769e4780f975be5a6f5be,
+    type: 3}
 --- !u!1 &4630780825053855922
 GameObject:
   m_ObjectHideFlags: 0
