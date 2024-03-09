@@ -43,6 +43,13 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        shopController = GetComponent<ShopController>();
+        GetComponentsInChildren<SlotItemForSaleData>(items);
+    }
+
+    void Start()
+    {
+        //GetComponentsInChildren<RareItemsDataStruct>(rares);
     }
 
     public void ChangeUIParametersOfShop()
@@ -215,12 +222,7 @@ public class UIShop : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        shopController = GetComponent<ShopController>();
-        GetComponentsInChildren<SlotItemForSaleData>(items);
-        //GetComponentsInChildren<RareItemsDataStruct>(rares);
-    }
+
 
     void ShowItemsForSale()
     {
