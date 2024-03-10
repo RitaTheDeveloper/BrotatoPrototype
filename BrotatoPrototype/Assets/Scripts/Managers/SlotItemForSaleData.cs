@@ -11,6 +11,7 @@ public class SlotItemForSaleData : MonoBehaviour
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textType;
     public TextMeshProUGUI textCost;
+    public TextMeshProUGUI description;
     public Image image;
     public TextMeshProUGUI lockButtonText;
     public Image backgroud;

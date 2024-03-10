@@ -103,6 +103,7 @@ public class PlayerCharacteristics : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("обновить текущие характеристики");
         _currentMoveSpeed = _startMoveSpeed;
         _currentMaxHp = _startMaxHp;
         _currentHpRegen = _startHpRegen;
@@ -126,25 +127,30 @@ public class PlayerCharacteristics : MonoBehaviour
 
     public void AddBonus(PlayerCharacteristics bonus)
     {
-        _currentMaxHp += bonus._currentMaxHp;
-        _currentHpRegen += bonus._currentHpRegen;
-        _currentMoveSpeed += bonus._currentMoveSpeed;
-        _currentMagnetDistance += bonus._currentMagnetDistance;
-        _currentAttackSpeedPercentage += bonus._currentAttackSpeedPercentage;
-        _currentMelleeDamage += bonus._currentMelleeDamage;
-        _currentRangedDamage += bonus._currentRangedDamage;
-        _currentCritChancePercentage += bonus._currentCritChancePercentage;
+        Debug.Log("добавить бонусы");
+        _currentMaxHp += bonus._startMaxHp;
+        _currentHpRegen += bonus._startHpRegen;
+        _currentMoveSpeed += bonus._startMoveSpeed;
+        _currentMagnetDistance += bonus._startMagnetDistance;
+        _currentAttackSpeedPercentage += bonus._startAttackSpeedPercentage;
+        _currentMelleeDamage += bonus._startMelleeDamage;
+        _currentRangedDamage += bonus._startRangedDamage;
+        _currentCritChancePercentage += bonus._startCritChancePercentage;
+        _currentProbabilityOfDodge += bonus._startProbabilityOfDodge;
+        _currentArmor += bonus._startArmor;
     }
 
     public void DeleteBonus(PlayerCharacteristics bonus)
     {
-        _currentMaxHp -= bonus._currentMaxHp;
-        _currentHpRegen -= bonus._currentHpRegen;
-        _currentMoveSpeed -= bonus._currentMoveSpeed;
-        _currentMagnetDistance -= bonus._currentMagnetDistance;
-        _currentAttackSpeedPercentage -= bonus._currentAttackSpeedPercentage;
-        _currentMelleeDamage -= bonus._currentMelleeDamage;
-        _currentRangedDamage -= bonus._currentRangedDamage;
-        _currentCritChancePercentage -= bonus._currentCritChancePercentage;
+        _currentMaxHp -= bonus._startMaxHp;
+        _currentHpRegen -= bonus._startHpRegen;
+        _currentMoveSpeed -= bonus._startMoveSpeed;
+        _currentMagnetDistance -= bonus._startMagnetDistance;
+        _currentAttackSpeedPercentage -= bonus._startAttackSpeedPercentage;
+        _currentMelleeDamage -= bonus._startMelleeDamage;
+        _currentRangedDamage -= bonus._startRangedDamage;
+        _currentCritChancePercentage -= bonus._startCritChancePercentage;
+        _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
+        _currentArmor -= bonus._startArmor;
     }
 }

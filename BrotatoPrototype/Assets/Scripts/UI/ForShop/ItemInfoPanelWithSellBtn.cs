@@ -15,23 +15,27 @@ public class ItemInfoPanelWithSellBtn : MonoBehaviour
     public TextMeshProUGUI price;
     public string id;
 
-    public void SetUp(ItemShopInfo itemInfo, string _description)
+    public void SetUp(ItemShopInfo itemInfo)
     {
         icon.sprite = itemInfo.IconWeapon;
         background.color = itemInfo.LevelItem.BackgroundColor;
         nameItem.text = itemInfo.NameWeapon;
         typeItem.text = itemInfo.TypeWeapon;
-        description.text = _description;
+        description.text = itemInfo.Description;
         price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
         sellBtn.onClick.RemoveAllListeners();
         // вот тут нужно повесить на кнопку метод с индексом продаваемого оружия
-       // sellBtn.onClick.AddListener()
-       sellBtn.onClick.AddListener(SellItem);
+        // sellBtn.onClick.AddListener() weaponController.GetAllWeapons());
+        sellBtn.onClick.AddListener(SellItem);
     }
 
     void SellItem()
     {
         UIShop.instance.ButtonSoldSlot(id);
+        UIShop.instance.DestroyItemInfo();
+        UIShop.instance.DeleteAllWeaponElements();
+        UIShop.instance.CreateWeaponElements(ShopController.instance.GetWeaponController().GetAllWeapons());
     }
+
 }

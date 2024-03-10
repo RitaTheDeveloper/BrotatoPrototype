@@ -13,13 +13,13 @@ public class ItemInfoPanelWithoutSellBtn : MonoBehaviour
     public TextMeshProUGUI description;
     public string id;
 
-    public void SetUp(ItemShopInfo itemInfo, string _description)
+    public void SetUp(ItemShopInfo itemInfo)
     {
         icon.sprite = itemInfo.IconWeapon;
         background.color = itemInfo.LevelItem.BackgroundColor;
         nameItem.text = itemInfo.NameWeapon;
         typeItem.text = itemInfo.TypeWeapon;
-        description.text = _description;
+        description.text = itemInfo.Description;
         id = itemInfo.IdWeapon;
     }
 }

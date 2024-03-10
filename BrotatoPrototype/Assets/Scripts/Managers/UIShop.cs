@@ -15,9 +15,11 @@ public class UIShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceForRerollTxt;
     [SerializeField] private TextMeshProUGUI numberOfWeapons;
     [SerializeField] private TextMeshProUGUI shopLevelValue;
+    [SerializeField] private CharacteristicsUI characteristicsUI;
     [Space(20)]
     [SerializeField] private Transform panelOfWeapons;
     [SerializeField] private Transform panelOfItems;
+    [SerializeField] private Transform panelItemForSale;
     [SerializeField] private GameObject slotForWeaponPrefab;
     [SerializeField] private GameObject slotForItemPrefab;
     [SerializeField] private GameObject weaponElementPrefab;
@@ -27,14 +29,15 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform canvas;
     [SerializeField] private float XmovePosOfInfoPanel;
     [SerializeField] private float YmovePosOfInfoPanel;
+    [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
 
-    List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
+    private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
-    List<Transform> listSlotsOfWeapons = new List<Transform>();
+    public List<Transform> listSlotsOfWeapons = new List<Transform>();
     List<Transform> listSlotsOfItems = new List<Transform>();
 
 
-    private IShopController shopController;
+    public ShopController shopController;
 
     private GameObject _currentInfoItem = null;
 
@@ -45,6 +48,7 @@ public class UIShop : MonoBehaviour
         instance = this;
         shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
+        //CreateItemsSlotsForSale(4);
     }
 
     void Start()
@@ -123,6 +127,18 @@ public class UIShop : MonoBehaviour
 
     }
 
+    public void DeleteAllWeaponElements()
+    {
+        foreach(Transform weaponSlot in panelOfWeapons.GetComponentInChildren<Transform>())
+        {
+            foreach(Transform weaponElement in weaponSlot)
+            {
+                Destroy(weaponElement.gameObject);
+            }
+        }
+    }
+
+
     public void CreateSlotsForItems()
     {
         DestroyAllSlotsForItems();
@@ -170,6 +186,7 @@ public class UIShop : MonoBehaviour
 
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         shopController.CalculateDropChance();
+        //CreateItemsSlotsForSale(4);
         shopController.PickItemsForSale();
         ShowItemsForSale();
     }
@@ -239,6 +256,7 @@ public class UIShop : MonoBehaviour
                 items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
+                items[i].description.text = w.Description;
             }
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
@@ -248,6 +266,7 @@ public class UIShop : MonoBehaviour
                 items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
                 items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
+                items[i].description.text = it.ShopInfoItem.Description;
             }
         }
     }
@@ -281,21 +300,21 @@ public class UIShop : MonoBehaviour
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();        
     }
 
-    public void DisplayItemInfoWithBtn(ItemShopInfo _info, string description, Vector2 btnPosition)
+    public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
         btnPosition.x += XmovePosOfInfoPanel;
         btnPosition.y += YmovePosOfInfoPanel;
         _currentInfoItem = Instantiate(weaponInfoPrefab, btnPosition, Quaternion.identity, canvas);
-        _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info, description);
+        _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
-    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, string description, Vector2 btnPosition)
+    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
         btnPosition.x += XmovePosOfInfoPanel;
         btnPosition.y += YmovePosOfInfoPanel;
         _currentInfoItem = Instantiate(itemInfoPrefab, btnPosition, Quaternion.identity, canvas);
-        _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info, description);
+        _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 
     public void DestroyItemInfo()
@@ -304,5 +323,21 @@ public class UIShop : MonoBehaviour
         {
             Destroy(_currentInfoItem.gameObject);
         }
+    }
+
+    // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
+    public void CreateItemsSlotsForSale(int _number)
+    {
+        for (int i = 0; i <_number; i++)
+        {
+            GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
+            itemSlotForSale.GetComponent<SlotItemForSaleData>().SlotNumber = i;           
+            items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
+        }
+    }
+
+    public void UpdateUICharacteristics()
+    {
+        characteristicsUI.UpdateCharacterisctics();
     }
 }

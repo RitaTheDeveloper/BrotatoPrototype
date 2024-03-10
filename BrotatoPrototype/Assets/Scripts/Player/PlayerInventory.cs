@@ -12,7 +12,7 @@ public class PlayerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
+        //Player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -24,10 +24,11 @@ public class PlayerInventory : MonoBehaviour
     public virtual void AddItem(StandartItem item)
     {
         inventory.Add(item);
-        PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
+        PlayerCharacteristics playerCharacteristics = GetComponent<PlayerCharacteristics>();
         if (Player && playerCharacteristics)
         {
             playerCharacteristics.AddBonus(item.CharacteristicsItem);
+            UIShop.instance.UpdateUICharacteristics();
         }
     }
     
