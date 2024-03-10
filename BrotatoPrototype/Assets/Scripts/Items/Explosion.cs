@@ -6,14 +6,13 @@ using UnityEngine.AI;
 public class Explosion : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    [SerializeField] Transform effectsTransform;
     [SerializeField] GameObject explosionEffect;
     [SerializeField] DrawCircle drawCircleForRadiusDmg;
     [SerializeField] AudioSource audioSource;
 
-    public void Explode(float _radius, float _dmg)
+    public void Explode(Vector3 _position, float _radius, float _dmg)
     {
-        Collider[] numColliders = Physics.OverlapSphere(transform.position, _radius, layerMask);
+        Collider[] numColliders = Physics.OverlapSphere(_position, _radius, layerMask);
 
         if (numColliders.Length > 0)
         {
@@ -40,9 +39,12 @@ public class Explosion : MonoBehaviour
            var explosion = Instantiate(explosionEffect, transform.position, explosionEffect.transform.rotation);
             explosion.transform.localScale = explosion.transform.localScale * _radius;
         }
+       
+    }
 
+    public void DrawRadiusOfAoE(float _radius)
+    {
         drawCircleForRadiusDmg.DrawTheCircle(_radius);
-
     }
 
 }

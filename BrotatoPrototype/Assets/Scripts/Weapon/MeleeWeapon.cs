@@ -8,9 +8,9 @@ public class MeleeWeapon : Weapon
     [SerializeField] private float percantageOfMelleDamage = 100;
     
 
-    private float _nextShotTime;
+    protected float _nextShotTime;
     private bool isCritDamage = false;
-    private float _timer;
+    protected float _timer;
     private BoxCollider _collider;
 
     private void Start()
@@ -18,7 +18,11 @@ public class MeleeWeapon : Weapon
         Init();
         _timer = 0;
         _collider = GetComponent<BoxCollider>();
-        _collider.enabled = false;      
+        if (_collider)
+        {
+            _collider.enabled = false;
+        }
+     
     }
 
     private void Update()
@@ -71,28 +75,6 @@ public class MeleeWeapon : Weapon
         _timer = 0;
         animator.SetTrigger("Hit");      
     }
-
-    //private void SetAnimationSpeed(float currentAttackSpeed)
-    //{
-    //    // нам не нужно уменьшать скорость анимации, только увеличивать
-    //    if (currentAttackSpeed > 1)
-    //    {
-    //        animator.speed = _startAnimationSpeed * currentAttackSpeed;
-    //    }
-    //}
-
-    //private void SetTimeOfAnimation(float currentAttackSpeed)
-    //{
-    //    // нам не нужно уменьшать время анимации, только увеличивать
-    //    if (currentAttackSpeed > 1)
-    //    {
-    //        _currentTimeOfAttack = timeOfAttack / currentAttackSpeed;
-    //    }
-    //    else
-    //    {
-    //        _currentTimeOfAttack = timeOfAttack;
-    //    }
-    //}
 
     protected override void SetDamage()
     {
