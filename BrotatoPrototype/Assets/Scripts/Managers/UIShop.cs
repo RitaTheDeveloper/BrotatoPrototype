@@ -83,7 +83,7 @@ public class UIShop : MonoBehaviour
 
     public void SetNumberOfPossibleWeapons(int _number)
     {
-        numberOfWeapons.text = "(0/" + _number.ToString() + ")";
+        numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + _number.ToString() + ")";
     }
 
     public void CreateSlotsForWeapons(int _maxNumberOfWeapons)
