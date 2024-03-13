@@ -67,8 +67,8 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
         uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
         uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
-       // uiShop.CreateItemsSlotsForSale(4);
-        uiShop.SetNumberOfPossibleWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
+        // uiShop.CreateItemsSlotsForSale(4);
+        uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForItems();
         uiShop.CreateWeaponElements(dataForShop.weaponController.GetAllWeapons());
@@ -80,7 +80,6 @@ public class ShopController : MonoBehaviour, IShopController
             weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber);
         }
     }
-
 
     public bool BuyItem(string itemID)
     {
@@ -343,16 +342,10 @@ public class ShopController : MonoBehaviour, IShopController
         WeaponController weaponController = dataForShop.weaponController;
 
         if (WeaponsDict.ContainsKey(itemID))
-        {
-
-            // int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber); // * (WeaponsDict[itemID].GetComponent<ItemShopInfo>().DiscountProcent / 100);
+        {    
             int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetSalePrice();
-            Debug.Log("price = " + priceForSale);
-            Debug.Log("allmoney1 = " + inventary.MoneyPlayer);
             inventary.MoneyPlayer += priceForSale;
-            Debug.Log("allmoney2 = " + inventary.MoneyPlayer);
             weaponsList.Remove(WeaponsDict[itemID]);
-           // uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))

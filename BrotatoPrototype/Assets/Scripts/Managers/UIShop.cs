@@ -36,7 +36,6 @@ public class UIShop : MonoBehaviour
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
     List<Transform> listSlotsOfItems = new List<Transform>();
 
-
     public ShopController shopController;
 
     private GameObject _currentInfoItem = null;
@@ -49,20 +48,6 @@ public class UIShop : MonoBehaviour
         shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
         //CreateItemsSlotsForSale(4);
-    }
-
-    void Start()
-    {
-        //GetComponentsInChildren<RareItemsDataStruct>(rares);
-    }
-
-    public void ChangeUIParametersOfShop()
-    {
-        SetNumberOfPossibleWeapons(maxCountWeapons);
-        SetTotalAmountOfGoldText(689);
-        SetPriceForUpgradeShopText(125);
-        SetPriceForRerollText(17);
-        SetNumberOfPossibleWeapons(8);
     }
 
     public void SetWaveNumberText(int _waveNumber)
@@ -85,18 +70,12 @@ public class UIShop : MonoBehaviour
         priceForRerollTxt.text = _price.ToString();
     }
 
-    public void SetNumberOfPossibleWeapons(int _number)
-    {
-        numberOfWeapons.text = "(0/" + _number.ToString() + ")";
-    }
-
     public void CreateSlotsForWeapons(int _maxNumberOfWeapons)
     {
         maxCountWeapons = _maxNumberOfWeapons;
 
         DestroyAllSlotsForWeapons();
 
-        //WeaponController playW = shopController.GetWeaponController();
         List<Weapon> wl = shopController.GetWeaponController().GetAllWeapons();
 
         for (int i = 0; i < _maxNumberOfWeapons; i++)
@@ -141,7 +120,6 @@ public class UIShop : MonoBehaviour
             }
         }
     }
-
 
     public void CreateSlotsForItems()
     {
@@ -243,8 +221,6 @@ public class UIShop : MonoBehaviour
         }
     }
 
-
-
     void ShowItemsForSale()
     {
         Dictionary<int, string> items_to_slot = shopController.GetItemsForSale();
@@ -295,7 +271,6 @@ public class UIShop : MonoBehaviour
         }
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
-        numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + maxCountWeapons + ")";
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
@@ -307,7 +282,8 @@ public class UIShop : MonoBehaviour
     public void ButtonSoldSlot(string name)
     {
         shopController.SellItem(name);
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();        
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
+        UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
     public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
@@ -318,6 +294,7 @@ public class UIShop : MonoBehaviour
         _currentInfoItem = Instantiate(weaponInfoPrefab, btnPosition, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
+
     public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();

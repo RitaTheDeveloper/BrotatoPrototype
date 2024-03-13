@@ -54,8 +54,6 @@ public class WeaponController : MonoBehaviour
             GameObject weaponHold = Instantiate(weaponHoldPrefab, pos, Quaternion.identity);
             weaponHold.transform.parent = containerOfWeaponHolds;
             listOfWeaponHolds.Add(weaponHold);
-            //weaponHold.transform.localPosition = pos;
-            //weaponHold.transform.localRotation = 
         }
 
         return listOfWeaponHolds;
