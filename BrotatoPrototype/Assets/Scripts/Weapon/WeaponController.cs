@@ -19,7 +19,7 @@ public class WeaponController : MonoBehaviour
         //    EquipGun(_startingGun);
         //}
         //SetWeapons(listOfWeapons);
-        //SetWeaponsInWeaponHolders(listOfWeapons);
+        SetWeaponsInWeaponHolders(listOfWeapons);
     }
     //public void EquipGun(Weapon gunToEquip)
     //{
