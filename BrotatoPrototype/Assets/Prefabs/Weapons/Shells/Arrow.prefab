@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 20
+  penetration: 0
   collisionMask:
     serializedVersion: 2
     m_Bits: 64
+  knockBack: 0
 --- !u!65 &5322137906057374817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,7 +67,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

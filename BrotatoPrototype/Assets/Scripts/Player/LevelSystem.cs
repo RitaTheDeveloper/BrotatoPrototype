@@ -15,6 +15,8 @@ public class LevelSystem : MonoBehaviour
     private PlayerCharacteristics playerCharacteristics;
     private CurrencyController currencyController;
 
+    private AudioSource audioSource;
+
     public int NumberOfLeveledUpForCurrentWave { get => numberOfLeveledUpForCurrentWave; set => numberOfLeveledUpForCurrentWave = value; }
 
     private void Start()
@@ -48,6 +50,8 @@ public class LevelSystem : MonoBehaviour
         {
             if (hitColliders[i].gameObject.tag == "Currency")
             {
+                //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("Coin"));
+                AudioManager.instance.Play("Coin");
                 Transform currency = hitColliders[i].gameObject.transform;
                 Vector3 targetPosition = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
                 currency.position = Vector3.MoveTowards(currency.position, targetPosition, 40f * Time.deltaTime);

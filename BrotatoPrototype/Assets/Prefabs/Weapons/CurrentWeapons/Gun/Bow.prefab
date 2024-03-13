@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1460337192397051609}
   - component: {fileID: 6896685654037281728}
-  - component: {fileID: 3685682520128152158}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -47,43 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a718bb89814e1a3449d502b25c5ca86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 3
+  tier: 0
   weaponModifiers: {fileID: 11400000, guid: 82378b5df2239234eb41891609d239c6, type: 2}
-  attackRange: 10
-  startDamage: 12
-  startAttackSpeed: 1.2
+  attackRange: 30
+  startDamage: 1
+  startAttackSpeed: 0.5
   startCritChance: 0.03
   animator: {fileID: 506258871228136047}
   timeOfAttack: 1.083
   nearestEnemy: {fileID: 0}
-  percantageOfRangedDamage: 3.5
+  percantageOfRangedDamage: 100
   _muzzle: {fileID: 315616718815011876}
   _projectile: {fileID: 3512322995166864872, guid: 8e3845bc6ab6017408f93a376d4658ce,
     type: 3}
-  muzzleVelocity: 60
---- !u!114 &3685682520128152158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743134312085228820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IdWeapon: arrow 1
-  Price: 50
-  DiscountProcent: 50
-  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
-    type: 3}
-  MinWave: 1
-  NameWeapon: "\u041B\u0443\u043A I"
-  TypeWeapon: "\u0434\u0430\u043B\u044C\u043D\u0438\u0439 \u0431\u043E\u0439"
-  Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
-    \u043E\u0440\u0443\u0436\u0438\u044F"
-  IconWeapon: {fileID: 21300000, guid: ac6a85792efb6ff4794eebafd723c039, type: 3}
+  _muzzleVelocity: 40
+  _numberOfBulletsPershot: 1
+  _maxAngleDispersion: 0
 --- !u!1 &2930380676871344605
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,16 +5,21 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 20f;
+    [SerializeField] private int penetration = 1;
     [SerializeField] LayerMask collisionMask;
+    [SerializeField] private bool knockBack = false;
 
     private bool _isCrit;
     private float _range;
 
     private float _damage;
 
+    Vector3 direction;
+
     private void Start()
     {
-       // _isCrit = false;
+        // _isCrit = false;
+        direction = Vector3.forward;
         Destroy(gameObject, _range / _speed);
     }
 
@@ -46,7 +51,7 @@ public class Projectile : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+        transform.Translate(direction * Time.deltaTime * _speed);
     }
 
     private void CheckCollsion(float moveDistance)
@@ -62,11 +67,28 @@ public class Projectile : MonoBehaviour
 
     private void OutHitObject(RaycastHit hit)
     {
-        IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
+        IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();              
         if (damageableObject != null)
         {
             damageableObject.TakeHit(_damage, _isCrit);
         }
-        GameObject.Destroy(gameObject);
+
+        if (knockBack)
+        {
+            IKnockbackable knockbackableObject = hit.collider.GetComponentInParent<IKnockbackable>();
+            if (knockbackableObject != null)
+            {
+                knockbackableObject.GetKnockedBack(transform.forward.normalized * 500f);
+            }
+        }
+        
+        penetration -= 1;
+
+        Debug.Log("penetration = " + penetration);
+        if (penetration <= 0)
+        {            
+            GameObject.Destroy(gameObject);
+        }
+        
     }
 }

@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyHealth : LivingEntity
 {
     private float xpForKill;
-
+    [SerializeField] private GameObject dieEffecrt;
+    private AudioSource audioSource;
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         startingHealth = GetComponent<UnitParameters>().CurrentHp;
     }
 
@@ -31,6 +33,12 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
+        if (dieEffecrt != null)
+        {
+            Instantiate(dieEffecrt, transform.position, Quaternion.identity);
+        }
+        
         SpawnCurrency();
         LootSpawner lootSpawner = GetComponent<LootSpawner>();
         if (lootSpawner)
@@ -41,15 +49,25 @@ public class EnemyHealth : LivingEntity
 
     public override void TakeHit(float damage, bool isCrit)
     {
-        base.TakeHit(damage, isCrit);
+        
         if (isCrit)
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
+            if (audioSource)
+            {
+                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeCritHit"));
+            }
+
         }
         else
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-        }        
+            if (audioSource)
+            {
+                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeHit"));
+            }
+        }
+        base.TakeHit(damage, isCrit);
     }
 
     private void SpawnCurrency()
