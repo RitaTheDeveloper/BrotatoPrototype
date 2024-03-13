@@ -118,13 +118,14 @@ public class UIShop : MonoBehaviour
 
     public void CreateWeaponElements(List<Weapon> _currentWeapons)
     {
-
-        for (int i = 0; i < _currentWeapons.Count; i++)
+        if (_currentWeapons.Count > 0)
         {
-            GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
-            weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
-        }
-
+            for (int i = 0; i < _currentWeapons.Count; i++)
+            {
+                GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
+                weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
+            }
+        }        
     }
 
     public void DeleteAllWeaponElements()
@@ -133,7 +134,10 @@ public class UIShop : MonoBehaviour
         {
             foreach(Transform weaponElement in weaponSlot)
             {
-                Destroy(weaponElement.gameObject);
+                if (weaponElement)
+                {
+                    Destroy(weaponElement.gameObject);
+                }
             }
         }
     }

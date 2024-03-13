@@ -339,18 +339,24 @@ public class ShopController : MonoBehaviour, IShopController
 
     public bool SellItem(string itemID)
     {
+        PlayerInventory inventary = dataForShop.playerInventory;
+        WeaponController weaponController = dataForShop.weaponController;
+
         if (WeaponsDict.ContainsKey(itemID))
         {
-            PlayerInventory inventary = dataForShop.playerInventory;
-            WeaponController weaponController = dataForShop.weaponController;
-            inventary.MoneyPlayer += WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber) * (WeaponsDict[itemID].GetComponent<ItemShopInfo>().DiscountProcent / 100);
+
+            // int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber); // * (WeaponsDict[itemID].GetComponent<ItemShopInfo>().DiscountProcent / 100);
+            int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetSalePrice();
+            Debug.Log("price = " + priceForSale);
+            Debug.Log("allmoney1 = " + inventary.MoneyPlayer);
+            inventary.MoneyPlayer += priceForSale;
+            Debug.Log("allmoney2 = " + inventary.MoneyPlayer);
             weaponsList.Remove(WeaponsDict[itemID]);
-            uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
+           // uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            PlayerInventory inventary = dataForShop.playerInventory;
             inventary.MoneyPlayer += SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100);
             inventary.DeleteItem(SaleItemsDict[itemID]);
             return true;
