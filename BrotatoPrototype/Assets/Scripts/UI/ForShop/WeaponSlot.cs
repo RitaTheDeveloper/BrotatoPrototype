@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Image icon;
     public Image background;
-
     public ItemShopInfo itemInfo;
+
+    private bool _onClick = false;
+
     public void AddItem(ItemShopInfo _itemInfo)
     {
         itemInfo = _itemInfo;
@@ -22,13 +24,24 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Destroy(gameObject);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!_onClick) { _onClick = true; }
+        else { _onClick = false; }
+        
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, transform.position);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, itemInfo.TypeWeapon, transform.position);
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UIShop.instance.DestroyItemInfo();
+        if (!_onClick)
+        {
+            UIShop.instance.DestroyItemInfo();
+        }        
     }
 }

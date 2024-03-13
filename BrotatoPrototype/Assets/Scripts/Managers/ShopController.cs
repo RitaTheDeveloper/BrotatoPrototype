@@ -8,6 +8,7 @@ using static UnityEditor.Progress;
 
 public class ShopController : MonoBehaviour, IShopController
 {
+    public static ShopController instance;
     public int ShopSizeList = 4;
     public int ShopLevel = 0;
     [Tooltip("Максимальный уровень магазина:")]
@@ -47,6 +48,8 @@ public class ShopController : MonoBehaviour, IShopController
 
     private void Awake()
     {
+        instance = this;
+
         InitRareStorage();
         ListStorageToDict();
         weaponsList = dataForShop.weaponController.GetAllWeapons();
@@ -64,6 +67,7 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
         uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
         uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
+       // uiShop.CreateItemsSlotsForSale(4);
         uiShop.SetNumberOfPossibleWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForItems();

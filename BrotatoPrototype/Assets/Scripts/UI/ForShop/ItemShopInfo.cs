@@ -20,6 +20,8 @@ public class ItemShopInfo : MonoBehaviour
     [SerializeField] public string NameWeapon;
     [Tooltip("Тип оружия:")]
     [SerializeField] public string TypeWeapon;
+    [Tooltip("Характеристики оружия:")]
+    [SerializeField] public string Description;
     [Tooltip("Иконка оружия:")]
     [SerializeField] public Sprite IconWeapon;
 

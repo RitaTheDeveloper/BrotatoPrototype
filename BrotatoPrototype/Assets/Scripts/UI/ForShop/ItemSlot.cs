@@ -25,7 +25,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo, itemInfo.TypeWeapon, transform.position);
+        UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
