@@ -296,6 +296,12 @@ public class UIShop : MonoBehaviour
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + maxCountWeapons + ")";
+        UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
+    }
+
+    public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
+    {
+        numberOfWeapons.text = "(" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
