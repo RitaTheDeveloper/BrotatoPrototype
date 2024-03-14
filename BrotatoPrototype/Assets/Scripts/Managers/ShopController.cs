@@ -70,9 +70,6 @@ public class ShopController : MonoBehaviour, IShopController
     void Start()
     {
         uiShop.SetWaveNumberText(currentWave);
-        uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
-        uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
-        uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
         // uiShop.CreateItemsSlotsForSale(4);
         uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
