@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<PlayerHealth>().Init();
         player.GetComponent<PlayerHealth>().DisplayHealth();
+        player.GetComponent<WeaponController>().EquipPlayer();
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         UIManager.instance.RemoveAllLevelUpElements();
         RemoveAllCurrency();

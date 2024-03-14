@@ -127,7 +127,6 @@ public class PlayerCharacteristics : MonoBehaviour
 
     public void AddBonus(PlayerCharacteristics bonus)
     {
-        Debug.Log("добавить бонусы");
         _currentMaxHp += bonus._startMaxHp;
         _currentHpRegen += bonus._startHpRegen;
         _currentMoveSpeed += bonus._startMoveSpeed;

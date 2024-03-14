@@ -146,6 +146,7 @@ public class UIManager : MonoBehaviour
         waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
         nextWaveBtn.gameObject.SetActive(false);
+        shop.gameObject.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp)

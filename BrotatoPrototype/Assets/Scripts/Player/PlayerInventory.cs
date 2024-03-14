@@ -41,6 +41,7 @@ public class PlayerInventory : MonoBehaviour
             playerCharacteristics.DeleteBonus(item.CharacteristicsItem);
         }
     }
+
     public bool HaveNeedCost(int cost)
     {
         if (MoneyPlayer - cost >= 0)
