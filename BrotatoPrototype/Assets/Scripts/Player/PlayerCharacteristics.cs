@@ -103,6 +103,7 @@ public class PlayerCharacteristics : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("обновить текущие характеристики");
         _currentMoveSpeed = _startMoveSpeed;
         _currentMaxHp = _startMaxHp;
         _currentHpRegen = _startHpRegen;
@@ -122,5 +123,34 @@ public class PlayerCharacteristics : MonoBehaviour
         PlayerHealth playerHealth = GetComponent<PlayerHealth>();
         playerHealth.SetMaxHP();
         playerHealth.DisplayHealth();
+    }
+
+    public void AddBonus(PlayerCharacteristics bonus)
+    {
+        Debug.Log("добавить бонусы");
+        _currentMaxHp += bonus._startMaxHp;
+        _currentHpRegen += bonus._startHpRegen;
+        _currentMoveSpeed += bonus._startMoveSpeed;
+        _currentMagnetDistance += bonus._startMagnetDistance;
+        _currentAttackSpeedPercentage += bonus._startAttackSpeedPercentage;
+        _currentMelleeDamage += bonus._startMelleeDamage;
+        _currentRangedDamage += bonus._startRangedDamage;
+        _currentCritChancePercentage += bonus._startCritChancePercentage;
+        _currentProbabilityOfDodge += bonus._startProbabilityOfDodge;
+        _currentArmor += bonus._startArmor;
+    }
+
+    public void DeleteBonus(PlayerCharacteristics bonus)
+    {
+        _currentMaxHp -= bonus._startMaxHp;
+        _currentHpRegen -= bonus._startHpRegen;
+        _currentMoveSpeed -= bonus._startMoveSpeed;
+        _currentMagnetDistance -= bonus._startMagnetDistance;
+        _currentAttackSpeedPercentage -= bonus._startAttackSpeedPercentage;
+        _currentMelleeDamage -= bonus._startMelleeDamage;
+        _currentRangedDamage -= bonus._startRangedDamage;
+        _currentCritChancePercentage -= bonus._startCritChancePercentage;
+        _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
+        _currentArmor -= bonus._startArmor;
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8697469222231734087}
   - component: {fileID: 4716248899807992729}
   - component: {fileID: 2145807365990843742}
+  - component: {fileID: 3264262465993851810}
   m_Layer: 0
   m_Name: Sownya
   m_TagString: Untagged
@@ -127,6 +128,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.67, y: 0.5, z: 2.935576}
   m_Center: {x: 0, y: 0, z: 1.2349117}
+--- !u!114 &3264262465993851810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375862915013875518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: sownya1
+  Price: 50
+  DiscountProcent: 10
+  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
+    type: 3}
+  MinWave: 0
+  NameWeapon: "\u0421\u043E\u0432\u043D\u044F I"
+  TypeWeapon: "\u0431\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439"
+  Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
+    \u043E\u0440\u0443\u0436\u0438\u044F"
+  IconWeapon: {fileID: 21300000, guid: e1bec4759114f904d81a9fa92270ce2e, type: 3}
 --- !u!1 &8412657714537522051
 GameObject:
   m_ObjectHideFlags: 0
