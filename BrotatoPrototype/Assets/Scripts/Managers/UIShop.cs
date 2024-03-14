@@ -45,7 +45,7 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        shopController = GetComponent<ShopController>();
+       // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
         //CreateItemsSlotsForSale(4);
     }

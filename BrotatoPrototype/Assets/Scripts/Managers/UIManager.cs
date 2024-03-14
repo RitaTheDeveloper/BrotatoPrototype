@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform levelUpMenu;
     [SerializeField] private GameObject leveUpUiPrefab;
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
+    [SerializeField] private UIShop shop;
 
     [Header("for player:")]
     [SerializeField] private Slider healthSlider;
@@ -84,8 +85,16 @@ public class UIManager : MonoBehaviour
         {
             AbilitySelectionPanelOff();
             characteristicsUI.UpdateCharacterisctics();
+            // открываем магазин
+            OpenShop();
             nextWaveBtn.gameObject.SetActive(true);
+
         }
+    }
+
+    public void OpenShop()
+    {
+        shop.gameObject.SetActive(true);
     }
 
     public void WaveCompletedMenuOff()

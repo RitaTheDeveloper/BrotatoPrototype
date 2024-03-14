@@ -45,6 +45,7 @@ public class ShopController : MonoBehaviour, IShopController
     [SerializeField] DataForShop dataForShop;
 
     WeaponController weaponController;
+    private GameObject player;
     private List<Weapon> weaponsList;
     private PlayerInventory playerInventory;
     private int currentWave;
@@ -55,10 +56,11 @@ public class ShopController : MonoBehaviour, IShopController
 
         InitRareStorage();
         ListStorageToDict();
-        weaponController = dataForShop.weaponController;
+        player = GameManager.instance.player;
+        weaponController = player.GetComponent<WeaponController>();
         weaponsList = weaponController.GetAllWeapons();
-        playerInventory = dataForShop.playerInventory;
-        currentWave = dataForShop.waveNumber;
+        playerInventory = player.GetComponent<PlayerInventory>();
+        currentWave = GameManager.instance.WaveCounter;
 
         for (int i = 0; i < ShopSizeList; i++)
         {
@@ -72,15 +74,15 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.SetWaveNumberText(currentWave);
         // uiShop.CreateItemsSlotsForSale(4);
         uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
-        uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
+        uiShop.CreateSlotsForWeapons(weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForItems();
-        uiShop.CreateWeaponElements(dataForShop.weaponController.GetAllWeapons());
-        uiShop.CreateItemsElements(dataForShop.playerInventory.inventory);
+        uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
+        uiShop.CreateItemsElements(playerInventory.inventory);
         uiShop.OnCreateShopInterface();
 
         for (int i = 0; i < weaponsList.Count; i++)
         {
-            weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber);
+            weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(currentWave);
         }
     }
 
@@ -459,7 +461,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetCurrentWawe()
     {
-        return dataForShop.waveNumber; 
+        return currentWave; 
     }
 
     public bool StotIsLocked(int slot)
@@ -479,10 +481,10 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void RerollShop()
     {
-        PlayerInventory inventary = dataForShop.playerInventory;
-        if (inventary.HaveNeedWood(GetRerollCost()))
+
+        if (playerInventory.HaveNeedWood(GetRerollCost()))
         {
-            inventary.ChangeWood(GetRerollCost() * -1);
+            playerInventory.ChangeWood(GetRerollCost() * -1);
             PickItemsForSale();
         }
     }
