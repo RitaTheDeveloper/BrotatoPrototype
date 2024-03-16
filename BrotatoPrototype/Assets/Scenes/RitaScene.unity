@@ -167,8 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
-  enemySpawnersPrefabs: []
+  time: 15
+  enemySpawnersPrefabs:
+  - {fileID: 3991001894752413389, guid: 91980530146e7194fbc2a17a95975af0, type: 3}
+  - {fileID: 3991001894752413389, guid: ded62083a3319ec44b2af9e52430c245, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
 --- !u!1 &6489085
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 15
   enemySpawnersPrefabs:
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
   - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
   - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
 --- !u!1 &19859417
@@ -1988,8 +1992,9 @@ MonoBehaviour:
   time: 15
   enemySpawnersPrefabs:
   - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
 --- !u!1 &390231695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,10 +2486,6 @@ MonoBehaviour:
   - {fileID: -4862469397834607176, guid: aead5c9186eebfc4eb7ea580d1b398b4, type: 3}
   - {fileID: -6488289235096526813, guid: 4e808282e2301f3409eb18a6b721963e, type: 3}
   - {fileID: 6623501846447968409, guid: 2b6fec8902deb2e42b28c7af9f839403, type: 3}
-  - {fileID: 6533765345189829895, guid: 69719fbe5fba79d4894e921f65b41576, type: 3}
-  - {fileID: 6533765345189829895, guid: 69719fbe5fba79d4894e921f65b41576, type: 3}
-  - {fileID: 6533765345189829895, guid: 69719fbe5fba79d4894e921f65b41576, type: 3}
-  - {fileID: 6533765345189829895, guid: 69719fbe5fba79d4894e921f65b41576, type: 3}
   - {fileID: 6533765345189829895, guid: 69719fbe5fba79d4894e921f65b41576, type: 3}
   proposedAbilities:
   - {fileID: 1135191798}
@@ -5710,11 +5711,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 3
+  time: 15
   enemySpawnersPrefabs:
   - {fileID: 3991001894752413389, guid: 91980530146e7194fbc2a17a95975af0, type: 3}
   - {fileID: 3991001894752413389, guid: ed0b52a5300af6d49a7d1ab3e6f517f1, type: 3}
-  - {fileID: 3991001894752413389, guid: 4c4a4faa0d1e6de4c9b16636105f5fc2, type: 3}
+  - {fileID: 3991001894752413389, guid: ed0b52a5300af6d49a7d1ab3e6f517f1, type: 3}
 --- !u!1 &1602830015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6847,6 +6848,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -110
       objectReference: {fileID: 0}
+    - target: {fileID: 6207782503017591271, guid: 096d6af084e94ea4fa1354f8e86d3550,
+        type: 3}
+      propertyPath: ItemList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207782503017591271, guid: 096d6af084e94ea4fa1354f8e86d3550,
+        type: 3}
+      propertyPath: WeaponList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207782503017591271, guid: 096d6af084e94ea4fa1354f8e86d3550,
+        type: 3}
+      propertyPath: ItemList.Array.data[4]
+      value: 
+      objectReference: {fileID: -8907051537149127036, guid: 480eab9d15786be4d8b2e78ebb9f5807,
+        type: 3}
     - target: {fileID: 6398402392683157237, guid: 096d6af084e94ea4fa1354f8e86d3550,
         type: 3}
       propertyPath: canvas
@@ -8445,8 +8462,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ba0e087b4c1b48992dbc3945ce011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
-  enemySpawnersPrefabs: []
+  time: 15
+  enemySpawnersPrefabs:
+  - {fileID: 3991001894752413389, guid: 2b20aefa3c1f980468fd2c9ddf3361ca, type: 3}
+  - {fileID: 3991001894752413389, guid: ded62083a3319ec44b2af9e52430c245, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
+  - {fileID: 3991001894752413389, guid: 69d811348a6747c4eb1eeb041f9994ec, type: 3}
 --- !u!114 &2003970209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 518185838701494723, guid: 8484d80cf0c284441afaa3c1f4918ac5,

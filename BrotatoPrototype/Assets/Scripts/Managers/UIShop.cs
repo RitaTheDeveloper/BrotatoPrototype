@@ -50,6 +50,14 @@ public class UIShop : MonoBehaviour
         //CreateItemsSlotsForSale(4);
     }
 
+    public void UpdateUIShop()
+    {
+        UpdateUICharacteristics();
+        shopController.Init();
+        UpdateItemsForSale();
+        shopController.UpdateShop();
+    }
+
     public void SetWaveNumberText(int _waveNumber)
     {
         waveNumberText.text = _waveNumber.ToString() + ")";
@@ -161,8 +169,8 @@ public class UIShop : MonoBehaviour
 
     public void OnCreateShopInterface()
     {
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
+        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
 
@@ -202,7 +210,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.UpgrateShop())
         {
-            totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+            totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
             shopLevelValue.text = (shopController.GetShopLevel()).ToString();
         }
@@ -213,7 +221,20 @@ public class UIShop : MonoBehaviour
         shopController.RerollShop();
         ShowItemsForSale();
         shopController.ResetsSlots();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
+        priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].gameObject.SetActive(true);
+        }
+    }
+
+    public void UpdateItemsForSale()
+    {
+        shopController.PickItemsForSale();
+        ShowItemsForSale();
+        shopController.ResetsSlots();
+        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         for (int i = 0; i < items.Count; i++)
         {
@@ -269,7 +290,7 @@ public class UIShop : MonoBehaviour
                 break;
             }
         }
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
@@ -282,7 +303,7 @@ public class UIShop : MonoBehaviour
     public void ButtonSoldSlot(string name)
     {
         shopController.SellItem(name);
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 

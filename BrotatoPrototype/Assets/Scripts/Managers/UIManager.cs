@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
+        Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
@@ -88,13 +89,13 @@ public class UIManager : MonoBehaviour
             // открываем магазин
             OpenShop();
             nextWaveBtn.gameObject.SetActive(true);
-
         }
     }
 
     public void OpenShop()
     {
         shop.gameObject.SetActive(true);
+        shop.UpdateUIShop();
     }
 
     public void WaveCompletedMenuOff()

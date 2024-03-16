@@ -127,7 +127,6 @@ public class PlayerHealth : LivingEntity
         else
         {
             _probabilityOfDodge = probDodge;
-            Debug.Log("уклонение равно = " + probDodge);
         }
     }
         

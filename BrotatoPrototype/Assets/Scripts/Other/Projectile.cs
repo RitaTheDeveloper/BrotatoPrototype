@@ -84,7 +84,6 @@ public class Projectile : MonoBehaviour
         
         penetration -= 1;
 
-        Debug.Log("penetration = " + penetration);
         if (penetration <= 0)
         {            
             GameObject.Destroy(gameObject);

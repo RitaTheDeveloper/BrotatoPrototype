@@ -6,13 +6,19 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] public List<StandartItem> inventory = new List<StandartItem>();
     [SerializeField] public GameObject Player;
-    public int MoneyPlayer = 0;
-    public int WoodPlayer = 0;
+    [SerializeField] private int _startMoney = 0;
+    [SerializeField] private int _startWood = 0;
+    private int _currentMoney;
+    private int _currentWood;
+
+    private PlayerCharacteristics playerCharacteristics;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Player = GameObject.FindWithTag("Player");
+        playerCharacteristics = GetComponent<PlayerCharacteristics>();
+        ResetAllCurrencies();
+        UIManager.instance.DisplayAmountOfCurrency(_currentMoney);
     }
 
     // Update is called once per frame
@@ -21,11 +27,16 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
+    public void ResetAllCurrencies()
+    {
+        _currentMoney = _startMoney;
+        _currentWood = _startWood;
+    }
+
     public virtual void AddItem(StandartItem item)
     {
         inventory.Add(item);
-        PlayerCharacteristics playerCharacteristics = GetComponent<PlayerCharacteristics>();
-        if (Player && playerCharacteristics)
+        if (playerCharacteristics)
         {
             playerCharacteristics.AddBonus(item.CharacteristicsItem);
             UIShop.instance.UpdateUICharacteristics();
@@ -35,8 +46,7 @@ public class PlayerInventory : MonoBehaviour
     public virtual void DeleteItem(StandartItem item)
     {
         inventory.Remove(item);
-        PlayerCharacteristics playerCharacteristics = Player.GetComponent<PlayerCharacteristics>();
-        if (Player && playerCharacteristics)
+        if (playerCharacteristics)
         {
             playerCharacteristics.DeleteBonus(item.CharacteristicsItem);
         }
@@ -44,27 +54,41 @@ public class PlayerInventory : MonoBehaviour
 
     public bool HaveNeedCost(int cost)
     {
-        if (MoneyPlayer - cost >= 0)
+        if (_currentMoney - cost >= 0)
         {
             return true;
         }
         else
             return false;
     }
+
     public void ChangeMoney(int cost)
     {
-        MoneyPlayer += cost;
+        _currentMoney += cost;
+        UIManager.instance.DisplayAmountOfCurrency(_currentMoney);
     }
+
     public bool HaveNeedWood(int wood)
     {
-        if (WoodPlayer - wood >= 0)
+        if (_currentWood - wood >= 0)
         {
             return true;
         }
         else return false;
     }
+
     public void ChangeWood(int wood)
     {
-        WoodPlayer += wood;
+        _currentWood += wood;
+    }
+
+    public int GetMoney()
+    {
+        return _currentMoney;
+    }
+
+    public int GetWood()
+    {
+        return _currentWood;
     }
 }

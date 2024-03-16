@@ -54,6 +54,16 @@ public class ShopController : MonoBehaviour, IShopController
     {
         instance = this;
 
+        Init();
+    }
+
+    void Start()
+    {
+        UpdateShop();
+    }
+
+    public void Init()
+    {
         InitRareStorage();
         ListStorageToDict();
         player = GameManager.instance.player;
@@ -69,7 +79,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
     }
 
-    void Start()
+    public void UpdateShop()
     {
         uiShop.SetWaveNumberText(currentWave);
         // uiShop.CreateItemsSlotsForSale(4);
@@ -343,13 +353,13 @@ public class ShopController : MonoBehaviour, IShopController
         if (WeaponsDict.ContainsKey(itemID))
         {    
             int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetSalePrice();
-            playerInventory.MoneyPlayer += priceForSale;
+            playerInventory.ChangeMoney(priceForSale);
             weaponsList.Remove(WeaponsDict[itemID]);
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            playerInventory.MoneyPlayer += SaleItemsDict[itemID].GetPrice(currentWave) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100);
+            playerInventory.ChangeMoney(SaleItemsDict[itemID].GetPrice(currentWave) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
             playerInventory.DeleteItem(SaleItemsDict[itemID]);
             return true;
         }
