@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6360932913978042482}
   - component: {fileID: 5401612529891977140}
   - component: {fileID: 8556459953725359011}
-  - component: {fileID: 1524334866468387947}
+  - component: {fileID: 3947732688180559691}
   - component: {fileID: 1809849539922068170}
   - component: {fileID: 7118213740018787832}
   - component: {fileID: 4030875747659070404}
@@ -102,7 +102,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.1273203, y: 3.7563033, z: 6.036051}
   m_Center: {x: 0, y: 1.9260519, z: 0}
---- !u!114 &1524334866468387947
+--- !u!114 &3947732688180559691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,15 +111,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4533431752377730708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
+  m_Script: {fileID: 11500000, guid: aefae8469b3bbbf41ab4ba0d568c7a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 7.5
-  timeBetweenAttacks: 1
-  refreshRateOfUpdatePath: 0.1
+  attackDistance: 1.5
+  timeBetweenAttacks: 0
+  refreshRateOfUpdatePath: 1
   animator: {fileID: 8236129703654618402}
-  boxCollider: {fileID: 4030875747659070404}
+  boxCollider: {fileID: 8556459953725359011}
   target: {fileID: 0}
+  _cdRushTime: 4
+  _stopTimeBeforeRush: 1
+  _speedRush: 60
+  _distance: 30
 --- !u!114 &1809849539922068170
 MonoBehaviour:
   m_ObjectHideFlags: 0
