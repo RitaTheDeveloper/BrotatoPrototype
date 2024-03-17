@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EnemyBruiserController : EnemyController
 {
-    [SerializeField] float _cdRushTime;
-    [SerializeField] float _stopTimeBeforeRush;
-    [SerializeField] float _speedRush;
-    [SerializeField] float _distance;
+    [SerializeField] private float _cdRushTime;
+    [SerializeField] private float _stopTimeBeforeRush;
+    [SerializeField] private float _speedRush;
+    [SerializeField] private float _distance;
+    [SerializeField] private Animator _animator;
 
     private float _timer = 0f;
     Vector3 dirToTarget = Vector3.zero;
@@ -21,7 +22,10 @@ public class EnemyBruiserController : EnemyController
             if (_timer < _cdRushTime)
             {
                 Chase();
+                if (_animator)
+                {
 
+                }
             }
             else if (_timer > _cdRushTime && _timer < _cdRushTime + _stopTimeBeforeRush)
             {
