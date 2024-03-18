@@ -9,6 +9,9 @@ public class EnemyBruiserController : EnemyController
     [SerializeField] private float _speedRush;
     [SerializeField] private float _distance;
     [SerializeField] private Animator _animator;
+    private bool isGetReady = false;
+    private float startAnimationSpeed;
+    private float animationSpeed;
 
     private float _timer = 0f;
     Vector3 dirToTarget = Vector3.zero;
@@ -24,16 +27,22 @@ public class EnemyBruiserController : EnemyController
                 Chase();
                 if (_animator)
                 {
-
+                    // _animator.speed = 1f;
+                    _animator.SetTrigger("chase");
                 }
             }
             else if (_timer > _cdRushTime && _timer < _cdRushTime + _stopTimeBeforeRush)
-            {
+            {                                
                 Stopping();
+                // _animator.speed = 1f;
+                
             }
             else
             {
-                Rush();                
+                Rush();
+                // _animator.speed = 1.5f;
+                _animator.SetTrigger("rush");
+                isGetReady = false;
             }            
         }                       
     }
@@ -55,6 +64,11 @@ public class EnemyBruiserController : EnemyController
         Rotation(dirToTarget);
         startPos = transform.position;
         navMeshAgent.speed = 0f;
+        if (!isGetReady)
+        {
+            animator.SetTrigger("getReady");
+            isGetReady = true;
+        }
     }
 
     private void Rush()

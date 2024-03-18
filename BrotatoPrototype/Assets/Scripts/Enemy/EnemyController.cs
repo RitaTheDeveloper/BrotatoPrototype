@@ -48,19 +48,18 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
                 if (animator != null)
                 {
-                     animator.SetBool("attack", true);
-                    //animator.SetTrigger("attack 0");
+                    animator.SetTrigger("attack");
                 }
 
                 Attacking();
             }
-            else
-            {
-                if (animator != null)
-                {
-                    animator.SetBool("attack", false);
-                }
-            }
+            //else
+            //{
+            //    if (animator != null)
+            //    {
+            //        animator.SetBool("attack", false);
+            //    }
+            //}
         }
 
         if (target == null)
