@@ -175,7 +175,7 @@ public class UIShop : MonoBehaviour
         priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
 
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
-        shopController.CalculateDropChance();
+        //shopController.CalculateDropChance();
         //CreateItemsSlotsForSale(4);
         shopController.PickItemsForSale();
         ShowItemsForSale();

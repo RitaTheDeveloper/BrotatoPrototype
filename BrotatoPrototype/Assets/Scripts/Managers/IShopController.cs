@@ -6,8 +6,6 @@ public interface IShopController
 {
     void PickItemsForSale();
 
-    void CalculateDropChance();
-
     Dictionary<int, string> GetItemsForSale();
 
     void LockItem(int slot);
@@ -26,7 +24,7 @@ public interface IShopController
 
     bool UpgrateShop();
 
-    void RerollShop();
+    bool RerollShop();
 
     bool IsItem(string id);
 
@@ -57,4 +55,6 @@ public interface IShopController
     public int GetShopLevel();
 
     public List<StandartItem> GetInventory();
+
+    public void OnShowUI();
 }
