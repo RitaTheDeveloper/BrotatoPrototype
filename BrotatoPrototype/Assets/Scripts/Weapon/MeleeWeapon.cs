@@ -108,7 +108,7 @@ public class MeleeWeapon : Weapon
                 IKnockbackable knockbackableObject = other.GetComponentInParent<IKnockbackable>();
                 if (knockbackableObject != null)
                 {
-                    knockbackableObject.GetKnockedBack(transform.forward.normalized * 1000f);
+                    knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);
                 }
             }
         }

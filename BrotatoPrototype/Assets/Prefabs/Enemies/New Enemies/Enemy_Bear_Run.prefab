@@ -100,8 +100,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1273203, y: 3.7563033, z: 6.036051}
-  m_Center: {x: 0, y: 1.9260519, z: 0}
+  m_Size: {x: 3, y: 3.7, z: 6}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &3947732688180559691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   regenOn: 0
   hpRegenPerSecond: 0
   dead: 0
-  dieEffecrt: {fileID: 0}
+  dieEffecrt: {fileID: 100004, guid: ad734c06fd04651478267a77754963d1, type: 3}
 --- !u!54 &7118213740018787832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,8 +151,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4533431752377730708}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -168,7 +168,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &4030875747659070404
 BoxCollider:
@@ -187,10 +187,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 3, z: 4}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!82 &8490461765570274970
 AudioSource:
   m_ObjectHideFlags: 0

@@ -161,9 +161,9 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         boxCollider.enabled = true;
         _rigidbody.useGravity = true; //for back true = for up
         _rigidbody.isKinematic = false;
-        _rigidbody.AddForce(force);
+        _rigidbody.AddForce(force, ForceMode.VelocityChange);
         yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
+        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 1f);
         yield return new WaitForSeconds(0.25f);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
