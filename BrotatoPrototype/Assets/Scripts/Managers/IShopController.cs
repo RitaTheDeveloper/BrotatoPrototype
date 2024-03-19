@@ -57,4 +57,6 @@ public interface IShopController
     public List<StandartItem> GetInventory();
 
     public void OnShowUI();
+
+    public int GetSlotCount();
 }

@@ -97,11 +97,6 @@ public class ShopController : MonoBehaviour, IShopController
         uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
         uiShop.CreateItemsElements(playerInventory.inventory);
         uiShop.OnCreateShopInterface();
-
-        for (int i = 0; i < weaponsList.Count; i++)
-        {
-            weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(currentWave);
-        }
     }
 
     public bool BuyItem(string itemID)
@@ -424,5 +419,10 @@ public class ShopController : MonoBehaviour, IShopController
     {
         PickItemsForSale();
         CurrentRerollPrice = DefaultRerollPrice;
+    }
+
+    public int GetSlotCount()
+    {
+        return ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
     }
 }

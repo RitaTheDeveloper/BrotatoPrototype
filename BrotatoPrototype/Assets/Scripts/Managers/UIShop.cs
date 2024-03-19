@@ -54,6 +54,8 @@ public class UIShop : MonoBehaviour
     {
         UpdateUICharacteristics();
         shopController.Init();
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
+        shopController.OnShowUI();
         UpdateItemsForSale();
         shopController.UpdateShop();
     }
@@ -177,6 +179,7 @@ public class UIShop : MonoBehaviour
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         //shopController.CalculateDropChance();
         //CreateItemsSlotsForSale(4);
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
         shopController.PickItemsForSale();
         ShowItemsForSale();
     }
@@ -213,6 +216,7 @@ public class UIShop : MonoBehaviour
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
             shopLevelValue.text = (shopController.GetShopLevel()).ToString();
+            UpdateItemsForSale();
         }
     }
 
@@ -231,6 +235,7 @@ public class UIShop : MonoBehaviour
 
     public void UpdateItemsForSale()
     {
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
         shopController.PickItemsForSale();
         ShowItemsForSale();
         shopController.ResetsSlots();
@@ -336,6 +341,11 @@ public class UIShop : MonoBehaviour
     // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
     public void CreateItemsSlotsForSale(int _number)
     {
+        for (int i = 0; i < items.Count; i++)
+        {
+            Destroy(items[i].gameObject);
+        }
+        items.Clear();
         for (int i = 0; i <_number; i++)
         {
             GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
