@@ -207,7 +207,7 @@ public class ShopController : MonoBehaviour, IShopController
             {
                 int countLevelRareItem = LevelToItems[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level].Count;
                 int itenNum = Random.Range(0, countLevelRareItem);
-                SlotItems[i] = LevelToWeapons[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level][itenNum];
+                SlotItems[i] = LevelToItems[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level][itenNum];
                 countItem++;
             }
         }

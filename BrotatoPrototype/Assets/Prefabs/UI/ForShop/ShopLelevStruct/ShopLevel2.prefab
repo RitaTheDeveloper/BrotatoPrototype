@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8931046338901128305
+--- !u!1 &2498225738903260906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3069186800750649764}
-  - component: {fileID: 2311731021754216914}
+  - component: {fileID: 3022969056617461628}
+  - component: {fileID: 3894333453661929116}
   m_Layer: 0
-  m_Name: RareLevel4
+  m_Name: ShopLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3069186800750649764
+--- !u!4 &3022969056617461628
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8931046338901128305}
+  m_GameObject: {fileID: 2498225738903260906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,17 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2311731021754216914
+--- !u!114 &3894333453661929116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8931046338901128305}
+  m_GameObject: {fileID: 2498225738903260906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad7ccd96706d0f44a6447c4c73afc2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a5a2e3f817e13b4a872ed0bb8150b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 4
-  BackgroundColor: {r: 0.68235296, g: 0.18039216, b: 0.14117648, a: 0}
+  levelPrice: 10
+  levelNumber: 2
+  slotsData:
+  - {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991, type: 3}
+  - {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991, type: 3}
+  - {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991, type: 3}

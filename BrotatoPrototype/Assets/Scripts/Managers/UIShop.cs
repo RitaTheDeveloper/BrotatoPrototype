@@ -219,10 +219,10 @@ public class UIShop : MonoBehaviour
     public void RerollClick()
     {
         shopController.RerollShop();
-        ShowItemsForSale();
-        shopController.ResetsSlots();
         totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+        shopController.ResetsSlots();
+        ShowItemsForSale();
         for (int i = 0; i < items.Count; i++)
         {
             items[i].gameObject.SetActive(true);
