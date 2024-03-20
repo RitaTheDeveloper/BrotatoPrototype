@@ -263,6 +263,8 @@ public class UIShop : MonoBehaviour
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
                 items[i].description.text = w.Description;
+                items[i].buyBtn.onClick.RemoveAllListeners();
+                items[i].OnClickBuyItem();
             }
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
@@ -273,6 +275,8 @@ public class UIShop : MonoBehaviour
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
                 items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
                 items[i].description.text = it.ShopInfoItem.Description;
+                items[i].buyBtn.onClick.RemoveAllListeners();
+                items[i].OnClickBuyItem();
             }
         }
     }

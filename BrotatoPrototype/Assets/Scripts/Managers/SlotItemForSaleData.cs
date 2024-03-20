@@ -15,13 +15,9 @@ public class SlotItemForSaleData : MonoBehaviour
     public Image image;
     public TextMeshProUGUI lockButtonText;
     public Image backgroud;
+    public Button buyBtn;
 
     private void Awake()
-    {
-        
-    }
-
-    private void Update()
     {
         
     }
@@ -29,5 +25,14 @@ public class SlotItemForSaleData : MonoBehaviour
     private void Start()
     {
         
+    }
+    public void OnClickBuyItem()
+    {
+        buyBtn.onClick.AddListener(OnBuyItem);
+    }
+
+    public void OnBuyItem()
+    {
+        UIShop.instance.ButtonBuySlot(SlotNumber);
     }
 }
