@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     [Range(0,1)]
     [SerializeField] protected float startCritChance;
     [SerializeField] protected bool knockBack = false;
-    [SerializeField] protected float repulsiveForce = 500;
+    [SerializeField] protected float repulsiveForce = 15f;
 
     [Space]
     [SerializeField] protected Animator animator;

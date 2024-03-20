@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
 
-    [SerializeField] BoxCollider boxCollider;    
+    [SerializeField] BoxCollider boxCollider;
+    [SerializeField] private float stoppingSpeedForKnockBack = 1f;
     protected NavMeshAgent navMeshAgent;
     protected UnitParameters unitParameters;
     public Transform target;
@@ -163,7 +164,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(force, ForceMode.VelocityChange);
         yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 1f);
+        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < stoppingSpeedForKnockBack);
         yield return new WaitForSeconds(0.25f);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
