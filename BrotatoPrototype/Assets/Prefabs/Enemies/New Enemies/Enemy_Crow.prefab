@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 193268249132384066}
   - component: {fileID: 8788352136436261972}
   - component: {fileID: 7065773691898631952}
-  - component: {fileID: 5920773798355282163}
   - component: {fileID: 8154959862229366379}
   m_Layer: 6
   m_Name: Enemy_Crow
@@ -120,7 +119,8 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   refreshRateOfUpdatePath: 0.01
   animator: {fileID: 0}
-  boxCollider: {fileID: 5920773798355282163}
+  boxCollider: {fileID: 7451520060865491316}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
   _shootPoint: {fileID: 953093252642560311}
   _projectilePrefab: {fileID: 1331408556871749274, guid: 9a09712c3eee2ba4cbd1e73bdad5d074,
@@ -186,27 +186,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &5920773798355282163
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3503059046315012686}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!82 &8154959862229366379
 AudioSource:
   m_ObjectHideFlags: 0

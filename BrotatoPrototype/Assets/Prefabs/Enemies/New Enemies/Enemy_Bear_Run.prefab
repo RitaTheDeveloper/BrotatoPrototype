@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3947732688180559691}
   - component: {fileID: 1809849539922068170}
   - component: {fileID: 7118213740018787832}
-  - component: {fileID: 4030875747659070404}
   - component: {fileID: 8490461765570274970}
   m_Layer: 6
   m_Name: Enemy_Bear_Run
@@ -119,6 +118,7 @@ MonoBehaviour:
   refreshRateOfUpdatePath: 1
   animator: {fileID: 8236129703654618402}
   boxCollider: {fileID: 8556459953725359011}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
   _cdRushTime: 4
   _stopTimeBeforeRush: 1
@@ -170,27 +170,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &4030875747659070404
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4533431752377730708}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: 4}
-  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!82 &8490461765570274970
 AudioSource:
   m_ObjectHideFlags: 0

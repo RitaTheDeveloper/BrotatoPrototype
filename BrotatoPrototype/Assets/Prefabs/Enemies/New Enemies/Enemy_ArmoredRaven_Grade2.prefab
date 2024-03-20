@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6155125870249705178}
   - component: {fileID: 7846116525710456886}
   - component: {fileID: 5988921465328968384}
-  - component: {fileID: 7258001590160168916}
   - component: {fileID: 6124228920439417532}
   m_Layer: 6
   m_Name: Enemy_ArmoredRaven_Grade2
@@ -114,11 +113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 5
+  attackDistance: 4
   timeBetweenAttacks: 0
   refreshRateOfUpdatePath: 0.1
-  animator: {fileID: 112653034255873305}
-  boxCollider: {fileID: 7258001590160168916}
+  animator: {fileID: 0}
+  boxCollider: {fileID: 5548616090070959487}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
 --- !u!114 &7846116525710456886
 MonoBehaviour:
@@ -165,27 +165,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &7258001590160168916
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367304048573700832}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &6124228920439417532
 AudioSource:
   m_ObjectHideFlags: 0

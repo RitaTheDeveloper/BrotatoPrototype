@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6582188973771410550}
   - component: {fileID: 8236494611829395892}
   - component: {fileID: 8235819838476070977}
-  - component: {fileID: 2263758634315759891}
   - component: {fileID: 5326791820054513844}
   m_Layer: 6
   m_Name: Enemy_Crow_Charger_Shooter
@@ -120,7 +119,8 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   refreshRateOfUpdatePath: 0.01
   animator: {fileID: 0}
-  boxCollider: {fileID: 2263758634315759891}
+  boxCollider: {fileID: 8327326300526664782}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
   _shootPoint: {fileID: 521151327850902358}
   _projectilePrefab: {fileID: 1331408556871749274, guid: 9a09712c3eee2ba4cbd1e73bdad5d074,
@@ -186,27 +186,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &2263758634315759891
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417430644579757189}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!82 &5326791820054513844
 AudioSource:
   m_ObjectHideFlags: 0

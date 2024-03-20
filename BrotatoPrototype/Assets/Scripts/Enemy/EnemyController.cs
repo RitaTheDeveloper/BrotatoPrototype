@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     private Rigidbody _rigidbody;
     private float startPositionY;
     
+    
     private void Awake()
     {
         Init();
@@ -159,7 +160,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         yield return null;
 
         navMeshAgent.enabled = false;
-        boxCollider.enabled = true;
+        boxCollider.enabled = false;
         _rigidbody.useGravity = true; //for back true = for up
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(force, ForceMode.VelocityChange);
@@ -168,7 +169,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         yield return new WaitForSeconds(0.25f);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-        boxCollider.enabled = false;
+        boxCollider.enabled = true;
         _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
         navMeshAgent.Warp(transform.position);

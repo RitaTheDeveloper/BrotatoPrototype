@@ -103,14 +103,15 @@ public class MeleeWeapon : Weapon
                 // обычный урон
                 other.GetComponent<LivingEntity>().TakeHit(currentDamage, false);
             }
+
             if (knockBack)
             {
                 IKnockbackable knockbackableObject = other.GetComponentInParent<IKnockbackable>();
                 if (knockbackableObject != null)
                 {
-                    knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);
+                    knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);                   
                 }
-            }
+            }           
         }
     }
     
