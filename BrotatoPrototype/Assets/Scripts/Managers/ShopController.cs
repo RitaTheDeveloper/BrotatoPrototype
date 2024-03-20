@@ -236,6 +236,14 @@ public class ShopController : MonoBehaviour, IShopController
                 playerInventory.ChangeWood(newLevel.levelPrice * -1);
                 CurrentShopLevel = newLevel.levelNumber;
                 CurrentRerollPrice = DefaultRerollPrice;
+                ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
+
+                for (int i = 0; i < ShopSizeList; i++)
+                {
+                    LockItemsDict[i] = false;
+                    SoldItemsDict[i] = false;
+                }
+
                 return true;
             }
         }
@@ -352,9 +360,9 @@ public class ShopController : MonoBehaviour, IShopController
 
     public bool RerollShop()
     {
-        if (playerInventory.HaveNeedWood(CurrentRerollPrice))
+        if (playerInventory.HaveNeedWood(GetRerollCost()))
         {
-            playerInventory.ChangeWood(CurrentRerollPrice * -1);
+            playerInventory.ChangeWood(GetRerollCost() * -1);
             CurrentRerollPrice += StepRerollPrice;
             PickItemsForSale();
             return true;

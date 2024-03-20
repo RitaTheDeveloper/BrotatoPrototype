@@ -222,14 +222,13 @@ public class UIShop : MonoBehaviour
 
     public void RerollClick()
     {
-        shopController.RerollShop();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
-        priceForRerollTxt.text = shopController.GetRerollCost().ToString();
-        shopController.ResetsSlots();
-        ShowItemsForSale();
-        for (int i = 0; i < items.Count; i++)
+        if (shopController.RerollShop())
         {
-            items[i].gameObject.SetActive(true);
+            shopController.ResetsSlots();
+            CreateItemsSlotsForSale(shopController.GetSlotCount());
+            totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
+            priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+            ShowItemsForSale();
         }
     }
 
@@ -293,7 +292,8 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
-                    items[i].gameObject.SetActive(false);
+                    Destroy(items[i].gameObject);
+                    items.RemoveAt(i);
                     shopController.SoldSlot(slotNumber);
                 }
                 break;
@@ -353,7 +353,8 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i <_number; i++)
         {
             GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
-            itemSlotForSale.GetComponent<SlotItemForSaleData>().SlotNumber = i;           
+            SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
+            slot.SlotNumber = i;
             items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
         }
     }
