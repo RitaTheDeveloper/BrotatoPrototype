@@ -33,7 +33,7 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
+        //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
         if (dieEffecrt != null)
         {
             Instantiate(dieEffecrt, transform.position, Quaternion.identity);

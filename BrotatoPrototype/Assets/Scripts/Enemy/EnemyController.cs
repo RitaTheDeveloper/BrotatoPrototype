@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
 
-    [SerializeField] BoxCollider boxCollider;    
+    [SerializeField] BoxCollider boxCollider;
+    [SerializeField] private float stoppingSpeedForKnockBack = 1f;
     protected NavMeshAgent navMeshAgent;
     protected UnitParameters unitParameters;
     public Transform target;
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     private Coroutine MoveCoroutine;
     private Rigidbody _rigidbody;
     private float startPositionY;
+    
     
     private void Awake()
     {
@@ -48,18 +50,18 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
                 if (animator != null)
                 {
-                    animator.SetBool("attack", true);
+                    animator.SetTrigger("attack");
                 }
 
                 Attacking();
             }
-            else
-            {
-                if (animator != null)
-                {
-                    animator.SetBool("attack", false);
-                }
-            }
+            //else
+            //{
+            //    if (animator != null)
+            //    {
+            //        animator.SetBool("attack", false);
+            //    }
+            //}
         }
 
         if (target == null)
@@ -158,16 +160,16 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         yield return null;
 
         navMeshAgent.enabled = false;
-        boxCollider.enabled = true;
+        boxCollider.enabled = false;
         _rigidbody.useGravity = true; //for back true = for up
         _rigidbody.isKinematic = false;
-        _rigidbody.AddForce(force);
+        _rigidbody.AddForce(force, ForceMode.VelocityChange);
         yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < 0.05f);
+        yield return new WaitUntil(() => _rigidbody.velocity.magnitude < stoppingSpeedForKnockBack);
         yield return new WaitForSeconds(0.25f);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-        boxCollider.enabled = false;
+        boxCollider.enabled = true;
         _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
         navMeshAgent.Warp(transform.position);

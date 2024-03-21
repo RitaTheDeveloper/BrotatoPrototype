@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EnemyBruiserController : EnemyController
 {
-    [SerializeField] float _cdRushTime;
-    [SerializeField] float _stopTimeBeforeRush;
-    [SerializeField] float _speedRush;
-    [SerializeField] float _distance;
+    [SerializeField] private float _cdRushTime;
+    [SerializeField] private float _stopTimeBeforeRush;
+    [SerializeField] private float _speedRush;
+    [SerializeField] private float _distance;
+    [SerializeField] private Animator _animator;
+    private bool isGetReady = false;
+    private float startAnimationSpeed;
+    private float animationSpeed;
 
     private float _timer = 0f;
     Vector3 dirToTarget = Vector3.zero;
@@ -21,15 +25,24 @@ public class EnemyBruiserController : EnemyController
             if (_timer < _cdRushTime)
             {
                 Chase();
-
+                if (_animator)
+                {
+                    // _animator.speed = 1f;
+                    _animator.SetTrigger("chase");
+                }
             }
             else if (_timer > _cdRushTime && _timer < _cdRushTime + _stopTimeBeforeRush)
-            {
+            {                                
                 Stopping();
+                // _animator.speed = 1f;
+                
             }
             else
             {
-                Rush();                
+                Rush();
+                if (_animator) _animator.SetTrigger("rush");
+                // _animator.speed = 1.5f;
+                isGetReady = false;
             }            
         }                       
     }
@@ -51,6 +64,11 @@ public class EnemyBruiserController : EnemyController
         Rotation(dirToTarget);
         startPos = transform.position;
         navMeshAgent.speed = 0f;
+        if (!isGetReady)
+        {
+            if(_animator) _animator.SetTrigger("getReady");
+            isGetReady = true;
+        }
     }
 
     private void Rush()
