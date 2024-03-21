@@ -156,4 +156,11 @@ public class PlayerHealth : LivingEntity
             return false;
         }
     }
+
+    public override void AddHealth(float hp)
+    {
+        base.AddHealth(hp);
+        TemporaryMessageManager.Instance.AddMessageOnScreen("+" + ((int)hp).ToString(), this.gameObject.transform.position, Color.green);
+        DisplayHealth();
+    }
 }
