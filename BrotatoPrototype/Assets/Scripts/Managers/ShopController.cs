@@ -64,7 +64,7 @@ public class ShopController : MonoBehaviour, IShopController
     void Start()
     {
         UpdateShop();
-    }
+    }   
 
     public void Init()
     {
@@ -85,6 +85,12 @@ public class ShopController : MonoBehaviour, IShopController
             LockItemsDict[i] = false;
             SoldItemsDict[i] = false;
         }
+    }
+
+    public void ResetShop()
+    {
+        CurrentShopLevel = 1;
+        UIShop.instance.DisplayLevelShop(CurrentShopLevel);
     }
 
     public void UpdateShop()

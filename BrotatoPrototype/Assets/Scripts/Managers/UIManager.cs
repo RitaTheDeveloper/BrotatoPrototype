@@ -132,6 +132,7 @@ public class UIManager : MonoBehaviour
     {
         AllOff();
         GameManager.instance.Restart();
+        shop.GetComponent<ShopController>().ResetShop();
     }
 
     public void OnClickMenu()
