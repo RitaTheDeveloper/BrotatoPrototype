@@ -40,8 +40,8 @@ public class EnemyBruiserController : EnemyController
             else
             {
                 Rush();
+                if (_animator) _animator.SetTrigger("rush");
                 // _animator.speed = 1.5f;
-                _animator.SetTrigger("rush");
                 isGetReady = false;
             }            
         }                       
@@ -66,7 +66,7 @@ public class EnemyBruiserController : EnemyController
         navMeshAgent.speed = 0f;
         if (!isGetReady)
         {
-            animator.SetTrigger("getReady");
+            if(_animator) _animator.SetTrigger("getReady");
             isGetReady = true;
         }
     }
