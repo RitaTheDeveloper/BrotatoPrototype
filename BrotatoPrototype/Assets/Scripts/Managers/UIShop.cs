@@ -215,9 +215,14 @@ public class UIShop : MonoBehaviour
         {
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
-            shopLevelValue.text = (shopController.GetShopLevel()).ToString();
+            DisplayLevelShop(shopController.GetShopLevel());
             UpdateItemsForSale();
         }
+    }
+
+    public void DisplayLevelShop(int value)
+    {
+        shopLevelValue.text = value.ToString();
     }
 
     public void RerollClick()
