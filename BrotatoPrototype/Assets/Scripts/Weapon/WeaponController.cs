@@ -9,6 +9,7 @@ public class WeaponController : MonoBehaviour
     //[SerializeField] private Weapon _startingGun;
     [SerializeField] List<Weapon> listOfWeapons;
     [SerializeField] private float radisOfWeaponHold = 3f;
+    [SerializeField] private int maxNumberOfWeapons = 6;
     private Weapon equppiedGun;
 
     private void Start()
@@ -18,7 +19,7 @@ public class WeaponController : MonoBehaviour
         //    EquipGun(_startingGun);
         //}
         //SetWeapons(listOfWeapons);
-        SetWeaponsInWeaponHolders(listOfWeapons);
+        EquipPlayer();
     }
     //public void EquipGun(Weapon gunToEquip)
     //{
@@ -32,16 +33,16 @@ public class WeaponController : MonoBehaviour
     //}
 
 
-    //private void DestroyAllWeapons()
-    //{
-    //    foreach(Transform weaponHolder in _weaponHolds)
-    //    {
-    //        foreach(Transform child in weaponHolder)
-    //        {
-    //            Destroy(child.gameObject);
-    //        }
-    //    }
-    //}
+    private void DestroyAllWeapons()
+    {
+        foreach (Transform weaponHolder in containerOfWeaponHolds)
+        {
+            foreach (Transform child in weaponHolder)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
 
     private List<GameObject> CreateListOfWeaponHolds(int amountOfWeapons)
     {
@@ -53,15 +54,15 @@ public class WeaponController : MonoBehaviour
             GameObject weaponHold = Instantiate(weaponHoldPrefab, pos, Quaternion.identity);
             weaponHold.transform.parent = containerOfWeaponHolds;
             listOfWeaponHolds.Add(weaponHold);
-            //weaponHold.transform.localPosition = pos;
-            //weaponHold.transform.localRotation = 
         }
 
         return listOfWeaponHolds;
     }
 
-    private void SetWeaponsInWeaponHolders(List<Weapon> listOfWeapons)
+    public void SetWeaponsInWeaponHolders(List<Weapon> listOfWeapons)
     {
+        DestroyAllWeapons();
+
         List<GameObject> listOfWeaponHolds = CreateListOfWeaponHolds(listOfWeapons.Count);
 
         for (int i = 0; i < listOfWeaponHolds.Count; i++)
@@ -71,6 +72,32 @@ public class WeaponController : MonoBehaviour
             newWeapon.transform.localPosition = listOfWeapons[i].transform.position;
             newWeapon.transform.localRotation = listOfWeapons[i].transform.rotation;
         }
+    }
+    public void EquipGun(Weapon gunToEquip)
+    {
+        //TODO магазин передает префаб, надо добавить в список
+        listOfWeapons.Add(gunToEquip);
+    }
+
+    public void UnequipGun(Weapon gunToUnequip)
+    {
+        //TODO магазин передает префаб, надо убрать из списка
+        listOfWeapons.Remove(gunToUnequip);
+    }
+
+    public List<Weapon> GetAllWeapons()
+    {
+        return listOfWeapons;
+    }
+
+    public int GetMaxNumberOfweapons()
+    {
+        return maxNumberOfWeapons;
+    }
+
+    public void EquipPlayer()
+    {
+        SetWeaponsInWeaponHolders(listOfWeapons);
     }
 }
 
