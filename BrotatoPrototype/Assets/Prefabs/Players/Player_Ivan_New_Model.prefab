@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 7672442040554599280}
   - component: {fileID: 976549883763769846}
   - component: {fileID: 6487190758592185756}
+  - component: {fileID: -4992901862861600076}
   m_Layer: 7
   m_Name: Player_Ivan_New_Model
   m_TagString: Player
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 160
+  _startMaxHp: 25
   _startHpRegen: 0
   _startMoveSpeed: 15
   _startMagnetDistance: 4
@@ -188,6 +189,7 @@ MonoBehaviour:
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   radisOfWeaponHold: 3
+  maxNumberOfWeapons: 6
 --- !u!114 &6632754515298849247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +261,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7724d4839cb662d45a7eca3a35f96862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4992901862861600076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707278682496988613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b102e3517f293d2408cd2a3c4b0c41a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  _startMoney: 400
+  _startWood: 400
 --- !u!1001 &3485772002034192063
 PrefabInstance:
   m_ObjectHideFlags: 0
