@@ -6,10 +6,8 @@ public class EnemyHealth : LivingEntity
 {
     private float xpForKill;
     [SerializeField] private GameObject dieEffecrt;
-    private AudioSource audioSource;
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         startingHealth = GetComponent<UnitParameters>().CurrentHp;
     }
 
@@ -53,19 +51,12 @@ public class EnemyHealth : LivingEntity
         if (isCrit)
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
-            if (audioSource)
-            {
-                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeCritHit"));
-            }
-
+            AudioManager.instance.Play("Hit", this.gameObject.transform.position);
         }
         else
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-            if (audioSource)
-            {
-                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeHit"));
-            }
+            AudioManager.instance.Play("CriticalHit", this.gameObject.transform.position);
         }
         base.TakeHit(damage, isCrit);
     }

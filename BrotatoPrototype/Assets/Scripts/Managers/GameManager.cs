@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         _currentWave = _waves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         _waves[0].StartWave();
-        AudioManager.instance.Play("Theme");
+        //AudioManager.instance.Play("Theme");
     }
     
     public void SetHeroIndex(int index)

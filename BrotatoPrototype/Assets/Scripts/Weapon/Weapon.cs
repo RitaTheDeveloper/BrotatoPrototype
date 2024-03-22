@@ -19,11 +19,8 @@ public class Weapon : MonoBehaviour
     [Tooltip("вероятность крит шанса:")]
     [Range(0,1)]
     [SerializeField] protected float startCritChance;
-<<<<<<< HEAD
-=======
     [SerializeField] protected bool knockBack = false;
     [SerializeField] protected float repulsiveForce = 15f;
->>>>>>> main
 
     [Space]
     [SerializeField] protected Animator animator;
