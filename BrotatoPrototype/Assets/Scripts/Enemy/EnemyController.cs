@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         Init();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         currentState = State.Chasing;
         _rigidbody = GetComponent<Rigidbody>();

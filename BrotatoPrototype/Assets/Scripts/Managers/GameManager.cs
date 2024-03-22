@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
             playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
-            RemoveAllEnemies();            
+            RemoveAllEnemies();
+            RemoveAllBullets();
         }              
     }
 
@@ -113,6 +114,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void RemoveAllBullets()
+    {
+        Transform bullets = GameObject.Find("Bullets").transform;
+        foreach(Transform bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+    }
+
     private void SpawnPlayer(int index)
     {
         if (player != null)
@@ -143,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
 
         RemoveAllEnemies();
+        RemoveAllBullets();
         RemoveAllCurrency();
 
         Init();

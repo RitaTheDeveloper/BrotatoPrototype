@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] public List<StandartItem> inventory = new List<StandartItem>();
-    [SerializeField] public GameObject Player;
     [SerializeField] private int _startMoney = 0;
     [SerializeField] private int _startWood = 0;
     private int _currentMoney;
