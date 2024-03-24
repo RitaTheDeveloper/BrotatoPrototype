@@ -33,7 +33,7 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
+        //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
         if (dieEffecrt != null)
         {
             Instantiate(dieEffecrt, transform.position, Quaternion.identity);
@@ -55,7 +55,7 @@ public class EnemyHealth : LivingEntity
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
             if (audioSource)
             {
-                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeCritHit"));
+               // audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeCritHit"));
             }
 
         }
@@ -64,7 +64,7 @@ public class EnemyHealth : LivingEntity
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
             if (audioSource)
             {
-                audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeHit"));
+                //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeHit"));
             }
         }
         base.TakeHit(damage, isCrit);

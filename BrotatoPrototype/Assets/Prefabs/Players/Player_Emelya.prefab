@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4734820656270024363}
   - component: {fileID: 6472525962938035810}
   - component: {fileID: 7928375719160621464}
+  - component: {fileID: -7883915719805395228}
   m_Layer: 7
   m_Name: Player_Emelya
   m_TagString: Player
@@ -121,13 +122,9 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 1168812276271969868}
   listOfWeapons:
-  - {fileID: 2960794746483798122, guid: ac47a9e853158bf4d9db6552ad062056, type: 3}
-  - {fileID: 5844762086061995874, guid: 4c47d4b1c879f584c962c3946f52bd99, type: 3}
-  - {fileID: 3586906360544414383, guid: 5529ef13a3ceb9e49bd4abef8b5d3887, type: 3}
-  - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   - {fileID: 2988310641036012103, guid: e27c53cb6f07170469e92028d34dce3b, type: 3}
-  - {fileID: 6896685654037281728, guid: fd8243de6f508de4b86ef5a31c4a78af, type: 3}
   radisOfWeaponHold: 3
+  maxNumberOfWeapons: 6
 --- !u!114 &947180249327128963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +196,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7724d4839cb662d45a7eca3a35f96862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7883915719805395228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585661124780564198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b102e3517f293d2408cd2a3c4b0c41a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  _startMoney: 400
+  _startWood: 400
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +282,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1285206540107168066}
     m_Modifications:
+    - target: {fileID: -8830862517868656707, guid: 29cf387fa76b47547942f35324ea9f00,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 595c312a9f42ec14e8e2cca13fc5da6e, type: 2}
     - target: {fileID: -8679921383154817045, guid: 29cf387fa76b47547942f35324ea9f00,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -320,11 +337,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1713936880764936983, guid: 29cf387fa76b47547942f35324ea9f00,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 595c312a9f42ec14e8e2cca13fc5da6e, type: 2}
     - target: {fileID: 919132149155446097, guid: 29cf387fa76b47547942f35324ea9f00,
         type: 3}
       propertyPath: m_Name
       value: Emelya_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 7985620332042645314, guid: 29cf387fa76b47547942f35324ea9f00,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 595c312a9f42ec14e8e2cca13fc5da6e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

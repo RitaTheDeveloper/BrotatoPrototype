@@ -18,7 +18,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float startAttackSpeed;
     [Tooltip("вероятность крит шанса:")]
     [Range(0,1)]
-    [SerializeField] protected float startCritChance;  
+    [SerializeField] protected float startCritChance;
+    [SerializeField] protected bool knockBack = false;
+    [SerializeField] protected float repulsiveForce = 15f;
 
     [Space]
     [SerializeField] protected Animator animator;

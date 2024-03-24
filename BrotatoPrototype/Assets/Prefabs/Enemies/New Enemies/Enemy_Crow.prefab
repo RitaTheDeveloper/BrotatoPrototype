@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 193268249132384066}
   - component: {fileID: 8788352136436261972}
   - component: {fileID: 7065773691898631952}
-  - component: {fileID: 5920773798355282163}
   - component: {fileID: 8154959862229366379}
   m_Layer: 6
   m_Name: Enemy_Crow
@@ -120,7 +119,8 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   refreshRateOfUpdatePath: 0.01
   animator: {fileID: 0}
-  boxCollider: {fileID: 5920773798355282163}
+  boxCollider: {fileID: 7451520060865491316}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
   _shootPoint: {fileID: 953093252642560311}
   _projectilePrefab: {fileID: 1331408556871749274, guid: 9a09712c3eee2ba4cbd1e73bdad5d074,
@@ -143,7 +143,7 @@ MonoBehaviour:
   regenOn: 0
   hpRegenPerSecond: 0
   dead: 0
-  dieEffecrt: {fileID: 0}
+  dieEffecrt: {fileID: 100004, guid: ad734c06fd04651478267a77754963d1, type: 3}
 --- !u!114 &8788352136436261972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3503059046315012686}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -184,29 +184,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &5920773798355282163
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3503059046315012686}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!82 &8154959862229366379
 AudioSource:
   m_ObjectHideFlags: 0
@@ -429,6 +408,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crow
       objectReference: {fileID: 0}
+    - target: {fileID: 1868724435532632313, guid: 10448a87dd1a7654c8602dd2ec524f48,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9000bd7b288a65429fa3e8047d95a7c, type: 2}
+    - target: {fileID: 2429909124529161163, guid: 10448a87dd1a7654c8602dd2ec524f48,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9000bd7b288a65429fa3e8047d95a7c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
