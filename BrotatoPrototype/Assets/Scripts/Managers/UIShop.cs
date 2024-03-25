@@ -62,7 +62,7 @@ public class UIShop : MonoBehaviour
 
     public void SetWaveNumberText(int _waveNumber)
     {
-        waveNumberText.text = _waveNumber.ToString() + ")";
+        waveNumberText.text = "волна" + _waveNumber.ToString();
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
@@ -222,7 +222,7 @@ public class UIShop : MonoBehaviour
 
     public void DisplayLevelShop(int value)
     {
-        shopLevelValue.text = value.ToString();
+        shopLevelValue.text = "(уровень " + value.ToString() + ")";
     }
 
     public void RerollClick()
