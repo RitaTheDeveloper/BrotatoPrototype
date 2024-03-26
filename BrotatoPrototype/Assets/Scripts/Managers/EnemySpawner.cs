@@ -83,6 +83,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 position)
     {
+        PlaySoundOfSpawnEnemy();
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
         var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
@@ -120,8 +121,19 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject CreateMark(Vector3 position)
     {
+        PlaySoundOfMark();
         Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
         return Instantiate(markPrefab, position, markPrefab.transform.rotation);
+    }
+
+    private void PlaySoundOfMark()
+    {
+
+    }
+
+    private void PlaySoundOfSpawnEnemy()
+    {
+
     }
 
     private void DestroyMark(GameObject mark)

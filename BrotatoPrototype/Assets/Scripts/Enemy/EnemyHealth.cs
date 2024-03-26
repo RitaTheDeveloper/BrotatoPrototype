@@ -53,19 +53,13 @@ public class EnemyHealth : LivingEntity
         if (isCrit)
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
-            if (audioSource)
-            {
-               // audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeCritHit"));
-            }
+            PlaySoundOfTakeHit();
 
         }
         else
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-            if (audioSource)
-            {
-                //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("TakeHit"));
-            }
+            PlaySoundOfCrit();
         }
         base.TakeHit(damage, isCrit);
     }
@@ -75,5 +69,20 @@ public class EnemyHealth : LivingEntity
         var currency = PoolObject.instance.currencyPool.Get();
         currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
         currency.SetXP(xpForKill);
+    }
+
+    protected override void PlaySoundOfTakeHit()
+    {
+        base.PlaySoundOfTakeHit();
+    }
+
+    protected override void PlaySoundOfCrit()
+    {
+        base.PlaySoundOfCrit();
+    }
+
+    protected override void PlaySoundOfDeath()
+    {
+        base.PlaySoundOfDeath();
     }
 }
