@@ -47,6 +47,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         dead = true;
+        PlaySoundOfDeath();
         Destroy(gameObject);       
     }
 
@@ -60,5 +61,20 @@ public class LivingEntity : MonoBehaviour, IDamageable
                 health = startingHealth;
             }
         }
+    }
+
+    protected virtual void PlaySoundOfDeath()
+    {
+
+    }
+    
+    protected virtual void PlaySoundOfTakeHit()
+    {
+
+    }
+
+    protected virtual void PlaySoundOfCrit()
+    {
+
     }
 }

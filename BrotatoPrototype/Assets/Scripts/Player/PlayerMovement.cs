@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (move != Vector3.zero)
         {
             Rotation(move);
+            PlaySoundOfMoving();
         }
 
     }
@@ -56,5 +57,10 @@ public class PlayerMovement : MonoBehaviour
         rotation.x = 0f;
         rotation.z = 0f;
         transform.rotation = rotation;
+    }
+
+    private void PlaySoundOfMoving()
+    {
+
     }
 }

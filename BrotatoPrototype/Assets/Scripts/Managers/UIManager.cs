@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void OkOnClick()
     {
+        PlaySoundOfButtonPress();
         WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
         allAbilities.ChooseAbilitiesForProposeAbilities();       
     }
@@ -130,6 +131,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        PlaySoundOfButtonPress();
         AllOff();
         RemoveAllLevelUpElements();
         GameManager.instance.Restart();
@@ -185,6 +187,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayLevelUp()
     {
+        PlaySoundOfLevelUp();
         Instantiate(leveUpUiPrefab, levelUpMenu.transform);
     }
 
@@ -194,5 +197,15 @@ public class UIManager : MonoBehaviour
         {
             Destroy(levelUpElement.gameObject);
         }
+    }
+
+    private void PlaySoundOfButtonPress()
+    {
+
+    }
+
+    private void PlaySoundOfLevelUp()
+    {
+
     }
 }
