@@ -8,6 +8,7 @@ public class SlotItemForSaleData : MonoBehaviour
 {
     public int SlotNumber;
     public string SlotEntytiID;
+    public GameObject pot;
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textType;
     public TextMeshProUGUI textCost;
@@ -24,8 +25,9 @@ public class SlotItemForSaleData : MonoBehaviour
 
     private void Start()
     {
-        
+       // PotOff();
     }
+
     public void OnClickBuyItem()
     {
         buyBtn.onClick.AddListener(OnBuyItem);
@@ -34,5 +36,20 @@ public class SlotItemForSaleData : MonoBehaviour
     public void OnBuyItem()
     {
         UIShop.instance.ButtonBuySlot(SlotNumber);
+    }
+
+    public void PotOff()
+    {
+        pot.SetActive(false);
+        buyBtn.gameObject.SetActive(false);
+        textName.text = "";
+        textType.text = "";
+        description.text = "";
+    }
+
+    public void PotOn()
+    {
+        pot.SetActive(true);
+        buyBtn.gameObject.SetActive(true);
     }
 }
