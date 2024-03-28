@@ -1,0 +1,711 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6993265219761638845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8505731551077479395}
+  - component: {fileID: 4703986796179556321}
+  - component: {fileID: 6568563548530690067}
+  - component: {fileID: 2026945533280612947}
+  - component: {fileID: 3512345282314374584}
+  - component: {fileID: 5020272763707438710}
+  - component: {fileID: 2809952228615228928}
+  - component: {fileID: 2298201337737193084}
+  - component: {fileID: 7470855737700929741}
+  - component: {fileID: 3767300529983842284}
+  - component: {fileID: 3605781725089181163}
+  - component: {fileID: 1741412420517287216}
+  - component: {fileID: 6661392659186224452}
+  - component: {fileID: 3872268097857296259}
+  - component: {fileID: 6037208930603406361}
+  - component: {fileID: 8247446763887075424}
+  - component: {fileID: 1872095521530615183}
+  - component: {fileID: 1641457756170612665}
+  - component: {fileID: 2830093636852689057}
+  - component: {fileID: 4204054310256430027}
+  - component: {fileID: 1154134620610435667}
+  - component: {fileID: 1210345661172516278}
+  - component: {fileID: 7481374568907146659}
+  - component: {fileID: 4319353938087964024}
+  - component: {fileID: 7832664392224166379}
+  - component: {fileID: 5148344177112003451}
+  - component: {fileID: 8630595427397001162}
+  - component: {fileID: 2955641043654727790}
+  - component: {fileID: 6727748258952426123}
+  - component: {fileID: 8415991911421997906}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8505731551077479395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4703986796179556321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83085c4711dae2f45b301a43185b6c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterAudioGroup: {fileID: 24300002, guid: 4d62165522bb0d34c96026611e34eb2c, type: 2}
+  NonPositionalSoundControllers:
+  - {fileID: 6568563548530690067}
+  - {fileID: 3605781725089181163}
+  - {fileID: 1741412420517287216}
+  - {fileID: 6661392659186224452}
+  - {fileID: 5148344177112003451}
+  - {fileID: 8630595427397001162}
+  - {fileID: 2955641043654727790}
+  - {fileID: 6727748258952426123}
+  - {fileID: 8415991911421997906}
+  PositionalSoundControllers:
+  - {fileID: 2026945533280612947}
+  - {fileID: 3512345282314374584}
+  - {fileID: 5020272763707438710}
+  - {fileID: 2809952228615228928}
+  - {fileID: 2298201337737193084}
+  - {fileID: 7470855737700929741}
+  - {fileID: 3767300529983842284}
+  - {fileID: 3872268097857296259}
+  - {fileID: 6037208930603406361}
+  - {fileID: 8247446763887075424}
+  - {fileID: 1872095521530615183}
+  - {fileID: 1641457756170612665}
+  - {fileID: 2830093636852689057}
+  - {fileID: 4204054310256430027}
+  - {fileID: 1154134620610435667}
+  - {fileID: 1210345661172516278}
+  - {fileID: 7481374568907146659}
+  - {fileID: 4319353938087964024}
+  - {fileID: 7832664392224166379}
+--- !u!114 &6568563548530690067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Coin
+  soundSources:
+  - soundName: Coin1
+    clip: {fileID: 8300000, guid: 97ec8993f28dd944fb3b320e739c4cff, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Coin2
+    clip: {fileID: 8300000, guid: 4fc1a63d677228e4dbf65b73b74739bc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Coin3
+    clip: {fileID: 8300000, guid: 16e96399ea549da4d971ac92a36a5411, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.1
+  audioMixerGroup: {fileID: 1383810305289294184, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &2026945533280612947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Hit
+  soundSources:
+  - soundName: Hit1
+    clip: {fileID: 8300000, guid: 35172e3e9bddbbd44b1a6799a4592769, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Hit2
+    clip: {fileID: 8300000, guid: 7b0dd9cf91711f24e9aa11864eceea31, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Hit3
+    clip: {fileID: 8300000, guid: 4148ef4fe7a339a4a97150b0ed3677f9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -3826298334006977639, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &3512345282314374584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: CriticalHit
+  soundSources:
+  - soundName: Crit_hit
+    clip: {fileID: 8300000, guid: 44d84541c9919e24293264fd19ed0fc3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -5497107562324044633, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &5020272763707438710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Xmark
+  soundSources:
+  - soundName: xmark1
+    clip: {fileID: 8300000, guid: fccfa8e79d8a28048bb347d68e958bd6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: xmark2
+    clip: {fileID: 8300000, guid: cffb960f792f6cd49981fdfa1a15b4cd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: xmark3
+    clip: {fileID: 8300000, guid: bb9532cc19dcdf54d847beec8d927bb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -1817910494127942039, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &2809952228615228928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Spawn
+  soundSources:
+  - soundName: spawn1
+    clip: {fileID: 8300000, guid: 50f3a10f3749886488e741ec6b51f539, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: spawn2
+    clip: {fileID: 8300000, guid: cc89de995dae76f4db5266ca3d42ffe7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: spawn3
+    clip: {fileID: 8300000, guid: 9e0adab7fe7585b409c2af39eab5753d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.6
+  audioMixerGroup: {fileID: 6319899520990214284, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &2298201337737193084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SpawnTurret
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: -6916911510795537411, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &7470855737700929741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SpawnMine
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 3820146741067119831, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &3767300529983842284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: EnemyDeath
+  soundSources: []
+  delay: 0.2
+  audioMixerGroup: {fileID: -5385017580841150498, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &3605781725089181163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: CrateUp
+  soundSources:
+  - soundName: CrateUp1
+    clip: {fileID: 8300000, guid: 7d3865eff07fa1747bba8d4d23d8cd01, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -7790030516591952506, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &1741412420517287216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: LevelUp
+  soundSources:
+  - soundName: LevelUp1
+    clip: {fileID: 8300000, guid: 99c2c2505bb37fb48928a2112522417c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -6176673053318791095, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &6661392659186224452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: PlayerTakeHit
+  soundSources:
+  - soundName: PlayerTakeHit1
+    clip: {fileID: 8300000, guid: fd53570d34430c44595af8cb3c3d82d5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: PlayerTakeHit2
+    clip: {fileID: 8300000, guid: 06be6fcd8a0ade847adc7858ba5a7ee8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -3044339540967425957, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &3872268097857296259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: LifeSteal
+  soundSources:
+  - soundName: LifeSteal1
+    clip: {fileID: 8300000, guid: fc02de52323f52a458afcc69e1bba292, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: LifeSteal2
+    clip: {fileID: 8300000, guid: 978d2fc50db97f641a10ff77ea1a4230, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -4272548889361910506, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &6037208930603406361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SwordAttack
+  soundSources:
+  - soundName: SwordAttack1
+    clip: {fileID: 8300000, guid: ec603fab43d583d428af6cd1f5929f28, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: SwordAttack2
+    clip: {fileID: 8300000, guid: 391b3e63d4a929c4cae8d5da494d05fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -2379834752418107088, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &8247446763887075424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: TurretShoot
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 2904604748619944012, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &1872095521530615183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: MineBloowUp
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: -6893596583001601016, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &1641457756170612665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SpearAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 8480327984742698225, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &2830093636852689057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: BroomstickAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 819065157013331450, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &4204054310256430027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SownyAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 4753794112294818551, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &1154134620610435667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: PanAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 2067116612587354061, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &1210345661172516278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: BoomerangAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: 7305962384644290292, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &7481374568907146659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: StickAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: -6949620424637593559, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &4319353938087964024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: BowAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: -9085398950503640332, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &7832664392224166379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237891b18ac847844a0a2f8009d1a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: SlingshotAttack
+  soundSources: []
+  delay: 0
+  audioMixerGroup: {fileID: -1019916175627547074, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &5148344177112003451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: GrabElement
+  soundSources:
+  - soundName: GrabElement1
+    clip: {fileID: 8300000, guid: 563dc075c71ff284fa0bc358d400db08, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: 4593206751550633608, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &8630595427397001162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: ClickElement
+  soundSources:
+  - soundName: ClickElement1
+    clip: {fileID: 8300000, guid: 005c49bf3ea40194bb73eb5b9fa34929, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: 9193589887391132613, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &2955641043654727790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: ShopBackgroupnd
+  soundSources:
+  - soundName: ShopBackgroupnd1
+    clip: {fileID: 8300000, guid: ed053a9d5c0f6704dbc4d685420b53b4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -1285113098953607318, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &6727748258952426123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: RerollShop
+  soundSources:
+  - soundName: RerollShop1
+    clip: {fileID: 8300000, guid: 1f883009f77f89f4ba9221ac128d7cf3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -2752129192753127732, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &8415991911421997906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: TimerTick
+  soundSources:
+  - soundName: TimerTick1
+    clip: {fileID: 8300000, guid: 4833d9477acf2704b883018057cf553d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0
+  audioMixerGroup: {fileID: -8122511454827069929, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
