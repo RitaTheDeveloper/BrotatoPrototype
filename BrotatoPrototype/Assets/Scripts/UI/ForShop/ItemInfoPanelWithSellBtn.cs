@@ -25,8 +25,6 @@ public class ItemInfoPanelWithSellBtn : MonoBehaviour
         price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
         sellBtn.onClick.RemoveAllListeners();
-        // вот тут нужно повесить на кнопку метод с индексом продаваемого оружия
-        // sellBtn.onClick.AddListener() weaponController.GetAllWeapons());
         sellBtn.onClick.AddListener(SellItem);
     }
 

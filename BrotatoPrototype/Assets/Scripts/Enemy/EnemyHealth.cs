@@ -67,4 +67,19 @@ public class EnemyHealth : LivingEntity
         currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
         currency.SetXP(xpForKill);
     }
+
+    protected override void PlaySoundOfTakeHit()
+    {
+        base.PlaySoundOfTakeHit();
+    }
+
+    protected override void PlaySoundOfCrit()
+    {
+        base.PlaySoundOfCrit();
+    }
+
+    protected override void PlaySoundOfDeath()
+    {
+        base.PlaySoundOfDeath();
+    }
 }

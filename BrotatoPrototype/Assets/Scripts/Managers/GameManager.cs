@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
             playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
-            RemoveAllEnemies();            
+            RemoveAllEnemies();
+            RemoveAllBullets();
         }              
     }
 
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
     {
         player.GetComponent<PlayerHealth>().Init();
         player.GetComponent<PlayerHealth>().DisplayHealth();
+        player.GetComponent<WeaponController>().EquipPlayer();
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         UIManager.instance.RemoveAllLevelUpElements();
         RemoveAllCurrency();
@@ -109,6 +111,15 @@ public class GameManager : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             Destroy(enemy);
+        }
+    }
+
+    private void RemoveAllBullets()
+    {
+        Transform bullets = GameObject.Find("Bullets").transform;
+        foreach(Transform bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
         }
     }
 
@@ -142,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
 
         RemoveAllEnemies();
+        RemoveAllBullets();
         RemoveAllCurrency();
 
         Init();

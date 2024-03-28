@@ -9,13 +9,6 @@ using static UnityEditor.Progress;
 public class ShopController : MonoBehaviour, IShopController
 {
     public static ShopController instance;
-    public int ShopSizeList = 4;
-    public int ShopLevel = 0;
-    [Tooltip("Максимальный уровень магазина:")]
-    public int ShopMaxLevel = 5;
-    [Tooltip("Стоимость прокачки магазина:")]
-    public List<int> LevelUpCost = new List<int>();
-
     public List<StandartItem> ItemList = new List<StandartItem>();
     public List<Weapon> WeaponList = new List<Weapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
@@ -28,31 +21,64 @@ public class ShopController : MonoBehaviour, IShopController
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
     public Dictionary<int, bool> SoldItemsDict = new Dictionary<int, bool>();
 
-    [Tooltip("Структура шаса:")]
-    [SerializeField] public List<RareItemsDataStruct> RareData;
-    [Tooltip("Удача магазина от уровня:")]
-    [SerializeField] public List<float> ShopChance;
-    [Tooltip("Шанс оружия на слот после 5 уровня:")]
-    [SerializeField] public int LateWeaponChance = 35;
+    [Tooltip("Структура уровней мгазина")]
+    [SerializeField] public List<ShopLevelStruct> ShopLevelStructsStorage = new List<ShopLevelStruct>();
 
-    private List<float> LevelsChance = new List<float>();
-    private List<float> accumulateChance = new List<float>();
+    [Tooltip("Ткущее колличество слотов")]
+    [SerializeField] int ShopSizeList = 0;
 
-    [Tooltip("Базовая стоимость реролла:")]
-    public int BaseRerollCost = 15;
+    [Tooltip("Текущий уровень магазина")]
+    [SerializeField] int CurrentShopLevel = 1;
+
+    [Tooltip("Возможная редкость предметов")]
+    [SerializeField] public List<RareItemsDataStruct> RareData = new List<RareItemsDataStruct>();
+
+    [Tooltip("Деолтная цена рерола")]
+    [SerializeField] public int DefaultRerollPrice = 20;
+
+    [Tooltip("Шаг полвышения цены рерола")]
+    [SerializeField] public int StepRerollPrice = 5;
+
+    [Tooltip("Текущая цена рерола")]
+    [SerializeField] private int CurrentRerollPrice = 20;
+
+    [Tooltip("Шанс оружия %")]
+    [SerializeField] public int WeaponChance = 30;
 
     [SerializeField] UIShop uiShop;
     [SerializeField] DataForShop dataForShop;
 
+    WeaponController weaponController;
+    private GameObject player;
     private List<Weapon> weaponsList;
+    private PlayerInventory playerInventory;
+    private int currentWave;
 
     private void Awake()
     {
         instance = this;
 
+        Init();
+    }
+
+    void Start()
+    {
+        UpdateShop();
+    }   
+
+    public void Init()
+    {
         InitRareStorage();
         ListStorageToDict();
-        weaponsList = dataForShop.weaponController.GetAllWeapons();
+        player = GameManager.instance.player;
+        weaponController = player.GetComponent<WeaponController>();
+        weaponsList = weaponController.GetAllWeapons();
+        playerInventory = player.GetComponent<PlayerInventory>();
+        currentWave = GameManager.instance.WaveCounter;
+        CurrentRerollPrice = DefaultRerollPrice;
+
+        if (ShopLevelStructsStorage[0].slotsData.Count > 0)
+            ShopSizeList = ShopLevelStructsStorage[0].slotsData.Count;
 
         for (int i = 0; i < ShopSizeList; i++)
         {
@@ -61,37 +87,33 @@ public class ShopController : MonoBehaviour, IShopController
         }
     }
 
-    void Start()
+    public void ResetShop()
     {
-        uiShop.SetWaveNumberText(dataForShop.waveNumber);
-        uiShop.SetTotalAmountOfGoldText(dataForShop.totalAmountOfGold);
-        uiShop.SetPriceForUpgradeShopText(dataForShop.priceForUpgradeShop);
-        uiShop.SetPriceForRerollText(dataForShop.priceForReroll);
-       // uiShop.CreateItemsSlotsForSale(4);
-        uiShop.SetNumberOfPossibleWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
-        uiShop.CreateSlotsForWeapons(dataForShop.weaponController.GetMaxNumberOfweapons());
-        uiShop.CreateSlotsForItems();
-        uiShop.CreateWeaponElements(dataForShop.weaponController.GetAllWeapons());
-        uiShop.CreateItemsElements(dataForShop.playerInventory.inventory);
-        uiShop.OnCreateShopInterface();
-
-        for (int i = 0; i < weaponsList.Count; i++)
-        {
-            weaponsList[i].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber);
-        }
+        CurrentShopLevel = 1;
+        UIShop.instance.DisplayLevelShop(CurrentShopLevel);
     }
 
+    public void UpdateShop()
+    {
+        uiShop.SetWaveNumberText(currentWave);
+        // uiShop.CreateItemsSlotsForSale(4);
+        uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
+        uiShop.CreateSlotsForWeapons(weaponController.GetMaxNumberOfweapons());
+        uiShop.CreateSlotsForItems();
+        uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
+        uiShop.CreateItemsElements(playerInventory.inventory);
+        uiShop.OnCreateShopInterface();
+    }
 
     public bool BuyItem(string itemID)
     {
         if (SaleItemsDict.ContainsKey(itemID))
         {
-            PlayerInventory inventary = dataForShop.playerInventory;
-            if (inventary.HaveNeedCost(SaleItemsDict[itemID].ShopInfoItem.Price))
+            if (playerInventory.HaveNeedCost(SaleItemsDict[itemID].ShopInfoItem.Price))
             {
-                inventary.ChangeMoney(SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * -1);
-                inventary.AddItem(SaleItemsDict[itemID]);
-                uiShop.CreateItemsElements(inventary.inventory);
+                playerInventory.ChangeMoney(SaleItemsDict[itemID].GetPrice(currentWave) * -1);
+                playerInventory.AddItem(SaleItemsDict[itemID]);
+                uiShop.CreateItemsElements(playerInventory.inventory);
                 return true;
             }
             else
@@ -101,11 +123,9 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else if (WeaponsDict.ContainsKey(itemID))
         {
-            WeaponController weaponController = dataForShop.weaponController;
-            PlayerInventory inventary = dataForShop.playerInventory;
-            if (inventary.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price) && weaponsList.Count < weaponController.GetMaxNumberOfweapons())
+            if (playerInventory.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price) && weaponsList.Count < weaponController.GetMaxNumberOfweapons())
             {
-                inventary.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber) * -1);
+                playerInventory.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
                 weaponsList.Add(WeaponsDict[itemID]);
                 //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                 uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
@@ -117,42 +137,6 @@ public class ShopController : MonoBehaviour, IShopController
             }
         }
         return false;
-    }
-
-    public void CalculateDropChance()
-    {
-        int maxRareLevel = 0;
-        maxRareLevel = LevelToItems.Keys.Max();
-        if (maxRareLevel < LevelToWeapons.Keys.Max()) {
-            maxRareLevel = LevelToWeapons.Keys.Max();
-        }
-        LevelsChance = new List<float>(maxRareLevel);
-        accumulateChance = new List<float>(maxRareLevel);
-        for (int i = 0; i < maxRareLevel; i++)
-        {
-            LevelsChance.Add(0);
-            accumulateChance.Add(0);    
-        }
-
-        for (int i = (maxRareLevel - 1); i >= 0; i--)
-        {
-            if (dataForShop.waveNumber + 1 < RareData[i].firstWave)
-            {
-                LevelsChance[i] = 0;
-                continue;
-            }
-            float value = ((RareData[i].waveChance * (dataForShop.waveNumber + 1 - RareData[i].minimalWave)) + RareData[i].baseChance) * ((100 + ShopChance[ShopLevel]) / 100);
-            for (int j = i + 1; j < maxRareLevel; j++)
-            {
-                value -= LevelsChance[j];
-            }
-            LevelsChance[i] = value;
-        }
-        accumulateChance[0] = LevelsChance[0] * 100.0f;
-        for (int i = 1; i < LevelsChance.Count; i++)
-        {
-            accumulateChance[i] = accumulateChance[i - 1] + LevelsChance[i] * 100;
-        }
     }
 
     public Dictionary<int, string> GetItemsForSale()
@@ -167,172 +151,65 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void PickItemsForSale()
     {
-        //вывбор оружия в зависимости от уровня волны
-        int wawe = dataForShop.waveNumber;
-        //1 и 2 уровень
-        if (wawe == 1 || wawe == 2)
+        int countWeapon = 0;
+        int countItem = 0;
+        for (int i = 0; i < ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count; i++)
         {
-            int weapon = 0;
-            int item = 0;
-            for (int i = 0; i < ShopSizeList; i++)
-            {
-                if (LockItemsDict[i])
-                    continue;
-                if (weapon == 2)
-                {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
-                    {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    SlotItems[i] = LevelToItems[level][Random.Range(0, LevelToItems[level].Count - 1)];
-                    item++;
-                }
-                else if (item == 2)
-                {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
-                    {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    SlotItems[i] = LevelToWeapons[level][Random.Range(0, LevelToWeapons[level].Count - 1)];
-                    weapon++;
-                }
-                else
-                {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
-                    {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    int isweapon = Random.Range(0, 1);
-                    if (isweapon == 0)
-                    {
-                        SlotItems[i] = LevelToWeapons[level][Random.Range(0, LevelToWeapons[level].Count - 1)];
-                        weapon++;
-                    }
-                    else
-                    {
-                        SlotItems[i] = LevelToItems[level][Random.Range(0, LevelToItems[level].Count - 1)];
-                        item++;
-                    }
-                }
+            bool needWeapon = false;
+            bool needItem = false;
 
-            }
-        }
-        //3 - 5 волна
-        else if (wawe > 2 && wawe <= 5)
-        {
-            int weapon = 0;
-            int item = 0;
-            for (int i = 0; i < ShopSizeList; i++)
+            //1 - 5 уровень
+            if (CurrentShopLevel >= 1 && CurrentShopLevel <= 5)
             {
-                if (LockItemsDict[i])
-                    continue;
-                if (weapon == 1)
+
+                if (ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count - countWeapon - countItem > 1 || (countWeapon > 0 && countItem > 0))
                 {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
+                    int chance = Random.Range(0, 100);
+                    if (chance >= 0 && chance < WeaponChance)
                     {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    SlotItems[i] = LevelToItems[level][Random.Range(0, LevelToItems[level].Count - 1)];
-                    item++;
-                }
-                else if (item == 3)
-                {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
-                    {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    SlotItems[i] = LevelToWeapons[level][Random.Range(0, LevelToWeapons[level].Count - 1)];
-                    weapon++;
-                }
-                else
-                {
-                    int random = Random.Range(0, 100 * 100);
-                    int level = 0;
-                    for (int j = 0; j < accumulateChance.Count; j++)
-                    {
-                        if (random < accumulateChance[j])
-                        {
-                            level = j;
-                            break;
-                        }
-                    }
-                    level += 1;
-                    int isweapon = Random.Range(0, 1);
-                    if (isweapon == 0)
-                    {
-                        SlotItems[i] = LevelToWeapons[level][Random.Range(0, LevelToWeapons[level].Count - 1)];
-                        weapon++;
+                        needWeapon = true;
                     }
                     else
                     {
-                        SlotItems[i] = LevelToItems[level][Random.Range(0, LevelToItems[level].Count - 1)];
-                        item++;
+                        needItem = true;
                     }
+                }
+                else if (countItem > 0)
+                {
+                    needWeapon = true;
+                }
+                else if (countWeapon > 0)
+                {
+                    needItem = true;
                 }
             }
-        }
-        //Все проочие волны
-        else
-        {
-            for (int i = 0; i < ShopSizeList; i++)
+            //Все прочие ровни магазина
+            else
             {
-                if (LockItemsDict[i])
-                    continue;
-                int random = Random.Range(0, 100 * 100);
-                int level = 0;
-                for (int j = 0; j < accumulateChance.Count; j++)
+                int chance = Random.Range(0, 100);
+                if (chance >= 0 && chance < WeaponChance)
                 {
-                    if (random < accumulateChance[j])
-                    {
-                        level = j;
-                        break;
-                    }
-                }
-                level += 1;
-                int isweapon = Random.Range(0, 100);
-                if (isweapon <= LateWeaponChance)
-                {
-                    SlotItems[i] = LevelToWeapons[level][Random.Range(0, LevelToWeapons[level].Count - 1)];
+                    needWeapon = true;
                 }
                 else
                 {
-                    SlotItems[i] = LevelToItems[level][Random.Range(0, LevelToItems[level].Count - 1)];
+                    needItem = true;
                 }
+            }
+
+            if (needWeapon)
+            {
+                int countLevelRareWeapon = LevelToWeapons[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level].Count;
+                int weaponNum = Random.Range(0, countLevelRareWeapon);
+                SlotItems[i] = LevelToWeapons[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level][weaponNum];
+                countWeapon++;
+            }
+            else if (needItem)
+            {
+                int countLevelRareItem = LevelToItems[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level].Count;
+                int itenNum = Random.Range(0, countLevelRareItem);
+                SlotItems[i] = LevelToItems[ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData[i].level][itenNum];
+                countItem++;
             }
         }
     }
@@ -340,19 +217,16 @@ public class ShopController : MonoBehaviour, IShopController
     public bool SellItem(string itemID)
     {
         if (WeaponsDict.ContainsKey(itemID))
-        {
-            PlayerInventory inventary = dataForShop.playerInventory;
-            WeaponController weaponController = dataForShop.weaponController;
-            inventary.MoneyPlayer += WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(dataForShop.waveNumber) * (WeaponsDict[itemID].GetComponent<ItemShopInfo>().DiscountProcent / 100);
+        {    
+            int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetSalePrice();
+            playerInventory.ChangeMoney(priceForSale);
             weaponsList.Remove(WeaponsDict[itemID]);
-            uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            PlayerInventory inventary = dataForShop.playerInventory;
-            inventary.MoneyPlayer += SaleItemsDict[itemID].GetPrice(dataForShop.waveNumber) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100);
-            inventary.DeleteItem(SaleItemsDict[itemID]);
+            playerInventory.ChangeMoney(SaleItemsDict[itemID].GetPrice(currentWave) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
+            playerInventory.DeleteItem(SaleItemsDict[itemID]);
             return true;
         }
         return false;
@@ -360,13 +234,22 @@ public class ShopController : MonoBehaviour, IShopController
 
     public bool UpgrateShop()
     {
-        if (ShopLevel < ShopMaxLevel)
+        if (CurrentShopLevel < ShopLevelStructsStorage.Count)
         {
-            PlayerInventory inventary = dataForShop.playerInventory;
-            if (inventary.HaveNeedWood(GetShopLevelUpCost()))
+            ShopLevelStruct newLevel = ShopLevelStructsStorage[CurrentShopLevel];
+            if (playerInventory.HaveNeedWood(newLevel.levelPrice))
             {
-                inventary.ChangeWood(GetShopLevelUpCost() * -1);
-                ShopLevel += 1;
+                playerInventory.ChangeWood(newLevel.levelPrice * -1);
+                CurrentShopLevel = newLevel.levelNumber;
+                CurrentRerollPrice = DefaultRerollPrice;
+                ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
+
+                for (int i = 0; i < ShopSizeList; i++)
+                {
+                    LockItemsDict[i] = false;
+                    SoldItemsDict[i] = false;
+                }
+
                 return true;
             }
         }
@@ -449,7 +332,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetShopLevelUpCost()
     {
-        return LevelUpCost[ShopLevel];
+        return ShopLevelStructsStorage[CurrentShopLevel].levelPrice;
     }
 
     public int GetRerollCost()
@@ -458,12 +341,12 @@ public class ShopController : MonoBehaviour, IShopController
         {
             return 0;
         }
-        return BaseRerollCost;
+        return CurrentRerollPrice;
     }
 
     public int GetCurrentWawe()
     {
-        return dataForShop.waveNumber; 
+        return currentWave; 
     }
 
     public bool StotIsLocked(int slot)
@@ -473,22 +356,24 @@ public class ShopController : MonoBehaviour, IShopController
 
     public WeaponController GetWeaponController()
     {
-        return dataForShop.weaponController;
+        return weaponController;
     }
 
     public PlayerInventory GetPlayerInventory()
     {
-        return dataForShop.playerInventory;
+        return playerInventory;
     }
 
-    public void RerollShop()
+    public bool RerollShop()
     {
-        PlayerInventory inventary = dataForShop.playerInventory;
-        if (inventary.HaveNeedWood(GetRerollCost()))
+        if (playerInventory.HaveNeedWood(GetRerollCost()))
         {
-            inventary.ChangeWood(GetRerollCost() * -1);
+            playerInventory.ChangeWood(GetRerollCost() * -1);
+            CurrentRerollPrice += StepRerollPrice;
             PickItemsForSale();
+            return true;
         }
+        return false;
     }
 
     public List<RareItemsDataStruct> GetRareItemsDataStruct()
@@ -523,7 +408,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int maxWeaponCount()
     {
-        return dataForShop.weaponController.GetMaxNumberOfweapons();
+        return weaponController.GetMaxNumberOfweapons();
     }
 
     public void ResetsSlots()
@@ -536,11 +421,22 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetShopLevel()
     {
-        return ShopLevel;
+        return CurrentShopLevel;
     }
 
     public List<StandartItem> GetInventory()
     {
-        return dataForShop.playerInventory.inventory;
+        return playerInventory.inventory;
+    }
+
+    public void OnShowUI()
+    {
+        PickItemsForSale();
+        CurrentRerollPrice = DefaultRerollPrice;
+    }
+
+    public int GetSlotCount()
+    {
+        return ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
     }
 }

@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform levelUpMenu;
     [SerializeField] private GameObject leveUpUiPrefab;
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
+    [SerializeField] private UIShop shop;
 
     [Header("for player:")]
     [SerializeField] private Slider healthSlider;
@@ -59,6 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void OkOnClick()
     {
+        PlaySoundOfButtonPress();
         WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
         allAbilities.ChooseAbilitiesForProposeAbilities();       
     }
@@ -72,6 +74,7 @@ public class UIManager : MonoBehaviour
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
+        Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
@@ -84,8 +87,16 @@ public class UIManager : MonoBehaviour
         {
             AbilitySelectionPanelOff();
             characteristicsUI.UpdateCharacterisctics();
+            // открываем магазин
+            OpenShop();
             nextWaveBtn.gameObject.SetActive(true);
         }
+    }
+
+    public void OpenShop()
+    {
+        shop.gameObject.SetActive(true);
+        shop.UpdateUIShop();
     }
 
     public void WaveCompletedMenuOff()
@@ -120,8 +131,11 @@ public class UIManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        PlaySoundOfButtonPress();
         AllOff();
+        RemoveAllLevelUpElements();
         GameManager.instance.Restart();
+        shop.GetComponent<ShopController>().ResetShop();
     }
 
     public void OnClickMenu()
@@ -137,6 +151,7 @@ public class UIManager : MonoBehaviour
         waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
         nextWaveBtn.gameObject.SetActive(false);
+        shop.gameObject.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp)
@@ -172,6 +187,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayLevelUp()
     {
+        PlaySoundOfLevelUp();
         Instantiate(leveUpUiPrefab, levelUpMenu.transform);
     }
 
@@ -181,5 +197,15 @@ public class UIManager : MonoBehaviour
         {
             Destroy(levelUpElement.gameObject);
         }
+    }
+
+    private void PlaySoundOfButtonPress()
+    {
+
+    }
+
+    private void PlaySoundOfLevelUp()
+    {
+
     }
 }

@@ -6,9 +6,6 @@ using UnityEngine.UIElements;
 public class DataForShop : MonoBehaviour
 {
     public int waveNumber;
-    public int totalAmountOfGold;
-    public int priceForUpgradeShop;
-    public int priceForReroll;
     public PlayerInventory playerInventory;
     public WeaponController weaponController;
 }

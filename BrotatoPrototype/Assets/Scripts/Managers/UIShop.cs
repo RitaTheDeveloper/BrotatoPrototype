@@ -36,7 +36,6 @@ public class UIShop : MonoBehaviour
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
     List<Transform> listSlotsOfItems = new List<Transform>();
 
-
     public ShopController shopController;
 
     private GameObject _currentInfoItem = null;
@@ -46,23 +45,19 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        shopController = GetComponent<ShopController>();
+       // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
         //CreateItemsSlotsForSale(4);
     }
 
-    void Start()
+    public void UpdateUIShop()
     {
-        //GetComponentsInChildren<RareItemsDataStruct>(rares);
-    }
-
-    public void ChangeUIParametersOfShop()
-    {
-        SetNumberOfPossibleWeapons(maxCountWeapons);
-        SetTotalAmountOfGoldText(689);
-        SetPriceForUpgradeShopText(125);
-        SetPriceForRerollText(17);
-        SetNumberOfPossibleWeapons(8);
+        UpdateUICharacteristics();
+        shopController.Init();
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
+        shopController.OnShowUI();
+        UpdateItemsForSale();
+        shopController.UpdateShop();
     }
 
     public void SetWaveNumberText(int _waveNumber)
@@ -85,18 +80,12 @@ public class UIShop : MonoBehaviour
         priceForRerollTxt.text = _price.ToString();
     }
 
-    public void SetNumberOfPossibleWeapons(int _number)
-    {
-        numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + _number.ToString() + ")";
-    }
-
     public void CreateSlotsForWeapons(int _maxNumberOfWeapons)
     {
         maxCountWeapons = _maxNumberOfWeapons;
 
         DestroyAllSlotsForWeapons();
 
-        //WeaponController playW = shopController.GetWeaponController();
         List<Weapon> wl = shopController.GetWeaponController().GetAllWeapons();
 
         for (int i = 0; i < _maxNumberOfWeapons; i++)
@@ -118,13 +107,14 @@ public class UIShop : MonoBehaviour
 
     public void CreateWeaponElements(List<Weapon> _currentWeapons)
     {
-
-        for (int i = 0; i < _currentWeapons.Count; i++)
+        if (_currentWeapons.Count > 0)
         {
-            GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
-            weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
-        }
-
+            for (int i = 0; i < _currentWeapons.Count; i++)
+            {
+                GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
+                weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
+            }
+        }        
     }
 
     public void DeleteAllWeaponElements()
@@ -133,11 +123,13 @@ public class UIShop : MonoBehaviour
         {
             foreach(Transform weaponElement in weaponSlot)
             {
-                Destroy(weaponElement.gameObject);
+                if (weaponElement)
+                {
+                    Destroy(weaponElement.gameObject);
+                }
             }
         }
     }
-
 
     public void CreateSlotsForItems()
     {
@@ -179,14 +171,15 @@ public class UIShop : MonoBehaviour
 
     public void OnCreateShopInterface()
     {
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
+        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
 
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
-        shopController.CalculateDropChance();
+        //shopController.CalculateDropChance();
         //CreateItemsSlotsForSale(4);
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
         shopController.PickItemsForSale();
         ShowItemsForSale();
     }
@@ -220,26 +213,43 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.UpgrateShop())
         {
-            totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+            totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
-            shopLevelValue.text = (shopController.GetShopLevel()).ToString();
+            DisplayLevelShop(shopController.GetShopLevel());
+            UpdateItemsForSale();
         }
+    }
+
+    public void DisplayLevelShop(int value)
+    {
+        shopLevelValue.text = value.ToString();
     }
 
     public void RerollClick()
     {
-        shopController.RerollShop();
+        if (shopController.RerollShop())
+        {
+            shopController.ResetsSlots();
+            CreateItemsSlotsForSale(shopController.GetSlotCount());
+            totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
+            priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+            ShowItemsForSale();
+        }
+    }
+
+    public void UpdateItemsForSale()
+    {
+        CreateItemsSlotsForSale(shopController.GetSlotCount());
+        shopController.PickItemsForSale();
         ShowItemsForSale();
         shopController.ResetsSlots();
-        totalAmountOfWoodText.text = shopController.GetPlayerInventory().WoodPlayer.ToString();
+        totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
         for (int i = 0; i < items.Count; i++)
         {
             items[i].gameObject.SetActive(true);
         }
     }
-
-
 
     void ShowItemsForSale()
     {
@@ -257,6 +267,8 @@ public class UIShop : MonoBehaviour
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
                 items[i].description.text = w.Description;
+                items[i].buyBtn.onClick.RemoveAllListeners();
+                items[i].OnClickBuyItem();
             }
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
@@ -267,6 +279,8 @@ public class UIShop : MonoBehaviour
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
                 items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
                 items[i].description.text = it.ShopInfoItem.Description;
+                items[i].buyBtn.onClick.RemoveAllListeners();
+                items[i].OnClickBuyItem();
             }
         }
     }
@@ -283,21 +297,28 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
-                    items[i].gameObject.SetActive(false);
+                    Destroy(items[i].gameObject);
+                    items.RemoveAt(i);
                     shopController.SoldSlot(slotNumber);
                 }
                 break;
             }
         }
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
-        numberOfWeapons.text = "(" + shopController.GetWeaponController().GetAllWeapons().Count.ToString()  + "/" + maxCountWeapons + ")";
+        UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
+    }
+
+    public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
+    {
+        numberOfWeapons.text = "(" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
     {
         shopController.SellItem(name);
-        totalAmountOfGoldText.text = shopController.GetPlayerInventory().MoneyPlayer.ToString();        
+        totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
+        UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
     public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
@@ -308,6 +329,7 @@ public class UIShop : MonoBehaviour
         _currentInfoItem = Instantiate(weaponInfoPrefab, btnPosition, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
+
     public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
@@ -328,10 +350,16 @@ public class UIShop : MonoBehaviour
     // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
     public void CreateItemsSlotsForSale(int _number)
     {
+        for (int i = 0; i < items.Count; i++)
+        {
+            Destroy(items[i].gameObject);
+        }
+        items.Clear();
         for (int i = 0; i <_number; i++)
         {
             GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
-            itemSlotForSale.GetComponent<SlotItemForSaleData>().SlotNumber = i;           
+            SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
+            slot.SlotNumber = i;
             items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
         }
     }

@@ -90,6 +90,7 @@ public class PlayerHealth : LivingEntity
             {
                 var resultDamage = GetDamageAfterArmor(damage, _armor);
                 base.TakeHit(resultDamage, isCrit);
+                PlaySoundOfTakeHit();
                 TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
                 Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
             }
@@ -127,7 +128,6 @@ public class PlayerHealth : LivingEntity
         else
         {
             _probabilityOfDodge = probDodge;
-            Debug.Log("уклонение равно = " + probDodge);
         }
     }
         
@@ -155,5 +155,22 @@ public class PlayerHealth : LivingEntity
         {
             return false;
         }
+    }
+
+    public override void AddHealth(float hp)
+    {
+        base.AddHealth(hp);
+        TemporaryMessageManager.Instance.AddMessageOnScreen("+" + ((int)hp).ToString(), this.gameObject.transform.position, Color.green);
+        DisplayHealth();
+    }
+
+    protected override void PlaySoundOfTakeHit()
+    {
+        base.PlaySoundOfTakeHit();
+    }
+
+    protected override void PlaySoundOfDeath()
+    {
+        base.PlaySoundOfDeath();
     }
 }

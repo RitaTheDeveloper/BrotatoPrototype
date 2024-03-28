@@ -9,6 +9,12 @@ public class EnemyShooterController : EnemyController
     [SerializeField] private float range;
 
     private Projectile _projectile;
+    private Transform _containerOfBullets;
+    public override void Start()
+    {
+        base.Start();
+        _containerOfBullets = GameObject.Find("Bullets").transform;
+    }
 
     private void Update()
     {
@@ -31,6 +37,7 @@ public class EnemyShooterController : EnemyController
         Vector3 position = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(position);
         _projectile = Instantiate(_projectilePrefab, _shootPoint.position, _shootPoint.rotation);
+        _projectile.transform.parent = _containerOfBullets;
         _projectile.SetRange(range);
         _projectile.SetDamage(damage);        
     }

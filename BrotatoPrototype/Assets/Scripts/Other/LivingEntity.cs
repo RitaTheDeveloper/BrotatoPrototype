@@ -21,8 +21,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         if (regenOn && health < startingHealth && !dead && health > 0f)
         {
-            HpRegen();
-            
+            HpRegen();            
         }
     }
 
@@ -48,7 +47,34 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         dead = true;
+        PlaySoundOfDeath();
         Destroy(gameObject);       
     }
+
+    public virtual void AddHealth(float hp)
+    {
+        if(!dead && health < startingHealth)
+        {
+            health += hp;
+            if (health > startingHealth)
+            {
+                health = startingHealth;
+            }
+        }
+    }
+
+    protected virtual void PlaySoundOfDeath()
+    {
+
+    }
     
+    protected virtual void PlaySoundOfTakeHit()
+    {
+
+    }
+
+    protected virtual void PlaySoundOfCrit()
+    {
+
+    }
 }
