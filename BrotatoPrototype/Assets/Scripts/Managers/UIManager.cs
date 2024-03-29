@@ -201,11 +201,17 @@ public class UIManager : MonoBehaviour
 
     private void PlaySoundOfButtonPress()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
     }
 
     private void PlaySoundOfLevelUp()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("LevelUp");
+        }
     }
 }

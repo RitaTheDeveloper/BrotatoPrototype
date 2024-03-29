@@ -22,6 +22,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool knockBack = false;
     [SerializeField] protected float repulsiveForce = 15f;
 
+    [Tooltip("Название типа звуков")]
+    [SerializeField] public string soundName = "default";
+
     [Space]
     [SerializeField] protected Animator animator;
     [SerializeField] protected float timeOfAttack = 0.5f; // for sword это время нужно не хардкордить и анимацию ускорять, когда ускоряем
@@ -57,7 +60,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Attack()
     {
-
+        PlaySoundAttack();
     }
 
     protected void FindTheNearestEnemy()
@@ -156,6 +159,14 @@ public class Weapon : MonoBehaviour
         else
         {
             _currentTimeOfAttack = timeOfAttack;
+        }
+    }
+
+    private void PlaySoundAttack()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play(soundName, this.gameObject.transform.position);
         }
     }
 }

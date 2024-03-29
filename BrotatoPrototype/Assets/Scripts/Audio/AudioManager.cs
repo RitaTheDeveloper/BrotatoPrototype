@@ -17,6 +17,12 @@ public class AudioManager : MonoBehaviour
     [Tooltip("Контроллеры звука позиционные")]
     [SerializeField] public List<PositionalSoundController> PositionalSoundControllers;
 
+    [Tooltip("Контроллер передвижения ступы")]
+    [SerializeField] public BackgroundSoundController MovementSoundController;
+
+    [Tooltip("Контроллер звука фоновой музыки магазина")]
+    [SerializeField] public BackgroundSoundController ShopMusicController;
+
     private Dictionary<string, NonPositionalSoundController> NonPositionalSounds = new Dictionary<string, NonPositionalSoundController>();
     private Dictionary<string, PositionalSoundController> PositionalSounds = new Dictionary<string, PositionalSoundController>();
 
@@ -47,6 +53,36 @@ public class AudioManager : MonoBehaviour
         if (PositionalSounds.ContainsKey(name))
         {
             PositionalSounds[name].PlaySound(position);
+        }
+    }
+
+    public void PlayMovement(bool isMoving)
+    {
+        if (MovementSoundController != null)
+        {
+            if (isMoving)
+            {
+                MovementSoundController.PlaySound();
+            }
+            else
+            {
+                MovementSoundController.StopSound();
+            }
+        }
+    }
+
+    public void PlayShopBackGround(bool isPlaying)
+    {
+        if (ShopMusicController != null)
+        {
+            if (isPlaying)
+            {
+                ShopMusicController.PlaySound();
+            }
+            else
+            {
+                ShopMusicController.StopSound();
+            }
         }
     }
 }

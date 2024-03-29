@@ -38,6 +38,8 @@ GameObject:
   - component: {fileID: 2955641043654727790}
   - component: {fileID: 6727748258952426123}
   - component: {fileID: 8415991911421997906}
+  - component: {fileID: 4720803467904782560}
+  - component: {fileID: 6936805007928143017}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -103,6 +105,8 @@ MonoBehaviour:
   - {fileID: 7481374568907146659}
   - {fileID: 4319353938087964024}
   - {fileID: 7832664392224166379}
+  MovementSoundController: {fileID: 4720803467904782560}
+  ShopMusicController: {fileID: 6936805007928143017}
 --- !u!114 &6568563548530690067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,4 +712,51 @@ MonoBehaviour:
     loop: 0
   delay: 0
   audioMixerGroup: {fileID: -8122511454827069929, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &4720803467904782560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179bc461344550748a5fec2418b38f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: StupaMovement
+  soundSources:
+  - soundName: StupaMovement1
+    clip: {fileID: 8300000, guid: 31f925842b770a849bf9c5059ccd832d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - soundName: StupaMovement1
+    clip: {fileID: 8300000, guid: 49c9902a18cd3184aa5f7c1055ac2c8b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  audioMixerGroup: {fileID: -8770397144247471559, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &6936805007928143017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993265219761638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179bc461344550748a5fec2418b38f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: ShopBackGroud
+  soundSources:
+  - soundName: ShopBackGroud1
+    clip: {fileID: 8300000, guid: ed053a9d5c0f6704dbc4d685420b53b4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  audioMixerGroup: {fileID: -1285113098953607318, guid: 4d62165522bb0d34c96026611e34eb2c,
     type: 2}
