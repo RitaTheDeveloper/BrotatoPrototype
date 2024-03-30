@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool GameIsOver { get { return _gameIsOver; } }
 
     public int WaveCounter { get => _waveCounter; }
+    public GameObject[] PlayerPrefabs { get => playerPrefabs; }
 
     private void Awake()
     {

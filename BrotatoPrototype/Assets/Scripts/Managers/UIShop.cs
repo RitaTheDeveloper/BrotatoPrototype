@@ -387,6 +387,7 @@ public class UIShop : MonoBehaviour
 
     public void UpdateUICharacteristics()
     {
-        characteristicsUI.UpdateCharacterisctics();
+        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+        characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
     }
 }

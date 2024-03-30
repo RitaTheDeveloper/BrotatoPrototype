@@ -22,13 +22,13 @@ public class CharacteristicsUI : MonoBehaviour
 
     private void Start()
     {        
-        UpdateCharacterisctics();
+       // UpdateCharacterisctics();
     }
 
-    public void UpdateCharacterisctics()
-    {
-        _playerCharacteristics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacteristics>();
+    
 
+    public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
+    {       
         //for maxHp
         parameterOfMaxHp.text = _playerCharacteristics.CurrentMaxHp.ToString();
 
