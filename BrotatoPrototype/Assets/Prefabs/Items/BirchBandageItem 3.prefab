@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -8907051537149127036}
   - component: {fileID: 4473149512147709832}
   - component: {fileID: 2964432388240897800}
-  - component: {fileID: 5246724346679992293}
+  - component: {fileID: -1560427816102157758}
   m_Layer: 0
-  m_Name: FourExampleItem
+  m_Name: BirchBandageItem 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d8a93082989aa498960065a38de2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdItem: FourExampleItem
+  IdItem: FistItem
   CharacteristicsItem: {fileID: 2964432388240897800}
-  ShopInfoItem: {fileID: 5246724346679992293}
+  ShopInfoItem: {fileID: -1560427816102157758}
 --- !u!222 &4473149512147709832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74,19 +74,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: -2
+  _startMaxHp: 10
   _startHpRegen: 0
   _startMoveSpeed: 0
   _startMagnetDistance: 0
   _startAttackSpeedPercentage: 0
-  _startDamagePercentage: 0
+  _startDamagePercentage: 5
   _startMelleeDamage: 0
   _startRangedDamage: 0
-  _startCritChancePercentage: 22
-  _startArmor: 20
+  _startCritChancePercentage: 0
+  _startArmor: 0
   _startProbabilityOfDodge: 0
   _startLifeStealPercentage: 0
---- !u!114 &5246724346679992293
+--- !u!114 &-1560427816102157758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,14 +98,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdWeapon: fouritem
-  Price: 100
-  DiscountProcent: 55
-  LevelItem: {fileID: 2311731021754216914, guid: 66775a3df39472143b9f0d3820a5599c,
+  IdWeapon: birch_bandage_3
+  Price: 50
+  DiscountProcent: 50
+  LevelItem: {fileID: 7787498756051029337, guid: 4784f5abcf2f41b45bfb78b809b96ef2,
     type: 3}
-  MinWave: 5
-  NameWeapon: "\u041F\u0440\u0435\u0434\u043C\u0435\u0442 4"
-  TypeWeapon: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439"
-  Description: "+ 22 \u043A\u0440\u0438\u0442 \u0448\u0430\u043D\u0441, +20 \u043A
-    \u0431\u0440\u043E\u043D\u0435, - 2 \u043A \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044E"
-  IconWeapon: {fileID: 21300000, guid: d1e0b8b043cc30b4ca7dae9c27dd0cb0, type: 3}
+  MinWave: 1
+  NameWeapon: "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u044B\u0439 \u0431\u0438\u043D\u0442
+    3"
+  TypeWeapon: "\u041E\u0447\u0435\u043D\u044C \u0440\u0435\u0434\u043A\u0438\u0439"
+  Description: "+10 \u043A \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044E, + 5%
+    \u043A \u0443\u0440\u043E\u043D\u0443"
+  IconWeapon: {fileID: 21300000, guid: 04bc2205c34feba4685b0827dac62a41, type: 3}
