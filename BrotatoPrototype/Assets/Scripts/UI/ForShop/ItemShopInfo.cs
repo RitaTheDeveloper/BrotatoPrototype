@@ -41,17 +41,17 @@ public class ItemShopInfo : MonoBehaviour
     private void Awake()
     {
         IdWeapon = gameObject.name;
-        DisplayCharacteristicsOfWeapon();
     }
 
-    private void DisplayCharacteristicsOfWeapon()
+    public void DisplayCharacteristicsOfWeapon()
     {
         Debug.Log("узнать характеристики оружия");
         Weapon weapon = GetComponent<Weapon>();
         if (weapon)
         {
             Description = "урон: " + weapon.StartDamage;
-            Debug.Log("урон " + weapon.StartDamage);
+            //Debug.Log("урон " + weapon.StartDamage);
+            //damage = weapon.StartDamage.ToString();
         }
     }
 }
