@@ -10,6 +10,7 @@ public class WaveController : MonoBehaviour
     private float _currentTime;
     private bool _stopTime;
     private bool _soundStart = false;
+    float timerTick = 0;
 
     private List<EnemySpawner> _enemySpawners;
 
@@ -34,8 +35,13 @@ public class WaveController : MonoBehaviour
             UIManager.instance.ShowTime(_currentTime);
             if (_currentTime <= 5 && !_soundStart)
             {
-                _soundStart = true;
-                PlaySoundEndWave();
+                if (timerTick <= 0)
+                {
+                    PlaySoundEndWave();
+                    timerTick = 1;
+                }
+                else
+                    timerTick -= Time.deltaTime;
             }
         }
         else

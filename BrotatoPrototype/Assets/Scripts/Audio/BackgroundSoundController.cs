@@ -49,7 +49,7 @@ public class BackgroundSoundController : MonoBehaviour
 
     public void StopSound()
     {
-        if (soundSources != null)
+        if (movementSource != null)
         {
             movementSource.Stop();
             Destroy(movementSource);
