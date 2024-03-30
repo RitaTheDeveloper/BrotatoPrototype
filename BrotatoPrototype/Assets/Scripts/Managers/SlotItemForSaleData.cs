@@ -51,5 +51,5 @@ public class SlotItemForSaleData : MonoBehaviour
     {
         pot.SetActive(true);
         buyBtn.gameObject.SetActive(true);
-    }
+    }   
 }

@@ -29,8 +29,10 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform canvas;
     [SerializeField] private float XmovePosOfInfoPanel;
     [SerializeField] private float YmovePosOfInfoPanel;
+    [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
+    [SerializeField] private int maxAmountOfItems = 16;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -136,8 +138,8 @@ public class UIShop : MonoBehaviour
         DestroyAllSlotsForItems();
 
         int count = shopController.GetInventory().Count;
-        if (count < 16)
-            count = 16;
+        if (count < maxAmountOfItems)
+            count = maxAmountOfItems;
 
         for (int i = 0; i < count; i++)
         {
@@ -331,18 +333,18 @@ public class UIShop : MonoBehaviour
     public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
-        btnPosition.x += XmovePosOfInfoPanel;
-        btnPosition.y += YmovePosOfInfoPanel;
-        _currentInfoItem = Instantiate(weaponInfoPrefab, btnPosition, Quaternion.identity, canvas);
+        //btnPosition.x += XmovePosOfInfoPanel;
+        //btnPosition.y += YmovePosOfInfoPanel;
+        _currentInfoItem = Instantiate(weaponInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
 
     public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
-        btnPosition.x += XmovePosOfInfoPanel;
-        btnPosition.y += YmovePosOfInfoPanel;
-        _currentInfoItem = Instantiate(itemInfoPrefab, btnPosition, Quaternion.identity, canvas);
+        //btnPosition.x += XmovePosOfInfoPanel;
+        //btnPosition.y += YmovePosOfInfoPanel;
+        _currentInfoItem = Instantiate(itemInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 
