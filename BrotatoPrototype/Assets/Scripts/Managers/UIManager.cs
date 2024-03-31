@@ -69,10 +69,22 @@ public class UIManager : MonoBehaviour
     {
         AllOff();
         GameManager.instance.StartNextWave();
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayBackgroundMusic();
+        }
     }
 
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayShopMusic();
+        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
@@ -117,6 +129,10 @@ public class UIManager : MonoBehaviour
 
     public void Win()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);
@@ -124,6 +140,10 @@ public class UIManager : MonoBehaviour
 
     public void Lose()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);

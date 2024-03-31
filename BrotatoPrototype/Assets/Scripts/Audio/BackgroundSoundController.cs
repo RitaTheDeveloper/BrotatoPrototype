@@ -45,15 +45,17 @@ public class BackgroundSoundController : MonoBehaviour
             movementSource = source;
             source.Play();
         }
+        else
+        {
+            movementSource.UnPause();
+        }
     }
 
     public void StopSound()
     {
         if (movementSource != null)
         {
-            movementSource.Stop();
-            Destroy(movementSource);
-            movementSource = null;
+            movementSource.Pause();
         }
     }
 }

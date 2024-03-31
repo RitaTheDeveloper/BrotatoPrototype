@@ -182,6 +182,14 @@ public class UIShop : MonoBehaviour
         CreateItemsSlotsForSale(shopController.GetSlotCount());
         shopController.PickItemsForSale();
         ShowItemsForSale();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayShopMusic();
+        }
     }
 
     public void LockSlot(int slotNumber)
