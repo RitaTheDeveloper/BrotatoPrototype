@@ -82,8 +82,6 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
-        if (stateMusicManager == StateMusicManager.Fight)
-            return;
         if (shopSource != null) {
             Destroy(shopSource);
             shopSource = null;
@@ -109,7 +107,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void PlayMainMenuSource() {
         if (stateMusicManager == StateMusicManager.MainMenu)
-            return;
+            if (mainMenuSource.isPlaying)
+                return;
         if (shopSource != null)
         {
             Destroy(shopSource);
@@ -139,7 +138,8 @@ public class BackgroundMusicManger : MonoBehaviour
     public void PlayShopMusic()
     {
         if (stateMusicManager == StateMusicManager.ShopMenu)
-            return;
+            if (shopSource.isPlaying)
+                return;
         if (mainMenuSource != null)
         {
             Destroy(mainMenuSource);
