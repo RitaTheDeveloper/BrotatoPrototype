@@ -103,6 +103,11 @@ public class PlayerCharacteristics : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         Debug.Log("обновить текущие характеристики");
         _currentMoveSpeed = _startMoveSpeed;
         _currentMaxHp = _startMaxHp;

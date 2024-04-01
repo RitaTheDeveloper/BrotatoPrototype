@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
 
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
+        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
@@ -80,13 +81,13 @@ public class UIManager : MonoBehaviour
         if (_numberOfLeveledUpForCurrentWave > 0)
         {
             AbilitySelectionPanelOn();
-            characteristicsUI.UpdateCharacterisctics();
+            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             _numberOfLeveledUpForCurrentWave--;
         }
         else
         {
             AbilitySelectionPanelOff();
-            characteristicsUI.UpdateCharacterisctics();
+            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             // открываем магазин
             OpenShop();
             nextWaveBtn.gameObject.SetActive(true);

@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Tier tier;
     [SerializeField] WeaponModifiers weaponModifiers;
     Dictionary<Tier, WeaponModifiers.Modifiers> modifiers = new Dictionary<Tier, WeaponModifiers.Modifiers>();
-        
+
     [Header("Настраиваемые параметры: ")]
     [Tooltip("дальность:")]
     [SerializeField] protected float attackRange;
@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     [Tooltip("кол-во атак в секунду:")]
     [SerializeField] protected float startAttackSpeed;
     [Tooltip("вероятность крит шанса:")]
-    [Range(0,1)]
+    [Range(0, 1)]
     [SerializeField] protected float startCritChance;
     [SerializeField] protected bool knockBack = false;
     [SerializeField] protected float repulsiveForce = 15f;
@@ -36,6 +36,11 @@ public class Weapon : MonoBehaviour
     protected PlayerCharacteristics playerCharacteristics;
     private float _startAnimationSpeed;
     protected float _currentTimeOfAttack;
+
+    public float AttackRange { get => attackRange; }
+    public float StartDamage { get => startDamage; }
+    public float StartAttackSpeed { get => startAttackSpeed;}
+    public float StartCritChance { get => startCritChance; }
 
     private void Awake()
     {

@@ -29,8 +29,10 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform canvas;
     [SerializeField] private float XmovePosOfInfoPanel;
     [SerializeField] private float YmovePosOfInfoPanel;
+    [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
-
+    [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
+    [SerializeField] private int maxAmountOfItems = 16;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -62,7 +64,7 @@ public class UIShop : MonoBehaviour
 
     public void SetWaveNumberText(int _waveNumber)
     {
-        waveNumberText.text = _waveNumber.ToString() + ")";
+        waveNumberText.text = "волна" + _waveNumber.ToString();
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
@@ -136,8 +138,8 @@ public class UIShop : MonoBehaviour
         DestroyAllSlotsForItems();
 
         int count = shopController.GetInventory().Count;
-        if (count < 16)
-            count = 16;
+        if (count < maxAmountOfItems)
+            count = maxAmountOfItems;
 
         for (int i = 0; i < count; i++)
         {
@@ -222,7 +224,7 @@ public class UIShop : MonoBehaviour
 
     public void DisplayLevelShop(int value)
     {
-        shopLevelValue.text = value.ToString();
+        shopLevelValue.text = "(уровень " + value.ToString() + ")";
     }
 
     public void RerollClick()
@@ -266,6 +268,7 @@ public class UIShop : MonoBehaviour
                 items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
+               // w.DisplayCharacteristicsOfWeapon();
                 items[i].description.text = w.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
@@ -277,7 +280,7 @@ public class UIShop : MonoBehaviour
                 items[i].textType.text = it.ShopInfoItem.TypeWeapon;
                 items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
-                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
+                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;               
                 items[i].description.text = it.ShopInfoItem.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
@@ -297,8 +300,9 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
-                    Destroy(items[i].gameObject);
-                    items.RemoveAt(i);
+                    //Destroy(items[i].gameObject);
+                    listOfPrefabsForItemsForSale[i].GetComponent<SlotItemForSaleData>().PotOff();
+                    //items.RemoveAt(i);
                     shopController.SoldSlot(slotNumber);
                 }
                 break;
@@ -309,9 +313,15 @@ public class UIShop : MonoBehaviour
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
+    private void DisplayItemSold(int index)
+    {
+        listOfPrefabsForItemsForSale[index].GetComponent<SlotItemForSaleData>().PotOff();
+    }
+
+
     public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
     {
-        numberOfWeapons.text = "(" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
+        numberOfWeapons.text = "оружия (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
@@ -324,18 +334,18 @@ public class UIShop : MonoBehaviour
     public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
-        btnPosition.x += XmovePosOfInfoPanel;
-        btnPosition.y += YmovePosOfInfoPanel;
-        _currentInfoItem = Instantiate(weaponInfoPrefab, btnPosition, Quaternion.identity, canvas);
+        //btnPosition.x += XmovePosOfInfoPanel;
+        //btnPosition.y += YmovePosOfInfoPanel;
+        _currentInfoItem = Instantiate(weaponInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
 
     public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
     {
         DestroyItemInfo();
-        btnPosition.x += XmovePosOfInfoPanel;
-        btnPosition.y += YmovePosOfInfoPanel;
-        _currentInfoItem = Instantiate(itemInfoPrefab, btnPosition, Quaternion.identity, canvas);
+        //btnPosition.x += XmovePosOfInfoPanel;
+        //btnPosition.y += YmovePosOfInfoPanel;
+        _currentInfoItem = Instantiate(itemInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 
@@ -350,22 +360,34 @@ public class UIShop : MonoBehaviour
     // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
     public void CreateItemsSlotsForSale(int _number)
     {
-        for (int i = 0; i < items.Count; i++)
-        {
-            Destroy(items[i].gameObject);
-        }
+        //for (int i = 0; i < items.Count; i++)
+        //{
+        //    Destroy(items[i].gameObject);
+        //}
+        //items.Clear();
+        //for (int i = 0; i <_number; i++)
+        //{
+        //    GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
+        //    SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
+        //    slot.SlotNumber = i;
+        //    items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
+        //}
+
         items.Clear();
-        for (int i = 0; i <_number; i++)
+        for (int i = 0; i < listOfPrefabsForItemsForSale.Count; i++)
         {
-            GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
-            SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
-            slot.SlotNumber = i;
-            items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
+            listOfPrefabsForItemsForSale[i].PotOff();
+        }
+        for (int i = 0; i < _number; i++)
+        {
+            items.Add(listOfPrefabsForItemsForSale[i]);
+            listOfPrefabsForItemsForSale[i].PotOn();
         }
     }
 
     public void UpdateUICharacteristics()
     {
-        characteristicsUI.UpdateCharacterisctics();
+        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+        characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
     }
 }
