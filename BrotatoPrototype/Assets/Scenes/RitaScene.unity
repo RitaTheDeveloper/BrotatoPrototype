@@ -6714,6 +6714,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 146747183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &921413536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4748170997334596878, guid: a177dfedfe5111448b5ad7b3f896dade,
+    type: 3}
+  m_PrefabInstance: {fileID: 1525678621}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4634fe82e8a3de4448e13b5e1037bd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &921987258 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1179521831396907913, guid: 261ee47c98b3c0d40ab000999dc3fb90,
@@ -7316,55 +7328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2593dfe3b1de045a7ec94ef62c2f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &949276457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 949276459}
-  - component: {fileID: 949276458}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &949276458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949276457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83085c4711dae2f45b301a43185b6c4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterAudioGroup: {fileID: 0}
-  NonPositionalSoundControllers: []
-  PositionalSoundControllers: []
-  MovementSoundController: {fileID: 0}
-  ShopMusicController: {fileID: 0}
---- !u!4 &949276459
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949276457}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952497134
 GameObject:
   m_ObjectHideFlags: 0
@@ -10541,6 +10504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 921413536}
+        m_TargetAssemblyTypeName: BackgroundMusicManger, Assembly-CSharp
+        m_MethodName: PlayBackgroundMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1356135253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11986,7 +11961,7 @@ PrefabInstance:
     - target: {fileID: 6993265219761638845, guid: def557d52f25ee04691c75946de6ca9a,
         type: 3}
       propertyPath: m_Name
-      value: AudioManager (1)
+      value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 8505731551077479395, guid: def557d52f25ee04691c75946de6ca9a,
         type: 3}
@@ -25790,7 +25765,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
-  - {fileID: 949276459}
   - {fileID: 1604242308}
   - {fileID: 1525678621}
   - {fileID: 1676732650}

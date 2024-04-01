@@ -46,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
         if (move != Vector3.zero)
         {
             Rotation(move);
-            PlaySoundOfMoving();
+            //PlaySoundOfMoving();
         }
         else
         {
-            StopSoundOfMoving();
+            //StopSoundOfMoving();
         }
     }
     

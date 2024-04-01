@@ -43,7 +43,7 @@ public class BackgroundMusicManger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayBackgroundMusic();
+        PlayMainMenuSource();
     }
 
     // Update is called once per frame
@@ -82,6 +82,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
+        if (stateMusicManager == StateMusicManager.Fight)
+            return;
         if (shopSource != null) {
             Destroy(shopSource);
             shopSource = null;
@@ -106,6 +108,8 @@ public class BackgroundMusicManger : MonoBehaviour
     }
 
     public void PlayMainMenuSource() {
+        if (stateMusicManager == StateMusicManager.MainMenu)
+            return;
         if (shopSource != null)
         {
             Destroy(shopSource);
@@ -120,6 +124,7 @@ public class BackgroundMusicManger : MonoBehaviour
         {
             mainMenuSource = gameObject.AddComponent<AudioSource>();
         }
+        stateMusicManager = StateMusicManager.MainMenu;
         if (menuMusic.Count == 0)
             return;
         int index = Random.Range(0, menuMusic.Count);
@@ -129,11 +134,12 @@ public class BackgroundMusicManger : MonoBehaviour
         mainMenuSource.loop = menuMusic[index]  .loop;
         mainMenuSource.outputAudioMixerGroup = backgroundMixer;
         mainMenuSource.Play();
-        stateMusicManager = StateMusicManager.MainMenu;
     }
 
     public void PlayShopMusic()
     {
+        if (stateMusicManager == StateMusicManager.ShopMenu)
+            return;
         if (mainMenuSource != null)
         {
             Destroy(mainMenuSource);
@@ -148,6 +154,7 @@ public class BackgroundMusicManger : MonoBehaviour
         {
             shopSource = gameObject.AddComponent<AudioSource>();
         }
+        stateMusicManager = StateMusicManager.ShopMenu;
         if (shopMusic.Count == 0)
             return;
         int index = Random.Range(0, shopMusic.Count);
@@ -157,6 +164,11 @@ public class BackgroundMusicManger : MonoBehaviour
         shopSource.loop = shopMusic[index].loop;
         shopSource.outputAudioMixerGroup = backgroundMixer;
         shopSource.Play();
-        stateMusicManager = StateMusicManager.ShopMenu;
+    }
+
+    public void ReloadManager()
+    {
+        stateMusicManager = StateMusicManager.Fight;
+        indexBackgroundMusic = 0;
     }
 }

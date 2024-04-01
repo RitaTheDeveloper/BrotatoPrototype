@@ -152,6 +152,10 @@ public class UIManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ReloadManager();
+        }
         PlaySoundOfButtonPress();
         AllOff();
         RemoveAllLevelUpElements();
