@@ -69,13 +69,25 @@ public class UIManager : MonoBehaviour
     {
         AllOff();
         GameManager.instance.StartNextWave();
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayBackgroundMusic();
+        }
     }
 
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
         PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayShopMusic();
+        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
-        Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
@@ -88,7 +100,7 @@ public class UIManager : MonoBehaviour
         {
             AbilitySelectionPanelOff();
             characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
-            // открываем магазин
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             OpenShop();
             nextWaveBtn.gameObject.SetActive(true);
         }
@@ -118,6 +130,10 @@ public class UIManager : MonoBehaviour
 
     public void Win()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);
@@ -125,6 +141,10 @@ public class UIManager : MonoBehaviour
 
     public void Lose()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);
@@ -172,7 +192,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayWaveNumber(int waveNumber)
     {
-        waveNumberTxt.text = "волна " + waveNumber;
+        waveNumberTxt.text = "пїЅпїЅпїЅпїЅпїЅ " + waveNumber;
     }
 
     public void DisplayLevel(int currentLvl, float XpPercentage)
@@ -202,11 +222,17 @@ public class UIManager : MonoBehaviour
 
     private void PlaySoundOfButtonPress()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
     }
 
     private void PlaySoundOfLevelUp()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("LevelUp");
+        }
     }
 }

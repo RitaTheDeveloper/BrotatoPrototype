@@ -184,6 +184,14 @@ public class UIShop : MonoBehaviour
         CreateItemsSlotsForSale(shopController.GetSlotCount());
         shopController.PickItemsForSale();
         ShowItemsForSale();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayShopMusic();
+        }
     }
 
     public void LockSlot(int slotNumber)
@@ -236,6 +244,7 @@ public class UIShop : MonoBehaviour
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForRerollTxt.text = shopController.GetRerollCost().ToString();
             ShowItemsForSale();
+            PlayRerollSound();
         }
     }
 
@@ -389,5 +398,29 @@ public class UIShop : MonoBehaviour
     {
         PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
         characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+    }
+
+    private void PlayRerollSound()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("RerollShop");
+        }
+    }
+
+    private void PlayBackgroundMusic()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayShopBackGround(true);
+        }
+    }
+
+    private void StopBackGroudMusic()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayShopBackGround(false);
+        }
     }
 }

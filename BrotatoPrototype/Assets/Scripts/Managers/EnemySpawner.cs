@@ -128,12 +128,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void PlaySoundOfMark()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("Xmark", this.gameObject.transform.position);
+        }
     }
 
     private void PlaySoundOfSpawnEnemy()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("Spawn", this.gameObject.transform.position);
+        }
     }
 
     private void DestroyMark(GameObject mark)

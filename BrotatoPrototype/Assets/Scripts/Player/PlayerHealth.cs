@@ -166,11 +166,14 @@ public class PlayerHealth : LivingEntity
 
     protected override void PlaySoundOfTakeHit()
     {
-        base.PlaySoundOfTakeHit();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("PlayerTakeHit");
+        }
     }
 
     protected override void PlaySoundOfDeath()
     {
-        base.PlaySoundOfDeath();
+        //Пока такого звука нет
     }
 }

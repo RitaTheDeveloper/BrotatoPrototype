@@ -48,7 +48,10 @@ public class PlayerMovement : MonoBehaviour
             Rotation(move);
             PlaySoundOfMoving();
         }
-
+        else
+        {
+            StopSoundOfMoving();
+        }
     }
     
     private void Rotation(Vector3 direction)
@@ -61,6 +64,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlaySoundOfMoving()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(true);
+        }
+    }
 
+    private void StopSoundOfMoving()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
     }
 }
