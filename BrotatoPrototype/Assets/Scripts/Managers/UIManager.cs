@@ -25,7 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIShop shop;
 
     [Header("for player:")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider maxhealthSlider;
+    [SerializeField] private Slider currentHealthSlider;
     [SerializeField] private TextMeshProUGUI healthTxt;
 
     [SerializeField] private Slider satietySlider;
@@ -182,7 +183,7 @@ public class UIManager : MonoBehaviour
         shop.gameObject.SetActive(false);
     }
 
-    public void DisplayHealth(float currentHp, float startHp)
+    public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
     {
         if (currentHp < 0)
         {
@@ -193,8 +194,9 @@ public class UIManager : MonoBehaviour
             currentHp = 1f;
         }
 
-        healthSlider.value = currentHp / startHp;
-        healthTxt.text = (int)currentHp + "/" + (int)startHp;
+        maxhealthSlider.value = (maxStartHp - startHp)/ maxStartHp;
+        currentHealthSlider.value = currentHp / startHp;
+        healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
     }
 
     public void DisplaySatiety(float currentSatiety, float startSatiety)

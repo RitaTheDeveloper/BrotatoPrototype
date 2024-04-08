@@ -25,9 +25,7 @@ public class CharacteristicsUI : MonoBehaviour
     {        
        // UpdateCharacterisctics();
     }
-
     
-
     public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
     {
         nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;

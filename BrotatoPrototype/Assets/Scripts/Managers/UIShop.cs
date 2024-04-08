@@ -64,7 +64,7 @@ public class UIShop : MonoBehaviour
 
     public void SetWaveNumberText(int _waveNumber)
     {
-        waveNumberText.text = "волна" + _waveNumber.ToString();
+        waveNumberText.text = "волна " + _waveNumber.ToString();
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
