@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
             playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
+            player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
             RemoveAllEnemies();
             RemoveAllBullets();
         }              

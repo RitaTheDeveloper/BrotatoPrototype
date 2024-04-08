@@ -82,8 +82,9 @@ GameObject:
   - component: {fileID: 6487190758592185756}
   - component: {fileID: -4992901862861600076}
   - component: {fileID: 1467946387292618942}
+  - component: {fileID: 610271406313924933}
   m_Layer: 7
-  m_Name: Player_Ivan_New_Model
+  m_Name: Player_Ivan
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +131,8 @@ MonoBehaviour:
   _startArmor: 2
   _startProbabilityOfDodge: 30
   _startLifeStealPercentage: 0
+  _startSatiety: 50
+  _startHunger: -20
 --- !u!143 &3096899062759002954
 CharacterController:
   m_ObjectHideFlags: 0
@@ -292,6 +295,18 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 817c5f0b61fa5f649937be6424cfd292, type: 3}
   player2d: {fileID: 21300000, guid: 1b3779a973cf2cf42a31f28c994b75f2, type: 3}
   nameHero: "\u0418\u0432\u0430\u043D \u0426\u0430\u0440\u0435\u0432\u0438\u0447"
+--- !u!114 &610271406313924933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707278682496988613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3485772002034192063
 PrefabInstance:
   m_ObjectHideFlags: 0

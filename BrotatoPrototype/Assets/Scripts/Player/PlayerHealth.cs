@@ -108,7 +108,7 @@ public class PlayerHealth : LivingEntity
 
     public void SetMaxHP()
     {
-        startingHealth = playerCharacteristics.CurrentMaxHp;
+        startingHealth = playerCharacteristics.CurrentMaxHp;       
     }
 
     public void SetProbabilityOfDodge()
@@ -175,5 +175,24 @@ public class PlayerHealth : LivingEntity
     protected override void PlaySoundOfDeath()
     {
         //Пока такого звука нет
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        health = SetHealthDependingOfSatiety();
+    }
+
+    public float SetHealthDependingOfSatiety()
+    {
+        float satiety = playerCharacteristics.CurrentSatiety / 100f;
+        if (satiety > 1) satiety = 1f;
+        float currentHealth = Mathf.Ceil(health * satiety);
+        if (currentHealth < 1f)
+        {
+            currentHealth = 1f;
+        }
+
+        return currentHealth;
     }
 }

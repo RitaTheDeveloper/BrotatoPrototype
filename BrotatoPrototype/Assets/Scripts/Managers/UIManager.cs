@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthTxt;
 
+    [SerializeField] private Slider satietySlider;
+    [SerializeField] private TextMeshProUGUI satietyTxt;
+
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
 
@@ -192,6 +195,12 @@ public class UIManager : MonoBehaviour
 
         healthSlider.value = currentHp / startHp;
         healthTxt.text = (int)currentHp + "/" + (int)startHp;
+    }
+
+    public void DisplaySatiety(float currentSatiety, float startSatiety)
+    {
+        satietySlider.value = currentSatiety / startSatiety;
+        satietyTxt.text = currentSatiety + "/" + startSatiety;
     }
 
     public void DisplayWaveNumber(int waveNumber)

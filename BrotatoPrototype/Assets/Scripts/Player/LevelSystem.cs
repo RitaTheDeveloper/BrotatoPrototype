@@ -15,8 +15,6 @@ public class LevelSystem : MonoBehaviour
     private PlayerCharacteristics playerCharacteristics;
     private PlayerInventory inventory;
 
-    private AudioSource audioSource;
-
     public int NumberOfLeveledUpForCurrentWave { get => numberOfLeveledUpForCurrentWave; set => numberOfLeveledUpForCurrentWave = value; }
 
     private void Start()
