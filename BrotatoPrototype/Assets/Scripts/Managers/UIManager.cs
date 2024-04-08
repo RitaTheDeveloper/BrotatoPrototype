@@ -196,7 +196,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayWaveNumber(int waveNumber)
     {
-        waveNumberTxt.text = "����� " + waveNumber;
+        waveNumberTxt.text = "волна " + waveNumber;
     }
 
     public void DisplayLevel(int currentLvl, float XpPercentage)
