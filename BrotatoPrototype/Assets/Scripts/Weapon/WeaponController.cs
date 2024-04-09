@@ -11,42 +11,25 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float radisOfWeaponHold = 3f;
     [SerializeField] private int maxNumberOfWeapons = 6;
     private Weapon equppiedGun;
+    List<GameObject> listOfWeaponHolds;
 
     private void Start()
-    {
-        //if (_startingGun != null)
-        //{
-        //    EquipGun(_startingGun);
-        //}
-        //SetWeapons(listOfWeapons);
+    {       
         EquipPlayer();
     }
-    //public void EquipGun(Weapon gunToEquip)
-    //{
-    //    if (equppiedGun != null)
-    //    {
-    //        Destroy(equppiedGun.gameObject);
-    //    }
-
-    //    equppiedGun = Instantiate(gunToEquip, _weaponHolds[0].position, _weaponHolds[0].rotation);
-    //    equppiedGun.transform.parent = _weaponHolds[0];
-    //}
-
 
     private void DestroyAllWeapons()
     {
         foreach (Transform weaponHolder in containerOfWeaponHolds)
         {
-            foreach (Transform child in weaponHolder)
-            {
-                Destroy(child.gameObject);
-            }
+           
+            Destroy(weaponHolder.gameObject);
         }
     }
 
     private List<GameObject> CreateListOfWeaponHolds(int amountOfWeapons)
     {
-        List<GameObject> listOfWeaponHolds = new List<GameObject>();
+        listOfWeaponHolds = new List<GameObject>();
         for (int i = 0; i < amountOfWeapons; i++)
         {            
             float angle = 360 / amountOfWeapons * i;

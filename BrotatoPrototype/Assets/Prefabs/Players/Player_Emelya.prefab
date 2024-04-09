@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 6472525962938035810}
   - component: {fileID: 7928375719160621464}
   - component: {fileID: -7883915719805395228}
+  - component: {fileID: -8086125469120082790}
+  - component: {fileID: -2872071167883006049}
   m_Layer: 7
   m_Name: Player_Emelya
   m_TagString: Player
@@ -66,6 +68,8 @@ MonoBehaviour:
   _startArmor: 2
   _startProbabilityOfDodge: 30
   _startLifeStealPercentage: 0
+  _startSatiety: 80
+  _startHunger: -15
 --- !u!143 &7562376633630764223
 CharacterController:
   m_ObjectHideFlags: 0
@@ -209,8 +213,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 400
-  _startWood: 400
+  _startMoney: 1000
+  _startWood: 1000
+--- !u!114 &-8086125469120082790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585661124780564198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960f999d3e7c5994ebb651782840cbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 817c5f0b61fa5f649937be6424cfd292, type: 3}
+  player2d: {fileID: 21300000, guid: e8e096cab9f56dc48bbfdc6a9d0d0592, type: 3}
+  nameHero: "\u0415\u043C\u0435\u043B\u044F"
+--- !u!114 &-2872071167883006049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585661124780564198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0

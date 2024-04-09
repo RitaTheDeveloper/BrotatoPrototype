@@ -14,8 +14,8 @@ public class PlayerHealth : LivingEntity
     private float _probabilityOfDodge;
     private float _armor;
     private float _lifeStealPercentage;
-
     private PlayerCharacteristics playerCharacteristics;
+    private float maxStartHealth;
 
     protected override void Start()
     {
@@ -75,7 +75,7 @@ public class PlayerHealth : LivingEntity
 
     public void DisplayHealth()
     {        
-        UIManager.instance.DisplayHealth(health, startingHealth);
+        UIManager.instance.DisplayHealth(health, startingHealth, maxStartHealth);
     }
 
     public override void TakeHit(float damage, bool isCrit)
@@ -108,7 +108,8 @@ public class PlayerHealth : LivingEntity
 
     public void SetMaxHP()
     {
-        startingHealth = playerCharacteristics.CurrentMaxHp;
+        maxStartHealth = playerCharacteristics.CurrentMaxHp;
+        startingHealth = SetStartHealthDependingOfSatiety();
     }
 
     public void SetProbabilityOfDodge()
@@ -166,11 +167,33 @@ public class PlayerHealth : LivingEntity
 
     protected override void PlaySoundOfTakeHit()
     {
-        base.PlaySoundOfTakeHit();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("PlayerTakeHit");
+        }
     }
 
     protected override void PlaySoundOfDeath()
     {
-        base.PlaySoundOfDeath();
+        //Пока такого звука нет
+    }
+
+    public override void Init()
+    {
+        startingHealth = SetStartHealthDependingOfSatiety();
+        base.Init();
+    }
+
+    public float SetStartHealthDependingOfSatiety()
+    {
+        float satiety = playerCharacteristics.CurrentSatiety / 100f;
+        if (satiety > 1) satiety = 1f;
+        float startHealth = Mathf.Ceil(maxStartHealth * satiety);
+        if (startHealth < 1f)
+        {
+            startHealth = 1f;
+        }
+
+        return startHealth;
     }
 }

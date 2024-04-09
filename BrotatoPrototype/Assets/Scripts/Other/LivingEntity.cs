@@ -25,7 +25,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void Init()
+    public virtual void Init()
     {
         health = startingHealth;
     }

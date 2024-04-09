@@ -25,8 +25,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIShop shop;
 
     [Header("for player:")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider maxhealthSlider;
+    [SerializeField] private Slider currentHealthSlider;
     [SerializeField] private TextMeshProUGUI healthTxt;
+
+    [SerializeField] private Slider satietySlider;
+    [SerializeField] private TextMeshProUGUI satietyTxt;
 
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
@@ -69,25 +73,38 @@ public class UIManager : MonoBehaviour
     {
         AllOff();
         GameManager.instance.StartNextWave();
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayBackgroundMusic();
+        }
     }
 
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
+        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayShopMusic();
+        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
-        Debug.Log("апнутых левелов = " + numberOfLeveledUpForCurrentWave);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
         {
             AbilitySelectionPanelOn();
-            characteristicsUI.UpdateCharacterisctics();
+            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             _numberOfLeveledUpForCurrentWave--;
         }
         else
         {
             AbilitySelectionPanelOff();
-            characteristicsUI.UpdateCharacterisctics();
-            // открываем магазин
+            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             OpenShop();
             nextWaveBtn.gameObject.SetActive(true);
         }
@@ -117,6 +134,10 @@ public class UIManager : MonoBehaviour
 
     public void Win()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);
@@ -124,6 +145,10 @@ public class UIManager : MonoBehaviour
 
     public void Lose()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuSource();
+        }
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
         menuBtn.SetActive(true);
@@ -131,6 +156,10 @@ public class UIManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ReloadManager();
+        }
         PlaySoundOfButtonPress();
         AllOff();
         RemoveAllLevelUpElements();
@@ -154,7 +183,7 @@ public class UIManager : MonoBehaviour
         shop.gameObject.SetActive(false);
     }
 
-    public void DisplayHealth(float currentHp, float startHp)
+    public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
     {
         if (currentHp < 0)
         {
@@ -165,13 +194,20 @@ public class UIManager : MonoBehaviour
             currentHp = 1f;
         }
 
-        healthSlider.value = currentHp / startHp;
-        healthTxt.text = (int)currentHp + "/" + (int)startHp;
+        maxhealthSlider.value = (maxStartHp - startHp)/ maxStartHp;
+        currentHealthSlider.value = currentHp / startHp;
+        healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
+    }
+
+    public void DisplaySatiety(float currentSatiety, float startSatiety)
+    {
+        satietySlider.value = currentSatiety / startSatiety;
+        satietyTxt.text = currentSatiety + "/" + startSatiety;
     }
 
     public void DisplayWaveNumber(int waveNumber)
     {
-        waveNumberTxt.text = "волна " + waveNumber;
+        waveNumberTxt.text = "РІРѕР»РЅР° " + waveNumber;
     }
 
     public void DisplayLevel(int currentLvl, float XpPercentage)
@@ -201,11 +237,17 @@ public class UIManager : MonoBehaviour
 
     private void PlaySoundOfButtonPress()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
     }
 
     private void PlaySoundOfLevelUp()
     {
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("LevelUp");
+        }
     }
 }

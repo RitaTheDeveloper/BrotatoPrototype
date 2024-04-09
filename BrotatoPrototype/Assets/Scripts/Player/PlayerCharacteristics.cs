@@ -31,7 +31,11 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startProbabilityOfDodge;
     [Header("% к краже жизни:")]
     [SerializeField] private float _startLifeStealPercentage;
-
+    [Header("Сытость:")]
+    [Range(0, 100)]
+    [SerializeField] private int _startSatiety = 100;
+    [Header("Голод:")]
+    [SerializeField] private int _startHunger; // каждую волну на это число уменьшается сытость
     private float _currentMaxHp;
     public float CurrentMaxHp
     {
@@ -101,7 +105,22 @@ public class PlayerCharacteristics : MonoBehaviour
     private float _currentLifeStealPercentage;
     public float CurrentLifeStealPercentage { get => _currentLifeStealPercentage; set => _currentLifeStealPercentage = value; }
 
+    private int _currentSatiety;
+    public int CurrentSatiety { 
+        get { return _currentSatiety; } 
+        set { _currentSatiety = value; }
+    }
+    public int CurrentHunger { get => _currentHunger; set => _currentHunger = value; }
+
+    private int _currentHunger;
+    
+   
     private void Awake()
+    {
+        Init();
+    }
+
+    public void Init()
     {
         Debug.Log("обновить текущие характеристики");
         _currentMoveSpeed = _startMoveSpeed;
@@ -115,6 +134,8 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentCritChancePercentage = _startCritChancePercentage;
         _currentArmor = _startArmor;
         _currentProbabilityOfDodge = _startProbabilityOfDodge;
+        _currentSatiety = _startSatiety;
+        _currentHunger = _startHunger;
     }
 
     public void LevelUp()
