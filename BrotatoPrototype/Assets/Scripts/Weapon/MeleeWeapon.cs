@@ -74,6 +74,7 @@ public class MeleeWeapon : Weapon
         _collider.enabled = true;
         _timer = 0;
         animator.SetTrigger("Hit");      
+        base.Attack();
     }
 
     protected override void SetDamage()

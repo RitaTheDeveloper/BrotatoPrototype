@@ -57,7 +57,7 @@ public class GunWeapon : Weapon
         {
             CreateBulletAndPassParametersToIt();
         }
-        
+        base.Attack();
     }
 
     protected override void RotateWeaponHolder()
