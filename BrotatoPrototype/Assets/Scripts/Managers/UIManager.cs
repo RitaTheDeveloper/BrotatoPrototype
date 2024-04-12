@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
             BackgroundMusicManger.instance.PlayShopMusic();
         }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
-        Debug.Log("������� ������� = " + numberOfLeveledUpForCurrentWave);
         waveCompletedMenu.SetActive(true);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
