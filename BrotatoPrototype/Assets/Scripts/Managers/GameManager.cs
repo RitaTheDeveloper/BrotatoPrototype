@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-
+        Destroy(GetComponent<SaveController>());
         SpawnPlayer(_heroIndex);
         _gameIsOver = false;
         _waveCounter = 0;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         _gameIsOver = true;
         _currentWave.StopWave();
         UIManager.instance.Lose();
+        SaveGameResult();
         Debug.Log("Game over!");
     }
 
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Win!");
         StopTime();
         UIManager.instance.Win();
+        SaveGameResult();
     }
 
     public void WaveCompleted()
@@ -165,5 +167,21 @@ public class GameManager : MonoBehaviour
     private void RemoveAllCurrency()
     {
         PoolObject.instance.RemoveAllObjectsFromScene();
+    }
+
+    private void SaveGameResult()
+    {
+        SaveController save =  gameObject.AddComponent<SaveController>();
+        save.LoadData();
+        SaveData data = save.GetData();
+        data.WaveEnded += _waveCounter;
+        save.SetData(data);
+        save.SaveData();
+        Destroy(save);
+    }
+
+    public void LoadData()
+    {
+        gameObject.AddComponent<SaveController>();
     }
 }
