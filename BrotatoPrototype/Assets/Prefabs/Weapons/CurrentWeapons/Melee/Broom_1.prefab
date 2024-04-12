@@ -45,8 +45,9 @@ GameObject:
   - component: {fileID: 8092324634713133421}
   - component: {fileID: 5381790498231860928}
   - component: {fileID: 8962991648516859570}
+  - component: {fileID: -3259963582610136068}
   m_Layer: 0
-  m_Name: Broom
+  m_Name: Broom_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,10 +89,12 @@ MonoBehaviour:
   startCritChance: 0.03
   knockBack: 0
   repulsiveForce: 15
+  percantageOfMelleDamage: 81.2
+  percantageOfRangedDamage: 0
+  soundName: default
   animator: {fileID: 8962991648516859570}
   timeOfAttack: 1.317
   nearestEnemy: {fileID: 0}
-  percantageOfMelleDamage: 81.2
 --- !u!54 &8092324634713133421
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,6 +164,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3259963582610136068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123432507728699766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: broom1
+  Price: 50
+  DiscountProcent: 10
+  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
+    type: 3}
+  MinWave: 0
+  NameWeapon: "\u041C\u0435\u0442\u043B\u0430 1"
+  TypeWeapon: "\u0431\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439"
+  Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
+    \u043E\u0440\u0443\u0436\u0438\u044F"
+  IconWeapon: {fileID: 21300000, guid: 2382237d3fdc1cc40b1d03bb2197b309, type: 3}
 --- !u!1001 &1789854968280745201
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,7 +21,12 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float startCritChance;
     [SerializeField] protected bool knockBack = false;
     [SerializeField] protected float repulsiveForce = 15f;
-
+    [Header("Скейл от ближнего боя")]
+    [Range(0, 100)]
+    [SerializeField] protected float percantageOfMelleDamage = 100;
+    [Header("Скейл от дальнего боя")]
+    [Range(0, 100)]
+    [SerializeField] protected float percantageOfRangedDamage = 0;
     [Tooltip("Название типа звуков")]
     [SerializeField] public string soundName = "default";
 
@@ -123,7 +128,13 @@ public class Weapon : MonoBehaviour
 
     protected virtual void SetDamage()
     {
-        
+        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
+        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
+        currentDamage = Mathf.Round(currentDamage);
+        if (currentDamage < 1)
+        {
+            currentDamage = 1f;
+        }
     }
 
     protected virtual void ReturnWeponHolderRotationToStarting()

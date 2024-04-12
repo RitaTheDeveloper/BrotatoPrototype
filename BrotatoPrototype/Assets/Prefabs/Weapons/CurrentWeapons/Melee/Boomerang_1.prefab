@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7696878722374683052}
   - component: {fileID: 1240685111400759269}
   - component: {fileID: 7198806080782976132}
+  - component: {fileID: 7419661980148232110}
   m_Layer: 0
-  m_Name: Boomerang
+  m_Name: Boomerang_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,10 +55,14 @@ MonoBehaviour:
   startDamage: 5
   startAttackSpeed: 1.6
   startCritChance: 0.03
+  knockBack: 0
+  repulsiveForce: 15
+  percantageOfMelleDamage: 0
+  percantageOfRangedDamage: 100
+  soundName: default
   animator: {fileID: 7696878722374683052}
   timeOfAttack: 0.983
   nearestEnemy: {fileID: 0}
-  percantageOfMelleDamage: 100
 --- !u!95 &7696878722374683052
 Animator:
   serializedVersion: 5
@@ -127,6 +132,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2297207, y: 0.5, z: 1.9702548}
   m_Center: {x: 0.19505411, y: 0, z: -0.38696438}
+--- !u!114 &7419661980148232110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277482707776159348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: boomerang1
+  Price: 50
+  DiscountProcent: 10
+  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
+    type: 3}
+  MinWave: 0
+  NameWeapon: "\u0431\u0443\u043C\u0435\u0440\u0430\u043D\u0433 1"
+  TypeWeapon: "\u0434\u0430\u043B\u044C\u043D\u0438\u0439 \u0431\u043E\u0439"
+  Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
+    \u043E\u0440\u0443\u0436\u0438\u044F"
+  IconWeapon: {fileID: 21300000, guid: 2382237d3fdc1cc40b1d03bb2197b309, type: 3}
 --- !u!1 &8971480477858436820
 GameObject:
   m_ObjectHideFlags: 0
