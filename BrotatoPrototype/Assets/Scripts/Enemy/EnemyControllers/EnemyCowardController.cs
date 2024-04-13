@@ -32,9 +32,12 @@ public class EnemyCowardController : EnemyController
 
     private void Chase()
     {
-        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        navMeshAgent.acceleration = 8f;
-        navMeshAgent.SetDestination(target.position);
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+            navMeshAgent.acceleration = 8f;
+            navMeshAgent.SetDestination(target.position);
+        }        
     }
 
     private void Run()
