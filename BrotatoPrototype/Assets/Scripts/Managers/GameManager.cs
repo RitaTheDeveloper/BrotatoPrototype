@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
+        Debug.Log("начинаем первую волну");
         _waves[0].StartWave();
         //AudioManager.instance.Play("Theme");
     }
