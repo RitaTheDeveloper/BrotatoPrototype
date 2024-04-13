@@ -91,6 +91,9 @@ public class SettingsUI : MonoBehaviour
         saveData.MusicSondVolume = MusicSlider.value;
         saveData.SFXVolume = SFXSlider.value;
 
+        saveController.SetData(saveData);
+        saveController.SaveData();
+
         Destroy(saveController);
     }
 }
