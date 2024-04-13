@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
 
+    [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private GameObject waveCompletedMenu;
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         AllOff();
+        menuWithHeroSelection.SetActive(true);
     }
 
     public void ShowTime(float currentTime)
@@ -168,7 +170,11 @@ public class UIManager : MonoBehaviour
 
     public void OnClickMenu()
     {
-        SceneManager.LoadScene(0);
+        // SceneManager.LoadScene(0);
+        AllOff();
+        RemoveAllLevelUpElements();
+        GameManager.instance.DestroyGameScene();
+        menuWithHeroSelection.SetActive(true);
     }
 
     private void AllOff()
@@ -180,6 +186,7 @@ public class UIManager : MonoBehaviour
         menuBtn.SetActive(false);
         nextWaveBtn.gameObject.SetActive(false);
         shop.gameObject.SetActive(false);
+        menuWithHeroSelection.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
