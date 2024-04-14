@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GunWeapon : Weapon
 {
-    [Range(0, 100)]
-    [SerializeField] private float percantageOfRangedDamage = 100;
     [SerializeField] private Transform _muzzle;
     [Tooltip("Префаб пули")]
     [SerializeField] private Projectile _projectile;
@@ -72,15 +70,7 @@ public class GunWeapon : Weapon
 
     protected override void SetDamage()
     {
-        base.SetDamage();
-        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f;
-        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
-        currentDamage = Mathf.Round(currentDamage);
-        if(currentDamage < 1)
-        {
-            currentDamage = 1f;
-        }
-
+        base.SetDamage();       
     }
 
     private void CreateBulletAndPassParametersToIt()

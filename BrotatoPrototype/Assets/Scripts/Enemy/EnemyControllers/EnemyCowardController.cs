@@ -10,27 +10,34 @@ public class EnemyCowardController : EnemyController
 
     private void Update()
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        if (target)
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance >= _distanceFromPlayer + distanceDelay)
-        {
-            Chase();
+            if (distance >= _distanceFromPlayer + distanceDelay)
+            {
+                Chase();
+            }
+            //else if (distance >=_distanceFromPlayer && distance < _distanceFromPlayer + distanceDelay)
+            //{
+            //    navMeshAgent.speed = 0f;
+            //}
+            else if (distance < _distanceFromPlayer)
+            {
+                Run();
+            }
         }
-        //else if (distance >=_distanceFromPlayer && distance < _distanceFromPlayer + distanceDelay)
-        //{
-        //    navMeshAgent.speed = 0f;
-        //}
-        else if (distance < _distanceFromPlayer)
-        {
-            Run();
-        }
+        
     }
 
     private void Chase()
     {
-        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        navMeshAgent.acceleration = 8f;
-        navMeshAgent.SetDestination(target.position);
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+            navMeshAgent.acceleration = 8f;
+            navMeshAgent.SetDestination(target.position);
+        }        
     }
 
     private void Run()

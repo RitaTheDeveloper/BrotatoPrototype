@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeWeapon : Weapon
-{
-    [Range(0, 100)]
-    [SerializeField] private float percantageOfMelleDamage = 100;
-    
-
+{    
     protected float _nextShotTime;
     private bool isCritDamage = false;
     protected float _timer;
@@ -80,13 +76,6 @@ public class MeleeWeapon : Weapon
     protected override void SetDamage()
     {
         base.SetDamage();
-        var dmg = startDamage + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
-        currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
-        currentDamage = Mathf.Round(currentDamage);
-        if (currentDamage < 1)
-        {
-            currentDamage = 1f;
-        }
     }
 
     private void OnTriggerEnter(Collider other)

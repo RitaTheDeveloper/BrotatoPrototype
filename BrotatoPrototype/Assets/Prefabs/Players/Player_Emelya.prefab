@@ -57,12 +57,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 160
+  _startMaxHp: 250
   _startHpRegen: 0
   _startMoveSpeed: 15
   _startMagnetDistance: 4
   _startAttackSpeedPercentage: 0
-  _startDamagePercentage: 200
+  _startDamagePercentage: 0
   _startMelleeDamage: 0
   _startRangedDamage: 0
   _startCritChancePercentage: 0
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnSpeed: 6
   model: {fileID: 1285206540107168066}
+  _tiltForce: 20
+  _tiltSpeed: 4
 --- !u!114 &2837174312046221313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +129,9 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 1168812276271969868}
   listOfWeapons:
-  - {fileID: 2988310641036012103, guid: e27c53cb6f07170469e92028d34dce3b, type: 3}
+  - {fileID: 1581156715124364610, guid: 021535510c8e7b54da80cc09e82f4663, type: 3}
+  - {fileID: 1581156715124364610, guid: 021535510c8e7b54da80cc09e82f4663, type: 3}
+  - {fileID: 1581156715124364610, guid: 021535510c8e7b54da80cc09e82f4663, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &947180249327128963
@@ -214,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 1000
+  _startMoney: 100
   _startWood: 1000
 --- !u!114 &-8086125469120082790
 MonoBehaviour:
