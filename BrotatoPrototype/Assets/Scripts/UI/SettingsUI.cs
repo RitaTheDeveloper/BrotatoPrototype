@@ -25,34 +25,33 @@ public class SettingsUI : MonoBehaviour
 
     private void SetMasterVolume()
     {
-        MasterAudioMixer.audioMixer.SetFloat(MasterAudioMixer.name, MasterSlider.value);
+        MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", MasterSlider.value);
     }
 
     private void SetMusicVolume()
     {
-        MusicAudioMixer.audioMixer.SetFloat(MusicAudioMixer.name, MusicSlider.value);
+        MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", MusicSlider.value);
     }
 
     private void SetSFXVolume()
     {
-        SFXAudioMixer.audioMixer.SetFloat(SFXAudioMixer.name, SFXSlider.value);
+        SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", SFXSlider.value);
     }
 
     private void Awake()
     {
         instance = this;
 
-        InitSoundsVolume();
 
         MasterSlider.onValueChanged.AddListener(delegate { SetMasterVolume(); });
         MusicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
-        MusicSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
+        SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        InitSoundsVolume();
     }
 
     // Update is called once per frame
@@ -95,5 +94,6 @@ public class SettingsUI : MonoBehaviour
         saveController.SaveData();
 
         Destroy(saveController);
+        gameObject.SetActive(false);
     }
 }
