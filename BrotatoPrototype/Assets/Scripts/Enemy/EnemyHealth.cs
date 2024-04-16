@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class EnemyHealth : LivingEntity
 {
     private float xpForKill;
     [SerializeField] private GameObject dieEffecrt;
-    private AudioSource audioSource;
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         startingHealth = GetComponent<UnitParameters>().CurrentHp;
     }
 
@@ -49,17 +48,16 @@ public class EnemyHealth : LivingEntity
 
     public override void TakeHit(float damage, bool isCrit)
     {
-        
+
         if (isCrit)
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString() + "!", this.gameObject.transform.position, Color.yellow, 0.5f, 20);
-            PlaySoundOfTakeHit();
-
+            PlaySoundOfCrit();
         }
         else
         {
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-            PlaySoundOfCrit();
+            PlaySoundOfTakeHit();
         }
         base.TakeHit(damage, isCrit);
     }
@@ -73,16 +71,25 @@ public class EnemyHealth : LivingEntity
 
     protected override void PlaySoundOfTakeHit()
     {
-        base.PlaySoundOfTakeHit();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("Hit", this.gameObject.transform.position);
+        }
     }
 
     protected override void PlaySoundOfCrit()
     {
-        base.PlaySoundOfCrit();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("CriticalHit", this.gameObject.transform.position);
+        }
     }
 
     protected override void PlaySoundOfDeath()
     {
-        base.PlaySoundOfDeath();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("EnemyDeath", this.gameObject.transform.position);
+        }
     }
 }

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _lootList;
+    [SerializeField] private Loot _loot;
+    [SerializeField] private int amountOfLoot;
 
     public void SpawnLoot()
     {
-        for(int i = 0; i < _lootList.Length; i++)
-        {
-            float randomDelay = Random.Range(-3f, 3f);
-            Vector3 position = new Vector3(transform.position.x + randomDelay, _lootList[i].transform.position.y, transform.position.z + randomDelay);
-            Instantiate(_lootList[i], position, Quaternion.identity);
-        }
+        float randomDelay = Random.Range(-3f, 3f);
+        Vector3 position = new Vector3(transform.position.x + randomDelay, _loot.transform.position.y, transform.position.z + randomDelay);
+        var loot = Instantiate(_loot, position, Quaternion.identity);
+        loot.SetAmountOfLoot(amountOfLoot);
     }
 }

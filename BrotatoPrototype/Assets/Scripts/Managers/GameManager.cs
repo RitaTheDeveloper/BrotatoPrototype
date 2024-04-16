@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool GameIsOver { get { return _gameIsOver; } }
 
     public int WaveCounter { get => _waveCounter; }
+    public GameObject[] PlayerPrefabs { get => playerPrefabs; }
 
     private void Awake()
     {
@@ -37,8 +38,9 @@ public class GameManager : MonoBehaviour
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
+        Debug.Log("начинаем первую волну");
         _waves[0].StartWave();
-        AudioManager.instance.Play("Theme");
+        //AudioManager.instance.Play("Theme");
     }
     
     public void SetHeroIndex(int index)
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
             playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
+            player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
             RemoveAllEnemies();
             RemoveAllBullets();
         }              

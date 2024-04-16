@@ -18,16 +18,17 @@ public class CharacteristicsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI parameterOfArmor;
     [SerializeField] private TextMeshProUGUI parameterOfMagnetDistance;
 
+    [SerializeField] private TextMeshProUGUI nameHeroTxt;
     private PlayerCharacteristics _playerCharacteristics;
 
     private void Start()
     {        
-        UpdateCharacterisctics();
+       // UpdateCharacterisctics();
     }
-
-    public void UpdateCharacterisctics()
+    
+    public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
     {
-        _playerCharacteristics = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacteristics>();
+        nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;
 
         //for maxHp
         parameterOfMaxHp.text = _playerCharacteristics.CurrentMaxHp.ToString();
