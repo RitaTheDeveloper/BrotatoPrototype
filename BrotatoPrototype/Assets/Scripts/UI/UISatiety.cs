@@ -8,10 +8,12 @@ public class UISatiety : MonoBehaviour
 {
     [SerializeField] private Slider satietySlider;
     [SerializeField] private TextMeshProUGUI satietyTxt;
+    [SerializeField] private GameObject pointer;
 
-    public void DisplaySatiety(float currentSatiety, float startSatiety)
+    public void DisplaySatiety(float currentSatiety, float startSatiety, bool isFull)
     {
         satietySlider.value = currentSatiety / startSatiety;
         satietyTxt.text = currentSatiety + "/" + startSatiety;
+        pointer.SetActive(!isFull);
     }
 }

@@ -9,12 +9,14 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int _startWood = 0;
     private int _currentMoney;
     private int _currentWood;
+    private int _amountOfWoodLifted;
 
     private PlayerCharacteristics playerCharacteristics;
 
     // Start is called before the first frame update
     void Start()
     {
+        ResetAmountOfWoodLifted();
         playerCharacteristics = GetComponent<PlayerCharacteristics>();
         ResetAllCurrencies();
         UIManager.instance.DisplayAmountOfCurrency(_currentMoney);
@@ -90,5 +92,21 @@ public class PlayerInventory : MonoBehaviour
     public int GetWood()
     {
         return _currentWood;
+    }
+
+    public int GetAmountOfFoodLifted()
+    {
+        return _amountOfWoodLifted;
+    }
+
+    public void WoodUp()
+    {
+        _amountOfWoodLifted++;
+        UIManager.instance.DisplayWoodUp(_amountOfWoodLifted);
+    }
+
+    public void ResetAmountOfWoodLifted()
+    {
+        _amountOfWoodLifted = 0;
     }
 }

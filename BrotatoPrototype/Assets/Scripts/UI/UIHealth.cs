@@ -9,6 +9,7 @@ public class UIHealth : MonoBehaviour
     [SerializeField] private Slider maxhealthSlider;
     [SerializeField] private Slider currentHealthSlider;
     [SerializeField] private TextMeshProUGUI healthTxt;
+    [SerializeField] private GameObject stub;
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
     {
@@ -21,7 +22,10 @@ public class UIHealth : MonoBehaviour
             currentHp = 1f;
         }
 
-        maxhealthSlider.value = (maxStartHp - startHp) / maxStartHp;
+        if (startHp == maxStartHp) stub.SetActive(false);
+        else stub.SetActive(true);
+
+        maxhealthSlider.value = Mathf.CeilToInt((maxStartHp - startHp) * 100f / maxStartHp) / 100f;
         currentHealthSlider.value = currentHp / startHp;
         healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
     }

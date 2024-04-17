@@ -7,5 +7,6 @@ public class FoodLoot : Loot
     protected override void AddLoot(GameObject other)
     {
         other.GetComponent<PlayerSatiety>().ChangeSatiety(amountOfLoot);
+        other.GetComponent<PlayerSatiety>().FoodUp();
     }
 }

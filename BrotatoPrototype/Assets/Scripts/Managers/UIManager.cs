@@ -21,7 +21,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject restartBtn;
     [SerializeField] private GameObject menuBtn;
     [SerializeField] private Transform levelUpMenu;
+    [SerializeField] private Transform foodAndWoodMenu;
     [SerializeField] private GameObject leveUpUiPrefab;
+    [SerializeField] private GameObject foodUpUiPrefab;
+    [SerializeField] private GameObject woodUpUiPrefab;
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
 
@@ -37,6 +40,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AllAbilities allAbilities;
 
     private int _numberOfLeveledUpForCurrentWave;
+    private GameObject _levelUp;
+    private GameObject _foodUp;
+    private GameObject _woodUp;
 
     private void Awake()
     {
@@ -160,7 +166,7 @@ public class UIManager : MonoBehaviour
         }
         PlaySoundOfButtonPress();
         AllOff();
-        RemoveAllLevelUpElements();
+        RemoveAllUpElements();
         GameManager.instance.Restart();
         shop.GetComponent<ShopController>().ResetShop();
     }
@@ -169,7 +175,7 @@ public class UIManager : MonoBehaviour
     {
         // SceneManager.LoadScene(0);
         AllOff();
-        RemoveAllLevelUpElements();
+        RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
         menuWithHeroSelection.SetActive(true);
     }
@@ -191,13 +197,12 @@ public class UIManager : MonoBehaviour
         foreach(UIHealth uIHealth in uIHealths)
         {
             uIHealth.DisplayHealth(currentHp, startHp, maxStartHp);
-        }
-        Debug.Log("обновить хп шкалы");
+        }        
     }
 
-    public void DisplaySatiety(float currentSatiety, float startSatiety)
+    public void DisplaySatiety(float currentSatiety, float startSatiety, bool isFull)
     {
-        uISatiety.DisplaySatiety(currentSatiety, startSatiety);
+        uISatiety.DisplaySatiety(currentSatiety, startSatiety, isFull);
     }
 
     public void DisplayWaveNumber(int waveNumber)
@@ -216,17 +221,70 @@ public class UIManager : MonoBehaviour
         amountOfCurrencyTxt.text = totalAmountOfCurrency.ToString();
     }
 
-    public void DisplayLevelUp()
+    public void DisplayLevelUp(int numberOfLevelUp)
     {
         PlaySoundOfLevelUp();
-        Instantiate(leveUpUiPrefab, levelUpMenu.transform);
+        if (numberOfLevelUp < 2)
+        {
+            _levelUp =  Instantiate(leveUpUiPrefab, levelUpMenu.transform);
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfLevelUp + "<sup>х</sup>";
+        }
+                
     }
 
-    public void RemoveAllLevelUpElements()
+    public void DisplayFoodUp(int numberOfFoodUp)
+    {
+        PlaySoundOfFoodUp();
+        if (numberOfFoodUp < 2)
+        {
+            _foodUp = Instantiate(foodUpUiPrefab, foodAndWoodMenu.transform);
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfFoodUp + "<sup>х</sup>";
+        }
+    }
+    public void DisplayWoodUp(int numberOfWoodUp)
+    {
+        PlaySoundOfWoodUp();
+        if (numberOfWoodUp < 2)
+        {
+            _woodUp = Instantiate(woodUpUiPrefab, foodAndWoodMenu.transform);
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfWoodUp + "<sup>х</sup>";
+        }
+    }
+
+    public void RemoveAllUpElements()
+    {
+        RemoveAllFoodUpAndWoodUp();
+        RemoveAllLevelUpElements();
+    }
+
+    private void RemoveAllLevelUpElements()
     {
         foreach(Transform levelUpElement in levelUpMenu.transform)
         {
             Destroy(levelUpElement.gameObject);
+        }
+    }
+
+    private void RemoveAllFoodUpAndWoodUp()
+    {
+        foreach (Transform upElement in foodAndWoodMenu.transform)
+        {
+            Destroy(upElement.gameObject);
         }
     }
 
@@ -243,6 +301,22 @@ public class UIManager : MonoBehaviour
         if (AudioManager.instance != null)
         {
             AudioManager.instance.Play("LevelUp");
+        }
+    }
+
+    private void PlaySoundOfFoodUp()
+    {
+        if (AudioManager.instance != null)
+        {
+            //
+        }
+    }
+
+    private void PlaySoundOfWoodUp()
+    {
+        if (AudioManager.instance != null)
+        {
+            //
         }
     }
 }
