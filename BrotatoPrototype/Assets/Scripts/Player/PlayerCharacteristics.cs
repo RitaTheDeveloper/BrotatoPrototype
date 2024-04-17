@@ -138,14 +138,6 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentHunger = _startHunger;
     }
 
-    public void LevelUp()
-    {
-        _currentMaxHp += 1;
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        playerHealth.SetMaxHP();
-        playerHealth.DisplayHealth();
-    }
-
     public void AddBonus(PlayerCharacteristics bonus)
     {
         _currentMaxHp += bonus._startMaxHp;

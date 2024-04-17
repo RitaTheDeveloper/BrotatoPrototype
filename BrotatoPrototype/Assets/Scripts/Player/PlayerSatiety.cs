@@ -23,7 +23,7 @@ public class PlayerSatiety : MonoBehaviour
         _playerCharacteristics = GetComponent<PlayerCharacteristics>();
         _currentSatiety = _playerCharacteristics.CurrentSatiety;
         Debug.Log("satiety = " + _currentSatiety);
-        UIManager.instance.DisplaySatiety(_currentSatiety, _startSatiety);
+        UIManager.instance.DisplaySatiety(_currentSatiety, _startSatiety);        
     }
 
     public void ChangeSatiety(int hunger)

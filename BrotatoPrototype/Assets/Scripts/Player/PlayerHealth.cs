@@ -193,7 +193,6 @@ public class PlayerHealth : LivingEntity
         {
             startHealth = 1f;
         }
-
         return startHealth;
     }
 }

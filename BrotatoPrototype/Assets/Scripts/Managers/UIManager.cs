@@ -26,12 +26,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIShop shop;
 
     [Header("for player:")]
-    [SerializeField] private Slider maxhealthSlider;
-    [SerializeField] private Slider currentHealthSlider;
-    [SerializeField] private TextMeshProUGUI healthTxt;
+    [SerializeField] private UIHealth [] uIHealths;
 
-    [SerializeField] private Slider satietySlider;
-    [SerializeField] private TextMeshProUGUI satietyTxt;
+    [SerializeField] private UISatiety uISatiety;
 
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
@@ -191,24 +188,16 @@ public class UIManager : MonoBehaviour
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
     {
-        if (currentHp < 0)
+        foreach(UIHealth uIHealth in uIHealths)
         {
-            currentHp = 0;
+            uIHealth.DisplayHealth(currentHp, startHp, maxStartHp);
         }
-        else if (currentHp > 0f && currentHp < 1f)
-        {
-            currentHp = 1f;
-        }
-
-        maxhealthSlider.value = (maxStartHp - startHp)/ maxStartHp;
-        currentHealthSlider.value = currentHp / startHp;
-        healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
+        Debug.Log("обновить хп шкалы");
     }
 
     public void DisplaySatiety(float currentSatiety, float startSatiety)
     {
-        satietySlider.value = currentSatiety / startSatiety;
-        satietyTxt.text = currentSatiety + "/" + startSatiety;
+        uISatiety.DisplaySatiety(currentSatiety, startSatiety);
     }
 
     public void DisplayWaveNumber(int waveNumber)
@@ -219,7 +208,7 @@ public class UIManager : MonoBehaviour
     public void DisplayLevel(int currentLvl, float XpPercentage)
     {
         levelSlider.value = XpPercentage;
-        levelTxt.text = "LV." + currentLvl;
+        levelTxt.text = "ур." + currentLvl;
     }
 
     public void DisplayAmountOfCurrency(int totalAmountOfCurrency)

@@ -32,7 +32,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;
+    [SerializeField] private int maxAmountOfItems = 16;    
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -319,6 +319,7 @@ public class UIShop : MonoBehaviour
         }
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+        UpdatePlayerScales();
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
@@ -392,6 +393,14 @@ public class UIShop : MonoBehaviour
             items.Add(listOfPrefabsForItemsForSale[i]);
             listOfPrefabsForItemsForSale[i].PotOn();
         }
+    }
+
+    public void UpdatePlayerScales()
+    {
+        GameObject player = GameManager.instance.player;
+        player.GetComponent<PlayerHealth>().Init();
+        player.GetComponent<PlayerHealth>().DisplayHealth();
+        player.GetComponent<PlayerSatiety>().ChangeSatiety(0);
     }
 
     public void UpdateUICharacteristics()

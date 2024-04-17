@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
             RemoveAllEnemies();
             RemoveAllBullets();
+            player.GetComponent<PlayerHealth>().Init();
+            player.GetComponent<PlayerHealth>().DisplayHealth();
         }              
     }
 
