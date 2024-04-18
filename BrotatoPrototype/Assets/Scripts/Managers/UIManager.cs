@@ -43,12 +43,14 @@ public class UIManager : MonoBehaviour
     private GameObject _levelUp;
     private GameObject _foodUp;
     private GameObject _woodUp;
+    private Color _startTimeColor;
 
     private void Awake()
     {
         instance = this;
         AllOff();
         menuWithHeroSelection.SetActive(true);
+        _startTimeColor = timeTxt.color;
     }
 
     public void ShowTime(float currentTime)
@@ -61,7 +63,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            timeTxt.color = Color.white;
+            timeTxt.color = _startTimeColor;
         }
 
         timeTxt.text = time.ToString();
