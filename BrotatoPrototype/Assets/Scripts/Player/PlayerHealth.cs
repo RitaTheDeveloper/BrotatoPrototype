@@ -76,6 +76,7 @@ public class PlayerHealth : LivingEntity
     public void DisplayHealth()
     {        
         UIManager.instance.DisplayHealth(health, startingHealth, maxStartHealth);
+        Debug.Log(health + ";" + startingHealth + ";" + maxStartHealth);
     }
 
     public override void TakeHit(float damage, bool isCrit)
@@ -193,7 +194,6 @@ public class PlayerHealth : LivingEntity
         {
             startHealth = 1f;
         }
-
         return startHealth;
     }
 }

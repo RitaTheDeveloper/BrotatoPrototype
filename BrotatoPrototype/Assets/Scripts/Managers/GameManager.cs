@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
             RemoveAllEnemies();
             RemoveAllBullets();
+            player.GetComponent<PlayerHealth>().Init();
+            player.GetComponent<PlayerHealth>().DisplayHealth();
         }              
     }
 
@@ -91,9 +93,12 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerHealth>().Init();
         player.GetComponent<PlayerHealth>().DisplayHealth();
         player.GetComponent<WeaponController>().EquipPlayer();
-        UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
-        UIManager.instance.RemoveAllLevelUpElements();
+        player.GetComponent<PlayerSatiety>().ResetAmountOfFoodLifted();
+        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLifted();
+        UIManager.instance.DisplayWaveNumber(_waveCounter + 1);        
+        UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();
+        RemoveAllLoot();
         ContinueTime();
         _currentWave = _waves[_waveCounter];
         _waves[_waveCounter].StartWave();
@@ -170,6 +175,13 @@ public class GameManager : MonoBehaviour
         PoolObject.instance.RemoveAllObjectsFromScene();
     }
 
+    private void RemoveAllLoot()
+    {
+        Transform lootContainer = GameObject.Find("Loot").transform;
+        foreach (Transform loot in lootContainer)
+        {
+            Destroy(loot.gameObject);
+        }
     private void SaveGameResult()
     {
         SaveController save =  gameObject.AddComponent<SaveController>();

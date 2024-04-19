@@ -7,5 +7,6 @@ public class WoodLoot : Loot
     protected override void AddLoot(GameObject other)
     {
         other.GetComponent<PlayerInventory>().ChangeWood(amountOfLoot);
+        other.GetComponent<PlayerInventory>().WoodUp();
     }
 }

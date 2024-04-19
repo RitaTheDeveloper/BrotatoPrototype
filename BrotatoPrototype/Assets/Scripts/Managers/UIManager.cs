@@ -14,24 +14,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private GameObject waveCompletedMenu;
-    [SerializeField] private Button nextWaveBtn;
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject restartBtn;
     [SerializeField] private GameObject menuBtn;
     [SerializeField] private Transform levelUpMenu;
+    [SerializeField] private Transform foodAndWoodMenu;
     [SerializeField] private GameObject leveUpUiPrefab;
+    [SerializeField] private GameObject foodUpUiPrefab;
+    [SerializeField] private GameObject woodUpUiPrefab;
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
 
     [Header("for player:")]
-    [SerializeField] private Slider maxhealthSlider;
-    [SerializeField] private Slider currentHealthSlider;
-    [SerializeField] private TextMeshProUGUI healthTxt;
+    [SerializeField] private UIHealth [] uIHealths;
 
-    [SerializeField] private Slider satietySlider;
-    [SerializeField] private TextMeshProUGUI satietyTxt;
+    [SerializeField] private UISatiety uISatiety;
 
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
@@ -40,12 +39,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AllAbilities allAbilities;
 
     private int _numberOfLeveledUpForCurrentWave;
+    private GameObject _levelUp;
+    private GameObject _foodUp;
+    private GameObject _woodUp;
+    private Color _startTimeColor;
 
     private void Awake()
     {
         instance = this;
         AllOff();
         menuWithHeroSelection.SetActive(true);
+        _startTimeColor = timeTxt.color;
     }
 
     public void ShowTime(float currentTime)
@@ -58,7 +62,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            timeTxt.color = Color.white;
+            timeTxt.color = _startTimeColor;
         }
 
         timeTxt.text = time.ToString();
@@ -107,7 +111,6 @@ public class UIManager : MonoBehaviour
             characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             // ��������� �������
             OpenShop();
-            nextWaveBtn.gameObject.SetActive(true);
         }
     }
 
@@ -163,7 +166,7 @@ public class UIManager : MonoBehaviour
         }
         PlaySoundOfButtonPress();
         AllOff();
-        RemoveAllLevelUpElements();
+        RemoveAllUpElements();
         GameManager.instance.Restart();
         shop.GetComponent<ShopController>().ResetShop();
     }
@@ -172,7 +175,7 @@ public class UIManager : MonoBehaviour
     {
         // SceneManager.LoadScene(0);
         AllOff();
-        RemoveAllLevelUpElements();
+        RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
         menuWithHeroSelection.SetActive(true);
     }
@@ -184,31 +187,21 @@ public class UIManager : MonoBehaviour
         restartBtn.SetActive(false);
         waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
-        nextWaveBtn.gameObject.SetActive(false);
         shop.gameObject.SetActive(false);
         menuWithHeroSelection.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
     {
-        if (currentHp < 0)
+        foreach(UIHealth uIHealth in uIHealths)
         {
-            currentHp = 0;
-        }
-        else if (currentHp > 0f && currentHp < 1f)
-        {
-            currentHp = 1f;
-        }
-
-        maxhealthSlider.value = (maxStartHp - startHp)/ maxStartHp;
-        currentHealthSlider.value = currentHp / startHp;
-        healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
+            uIHealth.DisplayHealth(currentHp, startHp, maxStartHp);
+        }        
     }
 
-    public void DisplaySatiety(float currentSatiety, float startSatiety)
+    public void DisplaySatiety(float currentSatiety, float startSatiety, bool isFull)
     {
-        satietySlider.value = currentSatiety / startSatiety;
-        satietyTxt.text = currentSatiety + "/" + startSatiety;
+        uISatiety.DisplaySatiety(currentSatiety, startSatiety, isFull);
     }
 
     public void DisplayWaveNumber(int waveNumber)
@@ -219,7 +212,7 @@ public class UIManager : MonoBehaviour
     public void DisplayLevel(int currentLvl, float XpPercentage)
     {
         levelSlider.value = XpPercentage;
-        levelTxt.text = "LV." + currentLvl;
+        levelTxt.text = "ур." + currentLvl;
     }
 
     public void DisplayAmountOfCurrency(int totalAmountOfCurrency)
@@ -227,17 +220,70 @@ public class UIManager : MonoBehaviour
         amountOfCurrencyTxt.text = totalAmountOfCurrency.ToString();
     }
 
-    public void DisplayLevelUp()
+    public void DisplayLevelUp(int numberOfLevelUp)
     {
         PlaySoundOfLevelUp();
-        Instantiate(leveUpUiPrefab, levelUpMenu.transform);
+        if (numberOfLevelUp < 2)
+        {
+            _levelUp =  Instantiate(leveUpUiPrefab, levelUpMenu.transform);
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _levelUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfLevelUp + "<sup>х</sup>";
+        }
+                
     }
 
-    public void RemoveAllLevelUpElements()
+    public void DisplayFoodUp(int numberOfFoodUp)
+    {
+        PlaySoundOfFoodUp();
+        if (numberOfFoodUp < 2)
+        {
+            _foodUp = Instantiate(foodUpUiPrefab, foodAndWoodMenu.transform);
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _foodUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfFoodUp + "<sup>х</sup>";
+        }
+    }
+    public void DisplayWoodUp(int numberOfWoodUp)
+    {
+        PlaySoundOfWoodUp();
+        if (numberOfWoodUp < 2)
+        {
+            _woodUp = Instantiate(woodUpUiPrefab, foodAndWoodMenu.transform);
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        }
+        else
+        {
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+            _woodUp.GetComponentInChildren<TextMeshProUGUI>().text = numberOfWoodUp + "<sup>х</sup>";
+        }
+    }
+
+    public void RemoveAllUpElements()
+    {
+        RemoveAllFoodUpAndWoodUp();
+        RemoveAllLevelUpElements();
+    }
+
+    private void RemoveAllLevelUpElements()
     {
         foreach(Transform levelUpElement in levelUpMenu.transform)
         {
             Destroy(levelUpElement.gameObject);
+        }
+    }
+
+    private void RemoveAllFoodUpAndWoodUp()
+    {
+        foreach (Transform upElement in foodAndWoodMenu.transform)
+        {
+            Destroy(upElement.gameObject);
         }
     }
 
@@ -254,6 +300,22 @@ public class UIManager : MonoBehaviour
         if (AudioManager.instance != null)
         {
             AudioManager.instance.Play("LevelUp");
+        }
+    }
+
+    private void PlaySoundOfFoodUp()
+    {
+        if (AudioManager.instance != null)
+        {
+            //
+        }
+    }
+
+    private void PlaySoundOfWoodUp()
+    {
+        if (AudioManager.instance != null)
+        {
+            //
         }
     }
 }
