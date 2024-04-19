@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private GameObject waveCompletedMenu;
-    [SerializeField] private Button nextWaveBtn;
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
@@ -112,7 +111,6 @@ public class UIManager : MonoBehaviour
             characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             // ��������� �������
             OpenShop();
-            nextWaveBtn.gameObject.SetActive(true);
         }
     }
 
@@ -189,7 +187,6 @@ public class UIManager : MonoBehaviour
         restartBtn.SetActive(false);
         waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
-        nextWaveBtn.gameObject.SetActive(false);
         shop.gameObject.SetActive(false);
         menuWithHeroSelection.SetActive(false);
     }
