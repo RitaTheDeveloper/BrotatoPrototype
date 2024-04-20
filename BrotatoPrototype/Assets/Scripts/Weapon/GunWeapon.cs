@@ -39,23 +39,25 @@ public class GunWeapon : Weapon
     }
 
     protected override void Attack()
-    {        
-        SetAttackSpeed();
-        SetAnimationSpeed(currentAttackSpeed);
-        SetTimeOfAnimation(currentAttackSpeed);
-        SetDamage();
-        SetCritChance();
-        if (animator)
+    {
+        if (!GameManager.instance.GameIsOver)
         {
-            animator.SetTrigger("Hit");
-        }
-        _nextShotTime = Time.time + 1 / currentAttackSpeed;
+            SetAttackSpeed();
+            SetAnimationSpeed(currentAttackSpeed);
+            SetTimeOfAnimation(currentAttackSpeed);
+            SetDamage();
+            SetCritChance();
+            if (animator)
+            {
+                animator.SetTrigger("Hit");
+            }
+            _nextShotTime = Time.time + 1 / currentAttackSpeed;
 
-        for(int i = 0; i < _numberOfBulletsPershot; i++)
-        {
-            CreateBulletAndPassParametersToIt();
-        }
-        
+            for (int i = 0; i < _numberOfBulletsPershot; i++)
+            {
+                CreateBulletAndPassParametersToIt();
+            }
+        }             
     }
 
     protected override void RotateWeaponHolder()

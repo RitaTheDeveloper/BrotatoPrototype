@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-
         SpawnPlayer(_heroIndex);
         _gameIsOver = false;
         _waveCounter = 0;
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         Debug.Log("начинаем первую волну");
         _waves[0].StartWave();
-        //AudioManager.instance.Play("Theme");
     }
     
     public void SetHeroIndex(int index)
@@ -58,8 +56,10 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        _gameIsOver = true;
         Debug.Log("Win!");
-        StopTime();
+        _currentWave.StopWave();
+        //StopTime();
         UIManager.instance.Win();
     }
 
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         Debug.Log("Wave Completed");
-        StopTime();
+       //StopTime();
         _waveCounter++;
         if (_waveCounter == _waves.Length)
         {
@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();
         RemoveAllLoot();
-        ContinueTime();
         _currentWave = _waves[_waveCounter];
         _waves[_waveCounter].StartWave();
     }
@@ -150,7 +149,6 @@ public class GameManager : MonoBehaviour
 
         RemoveAllEnemies();
         RemoveAllCurrency();
-        ContinueTime();
     }
 
     public void Restart()
@@ -165,7 +163,6 @@ public class GameManager : MonoBehaviour
         RemoveAllCurrency();
 
         Init();
-        ContinueTime();
     }
 
     private void RemoveAllCurrency()

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
     public static UIManager instance;
 
     [SerializeField] private GameObject menuWithHeroSelection;
@@ -48,7 +47,6 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         AllOff();
-        menuWithHeroSelection.SetActive(true);
         _startTimeColor = timeTxt.color;
     }
 
@@ -77,7 +75,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
-        AllOff();
+        //AllOff();
+        OpenCloseWindow.CloseWindow(shop.gameObject);
         GameManager.instance.StartNextWave();
         if (BackgroundMusicManger.instance != null)
         {
@@ -97,7 +96,8 @@ public class UIManager : MonoBehaviour
             BackgroundMusicManger.instance.PlayShopMusic();
         }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
-        waveCompletedMenu.SetActive(true);
+        // waveCompletedMenu.SetActive(true);
+        OpenCloseWindow.OpenWindow(waveCompletedMenu);
 
         if (_numberOfLeveledUpForCurrentWave > 0)
         {
@@ -107,22 +107,24 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            AbilitySelectionPanelOff();
+            //AbilitySelectionPanelOff();
+            WaveCompletedMenuOff();
             characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
-            // ��������� �������
             OpenShop();
         }
     }
 
     public void OpenShop()
     {
-        shop.gameObject.SetActive(true);
+        //shop.gameObject.SetActive(true);
         shop.UpdateUIShop();
+        OpenCloseWindow.OpenWindow(shop.gameObject);        
     }
 
     public void WaveCompletedMenuOff()
     {
-        waveCompletedMenu.SetActive(false);
+        OpenCloseWindow.CloseWindow(waveCompletedMenu);
+       // waveCompletedMenu.SetActive(false);
     }
 
     private void AbilitySelectionPanelOn()
@@ -133,6 +135,7 @@ public class UIManager : MonoBehaviour
 
     private void AbilitySelectionPanelOff()
     {
+        
         abilitySelectionPanel.SetActive(false);
     }
 
@@ -177,7 +180,8 @@ public class UIManager : MonoBehaviour
         AllOff();
         RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
-        menuWithHeroSelection.SetActive(true);
+        //menuWithHeroSelection.SetActive(true);
+        OpenCloseWindow.OpenWindow(menuWithHeroSelection);
     }
 
     private void AllOff()
@@ -185,10 +189,10 @@ public class UIManager : MonoBehaviour
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
-        waveCompletedMenu.SetActive(false);
+        //waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
-        shop.gameObject.SetActive(false);
-        menuWithHeroSelection.SetActive(false);
+        //shop.gameObject.SetActive(false);
+        //menuWithHeroSelection.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)

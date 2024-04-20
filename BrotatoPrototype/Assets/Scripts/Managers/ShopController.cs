@@ -61,8 +61,8 @@ public class ShopController : MonoBehaviour, IShopController
 
     void Start()
     {
-        Init();
-        UpdateShop();
+        //Init();
+        //UpdateShop();
     }   
 
     public void Init()
