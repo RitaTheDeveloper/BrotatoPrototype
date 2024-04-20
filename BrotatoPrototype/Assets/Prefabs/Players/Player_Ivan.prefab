@@ -119,20 +119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 35
+  _startMaxHp: 20
   _startHpRegen: 0
-  _startMoveSpeed: 15
-  _startMagnetDistance: 3
+  _startMoveSpeed: 12
+  _startMagnetDistance: 1
   _startAttackSpeedPercentage: 0
   _startDamagePercentage: 0
   _startMelleeDamage: 0
   _startRangedDamage: 0
   _startCritChancePercentage: 0
-  _startArmor: 2
-  _startProbabilityOfDodge: 30
+  _startArmor: 0
+  _startProbabilityOfDodge: 0
   _startLifeStealPercentage: 0
-  _startSatiety: 80
-  _startHunger: -5
+  _startSatiety: 100
+  _startHunger: 0
 --- !u!143 &3096899062759002954
 CharacterController:
   m_ObjectHideFlags: 0
@@ -192,8 +192,6 @@ MonoBehaviour:
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
   - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
-  - {fileID: 5844762086061995874, guid: 4c47d4b1c879f584c962c3946f52bd99, type: 3}
-  - {fileID: 8191647243664329808, guid: 22b1a5d0fd2e6934fb80fd4602a2c4cd, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &6632754515298849247
@@ -280,8 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 400
-  _startWood: 400
+  _startMoney: 0
+  _startWood: 0
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0

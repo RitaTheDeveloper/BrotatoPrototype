@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 8687432619107329737}
   - component: {fileID: -4932382985883952777}
   - component: {fileID: -4443277271816670718}
+  - component: {fileID: 7357914606552842547}
   m_Layer: 6
   m_Name: Enemy_Spawner
   m_TagString: Enemy
@@ -288,10 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 40
-  _amountOfHpPerWave: 0
-  _startDamage: 5
-  _amountOfDamagePerWave: 0
+  _maxHp: 10
+  _amountOfHpPerWave: 1
+  _startDamage: 1
+  _amountOfDamagePerWave: 0.85
   _hpRegen: 0
   _moveSpeed: 6
   _amountOfExperience: 3
@@ -312,6 +313,7 @@ MonoBehaviour:
   refreshRateOfUpdatePath: 1
   animator: {fileID: 0}
   boxCollider: {fileID: 0}
+  stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
 --- !u!65 &703862386471375184
 BoxCollider:
@@ -391,12 +393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372882831b675364d8666ad9069bcd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 8909365758776171659, guid: e464224d2b65f8149bdb1b94e3f1693c,
+  _enemyPrefab: {fileID: 3503059046315012686, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
     type: 3}
-  amountOfEnemies: 3
+  amountOfEnemies: 1
   _startSpawnTime: 3
-  _minSpawnTime: 3
-  _maxSpawnTime: 3.1
+  _minSpawnTime: 5
+  _maxSpawnTime: 5
   _radiusFromPlayer: 15
   isNotRandom: 1
   radius: 0.1
@@ -424,6 +426,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7357914606552842547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763709360490025800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9600ba78062cf48a19da80f194e8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 1.5
+  timeBetweenAttacks: 0
+  refreshRateOfUpdatePath: 1
+  animator: {fileID: 0}
+  boxCollider: {fileID: 703862386471375184}
+  stoppingSpeedForKnockBack: 1
+  target: {fileID: 0}
+  _distanceFromPlayer: 15
+  _escapeSpeed: 8
 --- !u!1 &5265559646351309900
 GameObject:
   m_ObjectHideFlags: 0

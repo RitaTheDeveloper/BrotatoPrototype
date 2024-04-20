@@ -57,10 +57,12 @@ MonoBehaviour:
   startCritChance: 0.03
   knockBack: 0
   repulsiveForce: 15
+  percantageOfMelleDamage: 100
+  percantageOfRangedDamage: 0
+  soundName: default
   animator: {fileID: 7522623501473152233}
   timeOfAttack: 0.7
   nearestEnemy: {fileID: 0}
-  percantageOfMelleDamage: 100
 --- !u!95 &7522623501473152233
 Animator:
   serializedVersion: 5
@@ -143,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdWeapon: sword2
-  Price: 150
+  Price: 24
   DiscountProcent: 50
   LevelItem: {fileID: 7236866929510234708, guid: 3de72545a5f47cd47aeb016ecc89fde9,
     type: 3}
