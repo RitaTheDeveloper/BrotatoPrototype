@@ -10,7 +10,7 @@ public class EnemyCowardController : EnemyController
 
     private void Update()
     {
-        if (target)
+        if (target && !GameManager.instance.GameIsOver)
         {
             float distance = Vector3.Distance(transform.position, target.position);
 

@@ -31,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if (!GameManager.instance.GameIsOver)
+        {
+            Move();
+        }
     }
 
     public void SetSpeed()
@@ -40,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Move()
-    {
+    {        
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
         Vector3 move = new Vector3(x, 0f, z).normalized;

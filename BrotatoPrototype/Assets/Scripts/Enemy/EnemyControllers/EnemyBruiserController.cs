@@ -19,7 +19,7 @@ public class EnemyBruiserController : EnemyController
 
     private void Update()
     {
-        if (target)
+        if (target && !GameManager.instance.GameIsOver)
         {
             _timer += Time.deltaTime;
             if (_timer < _cdRushTime)
@@ -108,6 +108,7 @@ public class EnemyBruiserController : EnemyController
     {
         base.Init();
     }
+
     protected override IEnumerator UpdatePath()
     {
         yield return null;

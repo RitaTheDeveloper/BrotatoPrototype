@@ -67,9 +67,12 @@ public class MeleeWeapon : Weapon
 
     protected override void Attack()
     {
-        _collider.enabled = true;
-        _timer = 0;
-        animator.SetTrigger("Hit");      
+        if (!GameManager.instance.GameIsOver)
+        {
+            _collider.enabled = true;
+            _timer = 0;
+            animator.SetTrigger("Hit");
+        }            
         base.Attack();
     }
 

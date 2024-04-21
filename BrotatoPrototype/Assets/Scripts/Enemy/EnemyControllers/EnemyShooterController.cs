@@ -19,7 +19,7 @@ public class EnemyShooterController : EnemyController
 
     private void Update()
     {
-        if (currentState == State.RunAway && target)
+        if (currentState == State.RunAway && target && !GameManager.instance.GameIsOver)
         {
             RunAway();
         }
@@ -40,17 +40,21 @@ public class EnemyShooterController : EnemyController
 
     protected override void Attacking()
     {
-        Vector3 position = new Vector3(target.position.x, transform.position.y, target.position.z);
-        transform.LookAt(position);
-        _projectile = Instantiate(_projectilePrefab, _shootPoint.position, _shootPoint.rotation);
-        _projectile.transform.parent = _containerOfBullets;
-        _projectile.SetRange(range);
-        _projectile.SetDamage(damage);        
+        if (!GameManager.instance.GameIsOver)
+        {
+            Vector3 position = new Vector3(target.position.x, transform.position.y, target.position.z);
+            transform.LookAt(position);
+            _projectile = Instantiate(_projectilePrefab, _shootPoint.position, _shootPoint.rotation);
+            _projectile.transform.parent = _containerOfBullets;
+            _projectile.SetRange(range);
+            _projectile.SetDamage(damage);
+        }
+                   
     }
 
     protected override IEnumerator UpdatePath()
     {
-        while (target != null)
+        while (target != null && !GameManager.instance.GameIsOver)
         {
             if (currentState == State.Chasing)
             {                
