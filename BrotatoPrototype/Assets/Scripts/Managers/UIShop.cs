@@ -190,7 +190,7 @@ public class UIShop : MonoBehaviour
         }
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayShopMusic();
+            BackgroundMusicManger.instance.PlayShopMusicFromFight();
         }
     }
 

@@ -182,6 +182,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(loot.gameObject);
         }
+    }
+
     private void SaveGameResult()
     {
         SaveController save =  gameObject.AddComponent<SaveController>();

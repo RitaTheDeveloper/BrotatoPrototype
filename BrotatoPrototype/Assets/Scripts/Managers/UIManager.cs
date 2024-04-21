@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.StartNextWave();
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayBackgroundMusic();
+            BackgroundMusicManger.instance.PlayBackgroundMusicFromShop();
         }
     }
 
@@ -94,7 +94,7 @@ public class UIManager : MonoBehaviour
         }
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayShopMusic();
+            BackgroundMusicManger.instance.ChangeBackgroundMusicToPercs();
         }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         waveCompletedMenu.SetActive(true);
@@ -140,7 +140,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuSource();
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
@@ -151,7 +151,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuSource();
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
         losePanel.SetActive(true);
         restartBtn.SetActive(true);
