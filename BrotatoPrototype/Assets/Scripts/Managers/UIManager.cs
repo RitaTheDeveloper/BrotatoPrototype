@@ -93,6 +93,14 @@ public class UIManager : MonoBehaviour
 
     public void WaveIsCompleted(int numberOfLeveledUpForCurrentWave)
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ChangeBackgroundMusicToPercs();
+        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // анимация
         textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
@@ -106,14 +114,6 @@ public class UIManager : MonoBehaviour
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
         PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlayMovement(false);
-        }
-        if (BackgroundMusicManger.instance != null)
-        {
-            BackgroundMusicManger.instance.ChangeBackgroundMusicToPercs();
-        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // waveCompletedMenu.SetActive(true);
         OpenCloseWindow.OpenWindow(waveCompletedMenu);

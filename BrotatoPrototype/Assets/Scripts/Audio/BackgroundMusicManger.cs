@@ -56,6 +56,7 @@ public class BackgroundMusicManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (stateMusicManager == StateMusicManager.MainMenu)
         {
             if (!mainMenuSource.isPlaying)
