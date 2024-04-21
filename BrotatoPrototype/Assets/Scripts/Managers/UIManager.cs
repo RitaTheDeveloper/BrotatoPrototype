@@ -12,7 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
+    [SerializeField] private TextMeshProUGUI waveCompletedTxt;
+    [SerializeField] private string waveCompletedStr = "Волна пройдена!";
     [SerializeField] private GameObject waveCompletedMenu;
+    [SerializeField] private GameObject waveResultsMenu;
+    [SerializeField] private GameObject upgradesMenu;
+    [SerializeField] private TextMeshProUGUI waveResultsTxt;
     [SerializeField] private GameObject abilitySelectionPanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
@@ -25,11 +30,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject woodUpUiPrefab;
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
+    [SerializeField] private UIWaveResults uIWaveResults;
 
     [Header("for player:")]
     [SerializeField] private UIHealth [] uIHealths;
-
-    [SerializeField] private UISatiety uISatiety;
+    [SerializeField] private UISatiety[] uISatieties;
 
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
@@ -37,6 +42,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CharacteristicsUI characteristicsUI;
     [SerializeField] private AllAbilities allAbilities;
 
+    private TextAnim textAnim;
     private int _numberOfLeveledUpForCurrentWave;
     private GameObject _levelUp;
     private GameObject _foodUp;
@@ -48,6 +54,7 @@ public class UIManager : MonoBehaviour
         instance = this;
         AllOff();
         _startTimeColor = timeTxt.color;
+        textAnim = GetComponent<TextAnim>();
     }
 
     public void ShowTime(float currentTime)
@@ -75,13 +82,25 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
-        //AllOff();
-        OpenCloseWindow.CloseWindow(shop.gameObject);
+        AllOff();
+        //OpenCloseWindow.CloseWindow(shop.gameObject);
         GameManager.instance.StartNextWave();
         if (BackgroundMusicManger.instance != null)
         {
             BackgroundMusicManger.instance.PlayBackgroundMusic();
         }
+    }
+
+    public void WaveIsCompleted(int numberOfLeveledUpForCurrentWave)
+    {
+        _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
+        // анимация
+        textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
+        LeanTween.alpha(waveCompletedMenu.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
+        OpenCloseWindow.OpenWindowWithDelay(waveResultsMenu, 2.5f);
+        textAnim.TypingText(waveResultsTxt, "Итоги волны:", 3f);
+
+        uIWaveResults.UpdateWaveResults(GameManager.instance.player.GetComponent<PlayerCharacteristics>());
     }
 
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
@@ -124,6 +143,9 @@ public class UIManager : MonoBehaviour
     public void WaveCompletedMenuOff()
     {
         OpenCloseWindow.CloseWindow(waveCompletedMenu);
+        Color tmpcolor = waveCompletedMenu.GetComponent<Image>().color;
+        tmpcolor.a = 0f;
+        waveCompletedMenu.GetComponent<Image>().color = tmpcolor;
        // waveCompletedMenu.SetActive(false);
     }
 
@@ -131,6 +153,8 @@ public class UIManager : MonoBehaviour
     {
         //characteristicsUI.UpdateCharacterisctics();
         abilitySelectionPanel.SetActive(true);
+        AllOff();
+        OpenCloseWindow.OpenWindow(upgradesMenu);
     }
 
     private void AbilitySelectionPanelOff()
@@ -191,6 +215,12 @@ public class UIManager : MonoBehaviour
         restartBtn.SetActive(false);
         //waveCompletedMenu.SetActive(false);
         menuBtn.SetActive(false);
+
+        OpenCloseWindow.CloseWindow(waveResultsMenu);
+        OpenCloseWindow.CloseWindow(shop.gameObject);
+        OpenCloseWindow.OpenWindow(waveCompletedMenu);
+        OpenCloseWindow.CloseWindow(upgradesMenu);
+        waveCompletedTxt.text = "";
         //shop.gameObject.SetActive(false);
         //menuWithHeroSelection.SetActive(false);
     }
@@ -205,7 +235,10 @@ public class UIManager : MonoBehaviour
 
     public void DisplaySatiety(float currentSatiety, float startSatiety, bool isFull)
     {
-        uISatiety.DisplaySatiety(currentSatiety, startSatiety, isFull);
+        foreach(UISatiety uISatiety in uISatieties)
+        {
+            uISatiety.DisplaySatiety(currentSatiety, startSatiety, isFull);
+        }        
     }
 
     public void DisplayWaveNumber(int waveNumber)

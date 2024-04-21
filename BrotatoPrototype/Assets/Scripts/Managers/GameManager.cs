@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
-        Debug.Log("Wave Completed");
        //StopTime();
         _waveCounter++;
         if (_waveCounter == _waves.Length)
@@ -76,13 +75,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
-            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
             player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
-            RemoveAllEnemies();
-            RemoveAllBullets();
             player.GetComponent<PlayerHealth>().Init();
             player.GetComponent<PlayerHealth>().DisplayHealth();
+            UIManager.instance.WaveIsCompleted(numberOfleveledUpForCurrentWave);
+            //UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
+            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;            
+            RemoveAllEnemies();
+            RemoveAllBullets();
+            
         }              
     }
 
