@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
-using static UnityEditor.Progress;
 
 public class ShopController : MonoBehaviour, IShopController
 {
@@ -21,28 +20,28 @@ public class ShopController : MonoBehaviour, IShopController
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
     public Dictionary<int, bool> SoldItemsDict = new Dictionary<int, bool>();
 
-    [Tooltip("Структура уровней мгазина")]
+    [Tooltip("                         ")]
     [SerializeField] public List<ShopLevelStruct> ShopLevelStructsStorage = new List<ShopLevelStruct>();
 
-    [Tooltip("Ткущее колличество слотов")]
+    [Tooltip("                         ")]
     [SerializeField] int ShopSizeList = 0;
 
-    [Tooltip("Текущий уровень магазина")]
+    [Tooltip("                        ")]
     [SerializeField] int CurrentShopLevel = 1;
 
-    [Tooltip("Возможная редкость предметов")]
+    [Tooltip("                            ")]
     [SerializeField] public List<RareItemsDataStruct> RareData = new List<RareItemsDataStruct>();
 
-    [Tooltip("Деолтная цена рерола")]
+    [Tooltip("                    ")]
     [SerializeField] public int DefaultRerollPrice = 20;
 
-    [Tooltip("Шаг полвышения цены рерола")]
+    [Tooltip("                          ")]
     [SerializeField] public int StepRerollPrice = 5;
 
-    [Tooltip("Текущая цена рерола")]
+    [Tooltip("                   ")]
     [SerializeField] private int CurrentRerollPrice = 20;
 
-    [Tooltip("Шанс оружия %")]
+    [Tooltip("            %")]
     [SerializeField] public int WeaponChance = 30;
 
     [SerializeField] UIShop uiShop;
@@ -157,7 +156,7 @@ public class ShopController : MonoBehaviour, IShopController
             bool needWeapon = false;
             bool needItem = false;
 
-            //1 - 5 уровень
+            //1 - 5        
             if (CurrentShopLevel >= 1 && CurrentShopLevel <= 5)
             {
 
@@ -182,7 +181,7 @@ public class ShopController : MonoBehaviour, IShopController
                     needItem = true;
                 }
             }
-            //Все прочие ровни магазина
+            //                         
             else
             {
                 int chance = Random.Range(0, 100);
