@@ -174,11 +174,6 @@ public class BackgroundMusicManger : MonoBehaviour
         StartCoroutine(FadeOutBackgroundMusicToPerkState());
     }
 
-    public void PlayBackgroundMusicFromShop()
-    {
-        StartCoroutine(FadeInShopMusicToFight());
-    }
-
     private void PlayMainMenuSource() {
         if (stateMusicManager == StateMusicManager.MainMenu)
             if (mainMenuSource != null)
@@ -252,6 +247,10 @@ public class BackgroundMusicManger : MonoBehaviour
         StartCoroutine(FadeInMainMenuMusicToPerkState());
     }
 
+    public void PlayBackgroundMusicFromShop()
+    {
+        StartCoroutine(FadeInShopMusicToFight());
+    }
 
     IEnumerator FadeInBackgroundMusicToShopMusic()
     {
@@ -384,6 +383,7 @@ public class BackgroundMusicManger : MonoBehaviour
             else backgroundSource.volume -= stepVolume * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        stateMusicManager = StateMusicManager.FightPercs;
         yield break;
     }
 
@@ -395,6 +395,7 @@ public class BackgroundMusicManger : MonoBehaviour
             else backgroundSource.volume += stepVolume * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        stateMusicManager = StateMusicManager.FightPercs;
         yield break;
     }
 }
