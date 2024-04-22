@@ -29,13 +29,33 @@ public class PlayerCharacteristics : MonoBehaviour
     [Header("”клоние:")]
     [Range(0f, 100f)]
     [SerializeField] private float _startProbabilityOfDodge;
-    [Header("% к краже жизни:")]
-    [SerializeField] private float _startLifeStealPercentage;
+    //[Header("% к краже жизни:")]
+    //[SerializeField] private float _startLifeStealPercentage;
     [Header("—ытость:")]
     [Range(0, 100)]
     [SerializeField] private int _startSatiety = 100;
     [Header("√олод:")]
     [SerializeField] private int _startHunger; // каждую волну на это число уменьшаетс€ сытость
+
+    public Dictionary<string, float> DecriptionChacteristicsForUIShop()
+    {
+        Dictionary<string, float> descriptionForShop = new Dictionary<string, float>();
+        descriptionForShop.Add(" к здоровью", _startMaxHp);
+        descriptionForShop.Add(" к регенерации", _startHpRegen);
+        descriptionForShop.Add("% к скорости", _startMoveSpeed);
+        descriptionForShop.Add(" к радиусу сбора", _startMagnetDistance);
+        descriptionForShop.Add("% к скорости атаки", _startAttackSpeedPercentage);
+        descriptionForShop.Add("% к урону", _startDamagePercentage);
+        descriptionForShop.Add(" к урону в ближнем бою", _startMelleeDamage);
+        descriptionForShop.Add(" к урону в дальнем бою", _startRangedDamage);
+        descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
+        descriptionForShop.Add(" к броне", _startArmor);
+        descriptionForShop.Add(" % к уклонению", _startProbabilityOfDodge);
+        descriptionForShop.Add(" голод", _startHunger);
+
+        return descriptionForShop;
+    }
+
     private float _currentMaxHp;
     public float CurrentMaxHp
     {
@@ -166,4 +186,6 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
         _currentArmor -= bonus._startArmor;
     }
+
+    
 }

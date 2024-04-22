@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
         AllOff();
         _startTimeColor = timeTxt.color;
         textAnim = GetComponent<TextAnim>();
+        menuWithHeroSelection.SetActive(true);
     }
 
     public void ShowTime(float currentTime)
@@ -134,10 +135,10 @@ public class UIManager : MonoBehaviour
     }
 
     public void OpenShop()
-    {
-        //shop.gameObject.SetActive(true);
+    {        
         shop.UpdateUIShop();
-        OpenCloseWindow.OpenWindow(shop.gameObject);        
+        shop.gameObject.SetActive(true);
+        //OpenCloseWindow.OpenWindow(shop.gameObject);        
     }
 
     public void WaveCompletedMenuOff()
@@ -204,8 +205,8 @@ public class UIManager : MonoBehaviour
         AllOff();
         RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
-        //menuWithHeroSelection.SetActive(true);
-        OpenCloseWindow.OpenWindow(menuWithHeroSelection);
+        menuWithHeroSelection.SetActive(true);
+        //OpenCloseWindow.OpenWindow(menuWithHeroSelection);
     }
 
     private void AllOff()
@@ -217,12 +218,12 @@ public class UIManager : MonoBehaviour
         menuBtn.SetActive(false);
 
         OpenCloseWindow.CloseWindow(waveResultsMenu);
-        OpenCloseWindow.CloseWindow(shop.gameObject);
+        //OpenCloseWindow.CloseWindow(shop.gameObject);
         OpenCloseWindow.OpenWindow(waveCompletedMenu);
         OpenCloseWindow.CloseWindow(upgradesMenu);
         waveCompletedTxt.text = "";
-        //shop.gameObject.SetActive(false);
-        //menuWithHeroSelection.SetActive(false);
+        shop.gameObject.SetActive(false);
+        menuWithHeroSelection.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp)

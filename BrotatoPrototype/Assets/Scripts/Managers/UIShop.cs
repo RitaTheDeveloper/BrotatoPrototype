@@ -277,8 +277,9 @@ public class UIShop : MonoBehaviour
                 items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
-               // w.DisplayCharacteristicsOfWeapon();
-                items[i].description.text = w.Description;
+                // w.DisplayCharacteristicsOfWeapon();
+                items[i].SetCharacteristicsInfo(w);
+                //items[i].description.text = w.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
             }
@@ -289,8 +290,9 @@ public class UIShop : MonoBehaviour
                 items[i].textType.text = it.ShopInfoItem.TypeWeapon;
                 items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
-                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;               
-                items[i].description.text = it.ShopInfoItem.Description;
+                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
+                items[i].SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
+                //items[i].description.text = it.ShopInfoItem.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
             }

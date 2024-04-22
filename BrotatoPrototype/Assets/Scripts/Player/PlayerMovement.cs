@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.GameIsOver)
+        if (GameManager.instance.IsPlaying)
         {
             Move();
         }
@@ -90,5 +90,11 @@ public class PlayerMovement : MonoBehaviour
         {
             AudioManager.instance.PlayMovement(false);
         }
+    }
+
+    public void PutPlayerInStartPosition(Vector3 playerStartingSpawnPoint)
+    {
+        //characterController.Move(playerStartingSpawnPoint);
+        transform.position = playerStartingSpawnPoint;
     }
 }
