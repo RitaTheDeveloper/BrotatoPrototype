@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7522623501473152233}
   - component: {fileID: 6459088100143395243}
   - component: {fileID: 4045245801649021}
-  - component: {fileID: 2608520724165898897}
+  - component: {fileID: -3042665310841873622}
   m_Layer: 0
   m_Name: Sword 3
   m_TagString: Untagged
@@ -52,11 +52,11 @@ MonoBehaviour:
   tier: 0
   weaponModifiers: {fileID: 11400000, guid: 7c7d40e68bf9c414ab0052408a6e484b, type: 2}
   attackRange: 6
-  startDamage: 5
-  startAttackSpeed: 1.6
+  startDamage: 4
+  startAttackSpeed: 3.2
   startCritChance: 0.03
-  knockBack: 0
-  repulsiveForce: 15
+  knockBack: 1
+  repulsiveForce: 19
   percantageOfMelleDamage: 100
   percantageOfRangedDamage: 0
   soundName: default
@@ -107,7 +107,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -126,13 +126,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.67, y: 0.5, z: 2.4}
   m_Center: {x: 0, y: 0, z: 0.6334499}
---- !u!114 &2608520724165898897
+--- !u!114 &-3042665310841873622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,16 +145,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdWeapon: sword3
-  Price: 24
-  DiscountProcent: 50
+  Price: 36
+  DiscountProcent: 10
   LevelItem: {fileID: 7787498756051029337, guid: 4784f5abcf2f41b45bfb78b809b96ef2,
     type: 3}
-  MinWave: 10
-  NameWeapon: "\u041C\u0435\u0447 III"
+  MinWave: 0
+  NameWeapon: "\u041C\u0435\u0447 3"
   TypeWeapon: "\u0431\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439"
   Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
     \u043E\u0440\u0443\u0436\u0438\u044F"
-  IconWeapon: {fileID: 21300000, guid: c52ca817ce987a34c8e2c03b4f43ccc5, type: 3}
+  IconWeapon: {fileID: 21300000, guid: 1c1c11f5a22222f4ebfcea8f3058651a, type: 3}
 --- !u!1 &7798779393218843148
 GameObject:
   m_ObjectHideFlags: 0
