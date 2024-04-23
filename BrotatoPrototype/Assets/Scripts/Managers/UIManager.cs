@@ -226,11 +226,11 @@ public class UIManager : MonoBehaviour
         menuWithHeroSelection.SetActive(false);
     }
 
-    public void DisplayHealth(float currentHp, float startHp, float maxStartHp)
+    public void DisplayHealth(float currentHp, float startHp, float maxStartHp, float satiety)
     {
         foreach(UIHealth uIHealth in uIHealths)
         {
-            uIHealth.DisplayHealth(currentHp, startHp, maxStartHp);
+            uIHealth.DisplayHealth(currentHp, startHp, maxStartHp, satiety);
         }        
     }
 

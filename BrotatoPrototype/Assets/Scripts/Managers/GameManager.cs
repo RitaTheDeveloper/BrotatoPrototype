@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerHealth>().DisplayHealth();
         player.GetComponent<WeaponController>().EquipPlayer();
         player.GetComponent<PlayerSatiety>().ResetAmountOfFoodLifted();
-        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLifted();
+        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLiftedAndGoldForWave();
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);        
         UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();

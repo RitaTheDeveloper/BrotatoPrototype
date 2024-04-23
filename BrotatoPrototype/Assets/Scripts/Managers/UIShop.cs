@@ -303,6 +303,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.IsSlotSold(slotNumber))
         {
+            Debug.Log("возможно тут проблема");
             return;
         }
         for (int i = 0; i < items.Count; i++)
@@ -311,6 +312,7 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
+                    Debug.Log("или ту возможно проблема");
                     //Destroy(items[i].gameObject);
                     listOfPrefabsForItemsForSale[i].GetComponent<SlotItemForSaleData>().PotOff();
                     //items.RemoveAt(i);

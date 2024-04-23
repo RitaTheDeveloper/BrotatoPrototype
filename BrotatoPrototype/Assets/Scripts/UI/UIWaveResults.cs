@@ -28,5 +28,12 @@ public class UIWaveResults : MonoBehaviour
         if (percentageReductionMaxHealth < 0) percentageReductionMaxHealth = 0;
 
         percentageReductionMaxHealthTMP.text = "максимальное здоровье \n снижено на " + percentageReductionMaxHealth + "%";
+
+        PlayerInventory inventory = playerCharacteristics.GetComponent<PlayerInventory>();
+        int goldForWave = inventory.GetAmountOfMoneyForWave();
+        amountGoldForWaveTMP.text = "+" + goldForWave;
+
+        int woodForWave = inventory.GetAmountOfWoodForWave();
+        amountWoodForWaveTMP.text = "+" + woodForWave;
     }
 }
