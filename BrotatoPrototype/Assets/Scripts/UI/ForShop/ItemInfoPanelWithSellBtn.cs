@@ -20,8 +20,6 @@ public class ItemInfoPanelWithSellBtn : MonoBehaviour
         icon.sprite = itemInfo.IconWeapon;
         background.color = itemInfo.LevelItem.BackgroundColor;
         nameItem.text = itemInfo.NameWeapon;
-        typeItem.text = itemInfo.TypeWeapon;
-        description.text = itemInfo.Description;
         price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
         sellBtn.onClick.RemoveAllListeners();

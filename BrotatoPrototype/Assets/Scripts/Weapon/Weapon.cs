@@ -5,7 +5,9 @@ using System.Linq;
 public class Weapon : MonoBehaviour
 {
     public enum Tier { one, two, three, four }
-    [SerializeField] private Tier tier;
+    public Tier tier;
+    public enum Type { Melee, Gun }
+    public Type type;
     [SerializeField] WeaponModifiers weaponModifiers;
     Dictionary<Tier, WeaponModifiers.Modifiers> modifiers = new Dictionary<Tier, WeaponModifiers.Modifiers>();
 

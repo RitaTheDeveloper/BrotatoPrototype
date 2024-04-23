@@ -272,29 +272,12 @@ public class UIShop : MonoBehaviour
             if (shopController.IsWeapon(items[i].SlotEntytiID))
             {
                 ItemShopInfo w = shopController.GetUiInfo(items[i].SlotEntytiID);
-                items[i].textName.text = w.NameWeapon;
-                items[i].textType.text = w.TypeWeapon;
-                items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
-                items[i].image.sprite = w.IconWeapon;
-                items[i].backgroud.color = w.LevelItem.BackgroundColor;
-                // w.DisplayCharacteristicsOfWeapon();
-                items[i].SetCharacteristicsInfo(w);
-                //items[i].description.text = w.Description;
-                items[i].buyBtn.onClick.RemoveAllListeners();
-                items[i].OnClickBuyItem();
+                items[i].DisplayInfoForWeapon(w, shopController.GetCurrentWawe());
             }
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
                 StandartItem it = shopController.GetItem(items[i].SlotEntytiID);
-                items[i].textName.text = it.ShopInfoItem.NameWeapon;
-                items[i].textType.text = it.ShopInfoItem.TypeWeapon;
-                items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
-                items[i].image.sprite = it.ShopInfoItem.IconWeapon;
-                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
-                items[i].SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
-                //items[i].description.text = it.ShopInfoItem.Description;
-                items[i].buyBtn.onClick.RemoveAllListeners();
-                items[i].OnClickBuyItem();
+                items[i].DisplayInfoForItem(it, shopController.GetCurrentWawe());
             }
         }
     }
