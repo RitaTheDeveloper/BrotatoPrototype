@@ -73,13 +73,16 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     protected virtual void Attacking()
     {
-        currentState = State.Attacking;
-        navMeshAgent.enabled = false;
+        if (!GameManager.instance.GameIsOver)
+        {
+            currentState = State.Attacking;
+            navMeshAgent.enabled = false;
 
-        target.GetComponent<LivingEntity>().TakeHit(damage, false);
+            target.GetComponent<LivingEntity>().TakeHit(damage, false);
 
-        currentState = State.Chasing;
-        navMeshAgent.enabled = true;
+            currentState = State.Chasing;
+            navMeshAgent.enabled = true;
+        }       
     }
 
     protected virtual void Init()
@@ -93,7 +96,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     protected virtual IEnumerator UpdatePath()
     {
-        while(target != null)
+        while(target != null && !GameManager.instance.GameIsOver)
         {
             if(currentState == State.Chasing)
             {

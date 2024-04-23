@@ -56,7 +56,7 @@ public class LevelSystem : MonoBehaviour
                 if (Vector3.Distance(currency.position, targetPosition) < 1f)
                 {
                     int xp = (int) currency.GetComponent<Currency>().GetXP();
-                    inventory.ChangeMoney(xp);
+                    inventory.MoneyUp(xp);
                     IncreaseCurrentExperience(xp);
                     currency.GetComponent<Currency>().PutAwayFromScene();
                     AudioManager.instance.Play("Coin");
@@ -76,8 +76,7 @@ public class LevelSystem : MonoBehaviour
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
         numberOfLeveledUpForCurrentWave++;
-        playerCharacteristics.LevelUp();
-        UIManager.instance.DisplayLevelUp();
+        UIManager.instance.DisplayLevelUp(numberOfLeveledUpForCurrentWave);
     }  
 
     public void IncreaseCurrentExperience(float xp)

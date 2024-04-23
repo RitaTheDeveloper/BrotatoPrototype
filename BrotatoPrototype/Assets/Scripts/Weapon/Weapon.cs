@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void Attack()
-    {
+    {        
         PlaySoundAttack();
     }
 

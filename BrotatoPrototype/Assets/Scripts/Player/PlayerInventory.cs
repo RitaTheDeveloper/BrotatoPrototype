@@ -9,27 +9,26 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int _startWood = 0;
     private int _currentMoney;
     private int _currentWood;
+    private int _amountOfWoodLifted;
+    private int _amountOfMoneyForWave;
+    private int _amountOfWoodForWave;
 
     private PlayerCharacteristics playerCharacteristics;
 
     // Start is called before the first frame update
     void Start()
     {
+        ResetAmountOfWoodLiftedAndGoldForWave();
         playerCharacteristics = GetComponent<PlayerCharacteristics>();
         ResetAllCurrencies();
         UIManager.instance.DisplayAmountOfCurrency(_currentMoney);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ResetAllCurrencies()
     {
         _currentMoney = _startMoney;
         _currentWood = _startWood;
+        _amountOfMoneyForWave = 0;        
     }
 
     public virtual void AddItem(StandartItem item)
@@ -77,6 +76,12 @@ public class PlayerInventory : MonoBehaviour
         else return false;
     }
 
+    public void MoneyUp(int money)
+    {
+        ChangeMoney(money);
+        _amountOfMoneyForWave += money;
+    }
+
     public void ChangeWood(int wood)
     {
         _currentWood += wood;
@@ -87,8 +92,38 @@ public class PlayerInventory : MonoBehaviour
         return _currentMoney;
     }
 
+    public int GetAmountOfMoneyForWave()
+    {
+        return _amountOfMoneyForWave;
+    }
+
     public int GetWood()
     {
         return _currentWood;
+    }
+
+    public int GetAmountOfFoodLifted()
+    {
+        return _amountOfWoodLifted;
+    }
+
+    public int GetAmountOfWoodForWave()
+    {
+        return _amountOfWoodForWave;
+    }
+
+    public void WoodUp(int wood)
+    {
+        _amountOfWoodLifted++;
+        _amountOfWoodForWave += wood;
+        ChangeWood(wood);
+        UIManager.instance.DisplayWoodUp(_amountOfWoodLifted);
+    }
+
+    public void ResetAmountOfWoodLiftedAndGoldForWave()
+    {
+        _amountOfWoodLifted = 0;
+        _amountOfMoneyForWave = 0;
+        _amountOfWoodForWave = 0;
     }
 }

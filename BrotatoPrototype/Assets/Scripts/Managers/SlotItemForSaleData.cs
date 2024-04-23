@@ -17,6 +17,7 @@ public class SlotItemForSaleData : MonoBehaviour
     public TextMeshProUGUI lockButtonText;
     public Image backgroud;
     public Button buyBtn;
+    [SerializeField] private CharacteristicsInfoPanelForWeaponAndItem characteristicsInfo;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class SlotItemForSaleData : MonoBehaviour
 
     public void OnBuyItem()
     {
+        Debug.Log("хочу купить");
         UIShop.instance.ButtonBuySlot(SlotNumber);
     }
 
@@ -44,7 +46,7 @@ public class SlotItemForSaleData : MonoBehaviour
         buyBtn.gameObject.SetActive(false);
         textName.text = "";
         textType.text = "";
-        description.text = "";
+        //description.text = "";
     }
 
     public void PotOn()
@@ -52,4 +54,9 @@ public class SlotItemForSaleData : MonoBehaviour
         pot.SetActive(true);
         buyBtn.gameObject.SetActive(true);
     }   
+
+    public void SetCharacteristicsInfo(ItemShopInfo itemInfo)
+    {
+        characteristicsInfo.SetDescriptionOfCharacteristics(itemInfo);
+    }
 }

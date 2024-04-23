@@ -17,8 +17,11 @@ public class GameManager : MonoBehaviour
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
 
+    private bool _isPlaying;
+    public bool IsPlaying { get => _isPlaying; }
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
+
 
     private void Awake()
     {
@@ -32,15 +35,14 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-
         SpawnPlayer(_heroIndex);
+        _isPlaying = true;
         _gameIsOver = false;
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         Debug.Log("начинаем первую волну");
         _waves[0].StartWave();
-        //AudioManager.instance.Play("Theme");
     }
     
     public void SetHeroIndex(int index)
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
         UIManager.instance.Lose();
@@ -58,8 +61,10 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        _gameIsOver = true;
         Debug.Log("Win!");
-        StopTime();
+        _currentWave.StopWave();
+        //StopTime();
         UIManager.instance.Win();
     }
 
@@ -67,8 +72,8 @@ public class GameManager : MonoBehaviour
     {
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
-        Debug.Log("Wave Completed");
-        StopTime();
+        _isPlaying = false;
+       //StopTime();
         _waveCounter++;
         if (_waveCounter == _waves.Length)
         {
@@ -76,23 +81,31 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
-            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;
             player.GetComponent<PlayerSatiety>().ChangeSatiety(player.GetComponent<PlayerCharacteristics>().CurrentHunger);
+            player.GetComponent<PlayerHealth>().Init();
+            player.GetComponent<PlayerHealth>().DisplayHealth();
+            UIManager.instance.WaveIsCompleted(numberOfleveledUpForCurrentWave);
+            //UIManager.instance.WaveCompletedMenuOn(numberOfleveledUpForCurrentWave);
+            playerLevelSystem.NumberOfLeveledUpForCurrentWave = 0;            
             RemoveAllEnemies();
             RemoveAllBullets();
+            
         }              
     }
 
     public void StartNextWave()
     {
+        player.GetComponent<PlayerMovement>().PutPlayerInStartPosition(playerStartingSpawnPoint.position);
+        _isPlaying = true;        
         player.GetComponent<PlayerHealth>().Init();
         player.GetComponent<PlayerHealth>().DisplayHealth();
         player.GetComponent<WeaponController>().EquipPlayer();
-        UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
-        UIManager.instance.RemoveAllLevelUpElements();
+        player.GetComponent<PlayerSatiety>().ResetAmountOfFoodLifted();
+        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLiftedAndGoldForWave();
+        UIManager.instance.DisplayWaveNumber(_waveCounter + 1);        
+        UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();
-        ContinueTime();
+        RemoveAllLoot();
         _currentWave = _waves[_waveCounter];
         _waves[_waveCounter].StartWave();
     }
@@ -145,7 +158,6 @@ public class GameManager : MonoBehaviour
 
         RemoveAllEnemies();
         RemoveAllCurrency();
-        ContinueTime();
     }
 
     public void Restart()
@@ -160,11 +172,20 @@ public class GameManager : MonoBehaviour
         RemoveAllCurrency();
 
         Init();
-        ContinueTime();
     }
 
     private void RemoveAllCurrency()
     {
         PoolObject.instance.RemoveAllObjectsFromScene();
     }
+
+    private void RemoveAllLoot()
+    {
+        Transform lootContainer = GameObject.Find("Loot").transform;
+        foreach (Transform loot in lootContainer)
+        {
+            Destroy(loot.gameObject);
+        }
+    }
+
 }

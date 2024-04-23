@@ -57,13 +57,12 @@ public class ShopController : MonoBehaviour, IShopController
     private void Awake()
     {
         instance = this;
-
-        Init();
     }
 
     void Start()
     {
-        UpdateShop();
+        //Init();
+        //UpdateShop();
     }   
 
     public void Init()

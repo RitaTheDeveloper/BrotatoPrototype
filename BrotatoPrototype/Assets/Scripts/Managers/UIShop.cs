@@ -32,7 +32,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;
+    [SerializeField] private int maxAmountOfItems = 16;    
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -277,8 +277,9 @@ public class UIShop : MonoBehaviour
                 items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = w.IconWeapon;
                 items[i].backgroud.color = w.LevelItem.BackgroundColor;
-               // w.DisplayCharacteristicsOfWeapon();
-                items[i].description.text = w.Description;
+                // w.DisplayCharacteristicsOfWeapon();
+                items[i].SetCharacteristicsInfo(w);
+                //items[i].description.text = w.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
             }
@@ -289,8 +290,9 @@ public class UIShop : MonoBehaviour
                 items[i].textType.text = it.ShopInfoItem.TypeWeapon;
                 items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
                 items[i].image.sprite = it.ShopInfoItem.IconWeapon;
-                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;               
-                items[i].description.text = it.ShopInfoItem.Description;
+                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
+                items[i].SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
+                //items[i].description.text = it.ShopInfoItem.Description;
                 items[i].buyBtn.onClick.RemoveAllListeners();
                 items[i].OnClickBuyItem();
             }
@@ -301,6 +303,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.IsSlotSold(slotNumber))
         {
+            Debug.Log("возможно тут проблема");
             return;
         }
         for (int i = 0; i < items.Count; i++)
@@ -309,6 +312,7 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
+                    Debug.Log("или ту возможно проблема");
                     //Destroy(items[i].gameObject);
                     listOfPrefabsForItemsForSale[i].GetComponent<SlotItemForSaleData>().PotOff();
                     //items.RemoveAt(i);
@@ -319,6 +323,7 @@ public class UIShop : MonoBehaviour
         }
         totalAmountOfGoldText.text = shopController.GetPlayerInventory().GetMoney().ToString();
         priceForRerollTxt.text = shopController.GetRerollCost().ToString();
+        UpdatePlayerScales();
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
@@ -392,6 +397,14 @@ public class UIShop : MonoBehaviour
             items.Add(listOfPrefabsForItemsForSale[i]);
             listOfPrefabsForItemsForSale[i].PotOn();
         }
+    }
+
+    public void UpdatePlayerScales()
+    {
+        GameObject player = GameManager.instance.player;
+        player.GetComponent<PlayerHealth>().Init();
+        player.GetComponent<PlayerHealth>().DisplayHealth();
+        player.GetComponent<PlayerSatiety>().ChangeSatiety(0);
     }
 
     public void UpdateUICharacteristics()
