@@ -350,10 +350,10 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetRerollCost()
     {
-        if (AllSlotSold())
-        {
-            return 0;
-        }
+        //if (AllSlotSold())
+        //{
+        //    return 0;
+        //}
         return CurrentRerollPrice;
     }
 
