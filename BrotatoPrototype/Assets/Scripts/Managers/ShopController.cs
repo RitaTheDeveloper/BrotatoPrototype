@@ -162,6 +162,7 @@ public class ShopController : MonoBehaviour, IShopController
     public void PickItemsForSale()
     {
         ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
+        ResetsSlots();
         int countWeapon = 0;
         int countItem = 0;
         for (int i = 0; i < ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count; i++)
@@ -237,7 +238,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            playerInventory.ChangeMoney(SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
+            playerInventory.ChangeMoney(SaleItemsDict[itemID].ShopInfoItem.Price - SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
             playerInventory.DeleteItem(SaleItemsDict[itemID]);
             return true;
         }
