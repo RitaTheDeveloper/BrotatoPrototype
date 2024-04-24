@@ -15,8 +15,25 @@ public class UIWaveResults : MonoBehaviour
 
     public void UpdateWaveResults(PlayerCharacteristics playerCharacteristics)
     {
-        currentHungerTMP.text = playerCharacteristics.CurrentHunger.ToString();
+        int hunger = playerCharacteristics.CurrentHunger;
+        currentHungerTMP.text = hunger.ToString();
 
-        amountOfLevelUpsForWaveTMP.text = playerCharacteristics.GetComponent<LevelSystem>().NumberOfLeveledUpForCurrentWave.ToString() + "<sup> х </sup>";
+        int amountOfFoodForWave = playerCharacteristics.GetComponent<PlayerSatiety>().GetAmountOfFoodForWave();
+        amountFoodMinedTMP.text = amountOfFoodForWave.ToString();
+
+        amountOfLevelUpsForWaveTMP.text = playerCharacteristics.GetComponent<LevelSystem>().NumberOfLeveledUpForCurrentWave.ToString() + "<sup>х</sup>";
+
+        int currentSatiety = playerCharacteristics.CurrentSatiety;
+        int percentageReductionMaxHealth = 100 - currentSatiety;
+        if (percentageReductionMaxHealth < 0) percentageReductionMaxHealth = 0;
+
+        percentageReductionMaxHealthTMP.text = "максимальное здоровье \n снижено на " + percentageReductionMaxHealth + "%";
+
+        PlayerInventory inventory = playerCharacteristics.GetComponent<PlayerInventory>();
+        int goldForWave = inventory.GetAmountOfMoneyForWave();
+        amountGoldForWaveTMP.text = "+" + goldForWave;
+
+        int woodForWave = inventory.GetAmountOfWoodForWave();
+        amountWoodForWaveTMP.text = "+" + woodForWave;
     }
 }

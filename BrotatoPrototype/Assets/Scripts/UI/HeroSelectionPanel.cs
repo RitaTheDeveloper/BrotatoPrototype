@@ -50,8 +50,8 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void ChooseTheHero()
     {
-        //mainMenu.SetActive(false);
-        OpenCloseWindow.CloseWindow(mainMenu);
+        mainMenu.SetActive(false);
+        //OpenCloseWindow.CloseWindow(mainMenu);
         GameManager.instance.SetHeroIndex(indexOfHero);
         GameManager.instance.Init();
     }

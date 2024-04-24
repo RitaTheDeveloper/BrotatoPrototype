@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startMaxHp: 10
-  _startHpRegen: 0
+  _startHpRegen: -0.5
   _startMoveSpeed: 0
   _startMagnetDistance: 0
   _startAttackSpeedPercentage: 0
@@ -85,7 +85,8 @@ MonoBehaviour:
   _startCritChancePercentage: 0
   _startArmor: 0
   _startProbabilityOfDodge: 0
-  _startLifeStealPercentage: 0
+  _startSatiety: 0
+  _startHunger: 0
 --- !u!114 &-1560427816102157758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,9 +104,5 @@ MonoBehaviour:
   DiscountProcent: 50
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}
-  MinWave: 1
-  NameWeapon: "\u041F\u0435\u0440\u043E 1"
-  TypeWeapon: "\u041F\u0440\u043E\u0441\u0442\u043E\u0439"
-  Description: "+10 \u043A \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044E, + 5%
-    \u043A \u0443\u0440\u043E\u043D\u0443"
+  NameWeapon: "\u041F\u0435\u0440\u043E"
   IconWeapon: {fileID: 21300000, guid: f5d20f052262f1246b641c9e98451f0b, type: 3}

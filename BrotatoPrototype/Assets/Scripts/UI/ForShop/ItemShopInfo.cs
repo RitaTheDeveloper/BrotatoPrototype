@@ -12,16 +12,10 @@ public class ItemShopInfo : MonoBehaviour
     [SerializeField] public int DiscountProcent;
     [Tooltip("Уровень предмета:")]
     [SerializeField] public RareItemsDataStruct LevelItem;
-    [Tooltip("Минимальная волна:")]
-    [SerializeField] public int MinWave;
 
     [Header("Параметры отображения: ")]
     [Tooltip("Название оружия:")]
     [SerializeField] public string NameWeapon;
-    [Tooltip("Тип оружия:")]
-    [SerializeField] public string TypeWeapon;
-    [Tooltip("Характеристики оружия:")]
-    [SerializeField] public string Description;
     [Tooltip("Иконка оружия:")]
     [SerializeField] public Sprite IconWeapon;
 
@@ -41,17 +35,5 @@ public class ItemShopInfo : MonoBehaviour
     private void Awake()
     {
         IdWeapon = gameObject.name;
-    }
-
-    public void DisplayCharacteristicsOfWeapon()
-    {
-        Debug.Log("узнать характеристики оружия");
-        Weapon weapon = GetComponent<Weapon>();
-        if (weapon)
-        {
-            Description = "урон: " + weapon.StartDamage;
-            //Debug.Log("урон " + weapon.StartDamage);
-            //damage = weapon.StartDamage.ToString();
-        }
     }
 }

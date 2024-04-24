@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1460337192397051609}
   - component: {fileID: 9141893181234884818}
   - component: {fileID: 3573727161873608435}
+  - component: {fileID: 871548253195253784}
   m_Layer: 0
-  m_Name: Stick
+  m_Name: Stick_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 0
+  type: 1
   weaponModifiers: {fileID: 11400000, guid: 7c7d40e68bf9c414ab0052408a6e484b, type: 2}
   attackRange: 0
   startDamage: 5
@@ -85,6 +87,25 @@ MonoBehaviour:
   _explosionPrefab: {fileID: 6253230498411433336}
   drawRadius: {fileID: 7457614227495495218}
   _radiusOfAoE: 7
+--- !u!114 &871548253195253784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743134312085228820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: slinghot1
+  Price: 50
+  DiscountProcent: 10
+  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
+    type: 3}
+  NameWeapon: "\u041F\u043E\u0441\u043E\u0445"
+  IconWeapon: {fileID: 21300000, guid: 2382237d3fdc1cc40b1d03bb2197b309, type: 3}
 --- !u!1 &2930380676871344605
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,8 +18,6 @@ public class ItemInfoPanelWithoutSellBtn : MonoBehaviour
         icon.sprite = itemInfo.IconWeapon;
         background.color = itemInfo.LevelItem.BackgroundColor;
         nameItem.text = itemInfo.NameWeapon;
-        typeItem.text = itemInfo.TypeWeapon;
-        description.text = itemInfo.Description;
         id = itemInfo.IdWeapon;
     }
 }

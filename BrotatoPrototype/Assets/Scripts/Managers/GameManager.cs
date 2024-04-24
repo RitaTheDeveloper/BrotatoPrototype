@@ -17,8 +17,11 @@ public class GameManager : MonoBehaviour
     private bool _gameIsOver;
     public bool GameIsOver { get { return _gameIsOver; } }
 
+    private bool _isPlaying;
+    public bool IsPlaying { get => _isPlaying; }
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
+
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Destroy(GetComponent<SaveController>());
         SpawnPlayer(_heroIndex);
+        _isPlaying = true;
         _gameIsOver = false;
         _waveCounter = 0;
         _currentWave = _waves[_waveCounter];
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
         UIManager.instance.Lose();
@@ -70,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
+        _isPlaying = false;
        //StopTime();
         _waveCounter++;
         if (_waveCounter == _waves.Length)
@@ -92,11 +98,13 @@ public class GameManager : MonoBehaviour
 
     public void StartNextWave()
     {
+        player.GetComponent<PlayerMovement>().PutPlayerInStartPosition(playerStartingSpawnPoint.position);
+        _isPlaying = true;        
         player.GetComponent<PlayerHealth>().Init();
         player.GetComponent<PlayerHealth>().DisplayHealth();
         player.GetComponent<WeaponController>().EquipPlayer();
         player.GetComponent<PlayerSatiety>().ResetAmountOfFoodLifted();
-        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLifted();
+        player.GetComponent<PlayerInventory>().ResetAmountOfWoodLiftedAndGoldForWave();
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);        
         UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();

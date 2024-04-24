@@ -7,8 +7,10 @@ public class PlayerSatiety : MonoBehaviour
     private int _startSatiety = 100;
     private int _currentSatiety;
     private PlayerCharacteristics _playerCharacteristics;
-    private int _amountOfFoodLifted;
+    private int _counterOfFoodLifted;
     private bool isFull = false;
+    private int _amountOfFoodForWave;
+
     private void Awake()
     {
         Init();
@@ -46,17 +48,25 @@ public class PlayerSatiety : MonoBehaviour
 
     public int GetAmountOfFoodLifted()
     {
-        return _amountOfFoodLifted;
+        return _counterOfFoodLifted;
     }
 
-    public void FoodUp()
+    public void FoodUp(int amountOfFood)
     {
-        _amountOfFoodLifted++;
-        UIManager.instance.DisplayFoodUp(_amountOfFoodLifted);
+        ChangeSatiety(amountOfFood);
+        _amountOfFoodForWave += amountOfFood;
+        _counterOfFoodLifted++;
+        UIManager.instance.DisplayFoodUp(_counterOfFoodLifted);
+    }
+
+    public int GetAmountOfFoodForWave()
+    {
+        return _amountOfFoodForWave;
     }
 
     public void ResetAmountOfFoodLifted()
     {
-        _amountOfFoodLifted = 0;
+        _counterOfFoodLifted = 0;
+        _amountOfFoodForWave = 0;
     }
 }
