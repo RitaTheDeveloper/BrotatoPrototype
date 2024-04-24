@@ -29,7 +29,7 @@ public class ItemShopInfo : MonoBehaviour
 
     public int GetSalePrice()
     {
-        return currentPrice - (int)((float)currentPrice * ((float)DiscountProcent / 100.0f));
+        return Price - (int)((float)Price * ((float)DiscountProcent / 100.0f));
     }
 
     private void Awake()

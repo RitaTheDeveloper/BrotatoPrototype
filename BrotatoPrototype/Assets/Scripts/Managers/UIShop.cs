@@ -286,7 +286,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.IsSlotSold(slotNumber))
         {
-            Debug.Log("возможно тут проблема");
+            Debug.Log("Слот продан!");
             return;
         }
         for (int i = 0; i < items.Count; i++)

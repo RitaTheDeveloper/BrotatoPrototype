@@ -94,6 +94,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void UpdateShop()
     {
+        ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
         uiShop.SetWaveNumberText(currentWave);
         // uiShop.CreateItemsSlotsForSale(4);
         uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
@@ -117,21 +118,31 @@ public class ShopController : MonoBehaviour, IShopController
             }
             else
             {
+                Debug.Log("Недостаточно денег");
                 return false;
             }
         }
         else if (WeaponsDict.ContainsKey(itemID))
         {
-            if (playerInventory.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price) && weaponsList.Count < weaponController.GetMaxNumberOfweapons())
+            if (playerInventory.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price))
             {
-                playerInventory.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
-                weaponsList.Add(WeaponsDict[itemID]);
-                //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
-                uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
-                return true;
+                if (weaponsList.Count < weaponController.GetMaxNumberOfweapons())
+                {
+                    playerInventory.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
+                    weaponsList.Add(WeaponsDict[itemID]);
+                    //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
+                    uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("Недостаточно места");
+                    return false;
+                }
             }
             else
             {
+                Debug.Log("Недостаточно денег");
                 return false;
             }
         }
@@ -150,6 +161,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void PickItemsForSale()
     {
+        ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
         int countWeapon = 0;
         int countItem = 0;
         for (int i = 0; i < ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count; i++)
@@ -216,15 +228,16 @@ public class ShopController : MonoBehaviour, IShopController
     public bool SellItem(string itemID)
     {
         if (WeaponsDict.ContainsKey(itemID))
-        {    
-            int priceForSale = WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetSalePrice();
+        {
+            ItemShopInfo shopComponent = WeaponsDict[itemID].GetComponent<ItemShopInfo>();
+            int priceForSale = shopComponent.GetSalePrice();
             playerInventory.ChangeMoney(priceForSale);
             weaponsList.Remove(WeaponsDict[itemID]);
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            playerInventory.ChangeMoney(SaleItemsDict[itemID].GetPrice(currentWave) * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
+            playerInventory.ChangeMoney(SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
             playerInventory.DeleteItem(SaleItemsDict[itemID]);
             return true;
         }
