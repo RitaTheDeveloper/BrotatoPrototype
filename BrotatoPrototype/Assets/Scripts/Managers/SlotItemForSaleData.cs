@@ -43,7 +43,7 @@ public class SlotItemForSaleData : MonoBehaviour
         textName.text = it.ShopInfoItem.NameWeapon;
         textType.text = "снаряжение";
         textTier.text = it.ShopInfoItem.LevelItem.TierString;
-        textCost.text = it.GetPrice(currentWave).ToString();
+        textCost.text = it.ShopInfoItem.GetPrice(currentWave).ToString();
         image.sprite = it.ShopInfoItem.IconWeapon;
         SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
         buyBtn.onClick.RemoveAllListeners();

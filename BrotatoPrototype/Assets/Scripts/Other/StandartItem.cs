@@ -27,12 +27,12 @@ public class StandartItem : MonoBehaviour
 
     public int GetPrice(int wave)
     {
-        currentPrice = ShopInfoItem.Price + wave + (int)(ShopInfoItem.Price * wave * 0.01f);
+        currentPrice = ShopInfoItem.Price + wave + (int)(ShopInfoItem.Price * wave * 0.1f);
         return currentPrice; // расчет цены за определенную волну (wave)
     }
 
     public int GetSalePrice()
     {
-        return currentPrice - (int)((float)currentPrice * ((float)ShopInfoItem.DiscountProcent / 100.0f));
+        return ShopInfoItem.Price - (int)((float)ShopInfoItem.Price * ((float)ShopInfoItem.DiscountProcent / 100.0f));
     }
 }
