@@ -23,7 +23,7 @@ public class ItemShopInfo : MonoBehaviour
 
     public int GetPrice(int wave)
     {
-        currentPrice = Price + wave + (int)(Price * wave * 0.01f);
+        currentPrice = Price + wave + (int)(Price * wave * 0.1f);
         return currentPrice; // расчет цены за определенную волну (wave)
     }
 

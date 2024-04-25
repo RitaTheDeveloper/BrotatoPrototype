@@ -39,6 +39,7 @@ public class BackgroundMusicManger : MonoBehaviour
     private int indexBackgroundMusic = 0;
 
     private float stepVolume = 0;
+    private bool canPlayBackground = false;
 
     private void Awake()
     {
@@ -73,7 +74,7 @@ public class BackgroundMusicManger : MonoBehaviour
         }
         if (stateMusicManager == StateMusicManager.Fight)
         {
-            if (backgroundMusic[indexBackgroundMusic].CanPlayNext())
+            if (backgroundMusic[indexBackgroundMusic].CanPlayNext() && canPlayBackground)
             {
                 if (backgroundMusic.Count > indexBackgroundMusic + 1)
                 {
@@ -88,7 +89,7 @@ public class BackgroundMusicManger : MonoBehaviour
         }
         if (stateMusicManager == StateMusicManager.FightPercs)
         {
-            if (backgroundMusic[indexBackgroundMusic].CanPlayNext())
+            if (backgroundMusic[indexBackgroundMusic].CanPlayNext() && canPlayBackground)
             {
                 if (backgroundMusic.Count > indexBackgroundMusic + 1)
                 {
@@ -109,6 +110,7 @@ public class BackgroundMusicManger : MonoBehaviour
             if (shopSource != null)
                 if (shopSource.isPlaying)
                     return;
+        stateMusicManager = StateMusicManager.ShopMenu;
         if (mainMenuSource != null)
         {
             Destroy(mainMenuSource);
@@ -209,26 +211,31 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void PlayShopMusicFromFight()
     {
+        canPlayBackground = false;
         StartCoroutine(FadeInBackgroundMusicToShopMusic());
     }
 
     public void PlayMainMenuMusicFromFight()
     {
+        canPlayBackground = false;
         StartCoroutine(FadeInBackgroundMusicToMenuMusic());
     }
 
     public void PlayShopMusicFromMainMenuMusic()
     {
+        canPlayBackground = false;
         StartCoroutine(FadeInMainMenuMusicToShopMusic());
     }
 
     public void PlayMainMenuMusicFromShopMusic()
     {
+        canPlayBackground = false;
         StartCoroutine(FadeInShopMusicToMenuMusic());
     }
 
     public void PlayBackgroundMusicFromMainMenuMusic()
     {
+        canPlayBackground = true;
         StartCoroutine(FadeInMainMenuMusicToFight());
     }
 
@@ -240,21 +247,28 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void ChangeBackgroundMusicToPercs()
     {
+        canPlayBackground = true;
         StartCoroutine(FadeInBackGroundToPerksState());
     }
 
     public void PlayBackgroundMusicPerkStateFromMainMenuMusic()
     {
+        canPlayBackground = true;
         StartCoroutine(FadeInMainMenuMusicToPerkState());
     }
 
     public void PlayBackgroundMusicFromShop()
     {
+        canPlayBackground= true;
         StartCoroutine(FadeInShopMusicToFight());
     }
 
     IEnumerator FadeInBackgroundMusicToShopMusic()
     {
+        if (backgroundSource == null)
+        {
+            yield break;
+        }
         while (backgroundSource.volume > 0)
         {
             if (backgroundSource.volume - stepVolume * Time.deltaTime < 0) backgroundSource.volume = 0;
@@ -270,6 +284,10 @@ public class BackgroundMusicManger : MonoBehaviour
     }
 
     IEnumerator FadeInBackgroundMusicToMenuMusic() {
+        if (backgroundSource == null)
+        {
+            yield break;
+        }
         while (backgroundSource.volume > 0)
         {
             if (backgroundSource.volume - stepVolume * Time.deltaTime < 0) backgroundSource.volume = 0;
@@ -282,6 +300,10 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeInShopMusicToFight()
     {
+        if (shopSource == null)
+        {
+            yield break;
+        }
         while (shopSource.volume > 0)
         {
             if (shopSource.volume - stepVolume * Time.deltaTime < 0) shopSource.volume = 0;
@@ -298,6 +320,10 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeInShopMusicToMenuMusic()
     {
+        if (shopSource == null)
+        {
+            yield break;
+        }
         while (shopSource.volume > 0)
         {
             if (shopSource.volume - stepVolume * Time.deltaTime < 0) shopSource.volume = 0;
@@ -309,6 +335,10 @@ public class BackgroundMusicManger : MonoBehaviour
     }
 
     IEnumerator FadeInMainMenuMusicToFight() {
+        if (mainMenuSource == null)
+        {
+            yield break;
+        }
         while (mainMenuSource.volume > 0)
         {
             if (mainMenuSource.volume - stepVolume * Time.deltaTime < 0) mainMenuSource.volume = 0;
@@ -321,6 +351,10 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeInMainMenuMusicToShopMusic()
     {
+        if (mainMenuSource == null)
+        {
+            yield break;
+        }
         while (mainMenuSource.volume > 0)
         {
             if (mainMenuSource.volume - stepVolume * Time.deltaTime < 0) mainMenuSource.volume = 0;
@@ -333,6 +367,10 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeInMainMenuMusicToPerkState()
     {
+        if (mainMenuSource == null)
+        {
+            yield break;
+        }
         while (mainMenuSource.volume > 0)
         {
             if (mainMenuSource.volume - stepVolume * Time.deltaTime < 0) mainMenuSource.volume = 0;
@@ -345,6 +383,10 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeOutBackgroundMusic() 
     {
+        if (backgroundSource == null)
+        {
+            yield break;
+        }
         while (backgroundSource.volume < 1)
         {
             if (backgroundSource.volume + stepVolume * Time.deltaTime > 1) backgroundSource.volume = 1;
@@ -356,6 +398,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeOutShopMusic()
     {
+        if (shopSource == null)
+            yield break;
         while (shopSource.volume < 1)
         {
             if (shopSource.volume + stepVolume * Time.deltaTime > 1) shopSource.volume = 1;
@@ -367,6 +411,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeOutMainMenuMusic()
     {
+        if (mainMenuSource == null)
+            yield break;
         while (mainMenuSource.volume < 1)
         {
             if (mainMenuSource.volume + stepVolume * Time.deltaTime > 1) mainMenuSource.volume = 1;
@@ -378,6 +424,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeInBackGroundToPerksState()
     {
+        if (backgroundSource == null)
+            yield break;
         while (backgroundSource.volume > 0.7f)
         {
             if (backgroundSource.volume - stepVolume * Time.deltaTime < 0.7f) backgroundSource.volume = 0.7f;
@@ -390,6 +438,8 @@ public class BackgroundMusicManger : MonoBehaviour
 
     IEnumerator FadeOutBackgroundMusicToPerkState()
     {
+        if (backgroundSource == null)
+            yield break;
         while (backgroundSource.volume < 0.7f)
         {
             if (backgroundSource.volume + stepVolume * Time.deltaTime > 0.7f) backgroundSource.volume = 0.7f;
