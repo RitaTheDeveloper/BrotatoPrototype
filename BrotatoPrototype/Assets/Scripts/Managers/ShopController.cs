@@ -345,7 +345,15 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetShopLevelUpCost()
     {
-        return ShopLevelStructsStorage[CurrentShopLevel].levelPrice;
+        if (CurrentShopLevel < ShopLevelStructsStorage.Count)
+        {
+            return ShopLevelStructsStorage[CurrentShopLevel].levelPrice;
+        }
+        else
+        {
+            Debug.Log("Максимальный уровень магазина!");
+            return 0;
+        }
     }
 
     public int GetRerollCost()
