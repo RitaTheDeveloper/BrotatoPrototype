@@ -63,14 +63,17 @@ public class PlayerHealth : LivingEntity
     public override void HpRegen()
     {
         base.HpRegen();
-
-        _oneHp += hpRegenPerSecond * Time.deltaTime;
-        if (_oneHp >= 1)
+        if (hpRegenPerSecond > 0)
         {
-            TemporaryMessageManager.Instance.AddMessageOnScreen("+" + ((int)_oneHp).ToString(), this.gameObject.transform.position, Color.green);
-            _oneHp = 0f;
+            _oneHp += hpRegenPerSecond * Time.deltaTime;
+            if (_oneHp >= 1)
+            {
+                TemporaryMessageManager.Instance.AddMessageOnScreen("+" + ((int)_oneHp).ToString(), this.gameObject.transform.position, Color.green);
+                _oneHp = 0f;
+            }
+            DisplayHealth();
         }
-        DisplayHealth();
+       
     }
 
     public void DisplayHealth()
@@ -132,6 +135,14 @@ public class PlayerHealth : LivingEntity
         {
             _probabilityOfDodge = probDodge;
         }
+    }
+
+    public void UpdateCharactestics()
+    {
+        SetMaxHP();
+        SetProbabilityOfDodge();
+        SetHpRegenPerSecond();
+        SetArmor();
     }
         
     private float GetDamageAfterArmor(float damage, float armor)
