@@ -21,28 +21,28 @@ public class ShopController : MonoBehaviour, IShopController
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
     public Dictionary<int, bool> SoldItemsDict = new Dictionary<int, bool>();
 
-    [Tooltip("Структура уровней мгазина")]
+    [Tooltip("Г‘ГІГ°ГіГЄГІГіГ°Г  ГіГ°Г®ГўГ­ГҐГ© Г¬ГЈГ Г§ГЁГ­Г ")]
     [SerializeField] public List<ShopLevelStruct> ShopLevelStructsStorage = new List<ShopLevelStruct>();
 
-    [Tooltip("Ткущее колличество слотов")]
+    [Tooltip("Г’ГЄГіГ№ГҐГҐ ГЄГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® Г±Г«Г®ГІГ®Гў")]
     [SerializeField] int ShopSizeList = 0;
 
-    [Tooltip("Текущий уровень магазина")]
+    [Tooltip("Г’ГҐГЄГіГ№ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¬Г ГЈГ Г§ГЁГ­Г ")]
     [SerializeField] int CurrentShopLevel = 1;
 
-    [Tooltip("Возможная редкость предметов")]
+    [Tooltip("Г‚Г®Г§Г¬Г®Г¦Г­Г Гї Г°ГҐГ¤ГЄГ®Г±ГІГј ГЇГ°ГҐГ¤Г¬ГҐГІГ®Гў")]
     [SerializeField] public List<RareItemsDataStruct> RareData = new List<RareItemsDataStruct>();
 
-    [Tooltip("Деолтная цена рерола")]
+    [Tooltip("Г„ГҐГ®Г«ГІГ­Г Гї Г¶ГҐГ­Г  Г°ГҐГ°Г®Г«Г ")]
     [SerializeField] public int DefaultRerollPrice = 20;
 
-    [Tooltip("Шаг полвышения цены рерола")]
+    [Tooltip("ГГ ГЈ ГЇГ®Г«ГўГ»ГёГҐГ­ГЁГї Г¶ГҐГ­Г» Г°ГҐГ°Г®Г«Г ")]
     [SerializeField] public int StepRerollPrice = 5;
 
-    [Tooltip("Текущая цена рерола")]
+    [Tooltip("Г’ГҐГЄГіГ№Г Гї Г¶ГҐГ­Г  Г°ГҐГ°Г®Г«Г ")]
     [SerializeField] private int CurrentRerollPrice = 20;
 
-    [Tooltip("Шанс оружия %")]
+    [Tooltip("ГГ Г­Г± Г®Г°ГіГ¦ГЁГї %")]
     [SerializeField] public int WeaponChance = 30;
 
     [SerializeField] UIShop uiShop;
@@ -109,22 +109,22 @@ public class ShopController : MonoBehaviour, IShopController
     {
         if (SaleItemsDict.ContainsKey(itemID))
         {
-            if (playerInventory.HaveNeedCost(SaleItemsDict[itemID].ShopInfoItem.Price))
+            if (playerInventory.HaveNeedCost(SaleItemsDict[itemID].ShopInfoItem.GetPrice(currentWave)))
             {
-                playerInventory.ChangeMoney(SaleItemsDict[itemID].GetPrice(currentWave) * -1);
+                playerInventory.ChangeMoney(SaleItemsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
                 playerInventory.AddItem(SaleItemsDict[itemID]);
                 uiShop.CreateItemsElements(playerInventory.inventory);
                 return true;
             }
             else
             {
-                Debug.Log("Недостаточно денег");
+                Debug.Log("ГЌГҐГ¤Г®Г±ГІГ ГІГ®Г·Г­Г® Г¤ГҐГ­ГҐГЈ");
                 return false;
             }
         }
         else if (WeaponsDict.ContainsKey(itemID))
         {
-            if (playerInventory.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().Price))
+            if (playerInventory.HaveNeedCost(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave)))
             {
                 if (weaponsList.Count < weaponController.GetMaxNumberOfweapons())
                 {
@@ -136,13 +136,13 @@ public class ShopController : MonoBehaviour, IShopController
                 }
                 else
                 {
-                    Debug.Log("Недостаточно места");
+                    Debug.Log("ГЌГҐГ¤Г®Г±ГІГ ГІГ®Г·Г­Г® Г¬ГҐГ±ГІГ ");
                     return false;
                 }
             }
             else
             {
-                Debug.Log("Недостаточно денег");
+                Debug.Log("ГЌГҐГ¤Г®Г±ГІГ ГІГ®Г·Г­Г® Г¤ГҐГ­ГҐГЈ");
                 return false;
             }
         }
@@ -170,7 +170,7 @@ public class ShopController : MonoBehaviour, IShopController
             bool needWeapon = false;
             bool needItem = false;
 
-            //1 - 5 уровень
+            //1 - 5 ГіГ°Г®ГўГҐГ­Гј
             if (CurrentShopLevel >= 1 && CurrentShopLevel <= 5)
             {
 
@@ -195,7 +195,7 @@ public class ShopController : MonoBehaviour, IShopController
                     needItem = true;
                 }
             }
-            //Все прочие ровни магазина
+            //Г‚Г±ГҐ ГЇГ°Г®Г·ГЁГҐ Г°Г®ГўГ­ГЁ Г¬Г ГЈГ Г§ГЁГ­Г 
             else
             {
                 int chance = Random.Range(0, 100);
@@ -351,7 +351,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
-            Debug.Log("Максимальный уровень магазина!");
+            Debug.Log("ГЊГ ГЄГ±ГЁГ¬Г Г«ГјГ­Г»Г© ГіГ°Г®ГўГҐГ­Гј Г¬Г ГЈГ Г§ГЁГ­Г !");
             return 0;
         }
     }
