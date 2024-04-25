@@ -24,9 +24,10 @@ public class UIHealth : MonoBehaviour
 
         if (startHp == maxStartHp) stub.SetActive(false);
         else stub.SetActive(true);
-
+        
         //maxhealthSlider.value = Mathf.CeilToInt((maxStartHp - startHp) * 100f / maxStartHp) / 100f;      
         maxhealthSlider.value = satiety / 100f;
+        //currentHealthSlider.maxValue = 1 - maxhealthSlider.value;
         currentHealthSlider.value = currentHp / startHp;
         healthTxt.text = (int)currentHp + "/" + (int)startHp + "(" + (int)maxStartHp + ")";
         //maxhealthSlider.value = (100 - Mathf.CeilToInt(startHp * 100f / maxStartHp)) * 0.01f;
