@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
-using static UnityEditor.Progress;
 
 public class ShopController : MonoBehaviour, IShopController
 {
