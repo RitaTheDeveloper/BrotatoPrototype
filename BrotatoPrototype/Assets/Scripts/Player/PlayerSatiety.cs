@@ -26,7 +26,6 @@ public class PlayerSatiety : MonoBehaviour
         ResetAmountOfFoodLifted();
         _playerCharacteristics = GetComponent<PlayerCharacteristics>();
         _currentSatiety = _playerCharacteristics.CurrentSatiety;
-        Debug.Log("satiety = " + _currentSatiety);
         UIManager.instance.DisplaySatiety(_currentSatiety, _startSatiety, isFull);        
     }
 

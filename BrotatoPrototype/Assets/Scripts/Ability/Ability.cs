@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ability : MonoBehaviour
 {
     public string nameOfAbility;
+    public Sprite icon;
 
     public virtual void UseAbility()
     {
@@ -19,5 +20,10 @@ public class Ability : MonoBehaviour
     public string GetName()
     {
         return nameOfAbility;
+    }
+
+    public Sprite GetSprite()
+    {
+        return icon;
     }
 }

@@ -32,7 +32,8 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;    
+    [SerializeField] private int maxAmountOfItems = 16;
+    public GameObject dimmingPanel;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -63,8 +64,8 @@ public class UIShop : MonoBehaviour
     }
 
     public void SetWaveNumberText(int _waveNumber)
-    {
-        waveNumberText.text = "волна " + _waveNumber.ToString();
+    {        
+        waveNumberText.text = "(волна " + (_waveNumber + 1).ToString() + ")";
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
@@ -295,10 +296,7 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
-                    Debug.Log("или ту возможно проблема");
-                    //Destroy(items[i].gameObject);
                     listOfPrefabsForItemsForSale[i].GetComponent<SlotItemForSaleData>().PotOff();
-                    //items.RemoveAt(i);
                     shopController.SoldSlot(slotNumber);
                 }
                 break;
@@ -318,7 +316,7 @@ public class UIShop : MonoBehaviour
 
     public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
     {
-        numberOfWeapons.text = "оружия (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
+        numberOfWeapons.text = "Оружия (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
@@ -328,26 +326,24 @@ public class UIShop : MonoBehaviour
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
-    public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
+    public void DisplayItemInfoWithBtn(ItemShopInfo _info, bool isIconPressed)
     {
         DestroyItemInfo();
-        //btnPosition.x += XmovePosOfInfoPanel;
-        //btnPosition.y += YmovePosOfInfoPanel;
+        dimmingPanel.SetActive(isIconPressed);
         _currentInfoItem = Instantiate(weaponInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
 
-    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
+    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info)
     {
         DestroyItemInfo();
-        //btnPosition.x += XmovePosOfInfoPanel;
-        //btnPosition.y += YmovePosOfInfoPanel;
         _currentInfoItem = Instantiate(itemInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 
     public void DestroyItemInfo()
     {
+        dimmingPanel.SetActive(false);
         if(_currentInfoItem != null)
         {
             Destroy(_currentInfoItem.gameObject);
@@ -357,19 +353,6 @@ public class UIShop : MonoBehaviour
     // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
     public void CreateItemsSlotsForSale(int _number)
     {
-        //for (int i = 0; i < items.Count; i++)
-        //{
-        //    Destroy(items[i].gameObject);
-        //}
-        //items.Clear();
-        //for (int i = 0; i <_number; i++)
-        //{
-        //    GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
-        //    SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
-        //    slot.SlotNumber = i;
-        //    items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
-        //}
-
         items.Clear();
         for (int i = 0; i < listOfPrefabsForItemsForSale.Count; i++)
         {

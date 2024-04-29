@@ -10,8 +10,6 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public Image background;
     public ItemShopInfo itemInfo;
 
-    private bool _onClick = false;
-
     public void AddItem(ItemShopInfo _itemInfo)
     {
         itemInfo = _itemInfo;
@@ -26,20 +24,18 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!_onClick) { _onClick = true; }
-        else { _onClick = false; }
-        
-        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, transform.position);
+
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, true);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, transform.position);
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!_onClick)
+        if (!UIShop.instance.dimmingPanel.activeInHierarchy)
         {
             UIShop.instance.DestroyItemInfo();
         }        
