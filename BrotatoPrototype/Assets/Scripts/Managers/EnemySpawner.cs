@@ -123,7 +123,9 @@ public class EnemySpawner : MonoBehaviour
     {
         PlaySoundOfMark();
         Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
-        return Instantiate(markPrefab, position, markPrefab.transform.rotation);
+        var mark = Instantiate(markPrefab, position, markPrefab.transform.rotation);
+       // mark.transform.parent = container.transform;
+        return mark;
     }
 
     private void PlaySoundOfMark()
