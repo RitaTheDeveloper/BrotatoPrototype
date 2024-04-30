@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Playables;
-using static UnityEditor.Progress;
 
 public class ShopController : MonoBehaviour, IShopController
 {
@@ -89,6 +87,7 @@ public class ShopController : MonoBehaviour, IShopController
     public void ResetShop()
     {
         CurrentShopLevel = 1;
+        UIShop.instance.ResetBabaYaga();
         UIShop.instance.DisplayLevelShop(CurrentShopLevel);
     }
 

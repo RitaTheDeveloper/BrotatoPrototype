@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System.Linq;
+using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
-    public static UIShop instance; 
+    public static UIShop instance;
 
+    [SerializeField] public Image babaYagaImg;
     [SerializeField] private TextMeshProUGUI waveNumberText;
     [SerializeField] private TextMeshProUGUI totalAmountOfGoldText;
     [SerializeField] private TextMeshProUGUI totalAmountOfWoodText;
@@ -33,6 +35,12 @@ public class UIShop : MonoBehaviour
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
     [SerializeField] private int maxAmountOfItems = 16;
+    [Header("левелы дл€ апгрейда бабы яги")]
+    [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
+    [SerializeField] private Sprite[] babaYagaSprites;
+
+    private int currentIndexBabaYaga = 0;
+
     public GameObject dimmingPanel;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
@@ -48,7 +56,7 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-       // shopController = GetComponent<ShopController>();
+        // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
         //CreateItemsSlotsForSale(4);
     }
@@ -64,7 +72,7 @@ public class UIShop : MonoBehaviour
     }
 
     public void SetWaveNumberText(int _waveNumber)
-    {        
+    {
         waveNumberText.text = "(волна " + (_waveNumber + 1).ToString() + ")";
     }
 
@@ -94,13 +102,13 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i < _maxNumberOfWeapons; i++)
         {
             GameObject slot = Instantiate(slotForWeaponPrefab, panelOfWeapons);
-            listSlotsOfWeapons.Add(slot.transform);            
+            listSlotsOfWeapons.Add(slot.transform);
         }
     }
 
     public void DestroyAllSlotsForWeapons()
     {
-        foreach(Transform child in panelOfWeapons.GetComponentInChildren<Transform>())
+        foreach (Transform child in panelOfWeapons.GetComponentInChildren<Transform>())
         {
             Destroy(child.gameObject);
         }
@@ -117,14 +125,14 @@ public class UIShop : MonoBehaviour
                 GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
                 weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
             }
-        }        
+        }
     }
 
     public void DeleteAllWeaponElements()
     {
-        foreach(Transform weaponSlot in panelOfWeapons.GetComponentInChildren<Transform>())
+        foreach (Transform weaponSlot in panelOfWeapons.GetComponentInChildren<Transform>())
         {
-            foreach(Transform weaponElement in weaponSlot)
+            foreach (Transform weaponElement in weaponSlot)
             {
                 if (weaponElement)
                 {
@@ -224,6 +232,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.UpgrateShop())
         {
+            ChangeSpriteOfBabaYga(shopController.GetShopLevel());
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
             DisplayLevelShop(shopController.GetShopLevel());
@@ -344,7 +353,7 @@ public class UIShop : MonoBehaviour
     public void DestroyItemInfo()
     {
         dimmingPanel.SetActive(false);
-        if(_currentInfoItem != null)
+        if (_currentInfoItem != null)
         {
             Destroy(_currentInfoItem.gameObject);
         }
@@ -401,5 +410,26 @@ public class UIShop : MonoBehaviour
         {
             AudioManager.instance.PlayShopBackGround(false);
         }
+    }
+
+    public void ChangeSpriteOfBabaYga(int levelShop)
+    {
+        if (levelsForUpgradeBabaYaga.Contains(levelShop))
+        {
+            currentIndexBabaYaga++;
+            if (currentIndexBabaYaga > babaYagaSprites.Length - 1)
+            {
+                currentIndexBabaYaga = babaYagaSprites.Length - 1;
+            }
+
+            Debug.Log("current index baba yga " + currentIndexBabaYaga);
+            babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
+        }        
+    }
+
+    public void ResetBabaYaga()
+    {
+        currentIndexBabaYaga = 0;
+        babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
     }
 }

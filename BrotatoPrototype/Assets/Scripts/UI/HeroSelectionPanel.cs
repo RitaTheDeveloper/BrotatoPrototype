@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static UnityEngine.UI.Button;
 
 public class HeroSelectionPanel : MonoBehaviour
 {
