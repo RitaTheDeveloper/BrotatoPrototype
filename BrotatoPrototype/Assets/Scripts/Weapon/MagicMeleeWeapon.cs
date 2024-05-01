@@ -59,6 +59,7 @@ public class MagicMeleeWeapon : MeleeWeapon
             drawRadius.gameObject.SetActive(true);
         }        
         _timer = 0f;
-        base.Attack();
+        //base.Attack();
+        PlaySoundAttack();
     }
 }

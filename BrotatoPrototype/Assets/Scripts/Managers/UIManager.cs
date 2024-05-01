@@ -14,11 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private TextMeshProUGUI waveCompletedTxt;
     [SerializeField] private string waveCompletedStr = "Волна пройдена!";
+    [SerializeField] private TextMeshProUGUI loseTxt;
+    [SerializeField] private TextMeshProUGUI winTxt;
+    [SerializeField] private GameObject winSun;
     [SerializeField] private GameObject waveCompletedMenu;
     [SerializeField] private GameObject waveResultsMenu;
     [SerializeField] private GameObject upgradesMenu;
     [SerializeField] private TextMeshProUGUI waveResultsTxt;
     [SerializeField] private GameObject abilitySelectionPanel;
+    [SerializeField] private GameObject winAndLosePanel;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject restartBtn;
@@ -170,9 +174,14 @@ public class UIManager : MonoBehaviour
         {
             BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
+        winAndLosePanel.SetActive(true);
+        // делаем виньетку
+        LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1.2f).setEase(LeanTweenType.easeInCirc);
+        //OpenCloseWindow.OpenWindowWithDelay(winSun, 1f);
+        textAnim.TypingText(winTxt, "Победа!", 1f);
         winPanel.SetActive(true);
-        restartBtn.SetActive(true);
-        menuBtn.SetActive(true);
+        //restartBtn.SetActive(true);
+        //menuBtn.SetActive(true);
     }
 
     public void Lose()
@@ -181,9 +190,16 @@ public class UIManager : MonoBehaviour
         {
             BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
+
+        winAndLosePanel.SetActive(true);
+        // делаем виньетку
+        LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
+        // пишем текст
+        textAnim.TypingText(loseTxt, "Поражение!", 0.5f);
         losePanel.SetActive(true);
-        restartBtn.SetActive(true);
-        menuBtn.SetActive(true);
+
+        //restartBtn.SetActive(true);
+        // menuBtn.SetActive(true);
     }
 
     public void OnClickRestart()
@@ -211,6 +227,7 @@ public class UIManager : MonoBehaviour
 
     private void AllOff()
     {
+        winAndLosePanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);

@@ -20,10 +20,10 @@ public class Explosion : MonoBehaviour
             {
                 numColliders[i].GetComponent<EnemyHealth>().TakeHit(_dmg, false);
 
-                if (numColliders[i].TryGetComponent(out IKnockbackable knockbackable))
-                {
-                    knockbackable.GetKnockedUp(new Vector3(0, 400f, 0));
-                }
+                //if (numColliders[i].TryGetComponent(out IKnockbackable knockbackable))
+                //{
+                //    knockbackable.GetKnockedUp(new Vector3(0, 400f, 0));
+                //}
             }
         }
         

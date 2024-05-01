@@ -57,7 +57,12 @@ public class GameManager : MonoBehaviour
         _gameIsOver = true;
         _currentWave.StopWave();
         UIManager.instance.Lose();
+        UIManager.instance.RemoveAllUpElements();
+        RemoveAllCurrency();
+        RemoveAllLoot();
         SaveGameResult();
+        RemoveAllEnemies();
+        RemoveAllBullets();
         Debug.Log("Game over!");
     }
 
@@ -68,6 +73,11 @@ public class GameManager : MonoBehaviour
         _currentWave.StopWave();
         //StopTime();
         UIManager.instance.Win();
+        UIManager.instance.RemoveAllUpElements();
+        RemoveAllCurrency();
+        RemoveAllLoot();
+        RemoveAllEnemies();
+        RemoveAllBullets();
         SaveGameResult();
     }
 
