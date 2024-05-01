@@ -180,7 +180,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void PlaySoundAttack()
+    public void PlaySoundAttack()
     {
         if (AudioManager.instance != null)
         {

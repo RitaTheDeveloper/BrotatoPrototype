@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     {
         currentState = State.Chasing;
         _rigidbody = GetComponent<Rigidbody>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameManager.instance.player.transform;
         navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
         MoveCoroutine = StartCoroutine(UpdatePath());
     }
@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
                 if (animator != null)
                 {
-                    animator.SetTrigger("attack");
+                    //animator.SetTrigger("attack");
                 }
 
                 Attacking();
