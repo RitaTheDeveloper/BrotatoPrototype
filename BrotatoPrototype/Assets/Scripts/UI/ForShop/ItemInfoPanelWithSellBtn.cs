@@ -6,22 +6,28 @@ using UnityEngine.UI;
 
 public class ItemInfoPanelWithSellBtn : MonoBehaviour
 {
-    public Image icon;
-    public Image background;
     public TextMeshProUGUI nameItem;
     public TextMeshProUGUI typeItem;
-    public TextMeshProUGUI description;    
+    public TextMeshProUGUI tier;
     public Button sellBtn;
     public TextMeshProUGUI price;
     public string id;
+    [SerializeField] private CharacteristicsInfoPanelForWeaponAndItem characteristicsInfo;
 
     public void SetUp(ItemShopInfo itemInfo)
     {
-        icon.sprite = itemInfo.IconWeapon;
-        background.color = itemInfo.LevelItem.BackgroundColor;
+        //icon.sprite = itemInfo.IconWeapon;
         nameItem.text = itemInfo.NameWeapon;
-        typeItem.text = itemInfo.TypeWeapon;
-        description.text = itemInfo.Description;
+        if (itemInfo.GetComponent<Weapon>().type == Weapon.Type.Melee)
+        {
+            typeItem.text = "ближний бой";
+        }
+        else
+        {
+            typeItem.text = "дальний бой";
+        }
+        tier.text = itemInfo.LevelItem.TierString;
+        characteristicsInfo.SetDescriptionOfCharacteristics(itemInfo);
         price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
         sellBtn.onClick.RemoveAllListeners();

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -7883915719805395228}
   - component: {fileID: -8086125469120082790}
   - component: {fileID: -2872071167883006049}
+  - component: {fileID: 3828613175337702773}
   m_Layer: 7
   m_Name: Player_Emelya
   m_TagString: Player
@@ -67,7 +68,6 @@ MonoBehaviour:
   _startCritChancePercentage: 0
   _startArmor: 2
   _startProbabilityOfDodge: 30
-  _startLifeStealPercentage: 0
   _startSatiety: 100
   _startHunger: -20
 --- !u!143 &7562376633630764223
@@ -89,8 +89,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.72
+  m_Height: 5
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -190,8 +190,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.679268, z: 1}
-  m_Center: {x: -0.0018188357, y: -2.0293202, z: 0}
+  m_Size: {x: 2, y: 6, z: 2}
+  m_Center: {x: 0, y: -2, z: 0}
 --- !u!114 &7928375719160621464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960f999d3e7c5994ebb651782840cbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 817c5f0b61fa5f649937be6424cfd292, type: 3}
+  icon: {fileID: 21300000, guid: 762114c5b499cd3468dfcb2838079166, type: 3}
   player2d: {fileID: 21300000, guid: e8e096cab9f56dc48bbfdc6a9d0d0592, type: 3}
   nameHero: "\u0415\u043C\u0435\u043B\u044F"
 --- !u!114 &-2872071167883006049
@@ -246,6 +246,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3828613175337702773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585661124780564198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wavesRequired: 10
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0

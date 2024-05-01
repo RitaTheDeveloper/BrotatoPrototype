@@ -32,7 +32,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual void HpRegen()
     {
-        health += hpRegenPerSecond * Time.deltaTime;
+        if(hpRegenPerSecond > 0)
+        {
+            health += hpRegenPerSecond * Time.deltaTime;
+        }
+
     }
 
     public virtual void TakeHit(float damage, bool isCrit)

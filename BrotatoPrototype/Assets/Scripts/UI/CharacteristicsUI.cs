@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CharacteristicsUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI parameterOfHunger;
     [SerializeField] private TextMeshProUGUI parameterOfMaxHp;
     [SerializeField] private TextMeshProUGUI parameterOfSpeed;
     [SerializeField] private TextMeshProUGUI parameterOfHpRegen;
@@ -29,6 +30,9 @@ public class CharacteristicsUI : MonoBehaviour
     public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
     {
         nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;
+
+        //for hunger
+        parameterOfHunger.text = _playerCharacteristics.CurrentHunger.ToString();
 
         //for maxHp
         parameterOfMaxHp.text = _playerCharacteristics.CurrentMaxHp.ToString();

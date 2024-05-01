@@ -37,7 +37,7 @@ public class PlayerInventory : MonoBehaviour
         if (playerCharacteristics)
         {
             playerCharacteristics.AddBonus(item.CharacteristicsItem);
-            GetComponent<PlayerHealth>().SetMaxHP();
+            GetComponent<PlayerController>().UpdateCharacteristics();
             UIShop.instance.UpdateUICharacteristics();
         }
     }

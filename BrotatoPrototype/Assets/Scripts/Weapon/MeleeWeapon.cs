@@ -73,6 +73,7 @@ public class MeleeWeapon : Weapon
             _timer = 0;
             animator.SetTrigger("Hit");
         }            
+        base.Attack();
     }
 
     protected override void SetDamage()

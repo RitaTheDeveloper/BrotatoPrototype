@@ -88,12 +88,20 @@ public class UIManager : MonoBehaviour
         GameManager.instance.StartNextWave();
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayBackgroundMusic();
+            BackgroundMusicManger.instance.PlayBackgroundMusicFromShop();
         }
     }
 
     public void WaveIsCompleted(int numberOfLeveledUpForCurrentWave)
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayMovement(false);
+        }
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ChangeBackgroundMusicToPercs();
+        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // анимация
         textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
@@ -107,14 +115,6 @@ public class UIManager : MonoBehaviour
     public void WaveCompletedMenuOn(int numberOfLeveledUpForCurrentWave)
     {
         PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlayMovement(false);
-        }
-        if (BackgroundMusicManger.instance != null)
-        {
-            BackgroundMusicManger.instance.PlayShopMusic();
-        }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // waveCompletedMenu.SetActive(true);
         OpenCloseWindow.OpenWindow(waveCompletedMenu);
@@ -168,7 +168,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuSource();
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
         winPanel.SetActive(true);
         restartBtn.SetActive(true);
@@ -179,7 +179,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuSource();
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
         losePanel.SetActive(true);
         restartBtn.SetActive(true);

@@ -57,10 +57,12 @@ MonoBehaviour:
   startCritChance: 0.03
   knockBack: 0
   repulsiveForce: 15
+  percantageOfMelleDamage: 100
+  percantageOfRangedDamage: 0
+  soundName: SwordAttack
   animator: {fileID: 7522623501473152233}
   timeOfAttack: 0.7
   nearestEnemy: {fileID: 0}
-  percantageOfMelleDamage: 100
 --- !u!95 &7522623501473152233
 Animator:
   serializedVersion: 5
@@ -147,11 +149,7 @@ MonoBehaviour:
   DiscountProcent: 50
   LevelItem: {fileID: 7236866929510234708, guid: 3de72545a5f47cd47aeb016ecc89fde9,
     type: 3}
-  MinWave: 3
-  NameWeapon: "\u043C\u0435\u0447 II"
-  TypeWeapon: "\u0431\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439"
-  Description: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438
-    \u043E\u0440\u0443\u0436\u0438\u044F"
+  NameWeapon: "\u043C\u0435\u0447"
   IconWeapon: {fileID: 21300000, guid: 4e85566d73953674f99a83850a356097, type: 3}
 --- !u!1 &7798779393218843148
 GameObject:

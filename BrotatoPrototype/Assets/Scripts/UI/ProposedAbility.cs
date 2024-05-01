@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ProposedAbility : MonoBehaviour
 {
+    [SerializeField] private Sprite icon;
     [SerializeField] public Ability ability = null;
     [SerializeField] private Button okBtn;
     [SerializeField] private TextMeshProUGUI nameTxt;

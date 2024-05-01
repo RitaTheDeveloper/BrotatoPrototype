@@ -74,7 +74,6 @@ public class WaveController : MonoBehaviour
     {
         _stopTime = false;
         _currentTime = time;
-        Debug.Log("начинаем отсчет");
         AllSpawnersOn();
     }
 

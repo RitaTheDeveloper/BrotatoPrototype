@@ -5,7 +5,6 @@ using UnityEngine;
 public class EndSoundCondition : ConditionClass
 {
     public AudioSource audioSource;
-    private bool result = false;
 
     private void Awake()
     {

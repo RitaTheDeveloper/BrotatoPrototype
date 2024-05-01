@@ -6,4 +6,5 @@ public class RareItemsDataStruct : MonoBehaviour
 {
     public int level;
     public Color BackgroundColor;
+    public string TierString;
 }

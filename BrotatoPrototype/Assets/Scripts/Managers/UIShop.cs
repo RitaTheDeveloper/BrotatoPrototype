@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System.Linq;
+using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
-    public static UIShop instance; 
+    public static UIShop instance;
 
+    [SerializeField] public Image babaYagaImg;
     [SerializeField] private TextMeshProUGUI waveNumberText;
     [SerializeField] private TextMeshProUGUI totalAmountOfGoldText;
     [SerializeField] private TextMeshProUGUI totalAmountOfWoodText;
@@ -32,7 +34,14 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;    
+    [SerializeField] private int maxAmountOfItems = 16;
+    [Header("левелы дл€ апгрейда бабы яги")]
+    [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
+    [SerializeField] private Sprite[] babaYagaSprites;
+
+    private int currentIndexBabaYaga = 0;
+
+    public GameObject dimmingPanel;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
     public List<Transform> listSlotsOfWeapons = new List<Transform>();
@@ -47,7 +56,7 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-       // shopController = GetComponent<ShopController>();
+        // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
         //CreateItemsSlotsForSale(4);
     }
@@ -64,7 +73,7 @@ public class UIShop : MonoBehaviour
 
     public void SetWaveNumberText(int _waveNumber)
     {
-        waveNumberText.text = "волна " + _waveNumber.ToString();
+        waveNumberText.text = "(волна " + (_waveNumber + 1).ToString() + ")";
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
@@ -93,13 +102,13 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i < _maxNumberOfWeapons; i++)
         {
             GameObject slot = Instantiate(slotForWeaponPrefab, panelOfWeapons);
-            listSlotsOfWeapons.Add(slot.transform);            
+            listSlotsOfWeapons.Add(slot.transform);
         }
     }
 
     public void DestroyAllSlotsForWeapons()
     {
-        foreach(Transform child in panelOfWeapons.GetComponentInChildren<Transform>())
+        foreach (Transform child in panelOfWeapons.GetComponentInChildren<Transform>())
         {
             Destroy(child.gameObject);
         }
@@ -116,14 +125,14 @@ public class UIShop : MonoBehaviour
                 GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
                 weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
             }
-        }        
+        }
     }
 
     public void DeleteAllWeaponElements()
     {
-        foreach(Transform weaponSlot in panelOfWeapons.GetComponentInChildren<Transform>())
+        foreach (Transform weaponSlot in panelOfWeapons.GetComponentInChildren<Transform>())
         {
-            foreach(Transform weaponElement in weaponSlot)
+            foreach (Transform weaponElement in weaponSlot)
             {
                 if (weaponElement)
                 {
@@ -190,7 +199,7 @@ public class UIShop : MonoBehaviour
         }
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayShopMusic();
+            BackgroundMusicManger.instance.PlayShopMusicFromFight();
         }
     }
 
@@ -223,6 +232,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.UpgrateShop())
         {
+            ChangeSpriteOfBabaYga(shopController.GetShopLevel());
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
             DisplayLevelShop(shopController.GetShopLevel());
@@ -272,29 +282,12 @@ public class UIShop : MonoBehaviour
             if (shopController.IsWeapon(items[i].SlotEntytiID))
             {
                 ItemShopInfo w = shopController.GetUiInfo(items[i].SlotEntytiID);
-                items[i].textName.text = w.NameWeapon;
-                items[i].textType.text = w.TypeWeapon;
-                items[i].textCost.text = w.GetPrice(shopController.GetCurrentWawe()).ToString();
-                items[i].image.sprite = w.IconWeapon;
-                items[i].backgroud.color = w.LevelItem.BackgroundColor;
-                // w.DisplayCharacteristicsOfWeapon();
-                items[i].SetCharacteristicsInfo(w);
-                //items[i].description.text = w.Description;
-                items[i].buyBtn.onClick.RemoveAllListeners();
-                items[i].OnClickBuyItem();
+                items[i].DisplayInfoForWeapon(w, shopController.GetCurrentWawe());
             }
             else if (shopController.IsItem(items[i].SlotEntytiID))
             {
                 StandartItem it = shopController.GetItem(items[i].SlotEntytiID);
-                items[i].textName.text = it.ShopInfoItem.NameWeapon;
-                items[i].textType.text = it.ShopInfoItem.TypeWeapon;
-                items[i].textCost.text = it.GetPrice(shopController.GetCurrentWawe()).ToString();
-                items[i].image.sprite = it.ShopInfoItem.IconWeapon;
-                items[i].backgroud.color = it.ShopInfoItem.LevelItem.BackgroundColor;
-                items[i].SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
-                //items[i].description.text = it.ShopInfoItem.Description;
-                items[i].buyBtn.onClick.RemoveAllListeners();
-                items[i].OnClickBuyItem();
+                items[i].DisplayInfoForItem(it, shopController.GetCurrentWawe());
             }
         }
     }
@@ -303,7 +296,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.IsSlotSold(slotNumber))
         {
-            Debug.Log("возможно тут проблема");
+            Debug.Log("—лот продан!");
             return;
         }
         for (int i = 0; i < items.Count; i++)
@@ -312,10 +305,7 @@ public class UIShop : MonoBehaviour
             {
                 if (shopController.BuyItem(items[i].SlotEntytiID))
                 {
-                    Debug.Log("или ту возможно проблема");
-                    //Destroy(items[i].gameObject);
                     listOfPrefabsForItemsForSale[i].GetComponent<SlotItemForSaleData>().PotOff();
-                    //items.RemoveAt(i);
                     shopController.SoldSlot(slotNumber);
                 }
                 break;
@@ -335,7 +325,7 @@ public class UIShop : MonoBehaviour
 
     public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
     {
-        numberOfWeapons.text = "оружи€ (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
+        numberOfWeapons.text = "ќружи€ (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
@@ -345,27 +335,25 @@ public class UIShop : MonoBehaviour
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
-    public void DisplayItemInfoWithBtn(ItemShopInfo _info, Vector2 btnPosition)
+    public void DisplayItemInfoWithBtn(ItemShopInfo _info, bool isIconPressed)
     {
         DestroyItemInfo();
-        //btnPosition.x += XmovePosOfInfoPanel;
-        //btnPosition.y += YmovePosOfInfoPanel;
+        dimmingPanel.SetActive(isIconPressed);
         _currentInfoItem = Instantiate(weaponInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
 
-    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 btnPosition)
+    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info)
     {
         DestroyItemInfo();
-        //btnPosition.x += XmovePosOfInfoPanel;
-        //btnPosition.y += YmovePosOfInfoPanel;
         _currentInfoItem = Instantiate(itemInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 
     public void DestroyItemInfo()
     {
-        if(_currentInfoItem != null)
+        dimmingPanel.SetActive(false);
+        if (_currentInfoItem != null)
         {
             Destroy(_currentInfoItem.gameObject);
         }
@@ -374,19 +362,6 @@ public class UIShop : MonoBehaviour
     // этот метод нужен, если хотим создавать кол-во предлагаемых предметов динамически 
     public void CreateItemsSlotsForSale(int _number)
     {
-        //for (int i = 0; i < items.Count; i++)
-        //{
-        //    Destroy(items[i].gameObject);
-        //}
-        //items.Clear();
-        //for (int i = 0; i <_number; i++)
-        //{
-        //    GameObject itemSlotForSale = Instantiate(itemSlotForSalePrefab.gameObject, panelItemForSale);
-        //    SlotItemForSaleData slot = itemSlotForSale.GetComponent<SlotItemForSaleData>();
-        //    slot.SlotNumber = i;
-        //    items.Add(itemSlotForSale.GetComponent<SlotItemForSaleData>());           
-        //}
-
         items.Clear();
         for (int i = 0; i < listOfPrefabsForItemsForSale.Count; i++)
         {
@@ -435,5 +410,26 @@ public class UIShop : MonoBehaviour
         {
             AudioManager.instance.PlayShopBackGround(false);
         }
+    }
+
+    public void ChangeSpriteOfBabaYga(int levelShop)
+    {
+        if (levelsForUpgradeBabaYaga.Contains(levelShop))
+        {
+            currentIndexBabaYaga++;
+            if (currentIndexBabaYaga > babaYagaSprites.Length - 1)
+            {
+                currentIndexBabaYaga = babaYagaSprites.Length - 1;
+            }
+
+            Debug.Log("current index baba yga " + currentIndexBabaYaga);
+            babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
+        }        
+    }
+
+    public void ResetBabaYaga()
+    {
+        currentIndexBabaYaga = 0;
+        babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
     }
 }

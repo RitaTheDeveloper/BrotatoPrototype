@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HeroSelectionPanel : MonoBehaviour
@@ -17,14 +18,20 @@ public class HeroSelectionPanel : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.LoadData();
         playerPrefabs = GameManager.instance.PlayerPrefabs;
-        //for (int i = 0; i < playerPrefabs.Length; i++)
-        //{
-        //    var icon = Instantiate(iconPrefab, panelOfIcons);
-        //    icon.GetComponent<Button>().onClick.RemoveAllListeners();
-        //    icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(i));
-        //    icon.GetComponent<Image>().sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
-        //}
+        for (int i = 0; i < playerPrefabs.Length; i++)
+        {
+            var icon = Instantiate(iconPrefab, panelOfIcons);
+            icon.GetComponent<Button>().onClick.RemoveAllListeners();
+            int tmp = i;
+            icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(tmp));
+            icon.GetComponent<Image>().sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
+            if (!playerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter())
+            {
+                icon.GetComponent<Button>().interactable = false;
+            }
+        }
 
         indexOfHero = 0;
         OnClickIconHero(indexOfHero);
@@ -35,7 +42,7 @@ public class HeroSelectionPanel : MonoBehaviour
         indexOfHero = index;
         var player = playerPrefabs[index];
         nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
-        currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;        
+        currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
         player.GetComponent<PlayerCharacteristics>().Init();
         characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
     }

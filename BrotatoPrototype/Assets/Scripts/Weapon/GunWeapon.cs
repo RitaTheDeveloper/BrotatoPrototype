@@ -57,6 +57,7 @@ public class GunWeapon : Weapon
             {
                 CreateBulletAndPassParametersToIt();
             }
+            base.Attack();
         }             
     }
 
