@@ -88,21 +88,6 @@ public class BackgroundMusicManger : MonoBehaviour
                 }
             }
         }
-        if (stateMusicManager == StateMusicManager.FightPercs)
-        {
-            if (backgroundMusic[indexBackgroundMusic].CanPlayNext() && canPlayBackground)
-            {
-                if (backgroundMusic.Count > indexBackgroundMusic + 1)
-                {
-                    indexBackgroundMusic++;
-                    PlayBackgroundMusicPerkState();
-                }
-                else
-                {
-                    backgroundSource.Stop();
-                }
-            }
-        }
     }
 
     private void PlayShopMusic()
