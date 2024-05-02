@@ -9,6 +9,7 @@ public enum StateMusicManager
     FightPercs,
     ShopMenu,
     MainMenu,
+    FadeIn, 
 }
 
 public class BackgroundMusicManger : MonoBehaviour
@@ -135,6 +136,7 @@ public class BackgroundMusicManger : MonoBehaviour
         shopSource.loop = shopMusic[index].loop;
         shopSource.outputAudioMixerGroup = backgroundMixer;
         shopSource.Play();
+        StopAllCoroutines();
         StartCoroutine(FadeOutShopMusic());
     }
 
@@ -165,6 +167,7 @@ public class BackgroundMusicManger : MonoBehaviour
 
     private void PlayBackgroundMusic()
     {
+        StopAllCoroutines();
         HelpPlayBackgroundMusic();
         stateMusicManager = StateMusicManager.Fight;
         StartCoroutine(FadeOutBackgroundMusic());
@@ -172,6 +175,7 @@ public class BackgroundMusicManger : MonoBehaviour
 
     private void PlayBackgroundMusicPerkState()
     {
+        StopAllCoroutines();
         HelpPlayBackgroundMusic();
         stateMusicManager = StateMusicManager.FightPercs;
         StartCoroutine(FadeOutBackgroundMusicToPerkState());
@@ -206,36 +210,47 @@ public class BackgroundMusicManger : MonoBehaviour
         mainMenuSource.loop = menuMusic[index].loop;
         mainMenuSource.outputAudioMixerGroup = backgroundMixer;
         mainMenuSource.Play();
+        StopAllCoroutines();
         StartCoroutine(FadeOutMainMenuMusic());
     }
 
     public void PlayShopMusicFromFight()
     {
         canPlayBackground = false;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInBackgroundMusicToShopMusic());
     }
 
     public void PlayMainMenuMusicFromFight()
     {
         canPlayBackground = false;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInBackgroundMusicToMenuMusic());
     }
 
     public void PlayShopMusicFromMainMenuMusic()
     {
         canPlayBackground = false;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInMainMenuMusicToShopMusic());
     }
 
     public void PlayMainMenuMusicFromShopMusic()
     {
         canPlayBackground = false;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInShopMusicToMenuMusic());
     }
 
     public void PlayBackgroundMusicFromMainMenuMusic()
     {
         canPlayBackground = true;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInMainMenuMusicToFight());
     }
 
@@ -248,18 +263,24 @@ public class BackgroundMusicManger : MonoBehaviour
     public void ChangeBackgroundMusicToPercs()
     {
         canPlayBackground = true;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInBackGroundToPerksState());
     }
 
     public void PlayBackgroundMusicPerkStateFromMainMenuMusic()
     {
         canPlayBackground = true;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInMainMenuMusicToPerkState());
     }
 
     public void PlayBackgroundMusicFromShop()
     {
         canPlayBackground= true;
+        StopAllCoroutines();
+        stateMusicManager = StateMusicManager.FadeIn;
         StartCoroutine(FadeInShopMusicToFight());
     }
 
@@ -267,6 +288,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (backgroundSource == null)
         {
+            PlayShopMusic();
             yield break;
         }
         while (backgroundSource.volume > 0)
@@ -286,6 +308,7 @@ public class BackgroundMusicManger : MonoBehaviour
     IEnumerator FadeInBackgroundMusicToMenuMusic() {
         if (backgroundSource == null)
         {
+            PlayMainMenuSource();
             yield break;
         }
         while (backgroundSource.volume > 0)
@@ -302,6 +325,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (shopSource == null)
         {
+            PlayBackgroundMusic();
             yield break;
         }
         while (shopSource.volume > 0)
@@ -322,6 +346,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (shopSource == null)
         {
+            PlayMainMenuSource();
             yield break;
         }
         while (shopSource.volume > 0)
@@ -337,6 +362,7 @@ public class BackgroundMusicManger : MonoBehaviour
     IEnumerator FadeInMainMenuMusicToFight() {
         if (mainMenuSource == null)
         {
+            PlayBackgroundMusic();
             yield break;
         }
         while (mainMenuSource.volume > 0)
@@ -353,6 +379,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (mainMenuSource == null)
         {
+            PlayShopMusic();
             yield break;
         }
         while (mainMenuSource.volume > 0)
@@ -369,6 +396,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (mainMenuSource == null)
         {
+            PlayBackgroundMusicPerkState();
             yield break;
         }
         while (mainMenuSource.volume > 0)
@@ -425,7 +453,10 @@ public class BackgroundMusicManger : MonoBehaviour
     IEnumerator FadeInBackGroundToPerksState()
     {
         if (backgroundSource == null)
+        {
+            PlayBackgroundMusicPerkState();
             yield break;
+        }
         while (backgroundSource.volume > 0.7f)
         {
             if (backgroundSource.volume - stepVolume * Time.deltaTime < 0.7f) backgroundSource.volume = 0.7f;
