@@ -58,7 +58,7 @@ public class HeroSelectionPanel : MonoBehaviour
             // меняем спрайты состояний
             var ss = icon.GetComponent<Button>().spriteState;
             icon.GetComponent<Button>().image.sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
-            //ss.disabledSprite = _disabledSprite;
+            ss.disabledSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
             ss.highlightedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
             ss.selectedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
             ss.pressedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;

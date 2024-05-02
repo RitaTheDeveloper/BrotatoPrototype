@@ -6,6 +6,7 @@ public class UiPlayerInfo : MonoBehaviour
 {
     public Sprite icon;
     public Sprite glowIcon;
+    public Sprite unlockIcon;
     public Sprite player2d;
     public string nameHero;
 }

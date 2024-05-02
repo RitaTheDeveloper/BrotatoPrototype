@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+       // SaveController save = gameObject.AddComponent<SaveController>();
+       // save.ResetData();
     }
     private void Start()
     {
