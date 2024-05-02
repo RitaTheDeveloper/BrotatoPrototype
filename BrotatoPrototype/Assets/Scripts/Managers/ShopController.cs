@@ -19,28 +19,28 @@ public class ShopController : MonoBehaviour, IShopController
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
     public Dictionary<int, bool> SoldItemsDict = new Dictionary<int, bool>();
 
-    [Tooltip("Ñòðóêòóðà óðîâíåé ìãàçèíà")]
+    [Tooltip("Структура уровней мгазина")]
     [SerializeField] public List<ShopLevelStruct> ShopLevelStructsStorage = new List<ShopLevelStruct>();
 
-    [Tooltip("Òêóùåå êîëëè÷åñòâî ñëîòîâ")]
+    [Tooltip("Ткущее колличество слотов")]
     [SerializeField] int ShopSizeList = 0;
 
-    [Tooltip("Òåêóùèé óðîâåíü ìàãàçèíà")]
+    [Tooltip("Текущий уровень магазина")]
     [SerializeField] int CurrentShopLevel = 1;
 
-    [Tooltip("Âîçìîæíàÿ ðåäêîñòü ïðåäìåòîâ")]
+    [Tooltip("Возможная редкость предметов")]
     [SerializeField] public List<RareItemsDataStruct> RareData = new List<RareItemsDataStruct>();
 
-    [Tooltip("Äåîëòíàÿ öåíà ðåðîëà")]
+    [Tooltip("Деолтная цена рерола")]
     [SerializeField] public int DefaultRerollPrice = 20;
 
-    [Tooltip("Øàã ïîëâûøåíèÿ öåíû ðåðîëà")]
+    [Tooltip("Шаг полвышения цены рерола")]
     [SerializeField] public int StepRerollPrice = 5;
 
-    [Tooltip("Òåêóùàÿ öåíà ðåðîëà")]
+    [Tooltip("Текущая цена рерола")]
     [SerializeField] private int CurrentRerollPrice = 20;
 
-    [Tooltip("Øàíñ îðóæèÿ %")]
+    [Tooltip("Шанс оружия %")]
     [SerializeField] public int WeaponChance = 30;
 
     [SerializeField] UIShop uiShop;
@@ -117,7 +117,7 @@ public class ShopController : MonoBehaviour, IShopController
             }
             else
             {
-                Debug.Log("Íåäîñòàòî÷íî äåíåã");
+                Debug.Log("Недостаточно денег");
                 return false;
             }
         }
@@ -135,13 +135,13 @@ public class ShopController : MonoBehaviour, IShopController
                 }
                 else
                 {
-                    Debug.Log("Íåäîñòàòî÷íî ìåñòà");
+                    Debug.Log("Недостаточно места");
                     return false;
                 }
             }
             else
             {
-                Debug.Log("Íåäîñòàòî÷íî äåíåã");
+                Debug.Log("Недостаточно денег");
                 return false;
             }
         }
@@ -265,6 +265,7 @@ public class ShopController : MonoBehaviour, IShopController
                 return true;
             }
         }
+        Debug.Log("Магазини максимального уровня!");
         return false;
     }
 
@@ -350,7 +351,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
-            Debug.Log("Ìàêñèìàëüíûé óðîâåíü ìàãàçèíà!");
+            Debug.Log("Максимальный уровень магазина!");
             return 0;
         }
     }
@@ -406,6 +407,7 @@ public class ShopController : MonoBehaviour, IShopController
         SoldItemsDict[slot] = true;
     }
 
+    //Возвращает true если все слоты куплены
     public bool AllSlotSold()
     {
         bool r = true;
