@@ -7,7 +7,7 @@ public class UIDimmingPanel : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
-        //gameObject.SetActive(false);
+        UIShop.instance.FrameOffWeaponSlot();
         UIShop.instance.DestroyItemInfo();
     }
 }

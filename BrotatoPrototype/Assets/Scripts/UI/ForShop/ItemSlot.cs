@@ -8,14 +8,13 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image icon;
-    public Image background;
+    public Image frame;
 
     public ItemShopInfo itemInfo;
     public void AddItem(ItemShopInfo _itemInfo)
     {
         itemInfo = _itemInfo;
         icon.sprite = _itemInfo.IconWeapon;
-        background.color = _itemInfo.LevelItem.BackgroundColor;
     }
 
     public void DestroyItem()
@@ -25,11 +24,13 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        frame.enabled = true;
         UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        frame.enabled = false;
         UIShop.instance.DestroyItemInfo();
     }
 }

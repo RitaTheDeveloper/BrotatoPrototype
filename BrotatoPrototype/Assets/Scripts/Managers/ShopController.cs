@@ -118,6 +118,7 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 Debug.Log("Недостаточно денег");
+                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -136,12 +137,14 @@ public class ShopController : MonoBehaviour, IShopController
                 else
                 {
                     Debug.Log("Недостаточно места");
+                    StartCoroutine(UIShop.instance.ShowMessage("Все слоты оружия заполнены", UIShop.instance.pointsForAttentionWindows[1]));
                     return false;
                 }
             }
             else
             {
                 Debug.Log("Недостаточно денег");
+                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -263,6 +266,10 @@ public class ShopController : MonoBehaviour, IShopController
                 }
 
                 return true;
+            }
+            else
+            {
+                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
             }
         }
         Debug.Log("Магазини максимального уровня!");

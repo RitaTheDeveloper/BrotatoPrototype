@@ -26,6 +26,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject slotForItemPrefab;
     [SerializeField] private GameObject weaponElementPrefab;
     [SerializeField] private GameObject itemElementPrefab;
+    [SerializeField] private GameObject attentionWindowPrefab;
     [SerializeField] private GameObject weaponInfoPrefab;
     [SerializeField] private GameObject itemInfoPrefab;
     [SerializeField] private Transform canvas;
@@ -35,12 +36,14 @@ public class UIShop : MonoBehaviour
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
     [SerializeField] private int maxAmountOfItems = 16;
+    [SerializeField] private float delayAttentionWindow = 1f;
+    [SerializeField] public Vector2[] pointsForAttentionWindows = new Vector2[2];
     [Header("левелы для апгрейда бабы Яги")]
     [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
     [SerializeField] private Sprite[] babaYagaSprites;
 
+    private List<WeaponSlot> _currentWeaponSlots;
     private int currentIndexBabaYaga = 0;
-
     public GameObject dimmingPanel;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
 
@@ -118,12 +121,15 @@ public class UIShop : MonoBehaviour
 
     public void CreateWeaponElements(List<Weapon> _currentWeapons)
     {
+        _currentWeaponSlots = new List<WeaponSlot>();
+
         if (_currentWeapons.Count > 0)
         {
             for (int i = 0; i < _currentWeapons.Count; i++)
             {
                 GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
                 weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
+                _currentWeaponSlots.Add(weaponElement.GetComponent<WeaponSlot>());
             }
         }
     }
@@ -325,7 +331,7 @@ public class UIShop : MonoBehaviour
 
     public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
     {
-        numberOfWeapons.text = "Оружия (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
+        numberOfWeapons.text = "Оружие (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
     }
 
     public void ButtonSoldSlot(string name)
@@ -431,5 +437,25 @@ public class UIShop : MonoBehaviour
     {
         currentIndexBabaYaga = 0;
         babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
+    }
+
+    public void FrameOffWeaponSlot()
+    {
+        foreach(WeaponSlot w in _currentWeaponSlots)
+        {
+            w.FrameOff();
+        }
+    }
+
+    public IEnumerator ShowMessage(string message, Vector2 point)
+    {
+        //guiText.text = message;
+        //guiText.enabled = true;
+        var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
+        popupWindow.transform.localPosition = point;
+        popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
+        yield return new WaitForSeconds(delayAttentionWindow);
+        //guiText.enabled = false;
+        Destroy(popupWindow);
     }
 }
