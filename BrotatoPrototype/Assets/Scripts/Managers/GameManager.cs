@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        //ResetProgress();
     }
     private void Start()
     {
@@ -215,5 +216,11 @@ public class GameManager : MonoBehaviour
     public void LoadData()
     {
         gameObject.AddComponent<SaveController>();
+    }
+
+    private void ResetProgress()
+    {
+        SaveController save = gameObject.AddComponent<SaveController>();
+        save.ResetData();
     }
 }

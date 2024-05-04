@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Image icon;
-    public Image background;
+    public Image frame;
     public ItemShopInfo itemInfo;
 
     public void AddItem(ItemShopInfo _itemInfo)
     {
         itemInfo = _itemInfo;
         icon.sprite = _itemInfo.IconWeapon;
-        background.color = _itemInfo.LevelItem.BackgroundColor;
     }
 
     public void DestroyItem()
@@ -24,12 +23,13 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
+        FrameOn();
         UIShop.instance.DisplayItemInfoWithBtn(itemInfo, true);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        FrameOn();
         UIShop.instance.DisplayItemInfoWithBtn(itemInfo, false);
     }
 
@@ -37,7 +37,20 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (!UIShop.instance.dimmingPanel.activeInHierarchy)
         {
+            FrameOff();
             UIShop.instance.DestroyItemInfo();
         }        
     }
+
+    public void FrameOff()
+    {
+        frame.enabled = false;
+    }
+
+    private void FrameOn()
+    {
+        frame.enabled = true;
+    }
 }
+
+

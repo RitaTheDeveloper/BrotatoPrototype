@@ -46,4 +46,10 @@ public class SaveController : MonoBehaviour
     {
         return data;
     }
+
+    public void ResetData()
+    {
+        data.WaveEnded = 0;
+        PlayerPrefs.SetInt("WaveEnded", 0);
+    }
 }

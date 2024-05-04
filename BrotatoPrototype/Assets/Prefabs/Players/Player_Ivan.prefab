@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 5
+  _startMaxHp: 25
   _startHpRegen: 0
   _startMoveSpeed: 15
   _startMagnetDistance: 5
@@ -191,7 +191,8 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
-  - {fileID: 3573727161873608435, guid: 47ea834b1a926c440b3c5007478064a8, type: 3}
+  - {fileID: 6896685654037281728, guid: fd8243de6f508de4b86ef5a31c4a78af, type: 3}
+  - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &6632754515298849247
@@ -278,8 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 5000
-  _startWood: 5000
+  _startMoney: 300
+  _startWood: 100
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1d89eca94dfd1254f94adebefb9b7bc5, type: 3}
+  glowIcon: {fileID: 21300000, guid: 070c33849ef69684aab5648b881100eb, type: 3}
+  unlockIcon: {fileID: 0}
   player2d: {fileID: 21300000, guid: cc717a28d3acb31439480d885286dee5, type: 3}
   nameHero: "\u0418\u0432\u0430\u043D \u0426\u0430\u0440\u0435\u0432\u0438\u0447"
 --- !u!114 &610271406313924933

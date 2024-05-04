@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
@@ -59,7 +60,8 @@ public class UIManager : MonoBehaviour
         AllOff();
         _startTimeColor = timeTxt.color;
         textAnim = GetComponent<TextAnim>();
-        menuWithHeroSelection.SetActive(true);
+        //menuWithHeroSelection.SetActive(true);
+        mainMenu.SetActive(true);
     }
 
     public void ShowTime(float currentTime)
@@ -176,9 +178,9 @@ public class UIManager : MonoBehaviour
         }
         winAndLosePanel.SetActive(true);
         // делаем виньетку
-        LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1.2f).setEase(LeanTweenType.easeInCirc);
+        LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         //OpenCloseWindow.OpenWindowWithDelay(winSun, 1f);
-        textAnim.TypingText(winTxt, "Победа!", 1f);
+        textAnim.TypingText(winTxt, "Победа!", 0.5f);
         winPanel.SetActive(true);
         //restartBtn.SetActive(true);
         //menuBtn.SetActive(true);
@@ -221,12 +223,14 @@ public class UIManager : MonoBehaviour
         AllOff();
         RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
-        menuWithHeroSelection.SetActive(true);
+        //menuWithHeroSelection.SetActive(true);
+        mainMenu.SetActive(true);
         //OpenCloseWindow.OpenWindow(menuWithHeroSelection);
     }
 
     private void AllOff()
     {
+        mainMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
@@ -372,5 +376,11 @@ public class UIManager : MonoBehaviour
         {
             //
         }
+    }
+
+    public void OpenMenuHeroSelection()
+    {
+        AllOff();
+        menuWithHeroSelection.SetActive(true);
     }
 }
