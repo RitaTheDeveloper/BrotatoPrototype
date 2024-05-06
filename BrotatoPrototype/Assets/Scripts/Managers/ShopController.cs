@@ -401,6 +401,10 @@ public class ShopController : MonoBehaviour, IShopController
             PickItemsForSale();
             return true;
         }
+        else
+        {
+            StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
+        }
         return false;
     }
 
