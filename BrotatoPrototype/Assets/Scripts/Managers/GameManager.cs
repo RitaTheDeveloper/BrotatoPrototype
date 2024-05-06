@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerStartingSpawnPoint;
     [SerializeField] private WaveController[] _waves;
     [SerializeField] WaveController _currentWave;
+    [SerializeField] private ShopController shop;
 
     public GameObject player;
     private int _waveCounter;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         SaveGameResult();
         RemoveAllEnemies();
         RemoveAllBullets();
+        shop.ResetShop();
         Debug.Log("Game over!");
     }
 
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
         RemoveAllEnemies();
         RemoveAllBullets();
+        shop.ResetShop();
         SaveGameResult();
     }
 
