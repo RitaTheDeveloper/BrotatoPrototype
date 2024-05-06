@@ -208,7 +208,10 @@ public class GameManager : MonoBehaviour
         save.LoadData();
         SaveData data = save.GetData();
         data.WaveEnded += _waveCounter;
-        save.SetData(data);
+
+        List<GameObject> unlockedCharacters = save.GetUnlockCharacterList(data);
+        Debug.Log("unlocked characters: " + unlockedCharacters.Count);
+
         save.SaveData();
         Destroy(save);
     }

@@ -52,4 +52,33 @@ public class SaveController : MonoBehaviour
         data.WaveEnded = 0;
         PlayerPrefs.SetInt("WaveEnded", 0);
     }
+
+    public List<GameObject> GetUnlockCharacterList(SaveData new_data)
+    {
+        List<bool> openCharacters = new List<bool>(GameManager.instance.PlayerPrefabs.Length);
+        for (int i = 0; i < GameManager.instance.PlayerPrefabs.Length; i++)
+        {
+            if (GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter())
+            {
+                openCharacters[i] = true;
+            }
+            else
+            {
+                openCharacters[i] = false;
+            }
+        }
+
+        data = new_data;
+
+        List<GameObject> result = new List<GameObject>();
+
+        for (int i = 0; i < GameManager.instance.PlayerPrefabs.Length; i++)
+        {
+            if (GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter() && openCharacters[i] == false)
+            {
+                result.Add(GameManager.instance.PlayerPrefabs[i]);
+            }
+        }
+        return result;
+    }
 }
