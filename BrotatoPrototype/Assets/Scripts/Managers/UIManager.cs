@@ -383,4 +383,10 @@ public class UIManager : MonoBehaviour
         AllOff();
         menuWithHeroSelection.SetActive(true);
     }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
 }
+

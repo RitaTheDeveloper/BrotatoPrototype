@@ -10,7 +10,7 @@ public class AbilitySpeed : Ability
     {
         GameObject player = GameManager.instance.player;
         var currentSpeed = player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed;
-        player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed = currentSpeed + currentSpeed * speedPercantage / 100;
+        player.GetComponent<PlayerCharacteristics>().CurrentMoveSpeed = currentSpeed + speedPercantage;
         player.GetComponent<PlayerMovement>().SetSpeed();
         UIManager.instance.OkOnClick();
     }

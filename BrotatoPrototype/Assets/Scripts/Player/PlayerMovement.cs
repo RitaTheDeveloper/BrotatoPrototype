@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Скорость поворота")]
     [SerializeField] private float _turnSpeed = 6f;
+    private float basicSpeed = 11f;
     private float _speed;    
     private PlayerCharacteristics playerCharacteristics;
     private CharacterController characterController;
@@ -24,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start()
-    {        
-        _speed = playerCharacteristics.CurrentMoveSpeed;        
+    {
+        SetSpeed();      
         yPosition = transform.position.y;
     }
 
@@ -39,7 +40,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetSpeed()
     {
-        _speed = playerCharacteristics.CurrentMoveSpeed;
+        _speed = playerCharacteristics.CurrentMoveSpeed / 100f * basicSpeed;
+        if(_speed < 0)
+        {
+            _speed = 0f;
+        }
     }
 
     private void Move()

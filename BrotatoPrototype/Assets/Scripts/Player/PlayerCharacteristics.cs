@@ -10,7 +10,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startMaxHp;
     [Header("Регенерация:")]
     [SerializeField] private float _startHpRegen;
-    [Header("Скорость передвижения:")]
+    [Header("Скорость передвижения в %:")]
     [SerializeField] private float _startMoveSpeed;
     [Header("Радиус сбора:")]
     [SerializeField] private float _startMagnetDistance;
