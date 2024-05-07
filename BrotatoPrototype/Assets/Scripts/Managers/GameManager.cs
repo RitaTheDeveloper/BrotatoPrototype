@@ -35,6 +35,14 @@ public class GameManager : MonoBehaviour
         //Init();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && IsPlaying)
+        {
+            PauseOn();
+        }
+    }
+
     public void Init()
     {
         Destroy(GetComponent<SaveController>());
@@ -127,13 +135,15 @@ public class GameManager : MonoBehaviour
         _waves[_waveCounter].StartWave();
     }
 
-    private void StopTime()
+    private void PauseOn()
     {
+        UIManager.instance.PauseMenu(true);
         Time.timeScale = 0;
     }
 
-    private void ContinueTime()
+    public void PauseOff()
     {
+        UIManager.instance.PauseMenu(false);
         Time.timeScale = 1;
     }
 
@@ -168,13 +178,18 @@ public class GameManager : MonoBehaviour
 
     public void DestroyGameScene()
     {
+        _isPlaying = false;
+        _gameIsOver = true;
+        _currentWave.StopWave();
+        RemoveAllEnemies();
         if (player != null)
         {
             Destroy(player);
         }
-
-        RemoveAllEnemies();
+        
         RemoveAllCurrency();
+        RemoveAllLoot();
+        UIManager.instance.RemoveAllUpElements();
     }
 
     public void Restart()
@@ -229,4 +244,6 @@ public class GameManager : MonoBehaviour
         SaveController save = gameObject.AddComponent<SaveController>();
         save.ResetData();
     }
+
+
 }
