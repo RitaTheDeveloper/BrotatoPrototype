@@ -41,6 +41,7 @@ public class HeroSelectionPanel : MonoBehaviour
         mainMenu.SetActive(false);
         GameManager.instance.SetHeroIndex(indexOfHero);
         GameManager.instance.Init();
+        UIManager.instance.ShowPromptInGame();
     }
 
     private void CreateIconsForMenu()

@@ -449,13 +449,10 @@ public class UIShop : MonoBehaviour
 
     public IEnumerator ShowMessage(string message, Vector2 point)
     {
-        //guiText.text = message;
-        //guiText.enabled = true;
         var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
         popupWindow.transform.localPosition = point;
         popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
         yield return new WaitForSeconds(delayAttentionWindow);
-        //guiText.enabled = false;
         Destroy(popupWindow);
     }
 }
