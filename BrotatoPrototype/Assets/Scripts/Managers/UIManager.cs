@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
+    [SerializeField] private GameObject settingsPanel;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private TextMeshProUGUI waveCompletedTxt;
@@ -232,6 +233,7 @@ public class UIManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
+        settingsPanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
@@ -245,6 +247,18 @@ public class UIManager : MonoBehaviour
         waveCompletedTxt.text = "";
         shop.gameObject.SetActive(false);
         menuWithHeroSelection.SetActive(false);
+    }
+
+    public void OnClickOpenSettingsPanel()
+    {
+        AllOff();
+        settingsPanel.SetActive(true);
+    }
+
+    public void OnClickSettingsPanelExit()
+    {
+        AllOff();
+        mainMenu.SetActive(true);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp, float satiety)
