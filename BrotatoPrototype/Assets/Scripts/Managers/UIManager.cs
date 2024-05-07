@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject conformationWindow;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private TextMeshProUGUI waveCompletedTxt;
@@ -235,6 +236,7 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
         pauseMenu.SetActive(false);
+        conformationWindow.SetActive(false);
         settingsPanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
@@ -415,8 +417,19 @@ public class UIManager : MonoBehaviour
 
     public void OnClickMenuInPause()
     {
+        conformationWindow.SetActive(true);
+    }
+
+    public void OnClickYesGoToMenu()
+    {
+        conformationWindow.SetActive(false);
         OnClickMenu();
         GameManager.instance.PauseOff();
+    }
+
+    public void OnClickNoGoToMenu()
+    {
+        conformationWindow.SetActive(false);
     }
 
 }
