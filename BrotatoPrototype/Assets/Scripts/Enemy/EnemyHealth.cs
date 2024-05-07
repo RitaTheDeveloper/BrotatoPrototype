@@ -46,7 +46,7 @@ public class EnemyHealth : LivingEntity
         }
     }
 
-    public override void TakeHit(float damage, bool isCrit)
+    public override void TakeHit(float damage, bool isCrit, bool isProjectile)
     {
 
         if (isCrit)
@@ -59,7 +59,7 @@ public class EnemyHealth : LivingEntity
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
             PlaySoundOfTakeHit();
         }
-        base.TakeHit(damage, isCrit);
+        base.TakeHit(damage, isCrit, false);
     }
 
     private void SpawnCurrency()

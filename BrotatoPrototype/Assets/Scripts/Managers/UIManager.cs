@@ -437,27 +437,11 @@ public class UIManager : MonoBehaviour
 
     public void ShowPromptInGame()
     {
-        //StartCoroutine(ShowPrompt());
         PromptAnimation();
-    }
-
-    private IEnumerator ShowPrompt()
-    {
-        LeanTween.alpha(prompt.GetComponent<RectTransform>(), 0f, 0f).setEase(LeanTweenType.easeOutCirc);
-        yield return new WaitForSeconds(2f);
-        LeanTween.alpha(prompt.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
-        //prompt.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        //prompt.SetActive(false);
-        LeanTween.alpha(prompt.GetComponent<RectTransform>(), 0f, 3f).setEase(LeanTweenType.easeInCirc);
     }
 
     private void PromptAnimation()
     {
-        // LeanTween.alpha(prompt.GetComponent<RectTransform>(), 0f, 0f).setEase(LeanTweenType.easeInCirc);
-        //prompt.SetActive(true);
-        //LeanTween.alpha(prompt.GetComponent<RectTransform>(), 1f, 2f).setEase(LeanTweenType.easeInCirc);
-        //LeanTween.alpha(prompt.GetComponent<RectTransform>(), 0f, 1.5f).setEase(LeanTweenType.easeOutCirc).setDelay(5f);
         _animator.SetTrigger("ShowPrompt");
     }
    

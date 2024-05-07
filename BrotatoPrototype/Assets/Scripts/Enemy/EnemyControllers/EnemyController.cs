@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
             currentState = State.Attacking;
             navMeshAgent.enabled = false;
 
-            target.GetComponent<LivingEntity>().TakeHit(damage, false);
+            target.GetComponent<LivingEntity>().TakeHit(damage, false, false);
 
             currentState = State.Chasing;
             navMeshAgent.enabled = true;

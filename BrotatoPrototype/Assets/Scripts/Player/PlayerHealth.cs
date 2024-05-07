@@ -82,9 +82,9 @@ public class PlayerHealth : LivingEntity
         UIManager.instance.DisplayHealth(health, startingHealth, maxStartHealth, satiety);
     }
 
-    public override void TakeHit(float damage, bool isCrit)
+    public override void TakeHit(float damage, bool isCrit, bool isProjectile)
     {
-        if (!invulnerability)
+        if (isProjectile)
         {
             if (IsDodge())
             {
@@ -93,14 +93,33 @@ public class PlayerHealth : LivingEntity
             else
             {
                 var resultDamage = GetDamageAfterArmor(damage, _armor);
-                base.TakeHit(resultDamage, isCrit);
+                base.TakeHit(resultDamage, isCrit, false);
                 PlaySoundOfTakeHit();
                 TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
                 Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
             }
-            
-            canTakeDmg = true;
         }
+        else
+        {
+            if (!invulnerability)
+            {
+                if (IsDodge())
+                {
+                    TemporaryMessageManager.Instance.AddMessageOnScreen("уклонение", this.gameObject.transform.position, Color.blue);
+                }
+                else
+                {
+                    var resultDamage = GetDamageAfterArmor(damage, _armor);
+                    base.TakeHit(resultDamage, isCrit, false);
+                    PlaySoundOfTakeHit();
+                    TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
+                    Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+                }
+
+                canTakeDmg = true;
+            }
+        }
+        
         
         DisplayHealth();
     }

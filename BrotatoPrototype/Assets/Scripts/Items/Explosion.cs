@@ -18,7 +18,7 @@ public class Explosion : MonoBehaviour
         {
             for (int i = 0; i < numColliders.Length; i++)
             {
-                numColliders[i].GetComponent<EnemyHealth>().TakeHit(_dmg, false);
+                numColliders[i].GetComponent<EnemyHealth>().TakeHit(_dmg, false, false);
 
                 //if (numColliders[i].TryGetComponent(out IKnockbackable knockbackable))
                 //{
