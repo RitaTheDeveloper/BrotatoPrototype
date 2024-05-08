@@ -119,8 +119,7 @@ public class PlayerHealth : LivingEntity
                 canTakeDmg = true;
             }
         }
-        
-        
+                
         DisplayHealth();
     }
 
@@ -165,8 +164,10 @@ public class PlayerHealth : LivingEntity
         
     private float GetDamageAfterArmor(float damage, float armor)
     {
-        float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
-        float resultDamage = damage - percentageOfDamageTaken * damage;
+        //float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
+        //float resultDamage = damage - percentageOfDamageTaken * damage;
+
+        float resultDamage = damage - damage * armor * 0.01f;
         return Mathf.Round(resultDamage);
     }
 
