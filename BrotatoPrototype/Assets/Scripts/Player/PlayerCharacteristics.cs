@@ -50,7 +50,7 @@ public class PlayerCharacteristics : MonoBehaviour
         descriptionForShop.Add(" к урону в дальнем бою", _startRangedDamage);
         descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
         descriptionForShop.Add("% к броне", _startArmor);
-        descriptionForShop.Add(" % к уклонению", _startProbabilityOfDodge);
+        descriptionForShop.Add("% к уклонению", _startProbabilityOfDodge);
         descriptionForShop.Add(" голод", _startHunger);
 
         return descriptionForShop;

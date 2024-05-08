@@ -41,6 +41,7 @@ public class UIShop : MonoBehaviour
     [Header("левелы дл€ апгрейда бабы яги")]
     [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
     [SerializeField] private Sprite[] babaYagaSprites;
+    [SerializeField] private Animator fireAnimator;
 
     private List<WeaponSlot> _currentWeaponSlots;
     private int currentIndexBabaYaga = 0;
@@ -59,9 +60,7 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
-        //CreateItemsSlotsForSale(4);
     }
 
     public void UpdateUIShop()
@@ -255,6 +254,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.RerollShop())
         {
+            FireAnim();
             shopController.ResetsSlots();
             CreateItemsSlotsForSale(shopController.GetSlotCount());
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
@@ -454,5 +454,10 @@ public class UIShop : MonoBehaviour
         popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
         yield return new WaitForSeconds(delayAttentionWindow);
         Destroy(popupWindow);
+    }
+
+    public void FireAnim()
+    {
+        fireAnimator.SetTrigger("Fire");
     }
 }

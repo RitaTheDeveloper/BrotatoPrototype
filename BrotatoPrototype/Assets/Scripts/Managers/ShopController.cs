@@ -254,6 +254,7 @@ public class ShopController : MonoBehaviour, IShopController
             ShopLevelStruct newLevel = ShopLevelStructsStorage[CurrentShopLevel];
             if (playerInventory.HaveNeedWood(newLevel.levelPrice))
             {
+                UIShop.instance.FireAnim();
                 playerInventory.ChangeWood(newLevel.levelPrice * -1);
                 CurrentShopLevel = newLevel.levelNumber;
                 CurrentRerollPrice = DefaultRerollPrice;

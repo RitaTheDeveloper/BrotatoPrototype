@@ -19,17 +19,10 @@ public class Explosion : MonoBehaviour
             for (int i = 0; i < numColliders.Length; i++)
             {
                 numColliders[i].GetComponent<EnemyHealth>().TakeHit(_dmg, false, false);
-
-                //if (numColliders[i].TryGetComponent(out IKnockbackable knockbackable))
-                //{
-                //    knockbackable.GetKnockedUp(new Vector3(0, 400f, 0));
-                //}
             }
         }
         
-
         DisplayExplosion(_radius);
-       // audioSource.Play();
     }
 
     private void DisplayExplosion(float _radius)
