@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
 
+    public AudioMixerGroup MasterAudioMixer;
+    public AudioMixerGroup MusicAudioMixer;
+    public AudioMixerGroup SFXAudioMixer;
+
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _heroIndex = 0;
+        InitSoundVolume();
         //Init();
     }
 
@@ -245,5 +251,16 @@ public class GameManager : MonoBehaviour
         save.ResetData();
     }
 
+    private void InitSoundVolume()
+    {
+        SaveController saveController = gameObject.AddComponent<SaveController>();
+        saveController.LoadData();
+        SaveData saveData = saveController.GetData();
 
+        MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", saveData.MasterSoundVolume);
+        MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", saveData.MusicSondVolume);
+        SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", saveData.SFXVolume);
+
+        Destroy(saveController);
+    }
 }

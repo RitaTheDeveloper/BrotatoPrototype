@@ -55,17 +55,10 @@ public class SaveController : MonoBehaviour
 
     public List<GameObject> GetUnlockCharacterList(SaveData new_data)
     {
-        List<bool> openCharacters = new List<bool>(GameManager.instance.PlayerPrefabs.Length);
+        List<bool> openCharacters = new List<bool>();
         for (int i = 0; i < GameManager.instance.PlayerPrefabs.Length; i++)
         {
-            if (GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter())
-            {
-                openCharacters[i] = true;
-            }
-            else
-            {
-                openCharacters[i] = false;
-            }
+            openCharacters.Add(GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter());
         }
 
         data = new_data;
