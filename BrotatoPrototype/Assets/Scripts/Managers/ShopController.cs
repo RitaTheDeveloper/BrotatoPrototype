@@ -86,6 +86,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void ResetShop()
     {
+        Debug.Log("сбросить весь прогресс!");
         CurrentShopLevel = 1;
         UIShop.instance.ResetBabaYaga();
         UIShop.instance.DisplayLevelShop(CurrentShopLevel);

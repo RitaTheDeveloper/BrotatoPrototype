@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         Destroy(GetComponent<SaveController>());
+        shop.ResetShop();
         SpawnPlayer(_heroIndex);
         _isPlaying = true;
         _gameIsOver = false;
