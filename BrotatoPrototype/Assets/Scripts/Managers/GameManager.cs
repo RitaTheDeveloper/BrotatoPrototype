@@ -149,11 +149,12 @@ public class GameManager : MonoBehaviour
 
     private void RemoveAllEnemies()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform enemies = GameObject.Find("Enemies").transform;
 
-        foreach(GameObject enemy in enemies)
+        foreach (Transform enemy in enemies)
         {
-            Destroy(enemy);
+            Destroy(enemy.gameObject);
         }
     }
 
