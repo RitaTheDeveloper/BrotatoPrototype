@@ -458,4 +458,9 @@ public class UIShop : MonoBehaviour
         //guiText.enabled = false;
         Destroy(popupWindow);
     }
+
+    public int GetBabaYagaIndex()
+    {
+        return currentIndexBabaYaga;
+    }
 }

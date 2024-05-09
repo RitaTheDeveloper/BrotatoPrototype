@@ -12239,7 +12239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 85}
+  m_AnchoredPosition: {x: 0, y: 84.99781}
   m_SizeDelta: {x: 0, y: 130}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -18647,8 +18647,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.6538461
+  m_Value: 1.0000485
+  m_Size: 0.6538462
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -25038,6 +25038,7 @@ GameObject:
   - component: {fileID: 8501044091411880888}
   - component: {fileID: 9149427189713556408}
   - component: {fileID: 9149427189713556409}
+  - component: {fileID: 9149427189713556410}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -25972,17 +25973,17 @@ PrefabInstance:
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
@@ -27146,6 +27147,7 @@ MonoBehaviour:
   levelTxt: {fileID: 3569535060750587413}
   characteristicsUI: {fileID: 1110730901}
   allAbilities: {fileID: 491669902}
+  shopPhrasesController: {fileID: 0}
 --- !u!114 &9149427189713556409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27159,6 +27161,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeSpeed: 0.1
+--- !u!114 &9149427189713556410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4355698052694128244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf05c455644d9d468f42f9710eade35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phrases:
+  - {fileID: 7289682777039441665, guid: ba27d3f096442ca449c66cb6082df3d1, type: 3}
+  - {fileID: 7289682777039441665, guid: 30a495c8d80f6614b8b0e45ab7970bc4, type: 3}
+  - {fileID: -333173815350745079, guid: 8636589a5b6d9b640a58059f9fca0328, type: 3}
+  - {fileID: -5861400335130405208, guid: 82f0400919f79504697f3148af3a8292, type: 3}
+  mixerGroup: {fileID: -4079445342867217265, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+  fadeTime: 0.15
+  idleTime: 15
+  shopInDelay: 1.5
+  shopOutDelay: 0.15
 --- !u!222 &9170693215223665051
 CanvasRenderer:
   m_ObjectHideFlags: 0
