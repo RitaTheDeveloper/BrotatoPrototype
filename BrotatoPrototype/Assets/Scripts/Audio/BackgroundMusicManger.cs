@@ -400,6 +400,7 @@ public class BackgroundMusicManger : MonoBehaviour
         {
             yield break;
         }
+        canPlayBackground = true;
         while (backgroundSource.volume < 1)
         {
             if (backgroundSource.volume + stepVolume * Time.deltaTime > 1) backgroundSource.volume = 1;
@@ -456,6 +457,7 @@ public class BackgroundMusicManger : MonoBehaviour
     {
         if (backgroundSource == null)
             yield break;
+        canPlayBackground = true;
         while (backgroundSource.volume < 0.7f)
         {
             if (backgroundSource.volume + stepVolume * Time.deltaTime > 0.7f) backgroundSource.volume = 0.7f;

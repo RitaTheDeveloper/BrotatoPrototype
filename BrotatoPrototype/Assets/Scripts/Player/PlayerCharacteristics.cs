@@ -10,7 +10,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startMaxHp;
     [Header("Регенерация:")]
     [SerializeField] private float _startHpRegen;
-    [Header("Скорость передвижения:")]
+    [Header("Скорость передвижения в %:")]
     [SerializeField] private float _startMoveSpeed;
     [Header("Радиус сбора:")]
     [SerializeField] private float _startMagnetDistance;
@@ -24,7 +24,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _startRangedDamage;
     [Header("+ % к крит шансу:")]
     [SerializeField] private float _startCritChancePercentage;
-    [Header("Броня:")]
+    [Header("% брони:")]
     [SerializeField] private float _startArmor;
     [Header("Уклоние:")]
     [Range(0f, 100f)]
@@ -49,8 +49,8 @@ public class PlayerCharacteristics : MonoBehaviour
         descriptionForShop.Add(" к урону в ближнем бою", _startMelleeDamage);
         descriptionForShop.Add(" к урону в дальнем бою", _startRangedDamage);
         descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
-        descriptionForShop.Add(" к броне", _startArmor);
-        descriptionForShop.Add(" % к уклонению", _startProbabilityOfDodge);
+        descriptionForShop.Add("% к броне", _startArmor);
+        descriptionForShop.Add("% к уклонению", _startProbabilityOfDodge);
         descriptionForShop.Add(" голод", _startHunger);
 
         return descriptionForShop;

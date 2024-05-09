@@ -10,22 +10,26 @@ public class DrawCircle : MonoBehaviour
 
     public void DrawTheCircle(float radius)
     {
-        if (!lineRenderer.enabled)
+        if (lineRenderer)
         {
-            lineRenderer.enabled = true;
+            if (!lineRenderer.enabled)
+            {
+                lineRenderer.enabled = true;
+            }
+
+            float angleStep = 2f * Mathf.PI / subdivisions;
+            lineRenderer.positionCount = subdivisions;
+
+            for (int i = 0; i < subdivisions; i++)
+            {
+                float xPosition = radius * Mathf.Cos(angleStep * i);
+                float zPosition = radius * Mathf.Sin(angleStep * i);
+
+                Vector3 pointCircle = new Vector3(xPosition, 0f, zPosition);
+
+                lineRenderer.SetPosition(i, pointCircle);
+            }
         }
-
-        float angleStep = 2f * Mathf.PI / subdivisions;
-        lineRenderer.positionCount = subdivisions;
-
-        for (int i = 0; i < subdivisions; i++)
-        {
-            float xPosition = radius * Mathf.Cos(angleStep * i);
-            float zPosition = radius * Mathf.Sin(angleStep * i);
-
-            Vector3 pointCircle = new Vector3(xPosition, 0f, zPosition);
-
-            lineRenderer.SetPosition(i, pointCircle);
-        }
+        
     }
 }

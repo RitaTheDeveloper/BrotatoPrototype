@@ -39,7 +39,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     }
 
-    public virtual void TakeHit(float damage, bool isCrit)
+    public virtual void TakeHit(float damage, bool isCrit, bool isProjectile)
     {
         health -= damage;
         if (health <= 0f && !dead)

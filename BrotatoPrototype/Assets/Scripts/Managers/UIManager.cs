@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject conformationWindow;
+    [SerializeField] private GameObject prompt;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private TextMeshProUGUI waveCompletedTxt;
@@ -36,6 +40,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
     [SerializeField] private UIWaveResults uIWaveResults;
+    [SerializeField] private UIUnlockedHeroes uiUnlockedHeroes;
+    private Animator _animator;
 
     [Header("for player:")]
     [SerializeField] private UIHealth [] uIHealths;
@@ -57,6 +63,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        _animator = GetComponent<Animator>();
         AllOff();
         _startTimeColor = timeTxt.color;
         textAnim = GetComponent<TextAnim>();
@@ -89,6 +96,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
+        shop.DestroyAllPopUpWindows();
         AllOff();
         //OpenCloseWindow.CloseWindow(shop.gameObject);
         GameManager.instance.StartNextWave();
@@ -232,6 +240,9 @@ public class UIManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
+        pauseMenu.SetActive(false);
+        conformationWindow.SetActive(false);
+        settingsPanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         restartBtn.SetActive(false);
@@ -245,6 +256,16 @@ public class UIManager : MonoBehaviour
         waveCompletedTxt.text = "";
         shop.gameObject.SetActive(false);
         menuWithHeroSelection.SetActive(false);
+    }
+
+    public void OnClickOpenSettingsPanel()
+    {
+        settingsPanel.SetActive(true);
+    }
+
+    public void OnClickSettingsPanelExit()
+    {
+        settingsPanel.SetActive(false);
     }
 
     public void DisplayHealth(float currentHp, float startHp, float maxStartHp, float satiety)
@@ -383,4 +404,53 @@ public class UIManager : MonoBehaviour
         AllOff();
         menuWithHeroSelection.SetActive(true);
     }
+
+    public void PauseMenu(bool turnOn)
+    {
+        pauseMenu.SetActive(turnOn);
+    }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
+
+    public void OnClickContinue()
+    {
+        GameManager.instance.PauseOff();
+    }
+
+    public void OnClickMenuInPause()
+    {
+        conformationWindow.SetActive(true);
+    }
+
+    public void OnClickYesGoToMenu()
+    {
+        conformationWindow.SetActive(false);
+        OnClickMenu();
+        GameManager.instance.PauseOff();
+    }
+
+    public void OnClickNoGoToMenu()
+    {
+        conformationWindow.SetActive(false);
+    }
+
+    public void ShowPromptInGame()
+    {
+        PromptAnimation();
+    }
+
+    private void PromptAnimation()
+    {
+        _animator.SetTrigger("ShowPrompt");
+    }
+
+    public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)
+    {
+        uiUnlockedHeroes.DisplayUnlockedHeroes(unlockedPlayers);
+    }
+   
 }
+

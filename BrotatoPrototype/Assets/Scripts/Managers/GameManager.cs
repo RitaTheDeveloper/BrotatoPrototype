@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerStartingSpawnPoint;
     [SerializeField] private WaveController[] _waves;
     [SerializeField] WaveController _currentWave;
+    [SerializeField] private ShopController shop;
 
     public GameObject player;
     private int _waveCounter;
@@ -22,21 +24,35 @@ public class GameManager : MonoBehaviour
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
 
+    public AudioMixerGroup MasterAudioMixer;
+    public AudioMixerGroup MusicAudioMixer;
+    public AudioMixerGroup SFXAudioMixer;
+
 
     private void Awake()
     {
         instance = this;
-        //ResetProgress();
+       // ResetProgress();
     }
     private void Start()
     {
         _heroIndex = 0;
+        InitSoundVolume();
         //Init();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && IsPlaying)
+        {
+            PauseOn();
+        }
     }
 
     public void Init()
     {
         Destroy(GetComponent<SaveController>());
+        shop.ResetShop();
         SpawnPlayer(_heroIndex);
         _isPlaying = true;
         _gameIsOver = false;
@@ -64,6 +80,7 @@ public class GameManager : MonoBehaviour
         SaveGameResult();
         RemoveAllEnemies();
         RemoveAllBullets();
+        shop.ResetShop();
         Debug.Log("Game over!");
     }
 
@@ -79,6 +96,7 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
         RemoveAllEnemies();
         RemoveAllBullets();
+        shop.ResetShop();
         SaveGameResult();
     }
 
@@ -124,23 +142,26 @@ public class GameManager : MonoBehaviour
         _waves[_waveCounter].StartWave();
     }
 
-    private void StopTime()
+    private void PauseOn()
     {
+        UIManager.instance.PauseMenu(true);
         Time.timeScale = 0;
     }
 
-    private void ContinueTime()
+    public void PauseOff()
     {
+        UIManager.instance.PauseMenu(false);
         Time.timeScale = 1;
     }
 
     private void RemoveAllEnemies()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform enemies = GameObject.Find("Enemies").transform;
 
-        foreach(GameObject enemy in enemies)
+        foreach (Transform enemy in enemies)
         {
-            Destroy(enemy);
+            Destroy(enemy.gameObject);
         }
     }
 
@@ -165,13 +186,18 @@ public class GameManager : MonoBehaviour
 
     public void DestroyGameScene()
     {
+        _isPlaying = false;
+        _gameIsOver = true;
+        _currentWave.StopWave();
+        RemoveAllEnemies();
         if (player != null)
         {
             Destroy(player);
         }
-
-        RemoveAllEnemies();
+        
         RemoveAllCurrency();
+        RemoveAllLoot();
+        UIManager.instance.RemoveAllUpElements();
     }
 
     public void Restart()
@@ -208,7 +234,11 @@ public class GameManager : MonoBehaviour
         save.LoadData();
         SaveData data = save.GetData();
         data.WaveEnded += _waveCounter;
-        save.SetData(data);
+
+        List<GameObject> unlockedCharacters = save.GetUnlockCharacterList(data);
+        UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
+        Debug.Log("unlocked characters: " + unlockedCharacters.Count);
+
         save.SaveData();
         Destroy(save);
     }
@@ -222,5 +252,18 @@ public class GameManager : MonoBehaviour
     {
         SaveController save = gameObject.AddComponent<SaveController>();
         save.ResetData();
+    }
+
+    private void InitSoundVolume()
+    {
+        SaveController saveController = gameObject.AddComponent<SaveController>();
+        saveController.LoadData();
+        SaveData saveData = saveController.GetData();
+
+        MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", saveData.MasterSoundVolume);
+        MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", saveData.MusicSondVolume);
+        SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", saveData.SFXVolume);
+
+        Destroy(saveController);
     }
 }

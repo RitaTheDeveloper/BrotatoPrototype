@@ -27,6 +27,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject weaponElementPrefab;
     [SerializeField] private GameObject itemElementPrefab;
     [SerializeField] private GameObject attentionWindowPrefab;
+    [SerializeField] private Transform containerForPopUpWindows;
     [SerializeField] private GameObject weaponInfoPrefab;
     [SerializeField] private GameObject itemInfoPrefab;
     [SerializeField] private Transform canvas;
@@ -35,12 +36,13 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;
+    [SerializeField] private int maxAmountOfItems = 32;
     [SerializeField] private float delayAttentionWindow = 1f;
     [SerializeField] public Vector2[] pointsForAttentionWindows = new Vector2[2];
     [Header("левелы дл€ апгрейда бабы яги")]
     [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
     [SerializeField] private Sprite[] babaYagaSprites;
+    [SerializeField] private Animator fireAnimator;
 
     private List<WeaponSlot> _currentWeaponSlots;
     private int currentIndexBabaYaga = 0;
@@ -59,9 +61,7 @@ public class UIShop : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        // shopController = GetComponent<ShopController>();
         GetComponentsInChildren<SlotItemForSaleData>(items);
-        //CreateItemsSlotsForSale(4);
     }
 
     public void UpdateUIShop()
@@ -255,6 +255,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.RerollShop())
         {
+            FireAnim();
             shopController.ResetsSlots();
             CreateItemsSlotsForSale(shopController.GetSlotCount());
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
@@ -449,13 +450,24 @@ public class UIShop : MonoBehaviour
 
     public IEnumerator ShowMessage(string message, Vector2 point)
     {
-        //guiText.text = message;
-        //guiText.enabled = true;
         var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
+        popupWindow.transform.SetParent(containerForPopUpWindows);
         popupWindow.transform.localPosition = point;
         popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
         yield return new WaitForSeconds(delayAttentionWindow);
-        //guiText.enabled = false;
         Destroy(popupWindow);
+    }
+
+    public void DestroyAllPopUpWindows()
+    {
+        foreach (Transform popUpWindow in containerForPopUpWindows)
+        {
+            Destroy(popUpWindow.gameObject);
+        }
+    }
+
+public void FireAnim()
+    {
+        fireAnimator.SetTrigger("Fire");
     }
 }

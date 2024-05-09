@@ -23,8 +23,12 @@ public class CharacteristicsUI : MonoBehaviour
     private PlayerCharacteristics _playerCharacteristics;
 
     private void Start()
-    {        
-       // UpdateCharacterisctics();
+    {
+        // UpdateCharacterisctics();
+        if (GameManager.instance.player)
+        {
+            UpdateCharacterisctics(GameManager.instance.player.GetComponent<PlayerCharacteristics>());
+        }
     }
     
     public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
