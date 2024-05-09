@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //ResetProgress();
+       // ResetProgress();
     }
     private void Start()
     {
@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
         data.WaveEnded += _waveCounter;
 
         List<GameObject> unlockedCharacters = save.GetUnlockCharacterList(data);
+        UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
         Debug.Log("unlocked characters: " + unlockedCharacters.Count);
 
         save.SaveData();

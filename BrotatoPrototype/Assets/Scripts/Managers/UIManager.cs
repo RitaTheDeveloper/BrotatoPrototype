@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
     [SerializeField] private UIWaveResults uIWaveResults;
+    [SerializeField] private UIUnlockedHeroes uiUnlockedHeroes;
     private Animator _animator;
 
     [Header("for player:")]
@@ -444,6 +445,11 @@ public class UIManager : MonoBehaviour
     private void PromptAnimation()
     {
         _animator.SetTrigger("ShowPrompt");
+    }
+
+    public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)
+    {
+        uiUnlockedHeroes.DisplayUnlockedHeroes(unlockedPlayers);
     }
    
 }
