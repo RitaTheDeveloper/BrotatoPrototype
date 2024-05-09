@@ -9,6 +9,7 @@ public class PlayerHealth : LivingEntity
     public bool invulnerability;
     public bool canTakeDmg;
     [SerializeField] private float timeOfInvulnerability = 0.5f;
+    [SerializeField] private float maxArmor = 60f;
     private float _timer;
     private float _oneHp = 0;
     private float _probabilityOfDodge;
@@ -166,7 +167,10 @@ public class PlayerHealth : LivingEntity
     {
         //float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
         //float resultDamage = damage - percentageOfDamageTaken * damage;
-
+        if(armor > maxArmor)
+        {
+            armor = maxArmor;
+        }
         float resultDamage = damage - damage * armor * 0.01f;
         return Mathf.Round(resultDamage);
     }
