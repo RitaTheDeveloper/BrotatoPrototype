@@ -33,6 +33,7 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < amountOfWeapons; i++)
         {            
             float angle = 360 / amountOfWeapons * i;
+            angle += 90;
             Vector3 pos = ArithmeticMethods.PointOnTheCircle(containerOfWeaponHolds.transform.position, radisOfWeaponHold, angle);
             GameObject weaponHold = Instantiate(weaponHoldPrefab, pos, Quaternion.identity);
             weaponHold.transform.parent = containerOfWeaponHolds;

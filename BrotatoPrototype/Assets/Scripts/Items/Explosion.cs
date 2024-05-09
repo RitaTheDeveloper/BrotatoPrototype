@@ -31,8 +31,7 @@ public class Explosion : MonoBehaviour
         {
            var explosion = Instantiate(explosionEffect, transform.position, explosionEffect.transform.rotation);
             explosion.transform.localScale = explosion.transform.localScale * _radius;
-        }
-       
+        }       
     }
 
     public void DrawRadiusOfAoE(float _radius)

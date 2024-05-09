@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
+        shop.DestroyAllPopUpWindows();
         AllOff();
         //OpenCloseWindow.CloseWindow(shop.gameObject);
         GameManager.instance.StartNextWave();

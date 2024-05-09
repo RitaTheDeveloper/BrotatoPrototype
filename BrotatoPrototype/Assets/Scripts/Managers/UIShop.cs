@@ -27,6 +27,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject weaponElementPrefab;
     [SerializeField] private GameObject itemElementPrefab;
     [SerializeField] private GameObject attentionWindowPrefab;
+    [SerializeField] private Transform containerForPopUpWindows;
     [SerializeField] private GameObject weaponInfoPrefab;
     [SerializeField] private GameObject itemInfoPrefab;
     [SerializeField] private Transform canvas;
@@ -35,7 +36,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Transform positionOfInfoPanel;
     [SerializeField] private SlotItemForSaleData itemSlotForSalePrefab;
     [SerializeField] private List<SlotItemForSaleData> listOfPrefabsForItemsForSale;
-    [SerializeField] private int maxAmountOfItems = 16;
+    [SerializeField] private int maxAmountOfItems = 32;
     [SerializeField] private float delayAttentionWindow = 1f;
     [SerializeField] public Vector2[] pointsForAttentionWindows = new Vector2[2];
     [Header("левелы дл€ апгрейда бабы яги")]
@@ -450,13 +451,22 @@ public class UIShop : MonoBehaviour
     public IEnumerator ShowMessage(string message, Vector2 point)
     {
         var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
+        popupWindow.transform.SetParent(containerForPopUpWindows);
         popupWindow.transform.localPosition = point;
         popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
         yield return new WaitForSeconds(delayAttentionWindow);
         Destroy(popupWindow);
     }
 
-    public void FireAnim()
+    public void DestroyAllPopUpWindows()
+    {
+        foreach (Transform popUpWindow in containerForPopUpWindows)
+        {
+            Destroy(popUpWindow.gameObject);
+        }
+    }
+
+public void FireAnim()
     {
         fireAnimator.SetTrigger("Fire");
     }
