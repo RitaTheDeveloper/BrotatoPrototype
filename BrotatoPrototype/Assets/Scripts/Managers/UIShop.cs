@@ -175,7 +175,7 @@ public class UIShop : MonoBehaviour
 
     public void CreateItemsElements(List<StandartItem> _items)
     {
-        if (items.Count > listSlotsOfItems.Count)
+        if (_items.Count > listSlotsOfItems.Count)
         {
             CreateSlotsForItems();
         }
