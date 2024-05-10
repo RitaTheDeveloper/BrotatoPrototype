@@ -18,17 +18,6 @@ public class EnemyHealth : LivingEntity
         xpForKill = GetComponent<UnitParameters>().AmountOfExperience;
     }
 
-    //public override void TakeHit(float damage)
-    //{
-    //    base.TakeHit(damage);
-    //    TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
-    //    EnemyDamageEffect effector = GetComponent<EnemyDamageEffect>();
-    //    if (effector)
-    //    {
-    //        effector.DoDamageEffect();
-    //    }
-    //}
-
     public override void Die()
     {
         base.Die();
@@ -46,7 +35,7 @@ public class EnemyHealth : LivingEntity
         }
     }
 
-    public override void TakeHit(float damage, bool isCrit)
+    public override void TakeHit(float damage, bool isCrit, bool isProjectile)
     {
 
         if (isCrit)
@@ -59,7 +48,7 @@ public class EnemyHealth : LivingEntity
             TemporaryMessageManager.Instance.AddMessageOnScreen(damage.ToString(), this.gameObject.transform.position, Color.white, 0.5f, 20);
             PlaySoundOfTakeHit();
         }
-        base.TakeHit(damage, isCrit);
+        base.TakeHit(damage, isCrit, false);
     }
 
     private void SpawnCurrency()

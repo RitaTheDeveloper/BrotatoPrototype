@@ -9,6 +9,7 @@ public class PlayerHealth : LivingEntity
     public bool invulnerability;
     public bool canTakeDmg;
     [SerializeField] private float timeOfInvulnerability = 0.5f;
+    [SerializeField] private float maxArmor = 60f;
     private float _timer;
     private float _oneHp = 0;
     private float _probabilityOfDodge;
@@ -82,9 +83,9 @@ public class PlayerHealth : LivingEntity
         UIManager.instance.DisplayHealth(health, startingHealth, maxStartHealth, satiety);
     }
 
-    public override void TakeHit(float damage, bool isCrit)
+    public override void TakeHit(float damage, bool isCrit, bool isProjectile)
     {
-        if (!invulnerability)
+        if (isProjectile)
         {
             if (IsDodge())
             {
@@ -93,15 +94,33 @@ public class PlayerHealth : LivingEntity
             else
             {
                 var resultDamage = GetDamageAfterArmor(damage, _armor);
-                base.TakeHit(resultDamage, isCrit);
+                base.TakeHit(resultDamage, isCrit, false);
                 PlaySoundOfTakeHit();
                 TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
                 Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
             }
-            
-            canTakeDmg = true;
         }
-        
+        else
+        {
+            if (!invulnerability)
+            {
+                if (IsDodge())
+                {
+                    TemporaryMessageManager.Instance.AddMessageOnScreen("уклонение", this.gameObject.transform.position, Color.blue);
+                }
+                else
+                {
+                    var resultDamage = GetDamageAfterArmor(damage, _armor);
+                    base.TakeHit(resultDamage, isCrit, false);
+                    PlaySoundOfTakeHit();
+                    TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
+                    Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+                }
+
+                canTakeDmg = true;
+            }
+        }
+                
         DisplayHealth();
     }
 
@@ -146,8 +165,13 @@ public class PlayerHealth : LivingEntity
         
     private float GetDamageAfterArmor(float damage, float armor)
     {
-        float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
-        float resultDamage = damage - percentageOfDamageTaken * damage;
+        //float percentageOfDamageTaken = 1 - (1 / (1 + (armor / 15)));
+        //float resultDamage = damage - percentageOfDamageTaken * damage;
+        if(armor > maxArmor)
+        {
+            armor = maxArmor;
+        }
+        float resultDamage = damage - damage * armor * 0.01f;
         return Mathf.Round(resultDamage);
     }
 

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject conformationWindow;
+    [SerializeField] private GameObject prompt;
     [SerializeField] private TextMeshProUGUI waveNumberTxt;
     [SerializeField] private TextMeshProUGUI timeTxt;
     [SerializeField] private TextMeshProUGUI waveCompletedTxt;
@@ -38,6 +40,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountOfCurrencyTxt;
     [SerializeField] private UIShop shop;
     [SerializeField] private UIWaveResults uIWaveResults;
+    [SerializeField] private UIUnlockedHeroes uiUnlockedHeroes;
+    private Animator _animator;
 
     [Header("for player:")]
     [SerializeField] private UIHealth [] uIHealths;
@@ -61,6 +65,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        _animator = GetComponent<Animator>();
         AllOff();
         _startTimeColor = timeTxt.color;
         textAnim = GetComponent<TextAnim>();
@@ -94,6 +99,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
+        shop.DestroyAllPopUpWindows();
         AllOff();
         //OpenCloseWindow.CloseWindow(shop.gameObject);
         GameManager.instance.StartNextWave();
@@ -243,6 +249,7 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
         pauseMenu.SetActive(false);
+        conformationWindow.SetActive(false);
         settingsPanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
@@ -423,9 +430,35 @@ public class UIManager : MonoBehaviour
 
     public void OnClickMenuInPause()
     {
+        conformationWindow.SetActive(true);
+    }
+
+    public void OnClickYesGoToMenu()
+    {
+        conformationWindow.SetActive(false);
         OnClickMenu();
         GameManager.instance.PauseOff();
     }
 
+    public void OnClickNoGoToMenu()
+    {
+        conformationWindow.SetActive(false);
+    }
+
+    public void ShowPromptInGame()
+    {
+        PromptAnimation();
+    }
+
+    private void PromptAnimation()
+    {
+        _animator.SetTrigger("ShowPrompt");
+    }
+
+    public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)
+    {
+        uiUnlockedHeroes.DisplayUnlockedHeroes(unlockedPlayers);
+    }
+   
 }
 

@@ -86,6 +86,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void ResetShop()
     {
+        Debug.Log("сбросить весь прогресс!");
         CurrentShopLevel = 1;
         UIShop.instance.ResetBabaYaga();
         UIShop.instance.DisplayLevelShop(CurrentShopLevel);
@@ -254,6 +255,7 @@ public class ShopController : MonoBehaviour, IShopController
             ShopLevelStruct newLevel = ShopLevelStructsStorage[CurrentShopLevel];
             if (playerInventory.HaveNeedWood(newLevel.levelPrice))
             {
+                UIShop.instance.FireAnim();
                 playerInventory.ChangeWood(newLevel.levelPrice * -1);
                 CurrentShopLevel = newLevel.levelNumber;
                 CurrentRerollPrice = DefaultRerollPrice;

@@ -102,4 +102,5 @@ public class PlayerMovement : MonoBehaviour
         //characterController.Move(playerStartingSpawnPoint);
         transform.position = playerStartingSpawnPoint;
     }
+
 }

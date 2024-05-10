@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
         IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();              
         if (damageableObject != null)
         {
-            damageableObject.TakeHit(_damage, _isCrit);
+            damageableObject.TakeHit(_damage, _isCrit, true);
         }
 
         if (knockBack)

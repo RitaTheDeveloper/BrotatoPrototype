@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 {
     public enum State { Idle, Chasing, Attacking, RunAway};
     protected State currentState;
-
+    [SerializeField] protected bool knockBack = true;
     [SerializeField] protected float attackDistance = 1.5f;
     [SerializeField] protected float timeBetweenAttacks = 0f;
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
             currentState = State.Attacking;
             navMeshAgent.enabled = false;
 
-            target.GetComponent<LivingEntity>().TakeHit(damage, false);
+            target.GetComponent<LivingEntity>().TakeHit(damage, false, false);
 
             currentState = State.Chasing;
             navMeshAgent.enabled = true;
@@ -154,8 +154,11 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     public void GetKnockedBack(Vector3 force)
     {
-        StopCoroutine(MoveCoroutine);
-        MoveCoroutine = StartCoroutine(ApplyKnockBack(force));
+        if (knockBack)
+        {
+            StopCoroutine(MoveCoroutine);
+            MoveCoroutine = StartCoroutine(ApplyKnockBack(force));
+        }        
     }
 
     private IEnumerator ApplyKnockBack(Vector3 force)
