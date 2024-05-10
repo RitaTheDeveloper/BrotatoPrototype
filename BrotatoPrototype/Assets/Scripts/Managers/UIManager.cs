@@ -60,6 +60,8 @@ public class UIManager : MonoBehaviour
     private GameObject _woodUp;
     private Color _startTimeColor;
 
+    [SerializeField] private ShopPhrasesController shopPhrasesController;
+
     private void Awake()
     {
         instance = this;
@@ -69,6 +71,7 @@ public class UIManager : MonoBehaviour
         textAnim = GetComponent<TextAnim>();
         //menuWithHeroSelection.SetActive(true);
         mainMenu.SetActive(true);
+        shopPhrasesController = gameObject.GetComponent<ShopPhrasesController>();
     }
 
     public void ShowTime(float currentTime)
@@ -103,6 +106,10 @@ public class UIManager : MonoBehaviour
         if (BackgroundMusicManger.instance != null)
         {
             BackgroundMusicManger.instance.PlayBackgroundMusicFromShop();
+        }
+        if (shopPhrasesController != null)
+        {
+            shopPhrasesController.OnShopOut();
         }
     }
 
@@ -152,7 +159,8 @@ public class UIManager : MonoBehaviour
     {        
         shop.UpdateUIShop();
         shop.gameObject.SetActive(true);
-        //OpenCloseWindow.OpenWindow(shop.gameObject);        
+        shopPhrasesController.OnShopIn();
+        //OpenCloseWindow.OpenWindow(shop.gameObject);
     }
 
     public void WaveCompletedMenuOff()
