@@ -11,6 +11,7 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] private Image currentImgHero;
     [SerializeField] private TextMeshProUGUI nameHeroTxt;
     [SerializeField] private CharacteristicsUI characteristicsUI;
+    [SerializeField] private Animator effectSmokeAnimator;
     [SerializeField] private GameObject iconPrefab;
     [SerializeField] private Transform panelOfIcons;
     public GameObject[] playerPrefabs;
@@ -28,12 +29,23 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void OnClickIconHero(int index)
     {
-        indexOfHero = index;
-        var player = playerPrefabs[index];
-        nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+        if(index != indexOfHero)
+        {
+            indexOfHero = index;
+            var player = playerPrefabs[index];
+            nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+            effectSmokeAnimator.SetTrigger("change");
+            //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
+            StartCoroutine(ChangeSprite(player));
+            player.GetComponent<PlayerCharacteristics>().Init();
+            characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+        }        
+    }
+
+    private IEnumerator ChangeSprite(GameObject player)
+    {
+        yield return new WaitForSeconds(0.4f);
         currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
-        player.GetComponent<PlayerCharacteristics>().Init();
-        characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
     }
 
     public void ChooseTheHero()
