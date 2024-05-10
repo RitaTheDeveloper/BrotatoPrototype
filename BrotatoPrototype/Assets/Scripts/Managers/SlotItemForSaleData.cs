@@ -9,6 +9,7 @@ public class SlotItemForSaleData : MonoBehaviour
     public int SlotNumber;
     public string SlotEntytiID;
     public GameObject pot;
+    [SerializeField] private Animator _potAnimator;
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textTier;
     public TextMeshProUGUI textType;        
@@ -17,6 +18,12 @@ public class SlotItemForSaleData : MonoBehaviour
     public TextMeshProUGUI lockButtonText;
     public Button buyBtn;
     [SerializeField] private CharacteristicsInfoPanelForWeaponAndItem characteristicsInfo;
+
+
+    private void Awake()
+    {
+       // _potAnimator = pot.GetComponentInChildren<Animator>();
+    }
 
     public void DisplayInfoForWeapon(ItemShopInfo w, int currentWave)
     {
@@ -32,6 +39,7 @@ public class SlotItemForSaleData : MonoBehaviour
         textTier.text = w.LevelItem.TierString;
 
         textCost.text = w.GetPrice(currentWave).ToString();
+        _potAnimator.SetTrigger("change");
         image.sprite = w.IconWeapon;
         SetCharacteristicsInfo(w);
         buyBtn.onClick.RemoveAllListeners();
