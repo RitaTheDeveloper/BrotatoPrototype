@@ -18,13 +18,15 @@ public class HeroSelectionPanel : MonoBehaviour
     private int indexOfHero = 0;
     private List<Button> _iconsBtns;
 
-    private void Start()
+    private void Awake()
     {
         CreateIconsForMenu();
-
         indexOfHero = 0;
+    }
+    private void Start()
+    {       
         OnClickIconHero(indexOfHero);
-        _iconsBtns[0].Select();
+        SelectedIcon();
     }
 
     public void OnClickIconHero(int index)
@@ -34,6 +36,9 @@ public class HeroSelectionPanel : MonoBehaviour
             indexOfHero = index;
             var player = playerPrefabs[index];
             nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+            var color = effectSmokeAnimator.gameObject.GetComponent<Image>().color;
+            color.a = 0f;
+            effectSmokeAnimator.gameObject.GetComponent<Image>().color = color;
             effectSmokeAnimator.SetTrigger("change");
             //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
             StartCoroutine(ChangeSprite(player));
@@ -50,6 +55,10 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void ChooseTheHero()
     {
+        var color = effectSmokeAnimator.gameObject.GetComponent<Image>().color;
+        color.a = 0f;
+        effectSmokeAnimator.gameObject.GetComponent<Image>().color = color;
+        //effectSmokeAnimator.gameObject.SetActive(false);
         mainMenu.SetActive(false);
         GameManager.instance.SetHeroIndex(indexOfHero);
         GameManager.instance.Init();
@@ -83,5 +92,10 @@ public class HeroSelectionPanel : MonoBehaviour
             }
             _iconsBtns.Add(icon.GetComponent<Button>());
         }
+    }
+
+    public void SelectedIcon()
+    {
+        _iconsBtns[indexOfHero].Select();
     }
 }

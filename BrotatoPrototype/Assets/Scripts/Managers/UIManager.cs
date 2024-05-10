@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
     private GameObject _foodUp;
     private GameObject _woodUp;
     private Color _startTimeColor;
+    private HeroSelectionPanel _heroSelectionPanel;
 
     [SerializeField] private ShopPhrasesController shopPhrasesController;
 
@@ -71,6 +72,7 @@ public class UIManager : MonoBehaviour
         textAnim = GetComponent<TextAnim>();
         //menuWithHeroSelection.SetActive(true);
         mainMenu.SetActive(true);
+        _heroSelectionPanel = menuWithHeroSelection.GetComponent<HeroSelectionPanel>();
         shopPhrasesController = gameObject.GetComponent<ShopPhrasesController>();
     }
 
@@ -411,6 +413,7 @@ public class UIManager : MonoBehaviour
     {
         AllOff();
         menuWithHeroSelection.SetActive(true);
+        _heroSelectionPanel.SelectedIcon();
     }
 
     public void PauseMenu(bool turnOn)

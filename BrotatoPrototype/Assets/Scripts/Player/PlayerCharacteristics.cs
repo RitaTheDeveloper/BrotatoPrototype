@@ -40,18 +40,18 @@ public class PlayerCharacteristics : MonoBehaviour
     public Dictionary<string, float> DecriptionChacteristicsForUIShop()
     {
         Dictionary<string, float> descriptionForShop = new Dictionary<string, float>();
-        descriptionForShop.Add(" к здоровью", _startMaxHp);
-        descriptionForShop.Add(" к регенерации", _startHpRegen);
+        descriptionForShop.Add(" макс. здоровье", _startMaxHp);
+        descriptionForShop.Add(" к хп реген. в сек.", _startHpRegen);
         descriptionForShop.Add("% к скорости", _startMoveSpeed);
         descriptionForShop.Add(" к радиусу сбора", _startMagnetDistance);
         descriptionForShop.Add("% к скорости атаки", _startAttackSpeedPercentage);
         descriptionForShop.Add("% к урону", _startDamagePercentage);
-        descriptionForShop.Add(" к урону в ближнем бою", _startMelleeDamage);
-        descriptionForShop.Add(" к урону в дальнем бою", _startRangedDamage);
+        descriptionForShop.Add(" ближний бой", _startMelleeDamage);
+        descriptionForShop.Add(" дальний бой", _startRangedDamage);
         descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
         descriptionForShop.Add("% к броне", _startArmor);
         descriptionForShop.Add("% к уклонению", _startProbabilityOfDodge);
-        descriptionForShop.Add(" голод", _startHunger);
+        descriptionForShop.Add("изменение сытости", _startHunger);
 
         return descriptionForShop;
     }
