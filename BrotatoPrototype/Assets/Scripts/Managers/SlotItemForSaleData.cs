@@ -9,6 +9,7 @@ public class SlotItemForSaleData : MonoBehaviour
     public int SlotNumber;
     public string SlotEntytiID;
     public GameObject pot;
+    public Sprite effectSprite1;
     [SerializeField] private Animator _potAnimator;
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textTier;
@@ -39,6 +40,7 @@ public class SlotItemForSaleData : MonoBehaviour
         textTier.text = w.LevelItem.TierString;
 
         textCost.text = w.GetPrice(currentWave).ToString();
+        _potAnimator.gameObject.SetActive(true);
         ImageAlphaOff();
         _potAnimator.SetTrigger("change");
         if (gameObject.activeInHierarchy)
@@ -63,6 +65,7 @@ public class SlotItemForSaleData : MonoBehaviour
         textType.text = "снаряжение";
         textTier.text = it.ShopInfoItem.LevelItem.TierString;
         textCost.text = it.ShopInfoItem.GetPrice(currentWave).ToString();
+        _potAnimator.gameObject.SetActive(true);
         ImageAlphaOff();
         _potAnimator.SetTrigger("change");
         if (gameObject.activeInHierarchy)
@@ -114,6 +117,7 @@ public class SlotItemForSaleData : MonoBehaviour
 
     private void ImageAlphaOff()
     {
+        _potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
         var color = _potAnimator.gameObject.GetComponent<Image>().color;
         color.a = 0f;
         _potAnimator.gameObject.GetComponent<Image>().color = color;
@@ -123,5 +127,9 @@ public class SlotItemForSaleData : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         image.sprite = newSprite;
+        yield return new WaitForSeconds(0.6f);
+        _potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
+        _potAnimator.gameObject.SetActive(false);
+        
     }
 }
