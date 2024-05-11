@@ -39,8 +39,19 @@ public class SlotItemForSaleData : MonoBehaviour
         textTier.text = w.LevelItem.TierString;
 
         textCost.text = w.GetPrice(currentWave).ToString();
+        ImageAlphaOff();
         _potAnimator.SetTrigger("change");
-        image.sprite = w.IconWeapon;
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(ChangeSprite(w.IconWeapon));
+        }
+        else
+        {
+            image.sprite = w.IconWeapon;
+        }
+        
+        //ChangeSprite(w.IconWeapon);
+       // image.sprite = w.IconWeapon;
         SetCharacteristicsInfo(w);
         buyBtn.onClick.RemoveAllListeners();
         OnClickBuyItem();
@@ -52,7 +63,18 @@ public class SlotItemForSaleData : MonoBehaviour
         textType.text = "снаряжение";
         textTier.text = it.ShopInfoItem.LevelItem.TierString;
         textCost.text = it.ShopInfoItem.GetPrice(currentWave).ToString();
-        image.sprite = it.ShopInfoItem.IconWeapon;
+        ImageAlphaOff();
+        _potAnimator.SetTrigger("change");
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(ChangeSprite(it.ShopInfoItem.IconWeapon));
+        }
+        else
+        {
+            image.sprite = it.ShopInfoItem.IconWeapon;
+        }
+           // StartCoroutine(ChangeSprite(it.ShopInfoItem.IconWeapon));
+        //image.sprite = it.ShopInfoItem.IconWeapon;
         SetCharacteristicsInfo(it.GetComponent<ItemShopInfo>());
         buyBtn.onClick.RemoveAllListeners();
         OnClickBuyItem();
@@ -88,5 +110,18 @@ public class SlotItemForSaleData : MonoBehaviour
     public void SetCharacteristicsInfo(ItemShopInfo itemInfo)
     {
         characteristicsInfo.SetDescriptionOfCharacteristics(itemInfo);
+    }
+
+    private void ImageAlphaOff()
+    {
+        var color = _potAnimator.gameObject.GetComponent<Image>().color;
+        color.a = 0f;
+        _potAnimator.gameObject.GetComponent<Image>().color = color;
+    }
+
+    private IEnumerator ChangeSprite(Sprite newSprite)
+    {
+        yield return new WaitForSeconds(0.25f);
+        image.sprite = newSprite;
     }
 }

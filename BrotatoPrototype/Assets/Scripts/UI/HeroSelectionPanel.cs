@@ -36,9 +36,7 @@ public class HeroSelectionPanel : MonoBehaviour
             indexOfHero = index;
             var player = playerPrefabs[index];
             nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
-            var color = effectSmokeAnimator.gameObject.GetComponent<Image>().color;
-            color.a = 0f;
-            effectSmokeAnimator.gameObject.GetComponent<Image>().color = color;
+            ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
             //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
             StartCoroutine(ChangeSprite(player));
@@ -55,14 +53,19 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void ChooseTheHero()
     {
-        var color = effectSmokeAnimator.gameObject.GetComponent<Image>().color;
-        color.a = 0f;
-        effectSmokeAnimator.gameObject.GetComponent<Image>().color = color;
+        ImageAlphaOff();
         //effectSmokeAnimator.gameObject.SetActive(false);
         mainMenu.SetActive(false);
         GameManager.instance.SetHeroIndex(indexOfHero);
         GameManager.instance.Init();
         UIManager.instance.ShowPromptInGame();
+    }
+
+    private void ImageAlphaOff()
+    {
+        var color = effectSmokeAnimator.gameObject.GetComponent<Image>().color;
+        color.a = 0f;
+        effectSmokeAnimator.gameObject.GetComponent<Image>().color = color;
     }
 
     private void CreateIconsForMenu()
