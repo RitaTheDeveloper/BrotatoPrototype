@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIUnlockedHeroes : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject iconImgPrefab;
     [SerializeField] private Transform containerForIcons;
 
     public void DisplayUnlockedHeroes(List<GameObject> unlockedPlayers)
@@ -25,8 +26,8 @@ public class UIUnlockedHeroes : MonoBehaviour
 
         for(int i = 0; i < unlockedPlayers.Count; i++)
         {
-            Image icon = Instantiate(gameObject.AddComponent<Image>(), containerForIcons);
-            icon.sprite = unlockedPlayers[i].GetComponent<UiPlayerInfo>().icon;
+            GameObject icon = Instantiate(iconImgPrefab, containerForIcons);
+            icon.GetComponent<Image>().sprite = unlockedPlayers[i].GetComponent<UiPlayerInfo>().icon;
         }
     }
 

@@ -101,7 +101,13 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void SelectedIcon()
     {
-        //_iconsBtns[indexOfHero].Select();
+        DestroyAndCreateNewIcons();
+        _iconsBtns[indexOfHero].Select();
+        
+    }
+
+    private void DestroyAndCreateNewIcons()
+    {
         for (int i = 0; i < charatersIcons.Count; i++)
         {
             Destroy(charatersIcons[i]);
@@ -109,3 +115,5 @@ public class HeroSelectionPanel : MonoBehaviour
         CreateIconsForMenu();
     }
 }
+    
+

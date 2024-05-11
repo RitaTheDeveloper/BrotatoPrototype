@@ -19,6 +19,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberOfWeapons;
     [SerializeField] private TextMeshProUGUI shopLevelValue;
     [SerializeField] private CharacteristicsUI characteristicsUI;
+    [SerializeField] private Button upgradeShopBtn;
     [Space(20)]
     [SerializeField] private Transform panelOfWeapons;
     [SerializeField] private Transform panelOfItems;
@@ -44,6 +45,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private int[] levelsForUpgradeBabaYaga = new int[3];
     [SerializeField] private Sprite[] babaYagaSprites;
     [SerializeField] private Animator fireAnimator;
+    [SerializeField] private UpgrateShopBtn upgrateShop;
 
     private List<WeaponSlot> _currentWeaponSlots;
     private int currentIndexBabaYaga = 0;
@@ -484,4 +486,16 @@ public class UIShop : MonoBehaviour
     {
         return currentIndexBabaYaga;
     }
+
+    public void ResetUIShop()
+    {
+        ResetBabaYaga();
+        upgrateShop.ShopMax(false);
+    }
+
+    public void ShopIsMax()
+    {
+        upgrateShop.ShopMax(true);
+    }
+
 }

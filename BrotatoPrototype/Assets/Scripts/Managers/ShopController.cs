@@ -88,8 +88,8 @@ public class ShopController : MonoBehaviour, IShopController
     {
         Debug.Log("сбросить весь прогресс!");
         CurrentShopLevel = 1;
-        UIShop.instance.ResetBabaYaga();
         UIShop.instance.DisplayLevelShop(CurrentShopLevel);
+        UIShop.instance.ResetUIShop();
     }
 
     public void UpdateShop()
@@ -274,7 +274,11 @@ public class ShopController : MonoBehaviour, IShopController
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
             }
         }
-        Debug.Log("Магазини максимального уровня!");
+        else
+        {
+            Debug.Log("Магазини максимального уровня!");
+            UIShop.instance.ShopIsMax();
+        }        
         return false;
     }
 
@@ -360,6 +364,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
+            UIShop.instance.ShopIsMax();
             Debug.Log("Максимальный уровень магазина!");
             return 0;
         }

@@ -460,7 +460,16 @@ public class UIManager : MonoBehaviour
 
     public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)
     {
-        uiUnlockedHeroes.DisplayUnlockedHeroes(unlockedPlayers);
+        if(unlockedPlayers.Count > 0)
+        {
+            uiUnlockedHeroes.gameObject.SetActive(true);
+            uiUnlockedHeroes.DisplayUnlockedHeroes(unlockedPlayers);
+        }
+        else
+        {
+            uiUnlockedHeroes.gameObject.SetActive(false);
+        }
+
     }
    
 }
