@@ -61,7 +61,8 @@ public class SaveController : MonoBehaviour
             openCharacters.Add(GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter());
         }
 
-        GameManager.instance.GetComponent<SaveController>().SetData(new_data);
+        this.SetData(new_data);
+        this.SaveData();
 
         List<GameObject> result = new List<GameObject>();
 

@@ -28,11 +28,14 @@ public class GameManager : MonoBehaviour
     public AudioMixerGroup MusicAudioMixer;
     public AudioMixerGroup SFXAudioMixer;
 
+    public SaveController saveController;
+
 
     private void Awake()
     {
         instance = this;
-       // ResetProgress();
+        saveController = gameObject.AddComponent<SaveController>();
+        // ResetProgress();
     }
     private void Start()
     {
@@ -51,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
-        Destroy(GetComponent<SaveController>());
         shop.ResetShop();
         SpawnPlayer(_heroIndex);
         _isPlaying = true;
@@ -230,33 +232,33 @@ public class GameManager : MonoBehaviour
 
     private void SaveGameResult()
     {
-        SaveController save =  gameObject.AddComponent<SaveController>();
-        save.LoadData();
-        SaveData data = save.GetData();
+        saveController.LoadData();
+        SaveData data = new SaveData();
+        data.WaveEnded = saveController.GetData().WaveEnded;
         data.WaveEnded += _waveCounter;
+        data.SFXVolume = saveController.GetData().SFXVolume;
+        data.MusicSondVolume = saveController.GetData().MusicSondVolume;
+        data.MasterSoundVolume = saveController.GetData().MasterSoundVolume;
 
-        List<GameObject> unlockedCharacters = save.GetUnlockCharacterList(data);
+        List<GameObject> unlockedCharacters = saveController.GetUnlockCharacterList(data);
         UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
         Debug.Log("unlocked characters: " + unlockedCharacters.Count);
 
-        save.SaveData();
-        Destroy(save);
+        saveController.SaveData();
     }
 
     public void LoadData()
     {
-        gameObject.AddComponent<SaveController>();
+        saveController.LoadData();
     }
 
     private void ResetProgress()
     {
-        SaveController save = gameObject.AddComponent<SaveController>();
-        save.ResetData();
+        saveController.ResetData();
     }
 
     private void InitSoundVolume()
     {
-        SaveController saveController = gameObject.AddComponent<SaveController>();
         saveController.LoadData();
         SaveData saveData = saveController.GetData();
 
@@ -264,6 +266,5 @@ public class GameManager : MonoBehaviour
         MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", saveData.MusicSondVolume);
         SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", saveData.SFXVolume);
 
-        Destroy(saveController);
     }
 }
