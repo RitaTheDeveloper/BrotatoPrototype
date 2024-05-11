@@ -17,10 +17,11 @@ public class HeroSelectionPanel : MonoBehaviour
     public GameObject[] playerPrefabs;
     private int indexOfHero = 0;
     private List<Button> _iconsBtns;
+    private List<GameObject> charatersIcons = new List<GameObject>();
 
     private void Awake()
     {
-        CreateIconsForMenu();
+        //CreateIconsForMenu();
         indexOfHero = 0;
     }
     private void Start()
@@ -94,11 +95,17 @@ public class HeroSelectionPanel : MonoBehaviour
                 icon.GetComponent<Button>().interactable = false;
             }
             _iconsBtns.Add(icon.GetComponent<Button>());
+            charatersIcons.Add(icon);
         }
     }
 
     public void SelectedIcon()
     {
-        _iconsBtns[indexOfHero].Select();
+        //_iconsBtns[indexOfHero].Select();
+        for (int i = 0; i < charatersIcons.Count; i++)
+        {
+            Destroy(charatersIcons[i]);
+        }
+        CreateIconsForMenu();
     }
 }
