@@ -10,6 +10,7 @@ public class UIShop : MonoBehaviour
     public static UIShop instance;
 
     [SerializeField] public Image babaYagaImg;
+    [SerializeField] private Animator ygaAnimator;
     [SerializeField] private TextMeshProUGUI waveNumberText;
     [SerializeField] private TextMeshProUGUI totalAmountOfGoldText;
     [SerializeField] private TextMeshProUGUI totalAmountOfWoodText;
@@ -430,8 +431,16 @@ public class UIShop : MonoBehaviour
             }
 
             Debug.Log("current index baba yga " + currentIndexBabaYaga);
-            babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
+            ygaAnimator.SetTrigger("change");
+            StartCoroutine(ChangeSpriteYga(babaYagaSprites[currentIndexBabaYaga]));
+            //babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
         }        
+    }
+
+    private IEnumerator ChangeSpriteYga(Sprite newSprite)
+    {
+        yield return new WaitForSeconds(0.2f);
+        babaYagaImg.GetComponent<Image>().sprite = newSprite;
     }
 
     public void ResetBabaYaga()
