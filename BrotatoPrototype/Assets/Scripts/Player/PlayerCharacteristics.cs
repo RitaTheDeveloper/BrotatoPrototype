@@ -170,6 +170,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentCritChancePercentage += bonus._startCritChancePercentage;
         _currentProbabilityOfDodge += bonus._startProbabilityOfDodge;
         _currentArmor += bonus._startArmor;
+        _currentHunger += bonus._startHunger;
     }
 
     public void DeleteBonus(PlayerCharacteristics bonus)
@@ -179,12 +180,12 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentMoveSpeed -= bonus._startMoveSpeed;
         _currentMagnetDistance -= bonus._startMagnetDistance;
         _currentAttackSpeedPercentage -= bonus._startAttackSpeedPercentage;
+        _currentDamagePercentage -= bonus._startDamagePercentage;
         _currentMelleeDamage -= bonus._startMelleeDamage;
         _currentRangedDamage -= bonus._startRangedDamage;
         _currentCritChancePercentage -= bonus._startCritChancePercentage;
         _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
         _currentArmor -= bonus._startArmor;
-    }
-
-    
+        _currentHunger -= bonus._startHunger;
+    }    
 }
