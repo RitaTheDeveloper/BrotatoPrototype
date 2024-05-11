@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-       // ResetProgress();
+        ResetProgress();
     }
     private void Start()
     {
