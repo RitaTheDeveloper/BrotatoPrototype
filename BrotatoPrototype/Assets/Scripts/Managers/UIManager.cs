@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider levelSlider;
     [SerializeField] private TextMeshProUGUI levelTxt;
 
-    [SerializeField] private CharacteristicsUI characteristicsUI;
+    [SerializeField] private CharacteristicsUI [] characteristicsUIs;
     [SerializeField] private AllAbilities allAbilities;
 
     private TextAnim textAnim;
@@ -145,14 +145,20 @@ public class UIManager : MonoBehaviour
         if (_numberOfLeveledUpForCurrentWave > 0)
         {
             AbilitySelectionPanelOn();
-            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            foreach(CharacteristicsUI characteristicsUI in characteristicsUIs)
+            {
+                characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            }            
             _numberOfLeveledUpForCurrentWave--;
         }
         else
         {
             //AbilitySelectionPanelOff();
             WaveCompletedMenuOff();
-            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            foreach (CharacteristicsUI characteristicsUI in characteristicsUIs)
+            {
+                characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            }
             OpenShop();
         }
     }

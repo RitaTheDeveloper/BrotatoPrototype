@@ -18,7 +18,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceForRerollTxt;
     [SerializeField] private TextMeshProUGUI numberOfWeapons;
     [SerializeField] private TextMeshProUGUI shopLevelValue;
-    [SerializeField] private CharacteristicsUI characteristicsUI;
+    [SerializeField] private CharacteristicsUI[] characteristicsUIs;
     [SerializeField] private Button upgradeShopBtn;
     [Space(20)]
     [SerializeField] private Transform panelOfWeapons;
@@ -395,7 +395,10 @@ public class UIShop : MonoBehaviour
     public void UpdateUICharacteristics()
     {
         PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
-        characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+        foreach(var characteristicsUI in characteristicsUIs)
+        {
+            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+        }        
     }
 
     private void PlayRerollSound()

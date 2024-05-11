@@ -43,7 +43,14 @@ public class HeroSelectionPanel : MonoBehaviour
             StartCoroutine(ChangeSprite(player));
             player.GetComponent<PlayerCharacteristics>().Init();
             characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
-        }        
+        }
+        else
+        {
+            var player = playerPrefabs[index];
+            player.GetComponent<PlayerCharacteristics>().Init();
+            characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+        }
+       
     }
 
     private IEnumerator ChangeSprite(GameObject player)
