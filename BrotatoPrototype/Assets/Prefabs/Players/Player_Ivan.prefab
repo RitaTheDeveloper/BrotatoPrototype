@@ -120,19 +120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 2500
-  _startHpRegen: 0
+  _startMaxHp: 30
+  _startHpRegen: 1
   _startMoveSpeed: 100
   _startMagnetDistance: 5
   _startAttackSpeedPercentage: 0
   _startDamagePercentage: 0
-  _startMelleeDamage: 0
-  _startRangedDamage: 0
+  _startMelleeDamage: 3
+  _startRangedDamage: -5
   _startCritChancePercentage: 0
-  _startArmor: 26
-  _startProbabilityOfDodge: 30
-  _startSatiety: 80
-  _startHunger: -15
+  _startArmor: 0
+  _startProbabilityOfDodge: 0
+  _startSatiety: 100
+  _startHunger: -8
 --- !u!143 &3096899062759002954
 CharacterController:
   m_ObjectHideFlags: 0
@@ -191,8 +191,8 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
-  - {fileID: 3573727161873608435, guid: 47ea834b1a926c440b3c5007478064a8, type: 3}
-  - {fileID: 3573727161873608435, guid: 47ea834b1a926c440b3c5007478064a8, type: 3}
+  - {fileID: 5776774504449581080, guid: 0b3ec7296cd3eb844ae7db2b6441ab12, type: 3}
+  - {fileID: 8191647243664329808, guid: d790e4962b08881499129fa82398bbc3, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &6632754515298849247
@@ -215,7 +215,7 @@ MonoBehaviour:
   invulnerability: 0
   canTakeDmg: 0
   timeOfInvulnerability: 0.5
-  maxArmor: 60
+  maxArmor: 80
 --- !u!114 &7672442040554599280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0
-  _magnetDistance: 4.2
+  _magnetDistance: 5
 --- !u!65 &976549883763769846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 1000
-  _startWood: 1000
+  _startMoney: 0
+  _startWood: 0
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0
