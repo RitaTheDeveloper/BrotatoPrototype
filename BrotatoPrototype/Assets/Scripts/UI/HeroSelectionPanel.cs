@@ -92,7 +92,7 @@ public class HeroSelectionPanel : MonoBehaviour
             int tmp = i;
             icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(tmp));
             //icon.GetComponent<Image>().sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
-            // меняем спрайты состояний
+            // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             var ss = icon.GetComponent<Button>().spriteState;
             icon.GetComponent<Button>().image.sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
             ss.disabledSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
@@ -124,6 +124,7 @@ public class HeroSelectionPanel : MonoBehaviour
             Destroy(charatersIcons[i]);
         }
         CreateIconsForMenu();
+        _iconsBtns[indexOfHero].Select();
     }
 }
     
