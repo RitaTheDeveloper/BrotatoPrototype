@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
     [SerializeField] private WaveController[] _waves;
@@ -34,7 +35,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        ResetProgress();
+        saveController = gameObject.AddComponent<SaveController>();
+        if (resetProgress)
+        {
+            ResetProgress();
+        }        
     }
     private void Start()
     {
