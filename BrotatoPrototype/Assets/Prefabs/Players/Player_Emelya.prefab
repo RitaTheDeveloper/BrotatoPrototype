@@ -57,17 +57,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 75
-  _startHpRegen: 0.7
-  _startMoveSpeed: 100
-  _startMagnetDistance: 4
-  _startAttackSpeedPercentage: -2
-  _startDamagePercentage: -5
-  _startMelleeDamage: -4
-  _startRangedDamage: -4
+  _startMaxHp: 100
+  _startHpRegen: 2
+  _startMoveSpeed: 110
+  _startMagnetDistance: 3
+  _startAttackSpeedPercentage: 0
+  _startDamagePercentage: 2
+  _startMelleeDamage: 0
+  _startRangedDamage: 0
   _startCritChancePercentage: 0
-  _startArmor: 0
-  _startProbabilityOfDodge: 5
+  _startArmor: 10
+  _startProbabilityOfDodge: 1
   _startSatiety: 100
   _startHunger: -15
 --- !u!143 &7562376633630764223
@@ -128,9 +128,8 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 1168812276271969868}
   listOfWeapons:
-  - {fileID: 2988310641036012103, guid: e27c53cb6f07170469e92028d34dce3b, type: 3}
-  - {fileID: 2988310641036012103, guid: e27c53cb6f07170469e92028d34dce3b, type: 3}
-  - {fileID: 2988310641036012103, guid: e27c53cb6f07170469e92028d34dce3b, type: 3}
+  - {fileID: 5776774504449581080, guid: fb19305cc61132a4899c4e82b735c089, type: 3}
+  - {fileID: 8191647243664329808, guid: 22b1a5d0fd2e6934fb80fd4602a2c4cd, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &947180249327128963
@@ -167,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLvl: 1
-  _maxMagnetDistance: 20
+  _maxMagnetDistance: 100
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0
@@ -237,6 +236,8 @@ MonoBehaviour:
   unlockIcon: {fileID: 21300000, guid: e83f3d357a88ae14ea8d644c12abd5d6, type: 3}
   player2d: {fileID: 21300000, guid: da684c800f0ddde4687f4afc39b3b870, type: 3}
   nameHero: "\u0415\u043C\u0435\u043B\u044F"
+  description: "\u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C: \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u0430\u044F.
+    \u0411\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439"
 --- !u!114 &-2872071167883006049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wavesRequired: 2
+  _wavesRequired: 0
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0
