@@ -9,4 +9,5 @@ public class UiPlayerInfo : MonoBehaviour
     public Sprite unlockIcon;
     public Sprite player2d;
     public string nameHero;
+    public string description;
 }

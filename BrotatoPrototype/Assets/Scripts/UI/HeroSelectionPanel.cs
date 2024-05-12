@@ -12,6 +12,7 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameHeroTxt;
     [SerializeField] private CharacteristicsUI characteristicsUI;
     [SerializeField] private Animator effectSmokeAnimator;
+    [SerializeField] private TextMeshProUGUI heroDescription;
     [SerializeField] private GameObject iconPrefab;
     [SerializeField] private Transform panelOfIcons;
     public GameObject[] playerPrefabs;
@@ -37,6 +38,7 @@ public class HeroSelectionPanel : MonoBehaviour
             indexOfHero = index;
             var player = playerPrefabs[index];
             nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+            heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
             ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
             //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
@@ -47,8 +49,10 @@ public class HeroSelectionPanel : MonoBehaviour
         else
         {
             var player = playerPrefabs[index];
+            heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
             player.GetComponent<PlayerCharacteristics>().Init();
             characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+            
         }
        
     }
