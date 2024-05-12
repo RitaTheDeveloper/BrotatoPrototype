@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971588729138833714}
-  - component: {fileID: 3735713784312902713}
+  - component: {fileID: 6623501846447968409}
   m_Layer: 0
-  m_Name: AbilityAttackSpeed Big
+  m_Name: AbilityDamagePercentage 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3735713784312902713
+--- !u!114 &6623501846447968409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6930901830265785962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd39b1cb89a5f0944987615d799f52ff, type: 3}
+  m_Script: {fileID: 11500000, guid: c0cd67698b1537c4d9d82f972ee832bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfAbility: "\u0421\u0443\u043F\u0435\u0440 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C
-    \u0430\u0442\u0430\u043A\u0438"
-  icon: {fileID: 21300000, guid: a91e13a6133fa504dac02be40b132a2f, type: 3}
-  attackSpeedPercentage: 20
+  nameOfAbility: "% \u043A \u0443\u0440\u043E\u043D\u0443"
+  icon: {fileID: 21300000, guid: cde837a335731f644b30c549165bb45f, type: 3}
+  _damagePercentage: 20
