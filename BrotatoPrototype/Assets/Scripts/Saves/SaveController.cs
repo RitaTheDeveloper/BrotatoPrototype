@@ -17,7 +17,7 @@ public class SaveController : MonoBehaviour
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("WaveEnded", data.WaveEnded);
+        PlayerPrefs.SetInt("WaveEnded1", data.WaveEnded);
         PlayerPrefs.SetFloat("MasterSoundVolume", data.MasterSoundVolume);
         PlayerPrefs.SetFloat("MusicSondVolume", data.MusicSondVolume);
         PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
@@ -29,7 +29,7 @@ public class SaveController : MonoBehaviour
     {
         SaveData data_tmp = new SaveData();
 
-        data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded", 0);
+        data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded1", 0);
         data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", 0);
         data_tmp.MusicSondVolume = PlayerPrefs.GetFloat("MusicSondVolume", 0);
         data_tmp.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
@@ -50,7 +50,7 @@ public class SaveController : MonoBehaviour
     public void ResetData()
     {
         data.WaveEnded = 0;
-        PlayerPrefs.SetInt("WaveEnded", 0);
+        PlayerPrefs.SetInt("WaveEnded1", 0);
     }
 
     public List<GameObject> GetUnlockCharacterList(SaveData new_data)
