@@ -13,6 +13,15 @@ public class HealingPotion : MonoBehaviour
             Debug.Log("хватай хилку");
             other.GetComponent<LivingEntity>().AddHealth(amountOfHp);
             Destroy(gameObject);
+            PlaySoundTakeHealing();
+        }
+    }
+
+    private void PlaySoundTakeHealing()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("TakeHealing");
         }
     }
 }
