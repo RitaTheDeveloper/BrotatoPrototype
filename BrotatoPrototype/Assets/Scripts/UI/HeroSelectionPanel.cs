@@ -91,6 +91,7 @@ public class HeroSelectionPanel : MonoBehaviour
             icon.GetComponent<Button>().onClick.RemoveAllListeners();
             int tmp = i;
             icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(tmp));
+            icon.GetComponent<Button>().onClick.AddListener(() => PlaySoundCharacterSelect());
             //icon.GetComponent<Image>().sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
             // ������ ������� ���������
             var ss = icon.GetComponent<Button>().spriteState;
@@ -125,6 +126,14 @@ public class HeroSelectionPanel : MonoBehaviour
         }
         CreateIconsForMenu();
         _iconsBtns[indexOfHero].Select();
+    }
+
+    private void PlaySoundCharacterSelect()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("SelectCharacterIcon");
+        }
     }
 }
     
