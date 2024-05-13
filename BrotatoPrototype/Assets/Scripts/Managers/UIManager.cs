@@ -101,6 +101,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickNextWave()
     {
+        PlayShopBackgroundSound(false);
         shop.DestroyAllPopUpWindows();
         AllOff();
         //OpenCloseWindow.CloseWindow(shop.gameObject);
@@ -168,6 +169,8 @@ public class UIManager : MonoBehaviour
         shop.UpdateUIShop();
         shop.gameObject.SetActive(true);
         shopPhrasesController.OnShopIn();
+        PlaySoundOpenDoorInShop();
+        PlayShopBackgroundSound(is_play: true);
         //OpenCloseWindow.OpenWindow(shop.gameObject);
     }
 
@@ -272,6 +275,7 @@ public class UIManager : MonoBehaviour
         waveCompletedTxt.text = "";
         shop.gameObject.SetActive(false);
         menuWithHeroSelection.SetActive(false);
+        PlayShopBackgroundSound(false);
     }
 
     public void OnClickOpenSettingsPanel()
@@ -412,6 +416,22 @@ public class UIManager : MonoBehaviour
         if (AudioManager.instance != null)
         {
             //
+        }
+    }
+
+    private void PlaySoundOpenDoorInShop()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("DoorInShop");
+        }
+    }
+
+    private void PlayShopBackgroundSound(bool is_play)
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayShopBackGround(is_play);
         }
     }
 

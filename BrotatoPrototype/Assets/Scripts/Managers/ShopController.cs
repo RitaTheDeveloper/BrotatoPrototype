@@ -114,10 +114,12 @@ public class ShopController : MonoBehaviour, IShopController
                 playerInventory.ChangeMoney(SaleItemsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
                 playerInventory.AddItem(SaleItemsDict[itemID]);
                 uiShop.CreateItemsElements(playerInventory.inventory);
+                PlaySoundBuySold();
                 return true;
             }
             else
             {
+                PlayNeedMoreGold();
                 Debug.Log("Недостаточно денег");
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;
@@ -133,11 +135,13 @@ public class ShopController : MonoBehaviour, IShopController
                     weaponsList.Add(WeaponsDict[itemID]);
                     //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                     uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
+                    PlaySoundBuySold();
                     return true;
                 }
                 else
                 {
                     Debug.Log("Недостаточно места");
+                    PlayMaxSlots();
                     StartCoroutine(UIShop.instance.ShowMessage("Все слоты оружия заполнены", UIShop.instance.pointsForAttentionWindows[1]));
                     return false;
                 }
@@ -145,6 +149,7 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 Debug.Log("Недостаточно денег");
+                PlayNeedMoreGold();
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;
             }
@@ -237,12 +242,14 @@ public class ShopController : MonoBehaviour, IShopController
             int priceForSale = shopComponent.GetSalePrice();
             playerInventory.ChangeMoney(priceForSale);
             weaponsList.Remove(WeaponsDict[itemID]);
+            PlaySoundBuySold();
             return true;
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
             playerInventory.ChangeMoney(SaleItemsDict[itemID].ShopInfoItem.Price - SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
             playerInventory.DeleteItem(SaleItemsDict[itemID]);
+            PlaySoundBuySold();
             return true;
         }
         return false;
@@ -267,10 +274,13 @@ public class ShopController : MonoBehaviour, IShopController
                     SoldItemsDict[i] = false;
                 }
 
+                PlaySoundShopLevelUp();
+
                 return true;
             }
             else
             {
+                PlayNeedMoreWood();
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
             }
         }
@@ -410,6 +420,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
+            PlayNeedMoreWood();
             StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
         }
         return false;
@@ -478,5 +489,45 @@ public class ShopController : MonoBehaviour, IShopController
     public int GetSlotCount()
     {
         return ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
+    }
+
+    private void PlaySoundShopLevelUp()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ShopLevelUp");
+        }
+    }
+
+    private void PlayNeedMoreGold()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("NeedMoreGold");
+        }
+    }
+
+    private void PlayNeedMoreWood()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("NeedMoreWood");
+        }
+    }
+
+    private void PlayMaxSlots()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("MaxSlots");
+        }
+    }
+
+    private void PlaySoundBuySold()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("BuySoldSlot");
+        }
     }
 }
