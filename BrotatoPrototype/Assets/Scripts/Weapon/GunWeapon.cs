@@ -89,7 +89,7 @@ public class GunWeapon : Weapon
         //крит или не крит
         if (Random.value < currentCritChance)
         {
-            newProjectile.SetDamage(currentDamage * 2);
+            newProjectile.SetDamage(currentDamage * 5);
             newProjectile.IsCrit(true);
         }
         else

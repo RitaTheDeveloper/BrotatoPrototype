@@ -120,19 +120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 30000
-  _startHpRegen: 1
+  _startMaxHp: 90
+  _startHpRegen: 0
   _startMoveSpeed: 100
-  _startMagnetDistance: 5
-  _startAttackSpeedPercentage: 0
+  _startMagnetDistance: 4
+  _startAttackSpeedPercentage: 5
   _startDamagePercentage: 0
-  _startMelleeDamage: 3
-  _startRangedDamage: -5
+  _startMelleeDamage: 0
+  _startRangedDamage: 5
   _startCritChancePercentage: 0
   _startArmor: 0
   _startProbabilityOfDodge: 0
   _startSatiety: 100
-  _startHunger: -8
+  _startHunger: -20
 --- !u!143 &3096899062759002954
 CharacterController:
   m_ObjectHideFlags: 0
@@ -191,8 +191,7 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
-  - {fileID: 5776774504449581080, guid: 0b3ec7296cd3eb844ae7db2b6441ab12, type: 3}
-  - {fileID: 8191647243664329808, guid: d790e4962b08881499129fa82398bbc3, type: 3}
+  - {fileID: 6896685654037281728, guid: fb0dc1b0f79377b4482d6af2fbe274fa, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 6
 --- !u!114 &6632754515298849247
@@ -214,8 +213,8 @@ MonoBehaviour:
   dead: 0
   invulnerability: 0
   canTakeDmg: 0
-  timeOfInvulnerability: 0.5
-  maxArmor: 80
+  timeOfInvulnerability: 1
+  maxArmor: 60
 --- !u!114 &7672442040554599280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,11 +228,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLvl: 1
-  _maxMagnetDistance: 20
+  _maxMagnetDistance: 100
   _currentLvl: 0
   _currentXp: 0
   _requiredXp: 0
-  _magnetDistance: 5
+  _magnetDistance: 4.2
 --- !u!65 &976549883763769846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -280,8 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 0
-  _startWood: 0
+  _startMoney: 25
+  _startWood: 30
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,8 +298,8 @@ MonoBehaviour:
   unlockIcon: {fileID: 0}
   player2d: {fileID: 21300000, guid: cc717a28d3acb31439480d885286dee5, type: 3}
   nameHero: "\u0418\u0432\u0430\u043D \u0426\u0430\u0440\u0435\u0432\u0438\u0447"
-  description: "\u0423\u0434\u0430\u043B\u043E\u0439 \u0418\u0432\u0430\u043D \u0441
-    \u043C\u0435\u0447\u043E\u043C \u0438 \u0449\u0438\u0442\u043E\u043C"
+  description: "\u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C: \u043B\u0435\u0433\u043A\u043E.
+    \u0414\u0430\u043B\u044C\u043D\u0438\u0439 \u0431\u043E\u0439"
 --- !u!114 &610271406313924933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wavesRequired: 0
+  _wavesRequired: 3
 --- !u!1001 &3485772002034192063
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -84,17 +84,17 @@ MonoBehaviour:
   tier: 0
   type: 0
   weaponModifiers: {fileID: 11400000, guid: 213026b170911e84b9d93614dd29cdc2, type: 2}
-  attackRange: 6
-  startDamage: 30
-  startAttackSpeed: 1.6
-  startCritChance: 0
-  knockBack: 1
-  repulsiveForce: 40
+  attackRange: 8
+  startDamage: 6
+  startAttackSpeed: 2.5
+  startCritChance: 0.06
+  knockBack: 0
+  repulsiveForce: 30
   percantageOfMelleDamage: 100
   percantageOfRangedDamage: 0
   soundName: BroomstickAttack
   animator: {fileID: 8962991648516859570}
-  timeOfAttack: 1.317
+  timeOfAttack: 1
   nearestEnemy: {fileID: 0}
 --- !u!54 &8092324634713133421
 Rigidbody:
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdWeapon: broom1
-  Price: 20
+  Price: 15
   DiscountProcent: 10
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}

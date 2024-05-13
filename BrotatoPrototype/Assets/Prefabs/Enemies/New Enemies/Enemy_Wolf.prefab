@@ -83,12 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 12
-  _amountOfHpPerWave: 2
-  _startDamage: 0
-  _amountOfDamagePerWave: 0.2
+  _maxHp: 200
+  _amountOfHpPerWave: 20
+  _startDamage: 7
+  _amountOfDamagePerWave: 2
   _hpRegen: 0
-  _moveSpeed: 15
+  _moveSpeed: 27
   _amountOfExperience: 7
 --- !u!195 &5235684759879840614
 NavMeshAgent:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notKnockBack: 0
+  knockBack: 1
   attackDistance: 5
   timeBetweenAttacks: 0
   refreshRateOfUpdatePath: 0.1

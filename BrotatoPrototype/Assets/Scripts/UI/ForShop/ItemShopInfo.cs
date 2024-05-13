@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class ItemShopInfo : MonoBehaviour
 
     public int GetPrice(int wave)
     {
-        currentPrice = Price + wave + (int)(Price * wave * 0.05f);
+        currentPrice = Price + (int)(Price * wave * wave * 0.01f);
         return currentPrice; // расчет цены за определенную волну (wave)
     }
 

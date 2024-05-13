@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.008726558, w: 0.999962}
   m_LocalPosition: {x: 0, y: 2.2, z: 4.78}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1322259579096562072}
@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 25
-  _amountOfHpPerWave: 2
+  _maxHp: 2000
+  _amountOfHpPerWave: 20
   _startDamage: 7
   _amountOfDamagePerWave: 2
   _hpRegen: 0
-  _moveSpeed: 5
+  _moveSpeed: 0
   _amountOfExperience: 7
 --- !u!195 &5664343470737240570
 NavMeshAgent:
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notKnockBack: 0
-  attackDistance: 5
+  knockBack: 1
+  attackDistance: 6
   timeBetweenAttacks: 0
   refreshRateOfUpdatePath: 0.1
   animator: {fileID: 1330278800824452050}
@@ -275,13 +275,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372882831b675364d8666ad9069bcd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 3503059046315012686, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+  _enemyPrefab: {fileID: 4367304048573700832, guid: d0ccbb88a460ef64d825f8b0b681babb,
     type: 3}
-  amountOfEnemies: 3
-  _startSpawnTime: 3
-  _minSpawnTime: 7
-  _maxSpawnTime: 8
-  _radiusFromPlayer: 15
+  amountOfEnemies: 4
+  _startSpawnTime: 1
+  _minSpawnTime: 1
+  _maxSpawnTime: 1
+  _radiusFromPlayer: 30
   isNotRandom: 1
   radius: 0.1
   markPrefab: {fileID: 7525006951670329389, guid: c74ff4c6e7cc5b64eadb1d29f58a15d7,

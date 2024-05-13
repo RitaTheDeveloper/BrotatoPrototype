@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 150
-  _amountOfHpPerWave: 2
-  _startDamage: 4
-  _amountOfDamagePerWave: 2
-  _hpRegen: 0
-  _moveSpeed: 6
-  _amountOfExperience: 7
+  _maxHp: 350
+  _amountOfHpPerWave: 10
+  _startDamage: 20
+  _amountOfDamagePerWave: 4
+  _hpRegen: 5
+  _moveSpeed: 7
+  _amountOfExperience: 8
 --- !u!195 &5401612529891977140
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -113,18 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefae8469b3bbbf41ab4ba0d568c7a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notKnockBack: 0
-  attackDistance: 7.5
-  timeBetweenAttacks: 1
-  refreshRateOfUpdatePath: 1
+  knockBack: 0
+  attackDistance: 6
+  timeBetweenAttacks: 0.5
+  refreshRateOfUpdatePath: 0.5
   animator: {fileID: 8236129703654618402}
   boxCollider: {fileID: 8556459953725359011}
   stoppingSpeedForKnockBack: 1
   target: {fileID: 0}
-  _cdRushTime: 4
+  _cdRushTime: 1
   _stopTimeBeforeRush: 1
-  _speedRush: 54
-  _distance: 30
+  _speedRush: 40
+  _distance: 40
   _animator: {fileID: 8236129703654618402}
 --- !u!114 &1809849539922068170
 MonoBehaviour:

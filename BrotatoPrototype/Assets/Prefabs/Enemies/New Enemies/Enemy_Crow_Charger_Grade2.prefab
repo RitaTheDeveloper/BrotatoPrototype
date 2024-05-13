@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2089199299980627311}
   - component: {fileID: 8744524419828621567}
   - component: {fileID: 8327326300526664782}
-  - component: {fileID: 6379383887644481262}
   - component: {fileID: 6582188973771410550}
   - component: {fileID: 8236494611829395892}
   - component: {fileID: 8235819838476070977}
   - component: {fileID: 5326791820054513844}
+  - component: {fileID: -3300483489262306237}
   m_Layer: 6
   m_Name: Enemy_Crow_Charger_Grade2
   m_TagString: Enemy
@@ -53,13 +53,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 12
-  _amountOfHpPerWave: 3
-  _startDamage: 5
+  _maxHp: 14
+  _amountOfHpPerWave: 6
+  _startDamage: 15
   _amountOfDamagePerWave: 3
   _hpRegen: 0
-  _moveSpeed: 10
-  _amountOfExperience: 4
+  _moveSpeed: 35
+  _amountOfExperience: 3
 --- !u!195 &8744524419828621567
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -103,31 +103,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3, y: 1.5, z: 1.7}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6379383887644481262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417430644579757189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbdf7244cf727740887b857594cdb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notKnockBack: 0
-  attackDistance: 15
-  timeBetweenAttacks: 3
-  refreshRateOfUpdatePath: 0.01
-  animator: {fileID: 5481508861073231532}
-  boxCollider: {fileID: 8327326300526664782}
-  stoppingSpeedForKnockBack: 1
-  target: {fileID: 0}
-  _shootPoint: {fileID: 521151327850902358}
-  _projectilePrefab: {fileID: 1331408556871749274, guid: 9a09712c3eee2ba4cbd1e73bdad5d074,
-    type: 3}
-  range: 40
-  _speedRunAway: 8
 --- !u!114 &6582188973771410550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +259,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3300483489262306237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417430644579757189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBack: 1
+  attackDistance: 5
+  timeBetweenAttacks: 0
+  refreshRateOfUpdatePath: 1.5
+  animator: {fileID: 6341085170649560583, guid: 4cd3452b073b99345878393ad6812e4a,
+    type: 3}
+  boxCollider: {fileID: 8327326300526664782, guid: e80530ddf74df604da8e1fff30932560,
+    type: 3}
+  stoppingSpeedForKnockBack: 1
+  target: {fileID: 0}
 --- !u!1 &5045293596221199976
 GameObject:
   m_ObjectHideFlags: 0
