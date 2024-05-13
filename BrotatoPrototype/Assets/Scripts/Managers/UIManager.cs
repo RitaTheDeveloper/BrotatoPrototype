@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
         textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
         LeanTween.alpha(waveCompletedMenu.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         OpenCloseWindow.OpenWindowWithDelay(waveResultsMenu, 2.5f);
-        textAnim.TypingText(waveResultsTxt, "Итоги волны:", 3f);
+        textAnim.TypingText(waveResultsTxt, "Итоги волны 3 из 15", 3f);
 
         uIWaveResults.UpdateWaveResults(GameManager.instance.player.GetComponent<PlayerCharacteristics>());
     }
