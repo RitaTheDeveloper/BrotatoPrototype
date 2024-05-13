@@ -10,6 +10,7 @@ public enum StateMusicManager
     ShopMenu,
     MainMenu,
     FadeIn, 
+    StopAll,
 }
 
 public class BackgroundMusicManger : MonoBehaviour
@@ -571,6 +572,7 @@ public class BackgroundMusicManger : MonoBehaviour
 
     public void StopAllMusic()
     {
+        stateMusicManager = StateMusicManager.StopAll;
         if (backgroundSource != null)
         {
             backgroundSource.Stop();
