@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7882503307501798231}
   - component: {fileID: 3314280778791974941}
   - component: {fileID: 9184594315678013528}
+  - component: {fileID: 2355022279239722498}
   m_Layer: 6
   m_Name: Rita_Enemy_EvilTree_Boss
   m_TagString: Enemy
@@ -52,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb265b01ecae145971fc913f598c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 2500
+  _maxHp: 3000
   _amountOfHpPerWave: 80
-  _startDamage: 10
+  _startDamage: 15
   _amountOfDamagePerWave: 1
   _hpRegen: 0
   _moveSpeed: 4
@@ -71,7 +72,7 @@ NavMeshAgent:
   m_Radius: 1.4
   m_Speed: 2.3
   m_Acceleration: 200
-  avoidancePriority: 50
+  avoidancePriority: 2
   m_AngularSpeed: 360
   m_StoppingDistance: 2.5
   m_AutoTraverseOffMeshLink: 1
@@ -287,6 +288,20 @@ MonoBehaviour:
   markPrefab: {fileID: 7525006951670329389, guid: cb7dee73cffcce94abaf871af2075ed1,
     type: 3}
   markDisplayTime: 0
+--- !u!114 &2355022279239722498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986751621853369278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fff871856ba5ec4bae2eaf8cce55c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loot: {fileID: 1699888863001744004, guid: 400e339cea350c449b0f96a348c3aa2b, type: 3}
+  amountOfLoot: 20
 --- !u!1 &6864969510036306766
 GameObject:
   m_ObjectHideFlags: 0
