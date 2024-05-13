@@ -29,4 +29,9 @@ public class WaveUnlockComponent : UnlockCharacterComponent
         }
         return false;
     }
+
+    public int GetCountWaveRequired()
+    {
+        return _wavesRequired;
+    }
 }

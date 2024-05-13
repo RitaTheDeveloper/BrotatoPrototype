@@ -15,6 +15,10 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI heroDescription;
     [SerializeField] private GameObject iconPrefab;
     [SerializeField] private Transform panelOfIcons;
+    [SerializeField] private GameObject blockInfo;
+    [SerializeField] private TextMeshProUGUI blockTextInfo;
+
+    [SerializeField] private Button choseBtn;
     public GameObject[] playerPrefabs;
     private int indexOfHero = 0;
     private List<Button> _iconsBtns;
@@ -26,35 +30,50 @@ public class HeroSelectionPanel : MonoBehaviour
         indexOfHero = 0;
     }
     private void Start()
-    {       
+    {
+        currentImgHero.sprite = playerPrefabs[indexOfHero].GetComponent<UiPlayerInfo>().player2d;
         OnClickIconHero(indexOfHero);
         SelectedIcon();
+        blockInfo.SetActive(false);
     }
 
     public void OnClickIconHero(int index)
     {
-        if(index != indexOfHero)
-        {
-            indexOfHero = index;
-            var player = playerPrefabs[index];
-            nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
-            heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
+        blockInfo.SetActive(false);
+        var player = playerPrefabs[index];
+        nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+       
+        heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
+        player.GetComponent<PlayerCharacteristics>().Init();
+        characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+        if (index != indexOfHero)
+        {            
             ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
             //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
             StartCoroutine(ChangeSprite(player));
-            player.GetComponent<PlayerCharacteristics>().Init();
-            characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+           
         }
-        else
+        player.GetComponent<PlayerCharacteristics>().Init();
+        characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+        indexOfHero = index;
+        choseBtn.interactable = true;
+    }
+
+    public void OnClickLockHero(int index)
+    {
+        var player = playerPrefabs[index];
+        nameHeroTxt.text = player.GetComponent<UiPlayerInfo>().nameHero;
+        if (index != indexOfHero)
         {
-            var player = playerPrefabs[index];
-            heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
-            player.GetComponent<PlayerCharacteristics>().Init();
-            characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
-            
+            ImageAlphaOff();
+            effectSmokeAnimator.SetTrigger("change");
+            StartCoroutine(ChangeSprite(player));
         }
-       
+        indexOfHero = index;
+        blockInfo.SetActive(true);
+        blockTextInfo.text = "Доступ к персонажу откроется при прохождении " + "\n" + player.GetComponent<WaveUnlockComponent>().GetCountWaveRequired() + " волн";
+        choseBtn.interactable = false;
     }
 
     private IEnumerator ChangeSprite(GameObject player)
@@ -87,25 +106,42 @@ public class HeroSelectionPanel : MonoBehaviour
         _iconsBtns = new List<Button>();
         for (int i = 0; i < playerPrefabs.Length; i++)
         {
-            var icon = Instantiate(iconPrefab, panelOfIcons);            
-            icon.GetComponent<Button>().onClick.RemoveAllListeners();
-            int tmp = i;
-            icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(tmp));
+            var icon = Instantiate(iconPrefab, panelOfIcons);                        
+            //int tmp = i;
+            if (!playerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter())
+            {
+                int tmp = i;
+                icon.GetComponent<Button>().onClick.RemoveAllListeners();
+                icon.GetComponent<Button>().onClick.AddListener(() => OnClickLockHero(tmp));
+
+                var ss = icon.GetComponent<Button>().spriteState;
+                icon.GetComponent<Button>().image.sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
+                //ss.disabledSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
+                ss.highlightedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIconGlow;
+                ss.selectedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIconGlow;
+                ss.pressedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIconGlow;
+                icon.GetComponent<Button>().spriteState = ss;
+
+            }
+            else
+            {
+                int tmp = i;
+                icon.GetComponent<Button>().onClick.RemoveAllListeners();
+                icon.GetComponent<Button>().onClick.AddListener(() => OnClickIconHero(tmp));
+
+                var ss = icon.GetComponent<Button>().spriteState;
+                icon.GetComponent<Button>().image.sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
+                ss.disabledSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
+                ss.highlightedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
+                ss.selectedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
+                ss.pressedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
+                icon.GetComponent<Button>().spriteState = ss;
+            }
+            
             icon.GetComponent<Button>().onClick.AddListener(() => PlaySoundCharacterSelect());
             //icon.GetComponent<Image>().sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
             // ������ ������� ���������
-            var ss = icon.GetComponent<Button>().spriteState;
-            icon.GetComponent<Button>().image.sprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().icon;
-            ss.disabledSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().unlockIcon;
-            ss.highlightedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
-            ss.selectedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
-            ss.pressedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
-            icon.GetComponent<Button>().spriteState = ss;
-
-            if (!playerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter())
-            {
-                icon.GetComponent<Button>().interactable = false;
-            }
+           
             _iconsBtns.Add(icon.GetComponent<Button>());
             charatersIcons.Add(icon);
         }
