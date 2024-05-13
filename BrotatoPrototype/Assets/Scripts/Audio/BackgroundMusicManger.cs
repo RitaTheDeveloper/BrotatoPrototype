@@ -28,8 +28,14 @@ public class BackgroundMusicManger : MonoBehaviour
     [Tooltip("Bacckground Audio Mixer")]
     [SerializeField] public AudioMixerGroup backgroundMixer;
 
-    [Header("Время FadeIn/FadeOut")]
-    [SerializeField] public float fadeTime = 1.5f;
+    [Header("Время FadeIn")]
+    [SerializeField] public float fadeInTime = 1.5f;
+	
+	[Header("Время FadeOut")]
+    [SerializeField] public float fadeOutTime = 30f;
+
+	[Header("Время FadeOutBattle")]
+    [SerializeField] public float fadeOutBattleTime = 10f;
 
     public StateMusicManager stateMusicManager = StateMusicManager.MainMenu;
 
@@ -40,13 +46,17 @@ public class BackgroundMusicManger : MonoBehaviour
     private int indexBackgroundMusic = 0;
 
     private float stepVolume = 0;
+	private float stepOutVolume = 0;
+	private float stepOutBattleVolume = 0;
     private bool canPlayBackground = false;
 
     private void Awake()
     {
         instance = this;
         backgroundSource = gameObject.AddComponent<AudioSource>();
-        stepVolume = 1 / fadeTime;
+        stepVolume = 1 / fadeInTime;
+		stepOutVolume = 1 / fadeOutTime;
+		stepOutBattleVolume = 1 / fadeOutBattleTime;
     }
 
     // Start is called before the first frame update
@@ -403,8 +413,8 @@ public class BackgroundMusicManger : MonoBehaviour
         canPlayBackground = true;
         while (backgroundSource.volume < 1)
         {
-            if (backgroundSource.volume + stepVolume * Time.deltaTime > 1) backgroundSource.volume = 1;
-            else backgroundSource.volume += stepVolume * Time.deltaTime;
+            if (backgroundSource.volume + stepOutBattleVolume * Time.deltaTime > 1) backgroundSource.volume = 1;
+            else backgroundSource.volume += stepOutBattleVolume * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         yield break;
@@ -416,8 +426,8 @@ public class BackgroundMusicManger : MonoBehaviour
             yield break;
         while (shopSource.volume < 1)
         {
-            if (shopSource.volume + stepVolume * Time.deltaTime > 1) shopSource.volume = 1;
-            else shopSource.volume += stepVolume * Time.deltaTime;
+            if (shopSource.volume + stepOutVolume * Time.deltaTime > 1) shopSource.volume = 1;
+            else shopSource.volume += stepOutVolume * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         yield break;
