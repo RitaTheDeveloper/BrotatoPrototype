@@ -50,6 +50,13 @@ public class BackgroundMusicManger : MonoBehaviour
 	private float stepOutBattleVolume = 0;
     private bool canPlayBackground = false;
 
+    public void ResetState()
+    {
+        indexBackgroundMusic = 0;
+        canPlayBackground = false;
+        stateMusicManager = StateMusicManager.MainMenu;
+    }
+
     private void Awake()
     {
         instance = this;
@@ -90,7 +97,22 @@ public class BackgroundMusicManger : MonoBehaviour
                 if (backgroundMusic.Count > indexBackgroundMusic + 1)
                 {
                     indexBackgroundMusic++;
-                    PlayBackgroundMusic();
+                    PlayBackgroundMusicWithoutFade();
+                }
+                else
+                {
+                    backgroundSource.Stop();
+                }
+            }
+        }
+        if (stateMusicManager == StateMusicManager.FightPercs)
+        {
+            if (backgroundMusic[indexBackgroundMusic].CanPlayNext() && canPlayBackground && backgroundSource.loop == false)
+            {
+                if (backgroundMusic.Count > indexBackgroundMusic + 1)
+                {
+                    indexBackgroundMusic++;
+                    PlayBackgroundMusicPerkStateWithoutFade();
                 }
                 else
                 {
@@ -166,6 +188,62 @@ public class BackgroundMusicManger : MonoBehaviour
         HelpPlayBackgroundMusic();
         stateMusicManager = StateMusicManager.Fight;
         StartCoroutine(FadeOutBackgroundMusic());
+    }
+
+    private void PlayBackgroundMusicWithoutFade()
+    {
+        StopAllCoroutines();
+        if (shopSource != null)
+        {
+            Destroy(shopSource);
+            shopSource = null;
+        }
+        if (mainMenuSource != null)
+        {
+            Destroy(mainMenuSource);
+            mainMenuSource = null;
+        }
+
+        if (backgroundSource == null)
+        {
+            backgroundSource = gameObject.AddComponent<AudioSource>();
+        }
+        backgroundSource.clip = backgroundMusic[indexBackgroundMusic].musicClip.clip;
+        backgroundSource.volume = 1;
+        backgroundSource.pitch = backgroundMusic[indexBackgroundMusic].musicClip.pitch;
+        backgroundSource.loop = backgroundMusic[indexBackgroundMusic].musicClip.loop;
+        backgroundSource.outputAudioMixerGroup = backgroundMixer;
+        backgroundSource.Play();
+        stateMusicManager = StateMusicManager.Fight;
+        canPlayBackground = true;
+    }
+
+    private void PlayBackgroundMusicPerkStateWithoutFade()
+    {
+        StopAllCoroutines();
+        if (shopSource != null)
+        {
+            Destroy(shopSource);
+            shopSource = null;
+        }
+        if (mainMenuSource != null)
+        {
+            Destroy(mainMenuSource);
+            mainMenuSource = null;
+        }
+
+        if (backgroundSource == null)
+        {
+            backgroundSource = gameObject.AddComponent<AudioSource>();
+        }
+        backgroundSource.clip = backgroundMusic[indexBackgroundMusic].musicClip.clip;
+        backgroundSource.volume = 0.7f;
+        backgroundSource.pitch = backgroundMusic[indexBackgroundMusic].musicClip.pitch;
+        backgroundSource.loop = backgroundMusic[indexBackgroundMusic].musicClip.loop;
+        backgroundSource.outputAudioMixerGroup = backgroundMixer;
+        backgroundSource.Play();
+        stateMusicManager = StateMusicManager.FightPercs;
+        canPlayBackground = true;
     }
 
     private void PlayBackgroundMusicPerkState()
@@ -411,6 +489,19 @@ public class BackgroundMusicManger : MonoBehaviour
             yield break;
         }
         canPlayBackground = true;
+        if (backgroundMusic[indexBackgroundMusic].CanPlayNext() && canPlayBackground)
+        {
+            if (backgroundMusic.Count > indexBackgroundMusic + 1)
+            {
+                indexBackgroundMusic++;
+                PlayBackgroundMusic();
+            }
+            else
+            {
+                backgroundSource.Stop();
+            }
+            yield break;
+        }
         while (backgroundSource.volume < 1)
         {
             if (backgroundSource.volume + stepOutBattleVolume * Time.deltaTime > 1) backgroundSource.volume = 1;

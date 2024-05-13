@@ -25,17 +25,32 @@ public class SettingsUI : MonoBehaviour
 
     private void SetMasterVolume()
     {
-        MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", MasterSlider.value);
+        float value = MasterSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", value);
     }
 
     private void SetMusicVolume()
     {
-        MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", MusicSlider.value);
+        float value = MusicSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", value);
     }
 
     private void SetSFXVolume()
     {
-        SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", SFXSlider.value);
+        float value = SFXSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", value);
     }
 
     private void Awake()
@@ -66,9 +81,33 @@ public class SettingsUI : MonoBehaviour
         saveController.LoadData();
         SaveData saveData = saveController.GetData();
         Destroy(saveController);
-        MasterSlider.value = saveData.MasterSoundVolume;
-        MusicSlider.value = saveData.MusicSondVolume;
-        SFXSlider.value = saveData.SFXVolume;
+
+        if (saveData.MasterSoundVolume < -40)
+        {
+            MasterSlider.value = -40f;
+        }
+        else
+        {
+            MasterSlider.value = saveData.MasterSoundVolume;
+        }
+
+        if (saveData.MasterSoundVolume < -40)
+        {
+            MusicSlider.value = -40f;
+        }
+        else
+        {
+            MusicSlider.value = saveData.MusicSondVolume;
+        }
+
+        if (saveData.MasterSoundVolume < -40)
+        {
+            SFXSlider.value = -40f;
+        }
+        else
+        {
+            SFXSlider.value = saveData.SFXVolume;
+        }
 
         SetMasterVolume();
         SetMusicVolume();
@@ -86,9 +125,26 @@ public class SettingsUI : MonoBehaviour
         saveController.LoadData();
         SaveData saveData = saveController.GetData();
 
-        saveData.MasterSoundVolume = MasterSlider.value;
-        saveData.MusicSondVolume = MusicSlider.value;
-        saveData.SFXVolume = SFXSlider.value;
+        float value = MasterSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        saveData.MasterSoundVolume = value;
+
+        value = MusicSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        saveData.MusicSondVolume = value;
+
+        value = SFXSlider.value;
+        if (value < -40)
+        {
+            value = -80f;
+        }
+        saveData.SFXVolume = value;
 
         saveController.SetData(saveData);
         saveController.SaveData();

@@ -203,6 +203,7 @@ public class UIManager : MonoBehaviour
         {
             BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
+        PlayWinSound();
         winAndLosePanel.SetActive(true);
         // делаем виньетку
         LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
@@ -219,7 +220,7 @@ public class UIManager : MonoBehaviour
         {
             BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
         }
-
+        PlayLoseSound();
         winAndLosePanel.SetActive(true);
         // делаем виньетку
         LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
@@ -242,6 +243,7 @@ public class UIManager : MonoBehaviour
         RemoveAllUpElements();
         GameManager.instance.Restart();
         shop.GetComponent<ShopController>().ResetShop();
+
     }
 
     public void OnClickMenu()
@@ -252,6 +254,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.DestroyGameScene();
         //menuWithHeroSelection.SetActive(true);
         mainMenu.SetActive(true);
+        ResetMusic();
         //OpenCloseWindow.OpenWindow(menuWithHeroSelection);
     }
 
@@ -467,6 +470,7 @@ public class UIManager : MonoBehaviour
         conformationWindow.SetActive(false);
         OnClickMenu();
         GameManager.instance.PauseOff();
+        PlayMainMenuMusic();
     }
 
     public void OnClickNoGoToMenu()
@@ -497,6 +501,38 @@ public class UIManager : MonoBehaviour
         }
 
     }
-   
+
+    private void PlayLoseSound()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("LoseSound");
+        }
+    }
+
+    private void PlayWinSound()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("WinSound");
+        }
+    }
+
+    private void ResetMusic()
+    {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ResetState();
+        }
+    }
+
+    private void PlayMainMenuMusic()
+    {
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromShopMusic();
+        }
+    }
 }
 

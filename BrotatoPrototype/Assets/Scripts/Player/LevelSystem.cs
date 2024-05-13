@@ -59,7 +59,7 @@ public class LevelSystem : MonoBehaviour
                     inventory.MoneyUp(xp);
                     IncreaseCurrentExperience(xp);
                     currency.GetComponent<Currency>().PutAwayFromScene();
-                    AudioManager.instance.Play("Coin");
+                    PlaySoundTakeCoin();
                 }
             }
         }
@@ -109,5 +109,13 @@ public class LevelSystem : MonoBehaviour
             _magnetDistance = _maxMagnetDistance;
         }
 
+    }
+
+    private void PlaySoundTakeCoin()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("Coin");
+        }
     }
 }
