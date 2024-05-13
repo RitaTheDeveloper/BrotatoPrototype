@@ -7,6 +7,7 @@ public class UiPlayerInfo : MonoBehaviour
     public Sprite icon;
     public Sprite glowIcon;
     public Sprite unlockIcon;
+    public Sprite unlockIconGlow;
     public Sprite player2d;
     public string nameHero;
     public string description;
