@@ -201,7 +201,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
+            BackgroundMusicManger.instance.StopAllMusic();
         }
         PlayWinSound();
         winAndLosePanel.SetActive(true);
@@ -218,7 +218,7 @@ public class UIManager : MonoBehaviour
     {
         if (BackgroundMusicManger.instance != null)
         {
-            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
+            BackgroundMusicManger.instance.StopAllMusic();
         }
         PlayLoseSound();
         winAndLosePanel.SetActive(true);
@@ -255,6 +255,10 @@ public class UIManager : MonoBehaviour
         //menuWithHeroSelection.SetActive(true);
         mainMenu.SetActive(true);
         ResetMusic();
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
+        }
         //OpenCloseWindow.OpenWindow(menuWithHeroSelection);
     }
 

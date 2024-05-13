@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         Debug.Log("�������� ������ �����");
         _waves[0].StartWave();
+        if (BackgroundMusicManger.instance != null)
+        {
+            BackgroundMusicManger.instance.ResetState();
+            BackgroundMusicManger.instance.PlayBackgroundMusicFromMainMenuMusic();
+        }
     }
     
     public void SetHeroIndex(int index)

@@ -568,4 +568,20 @@ public class BackgroundMusicManger : MonoBehaviour
         stateMusicManager = StateMusicManager.FightPercs;
         yield break;
     }
+
+    public void StopAllMusic()
+    {
+        if (backgroundSource != null)
+        {
+            backgroundSource.Stop();
+        }
+        if (shopSource != null)
+        {
+            shopSource.Stop();
+        }
+        if (mainMenuSource != null)
+        {
+            mainMenuSource.Stop();
+        }
+    }
 }
