@@ -70,6 +70,7 @@ public class HeroSelectionPanel : MonoBehaviour
             effectSmokeAnimator.SetTrigger("change");
             StartCoroutine(ChangeSprite(player));
         }
+        heroDescription.text = player.GetComponent<UiPlayerInfo>().description;
         indexOfHero = index;
         blockInfo.SetActive(true);
         blockTextInfo.text = "Доступ к персонажу откроется при прохождении " + "\n" + player.GetComponent<WaveUnlockComponent>().GetCountWaveRequired() + " волн";
