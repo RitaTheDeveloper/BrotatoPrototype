@@ -54,6 +54,18 @@ public class PlayerHealth : LivingEntity
         }               
     }
 
+    private void Update()
+    {
+        if (health < startingHealth * 0.45f)
+        {
+            UIManager.instance.LowHPImageOn(true);
+        }
+        else
+        {
+            UIManager.instance.LowHPImageOn(false);
+        }
+    }
+
     public override void Die()
     {
         base.Die();

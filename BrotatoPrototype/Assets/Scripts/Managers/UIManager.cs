@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private GameObject settingsPanel;
@@ -537,6 +538,11 @@ public class UIManager : MonoBehaviour
             BackgroundMusicManger.instance.PlayMainMenuMusicFromFight();
             BackgroundMusicManger.instance.PlayMainMenuMusicFromShopMusic();
         }
+    }
+
+    public void LowHPImageOn(bool isOn)
+    {
+        lowHpImg.SetActive(isOn);
     }
 }
 
