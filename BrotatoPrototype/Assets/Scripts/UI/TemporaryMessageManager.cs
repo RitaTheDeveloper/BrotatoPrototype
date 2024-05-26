@@ -19,7 +19,7 @@ public class TemporaryMessageConfig
         float delta = Message_Time - (Message_Timer / Message_Life_Time);
         Vector3 position = Message_Position + new Vector3(delta, delta, 0.0f);
         position = camera.WorldToScreenPoint(position);
-        position.z = 0.0f;
+        //position.z = 0.0f;
 
         Message.transform.position = position;
     }
@@ -31,6 +31,10 @@ public class TemporaryMessageManager : MonoBehaviour
     [SerializeField] protected Color text_color = Color.red;
     [SerializeField] protected float message_time = 1;
 
+    Camera Current_Cumera;
+    Transform Current_Transform;
+    LinkedList<TemporaryMessageConfig> Storage_Message = new LinkedList<TemporaryMessageConfig>();
+
     public static TemporaryMessageManager Instance { get; private set; }
 
     public TextMeshProUGUI Text_Prefab;
@@ -39,11 +43,7 @@ public class TemporaryMessageManager : MonoBehaviour
     {
         Instance = this;
     }
-
-    Camera Current_Cumera;
-    Transform Current_Transform;
-    LinkedList<TemporaryMessageConfig> Storage_Message = new LinkedList<TemporaryMessageConfig>();
-
+   
     // Start is called before the first frame update
     void Start()
     {
