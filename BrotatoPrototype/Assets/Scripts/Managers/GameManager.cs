@@ -10,10 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] private WaveController[] _waves;
+    [SerializeField] private DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
 
+    private int _currentDifficulty;
     public GameObject player;
     private int _waveCounter;
     private int _heroIndex = 0;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public bool IsPlaying { get => _isPlaying; }
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
+    public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        CurrentDifficulty = 0;
         saveController = gameObject.AddComponent<SaveController>();
         if (resetProgress)
         {
@@ -62,10 +65,11 @@ public class GameManager : MonoBehaviour
         _isPlaying = true;
         _gameIsOver = false;
         _waveCounter = 0;
-        _currentWave = _waves[_waveCounter];
+        // _currentWave = _waves[_waveCounter];
+        _currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         Debug.Log("�������� ������ �����");
-        _waves[0].StartWave();
+        _currentWave.StartWave();
         if (BackgroundMusicManger.instance != null)
         {
             BackgroundMusicManger.instance.ResetState();
@@ -117,7 +121,7 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
        //StopTime();
         _waveCounter++;
-        if (_waveCounter == _waves.Length)
+        if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
         {
             Win();
         }
@@ -148,8 +152,9 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();
         RemoveAllLoot();
-        _currentWave = _waves[_waveCounter];
-        _waves[_waveCounter].StartWave();
+        //_currentWave = _waves[_waveCounter];
+        _currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
+        _currentWave.StartWave();
     }
 
     private void PauseOn()
@@ -220,7 +225,6 @@ public class GameManager : MonoBehaviour
         RemoveAllEnemies();
         RemoveAllBullets();
         RemoveAllCurrency();
-
         Init();
     }
 
@@ -274,5 +278,28 @@ public class GameManager : MonoBehaviour
         MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", saveData.MusicSondVolume);
         SFXAudioMixer.audioMixer.SetFloat("SFXVolumeParam", saveData.SFXVolume);
 
+    }  
+    
+    public float GetCurrentExpFactorForEnemy()
+    {
+        return wavesByDifficulty[CurrentDifficulty].expFactor;
     }
+
+    public float GetCurrentHealthFactorForEnemy()
+    {
+        return wavesByDifficulty[CurrentDifficulty].healthFactor;
+    }
+    public float GetCurrentDamageFactorForEnemy()
+    {
+        return wavesByDifficulty[CurrentDifficulty].damageFactor;
+    }
+}
+
+[System.Serializable]
+public struct DifficultyOfWaves
+{
+    public float expFactor;
+    public float healthFactor;
+    public float damageFactor;
+    public WaveController[] listOfWaves;
 }

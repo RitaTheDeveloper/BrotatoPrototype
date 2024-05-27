@@ -9,19 +9,6 @@ public class DifficultySelection: MonoBehaviour
     {
         _difficulty = difficulty;
 
-        switch (difficulty)
-        {
-            case 0:                
-                Debug.Log("сложность легкая");
-                break;
-            case 1:
-                Debug.Log("сложность нормальная");
-                break;
-            case 2:
-                Debug.Log("сложность тяжелая");
-                break;
-            default:
-                break;
-        }
+        GameManager.instance.CurrentDifficulty = _difficulty;        
     }
 }

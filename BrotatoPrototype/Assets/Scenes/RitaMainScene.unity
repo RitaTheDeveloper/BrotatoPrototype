@@ -2237,66 +2237,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5681e28f41ffa5a418b09b5634029b9c, type: 3}
---- !u!1 &53893995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 53893996}
-  - component: {fileID: 53893997}
-  m_Layer: 0
-  m_Name: WaveList_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &53893996
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53893995}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1055502198}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &53893997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53893995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64faee2a234f1b142b4049375b6d5df4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _listOfWaves:
-  - {fileID: 786640510}
-  - {fileID: 786640509}
-  - {fileID: 786640508}
-  - {fileID: 786640507}
-  - {fileID: 786640506}
-  - {fileID: 786640505}
-  - {fileID: 786640504}
-  - {fileID: 786640503}
-  - {fileID: 786640502}
-  - {fileID: 607561028}
-  - {fileID: 69945195}
-  - {fileID: 11994214}
-  - {fileID: 1007155118}
-  - {fileID: 2001599620}
-  - {fileID: 56363168}
 --- !u!1 &56363166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,66 +3191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &125457047
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 125457048}
-  - component: {fileID: 125457049}
-  m_Layer: 0
-  m_Name: WaveList_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &125457048
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125457047}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1055502198}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &125457049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125457047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64faee2a234f1b142b4049375b6d5df4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _listOfWaves:
-  - {fileID: 786640510}
-  - {fileID: 786640509}
-  - {fileID: 786640508}
-  - {fileID: 786640507}
-  - {fileID: 786640506}
-  - {fileID: 786640505}
-  - {fileID: 786640504}
-  - {fileID: 786640503}
-  - {fileID: 786640502}
-  - {fileID: 607561028}
-  - {fileID: 69945195}
-  - {fileID: 11994214}
-  - {fileID: 1007155118}
-  - {fileID: 2001599620}
-  - {fileID: 56363168}
 --- !u!224 &128760166 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1179521831396907913, guid: 261ee47c98b3c0d40ab000999dc3fb90,
@@ -16830,22 +16710,45 @@ MonoBehaviour:
   - {fileID: 843176903461962620, guid: 72ad14c7650f25446a7e3f0b4c2b0e3c, type: 3}
   - {fileID: 1326479278294070286, guid: 452b5ecebd9105f41893e9a2868d6e8a, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
-  _waves:
-  - {fileID: 786640510}
-  - {fileID: 786640509}
-  - {fileID: 786640508}
-  - {fileID: 786640507}
-  - {fileID: 786640506}
-  - {fileID: 786640505}
-  - {fileID: 786640504}
-  - {fileID: 786640503}
-  - {fileID: 786640502}
-  - {fileID: 607561028}
-  - {fileID: 69945195}
-  - {fileID: 11994214}
-  - {fileID: 1007155118}
-  - {fileID: 2001599620}
-  - {fileID: 56363168}
+  wavesByDifficulty:
+  - expFactor: 1
+    healthFactor: 1
+    damageFactor: 1
+    listOfWaves:
+    - {fileID: 786640510}
+    - {fileID: 786640509}
+    - {fileID: 786640508}
+    - {fileID: 786640507}
+    - {fileID: 786640506}
+    - {fileID: 786640505}
+    - {fileID: 786640504}
+    - {fileID: 786640503}
+    - {fileID: 786640502}
+    - {fileID: 607561028}
+    - {fileID: 69945195}
+    - {fileID: 11994214}
+    - {fileID: 1007155118}
+    - {fileID: 2001599620}
+    - {fileID: 56363168}
+  - expFactor: 1
+    healthFactor: 5
+    damageFactor: 5
+    listOfWaves:
+    - {fileID: 786640510}
+    - {fileID: 786640509}
+    - {fileID: 786640508}
+    - {fileID: 786640507}
+    - {fileID: 786640506}
+    - {fileID: 786640505}
+    - {fileID: 786640504}
+    - {fileID: 786640503}
+    - {fileID: 786640502}
+    - {fileID: 607561028}
+    - {fileID: 69945195}
+    - {fileID: 11994214}
+    - {fileID: 1007155118}
+    - {fileID: 2001599620}
+    - {fileID: 56363168}
   _currentWave: {fileID: 786640510}
   shop: {fileID: 3800595267031063961}
   player: {fileID: 0}
@@ -17301,7 +17204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041B\u0435\u0433\u043A\u043E"
+  m_text: "\u041D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1209ab4cc2fc2f4b92d31eef6479664, type: 2}
   m_sharedMaterial: {fileID: -1341821314741553538, guid: f1209ab4cc2fc2f4b92d31eef6479664,
@@ -17534,8 +17437,6 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\u041B\u0435\u0433\u043A\u043E"
-      m_Image: {fileID: 0}
     - m_Text: "\u041D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u043E"
       m_Image: {fileID: 0}
     - m_Text: "\u0421\u043B\u043E\u0436\u043D\u043E"
@@ -17999,7 +17900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.999756}
+  m_AnchoredPosition: {x: 0, y: 84.999504}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -18585,39 +18486,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5681e28f41ffa5a418b09b5634029b9c, type: 3}
---- !u!1 &1055502197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1055502198}
-  m_Layer: 0
-  m_Name: WaveListsByDifficulty
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1055502198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055502197}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 125457048}
-  - {fileID: 53893996}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060755206
 GameObject:
   m_ObjectHideFlags: 0
@@ -27215,8 +27083,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000006
-  m_Size: 0.165692
+  m_Value: 1.0000012
+  m_Size: 0.16328403
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -38357,7 +38225,6 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 415540025}
   - {fileID: 966859252}
-  - {fileID: 1055502198}
   - {fileID: 786640495}
   - {fileID: 8501044091411880888}
   - {fileID: 105700849}
