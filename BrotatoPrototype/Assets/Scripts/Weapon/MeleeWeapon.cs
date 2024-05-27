@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class MeleeWeapon : Weapon
@@ -33,7 +34,7 @@ public class MeleeWeapon : Weapon
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
+        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
         {            
             SetAttackSpeed();
             SetAnimationSpeed(currentAttackSpeed);
