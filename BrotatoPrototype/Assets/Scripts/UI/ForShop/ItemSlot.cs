@@ -25,7 +25,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         frame.enabled = true;
-        UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo);
+        UIShop.instance.DisplayItemInfoWithoutBtn(itemInfo, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

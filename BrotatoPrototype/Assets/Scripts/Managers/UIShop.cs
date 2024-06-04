@@ -345,18 +345,20 @@ public class UIShop : MonoBehaviour
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
-    public void DisplayItemInfoWithBtn(ItemShopInfo _info, bool isIconPressed)
+    public void DisplayItemInfoWithBtn(ItemShopInfo _info, bool isIconPressed, Vector2 posBtn)
     {
         DestroyItemInfo();
         dimmingPanel.SetActive(isIconPressed);
-        _currentInfoItem = Instantiate(weaponInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
+        Vector2 position = new Vector2(posBtn.x - Screen.width / 10, positionOfInfoPanel.position.y);
+        _currentInfoItem = Instantiate(weaponInfoPrefab, position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
     }
 
-    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info)
+    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 posBtn)
     {
         DestroyItemInfo();
-        _currentInfoItem = Instantiate(itemInfoPrefab, positionOfInfoPanel.position, Quaternion.identity, canvas);
+        Vector2 position = new Vector2(posBtn.x + Screen.width / 10, positionOfInfoPanel.position.y);
+        _currentInfoItem = Instantiate(itemInfoPrefab, position, Quaternion.identity, canvas);
         _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
     }
 

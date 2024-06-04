@@ -24,13 +24,13 @@ public class WeaponSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerClick(PointerEventData eventData)
     {
         FrameOn();
-        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, true);
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, true, transform.position);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         FrameOn();
-        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, false);
+        UIShop.instance.DisplayItemInfoWithBtn(itemInfo, false, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
