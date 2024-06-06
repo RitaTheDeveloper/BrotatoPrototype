@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+
 public class GameManager : MonoBehaviour
 {
+    public Action onInit;
+
     public static GameManager instance;
 
     [SerializeField] private bool resetProgress = false;
@@ -50,14 +54,6 @@ public class GameManager : MonoBehaviour
         //Init();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && IsPlaying)
-        {
-            PauseOn();
-        }
-    }
-
     public void Init()
     {
         shop.ResetShop();
@@ -75,6 +71,8 @@ public class GameManager : MonoBehaviour
             BackgroundMusicManger.instance.ResetState();
             BackgroundMusicManger.instance.PlayBackgroundMusicFromMainMenuMusic();
         }
+
+        onInit?.Invoke();
     }
     
     public void SetHeroIndex(int index)
@@ -161,6 +159,14 @@ public class GameManager : MonoBehaviour
     {
         UIManager.instance.PauseMenu(true);
         Time.timeScale = 0;
+    }
+
+    public void PauseOnTriggered()
+    {
+        if (IsPlaying)
+        {
+            PauseOn();
+        }
     }
 
     public void PauseOff()
