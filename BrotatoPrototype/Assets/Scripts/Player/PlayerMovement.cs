@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Скорость наклона модельки")]
     [SerializeField] private float _tiltSpeed = 6f;
     private Quaternion startRotationModel;
+
+    private Vector2 moveInput;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -47,10 +50,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetMoveInput(Vector2 moveDirection)
+    {
+        moveInput = moveDirection;
+    }
+
     private void Move()
     {        
-        var x = Input.GetAxis("Horizontal");
-        var z = Input.GetAxis("Vertical");
+        var x = moveInput.x;
+        var z = moveInput.y;
         Vector3 move = new Vector3(x, 0f, z).normalized;
 
         characterController.Move(move * _speed * Time.deltaTime);
