@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using static Weapon;
 
 public class MeleeWeapon : Weapon
 {    
@@ -87,26 +88,56 @@ public class MeleeWeapon : Weapon
 
         if (other.tag == "Enemy")
         {
+
+            if (knockBack)
+            {
+                FirstKnockThenHit(other);
+            } 
+            else
+            {
+                if (isCritDamage)
+                {
+                    // наносим крит
+                    other.GetComponent<LivingEntity>().TakeHit(currentDamage * 5, true, false);
+                }
+                else
+                {
+                    // обычный урон
+                    other.GetComponent<LivingEntity>().TakeHit(currentDamage, false,false);
+                }
+            }     
+        }
+    }
+    
+    private void FirstKnockThenHit(Collider other)
+    {
+        IKnockbackable knockbackableObject = other.GetComponentInParent<IKnockbackable>();
+        if (knockbackableObject != null)
+        {
+            knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);
+
+            float knockTime = other.GetComponent<EnemyController>().knockBackTime;
+
             if (isCritDamage)
             {
                 // наносим крит
-                other.GetComponent<LivingEntity>().TakeHit(currentDamage * 5, true, false);
+                StartCoroutine(ApplyDamageToObjectWithDelay(other, currentDamage * 5, knockTime, isCritDamage));
             }
             else
             {
                 // обычный урон
-                other.GetComponent<LivingEntity>().TakeHit(currentDamage, false,false);
+                StartCoroutine(ApplyDamageToObjectWithDelay(other, currentDamage, knockTime, isCritDamage));
             }
+        }
+    }    
+    private IEnumerator ApplyDamageToObjectWithDelay(Collider other, float damage, float delay, bool isCrit)
+    {
+        yield return new WaitForSeconds(delay);
 
-            if (knockBack)
-            {
-                IKnockbackable knockbackableObject = other.GetComponentInParent<IKnockbackable>();
-                if (knockbackableObject != null)
-                {
-                    knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);                   
-                }
-            }           
+        if (other != null)
+        {
+            LivingEntity enemyLivingEntity = other.GetComponent<LivingEntity>();
+            enemyLivingEntity?.TakeHit(damage, isCrit, false);
         }
     }
-    
 }
