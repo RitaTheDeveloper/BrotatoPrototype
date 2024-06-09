@@ -8232,6 +8232,62 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5681e28f41ffa5a418b09b5634029b9c, type: 3}
+--- !u!1 &403658944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403658945}
+  - component: {fileID: 403658946}
+  m_Layer: 0
+  m_Name: newWave1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403658945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403658944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1641064066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &403658946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403658944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d264f58540ebb44b36745605d1697d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveTime: 5
+  _amountOfGoldPerWave: 100
+  _enemyStrengthFactors:
+    speedFactor: 1
+    damageFactor: 1
+    healthFactor: 1
+  enemySpawnerSettings:
+  - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f, type: 3}
+    spawnCd: 0
+  - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7, type: 3}
+    spawnCd: 0
+  wave: {fileID: 0}
 --- !u!1 &415540024
 GameObject:
   m_ObjectHideFlags: 0
@@ -9969,11 +10025,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveTime: 30
-  _amountOfGoldPerWave: 0
+  _amountOfGoldPerWave: 100
   _enemyStrengthFactors:
-    speedFactor: 2
-    damageFactor: 3
-    healthFactor: 4
+    speedFactor: 1
+    damageFactor: 1
+    healthFactor: 1
+  enemySpawnerSettings: []
+  wave: {fileID: 0}
 --- !u!1001 &513750297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17416,6 +17474,9 @@ MonoBehaviour:
   - {fileID: 585661124780564198, guid: 7f24cb95b92f9964f87c8dce626f4d0b, type: 3}
   - {fileID: 6707278682496988613, guid: a6ebd1d29565f2544ae81938e53539a0, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
+  listOfWaveController2:
+  - {fileID: 403658946}
+  - {fileID: 403658946}
   wavesByDifficulty:
   - expFactor: 1
     healthFactor: 1
@@ -18645,7 +18706,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99929}
+  m_AnchoredPosition: {x: 0, y: 84.99942}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -27284,6 +27345,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639686060}
   m_CullTransparentMesh: 1
+--- !u!1 &1641064065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641064066}
+  m_Layer: 0
+  m_Name: NewWaves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1641064066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641064065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 403658945}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642667672
 GameObject:
   m_ObjectHideFlags: 0
@@ -28797,8 +28890,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000017
-  m_Size: 0.165692
+  m_Value: 1.0000013
+  m_Size: 0.16483511
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -40595,6 +40688,7 @@ SceneRoots:
   - {fileID: 415540025}
   - {fileID: 966859252}
   - {fileID: 7751840459001433222}
+  - {fileID: 1641064066}
   - {fileID: 8501044091411880888}
   - {fileID: 105700849}
   - {fileID: 778934957}

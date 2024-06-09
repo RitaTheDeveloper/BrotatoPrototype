@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    [SerializeField] private float time;
-    [SerializeField] private List<EnemySpawner> enemySpawnersPrefabs;
+    [SerializeField] public float time;
+    [SerializeField] public List<EnemySpawner> enemySpawnersPrefabs;
 
+    private List<WaveController2.EnemySpawnerSettings> enemySpawnerSettings;
     private float _currentTime;
     private bool _stopTime;
     private bool _soundStart = false;
     float timerTick = 0;
 
     private List<EnemySpawner> _enemySpawners;
+
 
     private void Start()
     {
@@ -25,6 +27,10 @@ public class WaveController : MonoBehaviour
         {
             CountingTime();
         }
+    }
+    public void SetEnemySpawnerSettings(List<WaveController2.EnemySpawnerSettings> enemySpawnerSettings)
+    {
+        this.enemySpawnerSettings = enemySpawnerSettings;
     }
 
     private void CountingTime()
@@ -54,11 +60,17 @@ public class WaveController : MonoBehaviour
     private void AllSpawnersOn()
     {
         _enemySpawners = new List<EnemySpawner>();
-        foreach(EnemySpawner spawner in enemySpawnersPrefabs)
+        //foreach(EnemySpawner spawner in enemySpawnersPrefabs)
+        //{
+        //    var _enemySpawner = Instantiate(spawner);
+        //    _enemySpawners.Add(_enemySpawner);
+        //    _enemySpawner.transform.parent = transform;
+        //}
+        foreach(WaveController2.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
         {
-            var _enemySpawner = Instantiate(spawner);
-            _enemySpawners.Add(_enemySpawner);
-            _enemySpawner.transform.parent = transform;
+            var enemySpawnerObj = Instantiate(new GameObject(), transform);
+            EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
+            enemySpawner.SetEnemy(enemySetting.enemy);
         }
     }
 

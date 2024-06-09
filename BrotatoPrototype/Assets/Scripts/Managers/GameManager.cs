@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] private DifficultyOfWaves[] wavesByDifficulty;
+    [SerializeField] private WaveController2[] listOfWaveController2;
+    [SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
 
@@ -45,12 +46,18 @@ public class GameManager : MonoBehaviour
         if (resetProgress)
         {
             ResetProgress();
-        }        
+        }
+        foreach (WaveController2 waveC2 in listOfWaveController2)
+        {
+            waveC2.CreateWave();
+            Debug.Log("создаем волну");
+        }
     }
     private void Start()
     {
         _heroIndex = 0;
         InitSoundVolume();
+        
         //Init();
     }
 
@@ -60,9 +67,11 @@ public class GameManager : MonoBehaviour
         SpawnPlayer(_heroIndex);
         _isPlaying = true;
         _gameIsOver = false;
+        
         _waveCounter = 0;
         // _currentWave = _waves[_waveCounter];
-        _currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
+        _currentWave = listOfWaveController2[_waveCounter].wave;
+        //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         Debug.Log("�������� ������ �����");
         _currentWave.StartWave();
@@ -73,6 +82,10 @@ public class GameManager : MonoBehaviour
         }
 
         onInit?.Invoke();
+    }
+    public int GetMaxWave()
+    {
+        return listOfWaveController2.Length;
     }
     
     public void SetHeroIndex(int index)
@@ -119,7 +132,8 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
        //StopTime();
         _waveCounter++;
-        if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
+        //if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
+        if (_waveCounter == listOfWaveController2.Length)
         {
             Win();
         }
@@ -151,7 +165,8 @@ public class GameManager : MonoBehaviour
         RemoveAllCurrency();
         RemoveAllLoot();
         //_currentWave = _waves[_waveCounter];
-        _currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
+        //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
+        _currentWave = listOfWaveController2[_waveCounter].wave;
         _currentWave.StartWave();
     }
 
@@ -308,4 +323,13 @@ public struct DifficultyOfWaves
     public float healthFactor;
     public float damageFactor;
     public WaveController[] listOfWaves;
+
+    public DifficultyOfWaves(WaveController[] listOfWaves)
+        :this()
+    {
+        expFactor = 1;
+        healthFactor = 1;
+        damageFactor = 1;
+        this.listOfWaves = listOfWaves;
+    }
 }

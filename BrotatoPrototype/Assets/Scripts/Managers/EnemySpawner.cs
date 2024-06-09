@@ -9,14 +9,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
 
     [Header("количество юнитов")]
-    [SerializeField] private int amountOfEnemies;
+    [SerializeField] private int amountOfEnemies = 1;
 
     [Header("время перед самым первым спавном")]
-    [SerializeField] private float _startSpawnTime;
+    [SerializeField] private float _startSpawnTime = 1;
 
     [Header("Минимальное время и максимальное время спавна")]
-    [SerializeField] private float _minSpawnTime;
-    [SerializeField] private float _maxSpawnTime;
+    [SerializeField] private float _minSpawnTime = 1;
+    [SerializeField] private float _maxSpawnTime = 2;
 
     [Header("Радиус спавна от игрока")]
     [SerializeField] private float _radiusFromPlayer = 15f;
@@ -69,6 +69,11 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
+    public void SetEnemy(EnemyController enemyController)
+    {
+        _enemyPrefab = enemyController.gameObject;
+    }
+
     private float SpawnTime()
     {
         if (isBeginningOfWave)
@@ -109,7 +114,11 @@ public class EnemySpawner : MonoBehaviour
                 positionEnemy = randomPosition;
             }
             GameObject mark = CreateMark(positionEnemy);
-            mark.transform.parent = transform;
+            if (mark)
+            {
+                mark.transform.parent = transform;
+            }
+            
 
             // спавним врага
             yield return new WaitForSeconds(markDisplayTime);
@@ -122,10 +131,19 @@ public class EnemySpawner : MonoBehaviour
     private GameObject CreateMark(Vector3 position)
     {
         PlaySoundOfMark();
-        Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
-        var mark = Instantiate(markPrefab, markPosition, markPrefab.transform.rotation);
+        if (markPrefab)
+        {
+            Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
+            var mark = Instantiate(markPrefab, markPosition, markPrefab.transform.rotation);
+            return mark;
+        }
+        else
+        {
+            return null;
+        }
+        
        // mark.transform.parent = container.transform;
-        return mark;
+        
     }
 
     private void PlaySoundOfMark()
