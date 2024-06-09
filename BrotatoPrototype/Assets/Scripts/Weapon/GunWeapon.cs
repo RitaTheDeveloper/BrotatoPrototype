@@ -32,10 +32,8 @@ public class GunWeapon : Weapon
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
-        {
+        if (Time.time > _timeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
             Attack();
-        }
     }
 
     protected override void Attack()
@@ -43,20 +41,16 @@ public class GunWeapon : Weapon
         if (!GameManager.instance.GameIsOver)
         {
             SetAttackSpeed();
-            SetAnimationSpeed(currentAttackSpeed);
-            SetTimeOfAnimation(currentAttackSpeed);
+            SetAnimationSpeed();
             SetDamage();
             SetCritChance();
+
             if (animator)
-            {
                 animator.SetTrigger("Hit");
-            }
-            _nextShotTime = Time.time + 1 / currentAttackSpeed;
 
             for (int i = 0; i < _numberOfBulletsPershot; i++)
-            {
                 CreateBulletAndPassParametersToIt();
-            }
+
             base.Attack();
         }             
     }
