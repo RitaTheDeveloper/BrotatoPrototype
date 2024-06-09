@@ -67,7 +67,14 @@ public class Weapon : MonoBehaviour
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
 
         weaponHolder = transform.parent;
-        _startAnimationSpeed = animator.speed;
+
+        float myTime = 0;
+        RuntimeAnimatorController myAnimatorClip = animator.runtimeAnimatorController;
+
+        for (int i = 0; i < myAnimatorClip.animationClips.Length; i++)
+            myTime = myAnimatorClip.animationClips[i].length;
+
+        _startAnimationSpeed = myTime;
 
         SetAttackSpeed();
         SetCritChance();

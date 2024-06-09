@@ -26,16 +26,18 @@ public class MeleeWeapon : Weapon
     {
         FindTheNearestEnemy();
 
-        if (_timer >= _currentAnimationTime)
-        {
-            RotateWeaponHolder();
-        }
+        //if (_timer >= _currentAnimationTime)
+        //{
+        //    Debug.Log("Yes");
+        //    RotateWeaponHolder();
+        //}
     }
 
     private void FixedUpdate()
     {
-        if (Time.time > _timeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
-        {            
+        if (_timer > _timeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
+        {
+            _timer = 0;
             SetAttackSpeed();
             SetAnimationSpeed();
             SetDamage();
@@ -59,7 +61,10 @@ public class MeleeWeapon : Weapon
         // прекратить наносить урон
 
         if (_timer >= _currentAnimationTime)
+        {
             _collider.enabled = false;
+            RotateWeaponHolder();
+        }
     }
 
     protected override void Attack()
