@@ -85,6 +85,8 @@ public class GunWeapon : Weapon
         newProjectile.transform.parent = _container;
         newProjectile.SetSpeed(_muzzleVelocity);
         newProjectile.SetRange(attackRange);
+        newProjectile.SetIsKnockable(knockBack);
+        newProjectile.SetRepulsiveForce(repulsiveForce);
 
         //крит или не крит
         if (Random.value < currentCritChance)

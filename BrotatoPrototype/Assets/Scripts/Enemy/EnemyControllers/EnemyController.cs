@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     private Coroutine MoveCoroutine;
     private Rigidbody _rigidbody;
     private float startPositionY;
-    
+    public float knockBackTime { get; private set; } = 0.25f;
+ 
     
     private void Awake()
     {
@@ -172,7 +173,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         _rigidbody.AddForce(force, ForceMode.VelocityChange);
         yield return new WaitForFixedUpdate();
         yield return new WaitUntil(() => _rigidbody.velocity.magnitude < stoppingSpeedForKnockBack);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(knockBackTime);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
         boxCollider.enabled = true;
