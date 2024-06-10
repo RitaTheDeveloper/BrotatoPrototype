@@ -121,23 +121,14 @@ public class MeleeWeapon : Weapon
             if (isCritDamage)
             {
                 // наносим крит
-                StartCoroutine(ApplyDamageToObjectWithDelay(other, currentDamage * 5, knockTime, isCritDamage));
+                other.GetComponent<LivingEntity>().TakeHitDelayed(currentDamage * 5, true, false, knockTime);
             }
             else
             {
                 // обычный урон
-                StartCoroutine(ApplyDamageToObjectWithDelay(other, currentDamage, knockTime, isCritDamage));
+                other.GetComponent<LivingEntity>().TakeHitDelayed(currentDamage, false, false, knockTime);
             }
         }
     }    
-    private IEnumerator ApplyDamageToObjectWithDelay(Collider other, float damage, float delay, bool isCrit)
-    {
-        yield return new WaitForSeconds(delay);
 
-        if (other != null)
-        {
-            LivingEntity enemyLivingEntity = other.GetComponent<LivingEntity>();
-            enemyLivingEntity?.TakeHit(damage, isCrit, false);
-        }
-    }
 }

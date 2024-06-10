@@ -48,6 +48,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
+    public virtual void TakeHitDelayed(float damage, bool isCrit, bool isProjectile, float delay)
+    {
+        StartCoroutine(HitDelayedCoroutine(damage, isCrit, isProjectile, delay));
+    }
+
     public virtual void Die()
     {
         dead = true;
@@ -80,5 +85,14 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected virtual void PlaySoundOfCrit()
     {
 
+    }
+
+    IEnumerator HitDelayedCoroutine(float damage, bool isCrit, bool isProjectile, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (gameObject != null)
+        {
+            TakeHit(damage, isCrit, isProjectile);
+        }
     }
 }

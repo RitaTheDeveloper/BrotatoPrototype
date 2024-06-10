@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Weapon;
 
 public class Projectile : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int penetration = 1;
     [SerializeField] LayerMask collisionMask;
     [SerializeField] private bool knockBack = false;
+    [SerializeField] private float repulsiveForce = 0.01f;
 
     private bool _isCrit;
     private float _range;
@@ -43,6 +45,16 @@ public class Projectile : MonoBehaviour
         _isCrit = isCrit;
     }
 
+    public void SetIsKnockable(bool isKnockable)
+    {
+        knockBack = isKnockable;
+    }
+
+    public void SetRepulsiveForce(float amount)
+    {
+        repulsiveForce = amount;
+    }
+
     private void Update()
     {
         Move();
@@ -67,21 +79,27 @@ public class Projectile : MonoBehaviour
 
     private void OutHitObject(RaycastHit hit)
     {
+        // First knock back then hit the object
         IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();              
         if (damageableObject != null)
         {
-            damageableObject.TakeHit(_damage, _isCrit, true);
-        }
-
-        if (knockBack)
-        {
-            IKnockbackable knockbackableObject = hit.collider.GetComponentInParent<IKnockbackable>();
-            if (knockbackableObject != null)
+            if (knockBack)
             {
-                knockbackableObject.GetKnockedBack(transform.forward.normalized * 500f);
+                IKnockbackable knockbackableObject = hit.collider.GetComponentInParent<IKnockbackable>();
+                if (knockbackableObject != null)
+                {
+                    float knockTime = hit.collider.GetComponent<EnemyController>().knockBackTime;
+                    
+                    knockbackableObject.GetKnockedBack(transform.forward.normalized * repulsiveForce);
+                    damageableObject.TakeHitDelayed(_damage, _isCrit, true, knockTime);
+                }
+            }
+            else
+            {
+                damageableObject.TakeHit(_damage, _isCrit, true);
             }
         }
-        
+
         penetration -= 1;
 
         if (penetration <= 0)
