@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] private WaveController2[] listOfWaveController2;
+    [SerializeField] private WaveSetting[] listOfWaveSetting;
     [SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         {
             ResetProgress();
         }
-        foreach (WaveController2 waveC2 in listOfWaveController2)
+        foreach (WaveSetting waveC2 in listOfWaveSetting)
         {
             waveC2.CreateWave();
             Debug.Log("создаем волну");
@@ -70,10 +70,9 @@ public class GameManager : MonoBehaviour
         
         _waveCounter = 0;
         // _currentWave = _waves[_waveCounter];
-        _currentWave = listOfWaveController2[_waveCounter].wave;
+        _currentWave = listOfWaveSetting[_waveCounter].wave;
         //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
-        Debug.Log("�������� ������ �����");
         _currentWave.StartWave();
         if (BackgroundMusicManger.instance != null)
         {
@@ -85,7 +84,7 @@ public class GameManager : MonoBehaviour
     }
     public int GetMaxWave()
     {
-        return listOfWaveController2.Length;
+        return listOfWaveSetting.Length;
     }
     
     public void SetHeroIndex(int index)
@@ -133,7 +132,7 @@ public class GameManager : MonoBehaviour
        //StopTime();
         _waveCounter++;
         //if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
-        if (_waveCounter == listOfWaveController2.Length)
+        if (_waveCounter == listOfWaveSetting.Length)
         {
             Win();
         }
@@ -166,7 +165,7 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
         //_currentWave = _waves[_waveCounter];
         //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
-        _currentWave = listOfWaveController2[_waveCounter].wave;
+        _currentWave = listOfWaveSetting[_waveCounter].wave;
         _currentWave.StartWave();
     }
 
@@ -313,6 +312,11 @@ public class GameManager : MonoBehaviour
     public float GetCurrentDamageFactorForEnemy()
     {
         return wavesByDifficulty[CurrentDifficulty].damageFactor;
+    }
+
+    public WaveController GetCurrentWave()
+    {
+        return _currentWave;
     }
 }
 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
-    [SerializeField] public float time;
-    [SerializeField] public List<EnemySpawner> enemySpawnersPrefabs;
+    public float time;
+    public List<EnemySpawner> enemySpawnersPrefabs;
 
-    private List<WaveController2.EnemySpawnerSettings> enemySpawnerSettings;
+    private List<WaveSetting.EnemySpawnerSettings> enemySpawnerSettings;
     private float _currentTime;
     private bool _stopTime;
     private bool _soundStart = false;
@@ -28,9 +28,15 @@ public class WaveController : MonoBehaviour
             CountingTime();
         }
     }
-    public void SetEnemySpawnerSettings(List<WaveController2.EnemySpawnerSettings> enemySpawnerSettings)
+
+    public void SetEnemySpawnerSettings(List<WaveSetting.EnemySpawnerSettings> enemySpawnerSettings)
     {
         this.enemySpawnerSettings = enemySpawnerSettings;
+    }
+
+    public float GetCurrentTime()
+    {
+        return _currentTime;
     }
 
     private void CountingTime()
@@ -66,11 +72,72 @@ public class WaveController : MonoBehaviour
         //    _enemySpawners.Add(_enemySpawner);
         //    _enemySpawner.transform.parent = transform;
         //}
-        foreach(WaveController2.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
+
+        //foreach(WaveSetting.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
+        //{
+        //    float spawnCd = enemySetting.spawnCd;
+        //    int totalAmountOfenemies = enemySetting.totalAmountOfEnemies;
+        //    if (spawnCd == -1 && totalAmountOfenemies == -1)
+        //    {
+        //        Debug.LogError("Необходимо выставить значение кд спавна или общее кол-во мобов за волну");
+        //    }
+        //    else if (totalAmountOfenemies != -1)
+        //    {
+        //        spawnCd = enemySetting.GetCdSpawn(time);
+        //    }
+        //    else
+        //    {
+        //        totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies(time);
+        //        Debug.Log("totalAmount = " + totalAmountOfenemies);
+        //    }
+
+
+        //    var enemySpawnerObj = Instantiate(new GameObject("enemySpawner"), transform);
+        //    enemySpawnerObj.transform.parent = transform.parent;
+        //    EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
+
+        //    enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack);
+        //}
+
+        for (int i = 0; i < enemySpawnerSettings.Count; i++)
         {
-            var enemySpawnerObj = Instantiate(new GameObject(), transform);
+            float spawnCd = enemySpawnerSettings[i].spawnCd;
+            int totalAmountOfenemies = enemySpawnerSettings[i].totalAmountOfEnemies;
+            //int amountInPack =  totalAmountOfenemies - enemySpawnerSettings.Count;
+
+            if (spawnCd == -1 && totalAmountOfenemies == -1)
+            {
+                Debug.LogError("Необходимо выставить значение кд спавна или общее кол-во мобов за волну");
+            }
+            else if (totalAmountOfenemies != -1)
+            {
+                spawnCd = enemySpawnerSettings[i].GetCdSpawn(time);
+            }
+            else
+            {
+                totalAmountOfenemies = enemySpawnerSettings[i].GetTotalAmountOfEnemies(time);
+                Debug.Log("totalAmount = " + totalAmountOfenemies);
+            }
+
+            int x = enemySpawnerSettings[i].totalAmountOfEnemies % enemySpawnerSettings[i].amountOfEnemiesInPack;
+            Debug.Log("x =" + x);
+            if (x != 0)
+            {
+                var enemySpawnerObjDop = Instantiate(new GameObject("enemySpawner"), transform);
+                enemySpawnerObjDop.transform.parent = transform.parent;
+                EnemySpawner enemySpawnerDop = enemySpawnerObjDop.AddComponent<EnemySpawner>();
+                enemySpawnerDop.SetParameters(enemySpawnerSettings[i].enemy, spawnCd * enemySpawnerSettings[i].totalAmountOfEnemies / enemySpawnerSettings[i].amountOfEnemiesInPack
+                    , enemySpawnerSettings[i].startSpawnTime, enemySpawnerSettings[i].endSpawnTime, x);
+                i++;
+            }
+            
+
+
+            var enemySpawnerObj = Instantiate(new GameObject("enemySpawner"), transform);
+            enemySpawnerObj.transform.parent = transform.parent;
             EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
-            enemySpawner.SetEnemy(enemySetting.enemy);
+
+            enemySpawner.SetParameters(enemySpawnerSettings[i].enemy, spawnCd, enemySpawnerSettings[i].startSpawnTime, enemySpawnerSettings[i].endSpawnTime, enemySpawnerSettings[i].amountOfEnemiesInPack);
         }
     }
 

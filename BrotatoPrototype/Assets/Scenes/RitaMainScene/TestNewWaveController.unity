@@ -8273,20 +8273,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 403658944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d264f58540ebb44b36745605d1697d, type: 3}
+  m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveTime: 5
+  _waveTime: 21
   _amountOfGoldPerWave: 100
   _enemyStrengthFactors:
     speedFactor: 1
     damageFactor: 1
     healthFactor: 1
   enemySpawnerSettings:
-  - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f, type: 3}
-    spawnCd: 0
-  - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7, type: 3}
-    spawnCd: 0
+  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
+    spawnCd: 3
+    totalAmountOfEnemies: 13
+    amountOfEnemiesInPack: 5
+    startSpawnTime: 1
+    endSpawnTime: 5
   wave: {fileID: 0}
 --- !u!1 &415540024
 GameObject:
@@ -9986,7 +9988,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 508146886}
-  - component: {fileID: 508146887}
   m_Layer: 0
   m_Name: Mines
   m_TagString: Untagged
@@ -10012,26 +10013,6 @@ Transform:
   - {fileID: 534166584}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &508146887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508146885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d264f58540ebb44b36745605d1697d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waveTime: 30
-  _amountOfGoldPerWave: 100
-  _enemyStrengthFactors:
-    speedFactor: 1
-    damageFactor: 1
-    healthFactor: 1
-  enemySpawnerSettings: []
-  wave: {fileID: 0}
 --- !u!1001 &513750297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17474,7 +17455,7 @@ MonoBehaviour:
   - {fileID: 585661124780564198, guid: 7f24cb95b92f9964f87c8dce626f4d0b, type: 3}
   - {fileID: 6707278682496988613, guid: a6ebd1d29565f2544ae81938e53539a0, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
-  listOfWaveController2:
+  listOfWaveSetting:
   - {fileID: 403658946}
   - {fileID: 403658946}
   wavesByDifficulty:
@@ -18706,7 +18687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99942}
+  m_AnchoredPosition: {x: 0, y: 84.999985}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -28890,8 +28871,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000013
-  m_Size: 0.16483511
+  m_Value: 1
+  m_Size: 0.16552375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

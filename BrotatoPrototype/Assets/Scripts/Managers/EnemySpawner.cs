@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
 
     [Header("количество юнитов")]
-    [SerializeField] private int amountOfEnemies = 1;
+    [SerializeField] private int _amountOfEnemies = 1;
 
     [Header("время перед самым первым спавном")]
     [SerializeField] private float _startSpawnTime = 1;
@@ -30,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject markPrefab;
     [SerializeField] private float markDisplayTime = 1f;
 
+    private float _endSpawnTime; // время до конца волны, когда перестаем спавнить
+    private bool stopSpawn = false;
     private Transform container;
     private Vector3 randomPosition;
     private bool isBeginningOfWave;
@@ -40,7 +42,8 @@ public class EnemySpawner : MonoBehaviour
     {
         container = GameObject.Find("Enemies").transform;
         isBeginningOfWave = true;
-    }
+        stopSpawn = false;
+}
 
     private void Start()
     {
@@ -59,6 +62,14 @@ public class EnemySpawner : MonoBehaviour
        // StartCoroutine(ChangeRandomPos());
     }
 
+    private void FixedUpdate()
+    {
+        if(GameManager.instance.GetCurrentWave().GetCurrentTime() <= _endSpawnTime + markDisplayTime)
+        {
+            stopSpawn = true;
+        }
+    }
+
     private void Update()
     {
         //Vector3 point;
@@ -69,9 +80,15 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
-    public void SetEnemy(EnemyController enemyController)
+    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack)
     {
         _enemyPrefab = enemyController.gameObject;
+        _startSpawnTime = startSpawnTime;
+        _endSpawnTime = endSpawnTime;
+        _minSpawnTime = cdSpawn;
+        _maxSpawnTime = cdSpawn;
+        _amountOfEnemies = amountOfEnemiesInPack;
+        Debug.Log("cd = " + cdSpawn);
     }
 
     private float SpawnTime()
@@ -96,7 +113,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (_target)
+        while (!stopSpawn && _target)
         {
             _timeUntilSpawn = SpawnTime();
 
@@ -169,10 +186,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(Vector3 position)
     {
-        for (int i = 0; i < amountOfEnemies; i++)
+        for (int i = 0; i < _amountOfEnemies; i++)
         {
             StartCoroutine(SpawnOneEnemy());
         }
+       
     }
 
     private IEnumerator ChangeRandomPos()
