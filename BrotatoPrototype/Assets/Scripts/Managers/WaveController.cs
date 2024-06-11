@@ -73,71 +73,31 @@ public class WaveController : MonoBehaviour
         //    _enemySpawner.transform.parent = transform;
         //}
 
-        //foreach(WaveSetting.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
-        //{
-        //    float spawnCd = enemySetting.spawnCd;
-        //    int totalAmountOfenemies = enemySetting.totalAmountOfEnemies;
-        //    if (spawnCd == -1 && totalAmountOfenemies == -1)
-        //    {
-        //        Debug.LogError("Необходимо выставить значение кд спавна или общее кол-во мобов за волну");
-        //    }
-        //    else if (totalAmountOfenemies != -1)
-        //    {
-        //        spawnCd = enemySetting.GetCdSpawn(time);
-        //    }
-        //    else
-        //    {
-        //        totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies(time);
-        //        Debug.Log("totalAmount = " + totalAmountOfenemies);
-        //    }
-
-
-        //    var enemySpawnerObj = Instantiate(new GameObject("enemySpawner"), transform);
-        //    enemySpawnerObj.transform.parent = transform.parent;
-        //    EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
-
-        //    enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack);
-        //}
-
-        for (int i = 0; i < enemySpawnerSettings.Count; i++)
-        {
-            float spawnCd = enemySpawnerSettings[i].spawnCd;
-            int totalAmountOfenemies = enemySpawnerSettings[i].totalAmountOfEnemies;
-            //int amountInPack =  totalAmountOfenemies - enemySpawnerSettings.Count;
-
+        foreach (WaveSetting.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
+        {            
+            float spawnCd = enemySetting.spawnCd;
+            int totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies();
             if (spawnCd == -1 && totalAmountOfenemies == -1)
             {
                 Debug.LogError("Необходимо выставить значение кд спавна или общее кол-во мобов за волну");
             }
             else if (totalAmountOfenemies != -1)
             {
-                spawnCd = enemySpawnerSettings[i].GetCdSpawn(time);
+                spawnCd = enemySetting.GetCdSpawn(time);
             }
             else
             {
-                totalAmountOfenemies = enemySpawnerSettings[i].GetTotalAmountOfEnemies(time);
+                totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies(time);
                 Debug.Log("totalAmount = " + totalAmountOfenemies);
             }
 
-            int x = enemySpawnerSettings[i].totalAmountOfEnemies % enemySpawnerSettings[i].amountOfEnemiesInPack;
-            Debug.Log("x =" + x);
-            if (x != 0)
-            {
-                var enemySpawnerObjDop = Instantiate(new GameObject("enemySpawner"), transform);
-                enemySpawnerObjDop.transform.parent = transform.parent;
-                EnemySpawner enemySpawnerDop = enemySpawnerObjDop.AddComponent<EnemySpawner>();
-                enemySpawnerDop.SetParameters(enemySpawnerSettings[i].enemy, spawnCd * enemySpawnerSettings[i].totalAmountOfEnemies / enemySpawnerSettings[i].amountOfEnemiesInPack
-                    , enemySpawnerSettings[i].startSpawnTime, enemySpawnerSettings[i].endSpawnTime, x);
-                i++;
-            }
-            
-
-
+            Debug.Log("totalAmount = " + totalAmountOfenemies);
             var enemySpawnerObj = Instantiate(new GameObject("enemySpawner"), transform);
             enemySpawnerObj.transform.parent = transform.parent;
             EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
 
-            enemySpawner.SetParameters(enemySpawnerSettings[i].enemy, spawnCd, enemySpawnerSettings[i].startSpawnTime, enemySpawnerSettings[i].endSpawnTime, enemySpawnerSettings[i].amountOfEnemiesInPack);
+            enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack);
+            
         }
     }
 

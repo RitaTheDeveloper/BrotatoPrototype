@@ -66,10 +66,14 @@ public class WaveSetting : MonoBehaviour
         }
 
         public float GetCdSpawn(float timeOfWave)
+        {            
+            float result = (timeOfWave - startSpawnTime - endSpawnTime) / ((float)GetTotalAmountOfEnemies() / (float)amountOfEnemiesInPack);
+            return result;
+        }
+
+        public int GetTotalAmountOfEnemies()
         {
-            float result = (timeOfWave - startSpawnTime - endSpawnTime) / ((float)totalAmountOfEnemies / (float)amountOfEnemiesInPack);
-            Debug.Log(result);            
-            return (timeOfWave - startSpawnTime - endSpawnTime) / ((float)totalAmountOfEnemies / (float)amountOfEnemiesInPack);
+            return totalAmountOfEnemies - totalAmountOfEnemies % amountOfEnemiesInPack;
         }
 
         public int GetTotalAmountOfEnemies(float timeOfWave)
