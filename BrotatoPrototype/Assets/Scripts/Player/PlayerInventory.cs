@@ -48,7 +48,14 @@ public class PlayerInventory : MonoBehaviour
         if (playerCharacteristics)
         {
             playerCharacteristics.DeleteBonus(item.CharacteristicsItem);
+            GetComponent<PlayerController>().UpdateCharacteristics();
+            UIShop.instance.UpdateUICharacteristics();
         }
+    }
+
+    public List<StandartItem> GetAllItems()
+    {
+        return inventory;
     }
 
     public bool HaveNeedCost(int cost)

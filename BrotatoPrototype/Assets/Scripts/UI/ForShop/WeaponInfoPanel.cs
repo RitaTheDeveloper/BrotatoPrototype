@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemInfoPanelWithSellBtn : MonoBehaviour
+public class WeaponInfoPanel : MonoBehaviour
 {
     public TextMeshProUGUI nameItem;
     public TextMeshProUGUI typeItem;

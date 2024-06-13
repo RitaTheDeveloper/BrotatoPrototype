@@ -48,6 +48,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] private UpgrateShopBtn upgrateShop;
 
     private List<WeaponSlot> _currentWeaponSlots;
+    private List<ItemSlot> _currentItemSlots;
     private int currentIndexBabaYaga = 0;
     public GameObject dimmingPanel;
     private List<SlotItemForSaleData> items = new List<SlotItemForSaleData>();
@@ -178,6 +179,8 @@ public class UIShop : MonoBehaviour
 
     public void CreateItemsElements(List<StandartItem> _items)
     {
+        _currentItemSlots = new List<ItemSlot>();
+
         if (_items.Count > listSlotsOfItems.Count)
         {
             CreateSlotsForItems();
@@ -186,6 +189,21 @@ public class UIShop : MonoBehaviour
         {
             GameObject itemElement = Instantiate(itemElementPrefab, listSlotsOfItems[i]);
             itemElement.GetComponent<ItemSlot>().AddItem(_items[i].GetComponent<ItemShopInfo>());
+            _currentItemSlots.Add(itemElement.GetComponent<ItemSlot>());
+        }
+    }
+
+    public void DeleteAllItemElements()
+    {
+        foreach (Transform itemSlot in panelOfItems.GetComponentInChildren<Transform>())
+        {
+            foreach (Transform itemElement in itemSlot)
+            {
+                if (itemElement)
+                {
+                    Destroy(itemElement.gameObject);
+                }
+            }
         }
     }
 
@@ -345,21 +363,22 @@ public class UIShop : MonoBehaviour
         UpdateNumberOfCurrentWeapons(shopController.GetWeaponController().GetAllWeapons().Count, maxCountWeapons);
     }
 
-    public void DisplayItemInfoWithBtn(ItemShopInfo _info, bool isIconPressed, Vector2 posBtn)
+    public void DisplayWeaponInfo(ItemShopInfo _info, bool isIconPressed, Vector2 posBtn)
     {
         DestroyItemInfo();
         dimmingPanel.SetActive(isIconPressed);
         Vector2 position = new Vector2(posBtn.x - Screen.width / 10, positionOfInfoPanel.position.y);
         _currentInfoItem = Instantiate(weaponInfoPrefab, position, Quaternion.identity, canvas);
-        _currentInfoItem.GetComponent<ItemInfoPanelWithSellBtn>().SetUp(_info);
+        _currentInfoItem.GetComponent<WeaponInfoPanel>().SetUp(_info);
     }
 
-    public void DisplayItemInfoWithoutBtn(ItemShopInfo _info, Vector2 posBtn)
+    public void DisplayItemInfo(ItemShopInfo _info, bool isIconPressed, Vector2 posBtn)
     {
         DestroyItemInfo();
+        dimmingPanel.SetActive(isIconPressed);
         Vector2 position = new Vector2(posBtn.x + Screen.width / 10, positionOfInfoPanel.position.y);
         _currentInfoItem = Instantiate(itemInfoPrefab, position, Quaternion.identity, canvas);
-        _currentInfoItem.GetComponent<ItemInfoPanelWithoutSellBtn>().SetUp(_info);
+        _currentInfoItem.GetComponent<ItemInfoPanel>().SetUp(_info);
     }
 
     public void DestroyItemInfo()
