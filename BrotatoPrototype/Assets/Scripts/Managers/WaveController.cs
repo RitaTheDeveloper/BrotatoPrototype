@@ -14,11 +14,13 @@ public class WaveController : MonoBehaviour
     float timerTick = 0;
 
     private List<EnemySpawner> _enemySpawners;
+    DistrubitionOfGoldToMobs distrubitionOfGoldToMobs = new DistrubitionOfGoldToMobs();
 
 
     private void Start()
     {
         _stopTime = true;
+        distrubitionOfGoldToMobs.GetNumberOfGold(100, 49);
     }
 
     private void FixedUpdate()
@@ -65,7 +67,7 @@ public class WaveController : MonoBehaviour
 
     private void AllSpawnersOn()
     {
-        _enemySpawners = new List<EnemySpawner>();
+        //_enemySpawners = new List<EnemySpawner>();
         //foreach(EnemySpawner spawner in enemySpawnersPrefabs)
         //{
         //    var _enemySpawner = Instantiate(spawner);
@@ -133,5 +135,24 @@ public class WaveController : MonoBehaviour
         {
             AudioManager.instance.Play("TimerTick");
         }
+    }
+
+}
+
+public class DistrubitionOfGoldToMobs
+{
+    public float averageNumberOfGoldForMob;
+    public int firstNumberOfGold;
+    public int secondNumberOfGold;
+    public int firstNumberOfMobs;
+    public int secondNumberOfMobs;
+
+    public int GetNumberOfGold(int amountOfGoldPerWave, int amountOfMobsPerWave)
+    {
+        averageNumberOfGoldForMob = (float)amountOfGoldPerWave / (float)amountOfMobsPerWave;
+        firstNumberOfGold = (int)Mathf.Ceil(averageNumberOfGoldForMob);
+        secondNumberOfGold = Mathf.CeilToInt(averageNumberOfGoldForMob);
+        Debug.Log("up = " + firstNumberOfGold + " down " + secondNumberOfGold);
+        return 0; 
     }
 }

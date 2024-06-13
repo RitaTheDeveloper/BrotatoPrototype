@@ -5,8 +5,11 @@ using UnityEngine.Pool;
 
 public class Currency : MonoBehaviour
 {
-    private float xp;
+    private int _gold;
+    private float _xp;
     private ObjectPool<Currency> _pool;
+
+    public int Gold { get => _gold; set => _gold = value; }
 
     public void SetPool(ObjectPool<Currency> pool)
     {
@@ -15,12 +18,12 @@ public class Currency : MonoBehaviour
 
     public void SetXP(float xp)
     {
-        this.xp = xp;
+        this._xp = xp;
     }
 
     public float GetXP()
     {
-        return xp;
+        return _xp;
     }
 
     public void PutAwayFromScene()

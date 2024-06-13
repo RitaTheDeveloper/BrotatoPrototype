@@ -11,6 +11,7 @@ public class UnitParameters : MonoBehaviour
     [SerializeField] private float _hpRegen;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _amountOfExperience;
+    [SerializeField] private GameObject _markOfSpawnPrefab;
 
     private float _currentHp;
     public float CurrentHp
@@ -55,6 +56,11 @@ public class UnitParameters : MonoBehaviour
 
             return finalExpAmount;
         }
+    }
+
+    public GameObject GetMark()
+    {
+        return _markOfSpawnPrefab;
     }
 
     private void Awake()

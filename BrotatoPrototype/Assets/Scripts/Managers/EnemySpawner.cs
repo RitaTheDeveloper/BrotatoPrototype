@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool isNotRandom = false;
 
     [Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
-    [SerializeField] private float radius = 0f;
+    [SerializeField] private float radius = 2f;
 
     [SerializeField] private GameObject markPrefab;
     [SerializeField] private float markDisplayTime = 1f;
@@ -88,6 +88,7 @@ public class EnemySpawner : MonoBehaviour
         _minSpawnTime = cdSpawn;
         _maxSpawnTime = cdSpawn;
         _amountOfEnemies = amountOfEnemiesInPack;
+        markPrefab = _enemyPrefab.GetComponent<UnitParameters>().GetMark();
         Debug.Log("cd = " + cdSpawn);
     }
 

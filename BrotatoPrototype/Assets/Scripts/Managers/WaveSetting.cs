@@ -52,18 +52,7 @@ public class WaveSetting : MonoBehaviour
         [Header("задержка перед первым спавном")]
         public float startSpawnTime;
         [Header("время до конца волна, чтобы закончить спавнить")]
-        public float endSpawnTime;
-        
-        public EnemySpawnerSettings(EnemyController enemy, float spawnCd, int totalAmountOfEnemies, int amountOfEnemiesInPack, float startSpawnTime, float endSpawnTime)            
-        {
-            this.enemy = enemy;
-            if (spawnCd == -1 && totalAmountOfEnemies == -1)
-            {
-                Debug.LogError("Необходимо выставить значение кд спавна или общее кол-во мобов за волну");
-            }
-            this.spawnCd = spawnCd;
-            
-        }
+        public float endSpawnTime;                
 
         public float GetCdSpawn(float timeOfWave)
         {            
