@@ -487,6 +487,14 @@ public class UIShop : MonoBehaviour
         }
     }
 
+    public void FrameOffItemSlot()
+    {
+        foreach (ItemSlot item in _currentItemSlots)
+        {
+            item.FrameOff();
+        }
+    }
+
     public IEnumerator ShowMessage(string message, Vector2 point)
     {
         var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
