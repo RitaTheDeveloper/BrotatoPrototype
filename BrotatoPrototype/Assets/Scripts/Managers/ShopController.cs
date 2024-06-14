@@ -247,7 +247,9 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else if (SaleItemsDict.ContainsKey(itemID))
         {
-            playerInventory.ChangeMoney(SaleItemsDict[itemID].ShopInfoItem.Price - SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100));
+            ItemShopInfo shopComponent = SaleItemsDict[itemID].GetComponent<ItemShopInfo>();
+            int priceForSale = shopComponent.GetSalePrice();
+            playerInventory.ChangeMoney(priceForSale); //SaleItemsDict[itemID].ShopInfoItem.Price - SaleItemsDict[itemID].ShopInfoItem.Price * (SaleItemsDict[itemID].ShopInfoItem.DiscountProcent / 100)
             playerInventory.DeleteItem(SaleItemsDict[itemID]);
             PlaySoundBuySold();
             return true;
