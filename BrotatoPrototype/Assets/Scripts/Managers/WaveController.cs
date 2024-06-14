@@ -14,13 +14,19 @@ public class WaveController : MonoBehaviour
     float timerTick = 0;
 
     private List<EnemySpawner> _enemySpawners;
-    DistrubitionOfGoldToMobs distrubitionOfGoldToMobs = new DistrubitionOfGoldToMobs();
+    public DistrubitionOfGoldOrExpToMobs distrubitionOfGoldToMobs = new DistrubitionOfGoldOrExpToMobs();
+    public DistrubitionOfGoldOrExpToMobs distrubitionOfExpToMobs = new DistrubitionOfGoldOrExpToMobs();
+    private int _amountOfGoldForWave = 0;
+    private int _amountOfExpForWave = 0;
+    private int _amountOfEnemiesForAllSpawners = 0;
+    public int counterOfMobs = 0;
+    private GameObject mobSpawnerPrefab;
 
+    public float CurrentTime { get => _currentTime; }
 
     private void Start()
     {
         _stopTime = true;
-        distrubitionOfGoldToMobs.GetNumberOfGold(100, 49);
     }
 
     private void FixedUpdate()
@@ -31,9 +37,11 @@ public class WaveController : MonoBehaviour
         }
     }
 
-    public void SetEnemySpawnerSettings(List<WaveSetting.EnemySpawnerSettings> enemySpawnerSettings)
+    public void SetWaveSettings(List<WaveSetting.EnemySpawnerSettings> enemySpawnerSettings, int goldForWave, int expForWave)
     {
         this.enemySpawnerSettings = enemySpawnerSettings;
+        _amountOfGoldForWave = goldForWave;
+        _amountOfExpForWave = expForWave;
     }
 
     public float GetCurrentTime()
@@ -74,7 +82,7 @@ public class WaveController : MonoBehaviour
         //    _enemySpawners.Add(_enemySpawner);
         //    _enemySpawner.transform.parent = transform;
         //}
-
+        mobSpawnerPrefab = new GameObject("mobSpawnerPrefab");
         foreach (WaveSetting.EnemySpawnerSettings enemySetting in enemySpawnerSettings)
         {            
             float spawnCd = enemySetting.spawnCd;
@@ -90,25 +98,35 @@ public class WaveController : MonoBehaviour
             else
             {
                 totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies(time);
-                Debug.Log("totalAmount = " + totalAmountOfenemies);
             }
 
             Debug.Log("totalAmount = " + totalAmountOfenemies);
-            var enemySpawnerObj = Instantiate(new GameObject("enemySpawner"), transform);
-            enemySpawnerObj.transform.parent = transform.parent;
-            EnemySpawner enemySpawner = enemySpawnerObj.AddComponent<EnemySpawner>();
+            _amountOfEnemiesForAllSpawners += totalAmountOfenemies;
+            Debug.Log("totalAmountForAllSpawners = " + _amountOfEnemiesForAllSpawners);
+            GameObject mobSpawner = Instantiate(mobSpawnerPrefab, transform);
+            mobSpawner.transform.parent = transform;
+            EnemySpawner enemySpawner = mobSpawner.AddComponent<EnemySpawner>();
 
             enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack);
-            
+            Debug.Log("enemyspawner");
         }
+        Destroy(mobSpawnerPrefab);
     }
 
     private void AllSpawnersOff()
-    {
+    {        
         foreach (Transform spawner in transform)
         {
             Destroy(spawner.gameObject);
         }
+    }
+
+    private void ResetWave()
+    {
+        _amountOfEnemiesForAllSpawners = 0;
+        counterOfMobs = 0; // нужен только чтобы считать мобов дебаге, после тестов удалить
+        distrubitionOfGoldToMobs.ResetCounter();
+        AllSpawnersOff();
     }
 
     public void StartWave()
@@ -116,12 +134,15 @@ public class WaveController : MonoBehaviour
         _stopTime = false;
         _currentTime = time;
         AllSpawnersOn();
+        distrubitionOfGoldToMobs.CalculateParameters(_amountOfGoldForWave, _amountOfEnemiesForAllSpawners);
+        distrubitionOfExpToMobs.CalculateParameters(_amountOfExpForWave, _amountOfEnemiesForAllSpawners);
+       
     }
 
     public void StopWave()
     {
         _stopTime = true;
-        AllSpawnersOff();
+        ResetWave();
     }
 
     private void WaveCompleted()
@@ -139,20 +160,37 @@ public class WaveController : MonoBehaviour
 
 }
 
-public class DistrubitionOfGoldToMobs
+public class DistrubitionOfGoldOrExpToMobs
 {
     public float averageNumberOfGoldForMob;
     public int firstNumberOfGold;
     public int secondNumberOfGold;
     public int firstNumberOfMobs;
     public int secondNumberOfMobs;
+    private int _counterOfMobs = 0;
 
-    public int GetNumberOfGold(int amountOfGoldPerWave, int amountOfMobsPerWave)
+    public int GetNumberOfGoldOrExp()
+    {
+        _counterOfMobs++;
+        int result = firstNumberOfGold;
+        if(_counterOfMobs > firstNumberOfMobs) { result = secondNumberOfGold; }
+        Debug.Log("даем денежку " + result);
+        return result; 
+    }
+
+    public void ResetCounter()
+    {
+        _counterOfMobs = 0;
+    }
+
+    public void CalculateParameters(int amountOfGoldPerWave, int amountOfMobsPerWave)
     {
         averageNumberOfGoldForMob = (float)amountOfGoldPerWave / (float)amountOfMobsPerWave;
-        firstNumberOfGold = (int)Mathf.Ceil(averageNumberOfGoldForMob);
-        secondNumberOfGold = Mathf.CeilToInt(averageNumberOfGoldForMob);
-        Debug.Log("up = " + firstNumberOfGold + " down " + secondNumberOfGold);
-        return 0; 
+        firstNumberOfGold = Mathf.CeilToInt(averageNumberOfGoldForMob);
+        secondNumberOfGold = (int)averageNumberOfGoldForMob;
+
+        firstNumberOfMobs = amountOfGoldPerWave - amountOfMobsPerWave * secondNumberOfGold;
+        secondNumberOfMobs = amountOfMobsPerWave - firstNumberOfMobs;
+        Debug.Log("average = " + averageNumberOfGoldForMob + " up = " + firstNumberOfGold + " down " + secondNumberOfGold + " 1 группа " + firstNumberOfMobs + " 2 группа " + secondNumberOfMobs);
     }
 }

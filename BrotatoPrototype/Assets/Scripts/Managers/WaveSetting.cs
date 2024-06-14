@@ -6,20 +6,26 @@ public class WaveSetting : MonoBehaviour
 {
     [SerializeField] public float _waveTime = 30f;
     [SerializeField] private int _amountOfGoldPerWave = 100;
+    [SerializeField] private int _amountOfExpPerWave = 100;
     [SerializeField] private EnemyStrengthFactors _enemyStrengthFactors = new EnemyStrengthFactors(1f, 1f, 1f);
     [SerializeField] private List<EnemySpawnerSettings> enemySpawnerSettings;
 
-    public WaveController wave;
-  
+    private WaveController wave;
+
+    public EnemyStrengthFactors GetEnemyStrengthFactors { get => _enemyStrengthFactors;}
+    public WaveController Wave { get => wave; }
+
     public void CreateWave()
     {
-        GameObject waveObj = Instantiate(new GameObject("newWave"), transform);
+        GameObject wavePrefab = new GameObject("newWave");
+        GameObject waveObj = Instantiate(wavePrefab, transform);
         waveObj.transform.parent = transform;
         wave = waveObj.AddComponent<WaveController>();
         wave.time = _waveTime;
-        wave.SetEnemySpawnerSettings(enemySpawnerSettings);      
+        wave.SetWaveSettings(enemySpawnerSettings, _amountOfGoldPerWave, _amountOfExpPerWave);
+        Destroy(wavePrefab);
     }
-
+    
     // расчитать интервал и общее кол-во врагов и передать enemySpawner
 
     [System.Serializable]
@@ -62,6 +68,7 @@ public class WaveSetting : MonoBehaviour
 
         public int GetTotalAmountOfEnemies()
         {
+            Debug.Log("totalAmForEnemySpawner " + (totalAmountOfEnemies - totalAmountOfEnemies % amountOfEnemiesInPack));
             return totalAmountOfEnemies - totalAmountOfEnemies % amountOfEnemiesInPack;
         }
 

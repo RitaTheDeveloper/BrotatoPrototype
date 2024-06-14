@@ -56,7 +56,8 @@ public class LevelSystem : MonoBehaviour
                 if (Vector3.Distance(currency.position, targetPosition) < 1f)
                 {
                     int xp = (int) currency.GetComponent<Currency>().GetXP();
-                    inventory.MoneyUp(xp);
+                    int gold = currency.GetComponent<Currency>().Gold;
+                    inventory.MoneyUp(gold);
                     IncreaseCurrentExperience(xp);
                     currency.GetComponent<Currency>().PutAwayFromScene();
                     PlaySoundTakeCoin();

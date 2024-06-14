@@ -31,22 +31,22 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float markDisplayTime = 1f;
 
     private float _endSpawnTime; // время до конца волны, когда перестаем спавнить
-    private bool stopSpawn = false;
     private Transform container;
     private Vector3 randomPosition;
     private bool isBeginningOfWave;
     private Transform _target;
     float _timeUntilSpawn;
+    private WaveController _waveController;
 
     private void Awake()
     {
         container = GameObject.Find("Enemies").transform;
         isBeginningOfWave = true;
-        stopSpawn = false;
 }
 
     private void Start()
     {
+        _waveController = GameManager.instance.GetCurrentWave();
         _target = GameManager.instance.player.transform;
         if (isNotRandom)
         {
@@ -64,10 +64,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(GameManager.instance.GetCurrentWave().GetCurrentTime() <= _endSpawnTime + markDisplayTime)
-        {
-            stopSpawn = true;
-        }
+        //if(_waveController.CurrentTime <= _endSpawnTime + markDisplayTime)
+        //{
+        //    stopSpawn = true;
+        //    Debug.Log("перестаем спавнить");
+        //}
     }
 
     private void Update()
@@ -96,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (isBeginningOfWave)
         {
-            return Random.Range(_startSpawnTime - 0.2f, _startSpawnTime + 0.2f);
+            return _startSpawnTime;
         }
         else
         {
@@ -110,16 +111,28 @@ public class EnemySpawner : MonoBehaviour
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
         var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
+
+        UnitParameters enemyParameters = enemy.GetComponent<UnitParameters>();
+        enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
+        enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
+        _waveController.counterOfMobs++;
+        Debug.Log("заспавнен " + _waveController.counterOfMobs);
     }
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (!stopSpawn && _target)
+        while (_waveController.CurrentTime >= _endSpawnTime + SpawnTime() && _target)
         {
             _timeUntilSpawn = SpawnTime();
-
+            float timeMark = _timeUntilSpawn - markDisplayTime;
+            float timeSpawnenemy = markDisplayTime;
+            if(timeMark < 0)
+            {
+                timeMark = 0;
+                timeSpawnenemy = _timeUntilSpawn;
+            }
             // делаем марку
-            yield return new WaitForSeconds(_timeUntilSpawn - markDisplayTime);
+            yield return new WaitForSeconds(timeMark);
             Vector3 positionEnemy;
             Vector3 point;
             if (RandomPoint(randomPosition, radius, out point))
@@ -139,7 +152,7 @@ public class EnemySpawner : MonoBehaviour
             
 
             // спавним врага
-            yield return new WaitForSeconds(markDisplayTime);
+            yield return new WaitForSeconds(timeSpawnenemy);
             isBeginningOfWave = false;
             DestroyMark(mark);
             SpawnEnemy(positionEnemy);

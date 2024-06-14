@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] private WaveSetting[] listOfWaveSetting;
-    [SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
+    [SerializeField] public WaveSetting[] listOfWaveSetting;
+    //[SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
 
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         foreach (WaveSetting waveC2 in listOfWaveSetting)
         {
             waveC2.CreateWave();
-            Debug.Log("создаем волну");
         }
     }
     private void Start()
@@ -70,7 +69,7 @@ public class GameManager : MonoBehaviour
         
         _waveCounter = 0;
         // _currentWave = _waves[_waveCounter];
-        _currentWave = listOfWaveSetting[_waveCounter].wave;
+        _currentWave = listOfWaveSetting[_waveCounter].Wave;
         //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         _currentWave.StartWave();
@@ -165,7 +164,7 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
         //_currentWave = _waves[_waveCounter];
         //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
-        _currentWave = listOfWaveSetting[_waveCounter].wave;
+        _currentWave = listOfWaveSetting[_waveCounter].Wave;
         _currentWave.StartWave();
     }
 
@@ -274,7 +273,6 @@ public class GameManager : MonoBehaviour
 
         List<GameObject> unlockedCharacters = saveController.GetUnlockCharacterList(data);
         UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
-        Debug.Log("unlocked characters: " + unlockedCharacters.Count);
 
         saveController.SaveData();
     }
@@ -300,19 +298,19 @@ public class GameManager : MonoBehaviour
 
     }  
     
-    public float GetCurrentExpFactorForEnemy()
-    {
-        return wavesByDifficulty[CurrentDifficulty].expFactor;
-    }
+    //public float GetCurrentExpFactorForEnemy()
+    //{
+    //    return wavesByDifficulty[CurrentDifficulty].expFactor;
+    //}
 
-    public float GetCurrentHealthFactorForEnemy()
-    {
-        return wavesByDifficulty[CurrentDifficulty].healthFactor;
-    }
-    public float GetCurrentDamageFactorForEnemy()
-    {
-        return wavesByDifficulty[CurrentDifficulty].damageFactor;
-    }
+    //public float GetCurrentHealthFactorForEnemy()
+    //{
+    //    return wavesByDifficulty[CurrentDifficulty].healthFactor;
+    //}
+    //public float GetCurrentDamageFactorForEnemy()
+    //{
+    //    return wavesByDifficulty[CurrentDifficulty].damageFactor;
+    //}
 
     public WaveController GetCurrentWave()
     {

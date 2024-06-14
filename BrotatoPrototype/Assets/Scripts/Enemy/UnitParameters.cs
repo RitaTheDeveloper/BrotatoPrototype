@@ -5,12 +5,11 @@ using UnityEngine;
 public class UnitParameters : MonoBehaviour
 {
     [SerializeField] private float _maxHp;
-    [SerializeField] private float _amountOfHpPerWave;
     [SerializeField] private float _startDamage;
-    [SerializeField] private float _amountOfDamagePerWave;
     [SerializeField] private float _hpRegen;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _amountOfExperience;
+    [SerializeField] private int _amountOfGoldForKill;
     [SerializeField] private GameObject _markOfSpawnPrefab;
 
     private float _currentHp;
@@ -37,26 +36,29 @@ public class UnitParameters : MonoBehaviour
     private float _currentDamage;
     public float CurrentDamage { get => _currentDamage; set => _currentDamage = value; }
 
-    public float AmountOfExperience {
-        get
-        {
-            float finalExpAmount = _amountOfExperience * GameManager.instance.GetCurrentExpFactorForEnemy();
+    //public float AmountOfExperience {
+    //    get
+    //    {
+    //        float finalExpAmount = _amountOfExperience * GameManager.instance.GetCurrentExpFactorForEnemy();
 
-            if(finalExpAmount < 1f)
-            {
-                if (Random.Range(0,1f) < finalExpAmount)
-                {
-                    finalExpAmount = 1f;
-                }
-                else
-                {
-                    finalExpAmount = 0f;
-                }
-            }
+    //        if(finalExpAmount < 1f)
+    //        {
+    //            if (Random.Range(0,1f) < finalExpAmount)
+    //            {
+    //                finalExpAmount = 1f;
+    //            }
+    //            else
+    //            {
+    //                finalExpAmount = 0f;
+    //            }
+    //        }
 
-            return finalExpAmount;
-        }
-    }
+    //        return finalExpAmount;
+    //    }
+    //}
+
+    public int AmountOfGoldForKill { get => _amountOfGoldForKill; set => _amountOfGoldForKill = value; }
+    public float AmountOfExperience { get => _amountOfExperience; set => _amountOfExperience = value; }
 
     public GameObject GetMark()
     {
@@ -66,9 +68,12 @@ public class UnitParameters : MonoBehaviour
     private void Awake()
     {
         int indexOfWave = GameManager.instance.WaveCounter;
-        _currentHp = (_maxHp + indexOfWave * _amountOfHpPerWave) * GameManager.instance.GetCurrentHealthFactorForEnemy();
-        _currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave) * GameManager.instance.GetCurrentDamageFactorForEnemy();
+        //_currentHp = (_maxHp + indexOfWave * _amountOfHpPerWave) * GameManager.instance.GetCurrentHealthFactorForEnemy();
+        //_currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave) * GameManager.instance.GetCurrentDamageFactorForEnemy();
         _currentHpRegen = _hpRegen;
-        _currentMoveSpeed = _moveSpeed;
+        //_currentMoveSpeed = _moveSpeed;
+        _currentHp = _maxHp * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
+        _currentDamage = _startDamage * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
+        _currentMoveSpeed = _moveSpeed * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;
     }
 }

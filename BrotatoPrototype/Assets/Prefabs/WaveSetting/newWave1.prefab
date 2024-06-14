@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveTime: 100
+  _waveTime: 30
   _amountOfGoldPerWave: 100
   _enemyStrengthFactors:
     speedFactor: 1
@@ -53,8 +53,14 @@ MonoBehaviour:
   enemySpawnerSettings:
   - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
     spawnCd: 3
-    totalAmountOfEnemies: 50
+    totalAmountOfEnemies: 27
+    amountOfEnemiesInPack: 3
+    startSpawnTime: 1
+    endSpawnTime: 10
+  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
+    spawnCd: 3
+    totalAmountOfEnemies: 10
     amountOfEnemiesInPack: 5
     startSpawnTime: 1
-    endSpawnTime: 5
+    endSpawnTime: 10
   wave: {fileID: 0}
