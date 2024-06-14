@@ -174,7 +174,6 @@ public class DistrubitionOfGoldOrExpToMobs
         _counterOfMobs++;
         int result = firstNumberOfGold;
         if(_counterOfMobs > firstNumberOfMobs) { result = secondNumberOfGold; }
-        Debug.Log("даем денежку " + result);
         return result; 
     }
 
@@ -191,6 +190,6 @@ public class DistrubitionOfGoldOrExpToMobs
 
         firstNumberOfMobs = amountOfGoldPerWave - amountOfMobsPerWave * secondNumberOfGold;
         secondNumberOfMobs = amountOfMobsPerWave - firstNumberOfMobs;
-        Debug.Log("average = " + averageNumberOfGoldForMob + " up = " + firstNumberOfGold + " down " + secondNumberOfGold + " 1 группа " + firstNumberOfMobs + " 2 группа " + secondNumberOfMobs);
+        Debug.Log("average = " + averageNumberOfGoldForMob + "; up = " + firstNumberOfGold + "; down " + secondNumberOfGold + "; 1 группа " + firstNumberOfMobs + "; 2 группа " + secondNumberOfMobs);
     }
 }
