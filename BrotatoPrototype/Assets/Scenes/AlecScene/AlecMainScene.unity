@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44300658, g: 0.4921953, b: 0.57192475, a: 1}
+  m_IndirectSpecularColor: {r: 0.4430063, g: 0.4921952, b: 0.5719241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18600,7 +18600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99977}
+  m_AnchoredPosition: {x: 0, y: 84.999756}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -24931,7 +24931,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1555271671}
   m_Father: {fileID: 1236495199340321619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -24951,9 +24952,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ebfbb45c2d65b44b944fa2219acd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_size: 20
-  text_color: {r: 1, g: 0, b: 0, a: 1}
-  message_time: 1
+  _textSize: 20
+  _textColor: {r: 1, g: 0, b: 0, a: 1}
+  _messageTime: 1
+  _speedAnim: 5
+  _countTextPool: 100
+  _damageTextPrefab: {fileID: 853337589821176814, guid: 4cca78f0622d3d646b74706a94494b0b,
+    type: 3}
+  _poolPosition: {fileID: 1555271671}
   Text_Prefab: {fileID: 8965745211161935099, guid: 4cca78f0622d3d646b74706a94494b0b,
     type: 3}
 --- !u!1 &1417665524
@@ -26241,6 +26247,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5681e28f41ffa5a418b09b5634029b9c, type: 3}
+--- !u!1 &1555271670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1555271671}
+  m_Layer: 5
+  m_Name: PoolPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1555271671
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555271670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1415551953}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -702}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1556499742 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4578811248492446300, guid: 7502b14a301503d4298f18a179bb2bb2,
@@ -28658,8 +28699,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000005
-  m_Size: 0.16369939
+  m_Value: 1.0000006
+  m_Size: 0.165692
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

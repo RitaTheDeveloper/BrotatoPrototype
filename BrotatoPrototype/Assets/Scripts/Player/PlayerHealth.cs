@@ -122,11 +122,11 @@ public class PlayerHealth : LivingEntity
                 }
                 else
                 {
-                    var resultDamage = GetDamageAfterArmor(damage, _armor);
-                    base.TakeHit(resultDamage, isCrit, false);
-                    PlaySoundOfTakeHit();
-                    TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
-                    Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+                    //var resultDamage = GetDamageAfterArmor(damage, _armor);
+                    //base.TakeHit(resultDamage, isCrit, false);
+                    //PlaySoundOfTakeHit();
+                    //TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
+                    //Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
                 }
 
                 canTakeDmg = true;
