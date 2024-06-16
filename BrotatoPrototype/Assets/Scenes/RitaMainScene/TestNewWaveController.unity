@@ -18580,7 +18580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 85.00001}
+  m_AnchoredPosition: {x: 0, y: 84.99086}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -28849,8 +28849,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.16565141
+  m_Value: 1.0000213
+  m_Size: 0.16565941
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39832,7 +39832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveTime: 30
+  _waveTime: 20
   _amountOfGoldPerWave: 100
   _amountOfExpPerWave: 50
   _enemyStrengthFactors:
@@ -39841,29 +39841,23 @@ MonoBehaviour:
     healthFactor: 1
   enemySpawnerSettings:
   - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 20
-    amountOfEnemiesInPack: 5
-    startSpawnTime: 1
-    endSpawnTime: 1
-  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 10
-    amountOfEnemiesInPack: 5
-    startSpawnTime: 1
-    endSpawnTime: 1
-  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 5
+    spawnCd: 0
+    totalAmountOfEnemies: 15
     amountOfEnemiesInPack: 1
     startSpawnTime: 1
-    endSpawnTime: 0
-  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 2
+    endSpawnTime: 5
+  - enemy: {fileID: 2217476828117351108, guid: a5738f9a1d6173644864a94d6e3ac333, type: 3}
+    spawnCd: 0
+    totalAmountOfEnemies: 30
     amountOfEnemiesInPack: 1
     startSpawnTime: 1
-    endSpawnTime: 15
+    endSpawnTime: 5
+  - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23, type: 3}
+    spawnCd: 0
+    totalAmountOfEnemies: 15
+    amountOfEnemiesInPack: 5
+    startSpawnTime: 1
+    endSpawnTime: 5
 --- !u!222 &7407394104409435115
 CanvasRenderer:
   m_ObjectHideFlags: 0

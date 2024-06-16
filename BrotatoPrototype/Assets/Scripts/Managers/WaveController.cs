@@ -73,6 +73,12 @@ public class WaveController : MonoBehaviour
         }
     }
 
+    public int GetAmountOfTotalEnemiesPerWave()
+    {
+        return _amountOfEnemiesForAllSpawners;
+    }
+
+
     private void AllSpawnersOn()
     {
         //_enemySpawners = new List<EnemySpawner>();
@@ -108,7 +114,6 @@ public class WaveController : MonoBehaviour
             EnemySpawner enemySpawner = mobSpawner.AddComponent<EnemySpawner>();
 
             enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack);
-            Debug.Log("enemyspawner");
         }
         Destroy(mobSpawnerPrefab);
     }

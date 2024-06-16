@@ -37,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform _target;
     float _timeUntilSpawn;
     private WaveController _waveController;
+    private int countOfEnemies = 0;
 
     private void Awake()
     {
@@ -101,13 +102,14 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            return Random.Range(_minSpawnTime, _maxSpawnTime);
+            //return Random.Range(_minSpawnTime, _maxSpawnTime);
+            return _minSpawnTime;
         }
     }
 
     private void SpawnEnemy(Vector3 position)
     {
-        PlaySoundOfSpawnEnemy();
+        //PlaySoundOfSpawnEnemy();
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
         var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
@@ -116,22 +118,23 @@ public class EnemySpawner : MonoBehaviour
         enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
         enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
         _waveController.counterOfMobs++;
-        Debug.Log("заспавнен " + _waveController.counterOfMobs);
+        Debug.Log("заспавнен " + _waveController.counterOfMobs + "; время " + (_waveController.time - _waveController.GetCurrentTime()));
     }
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (_waveController.CurrentTime >= _endSpawnTime + SpawnTime() && _target)
+        while (_waveController.CurrentTime >= _endSpawnTime + SpawnTime() && countOfEnemies < _waveController.GetAmountOfTotalEnemiesPerWave() && _target)
         {
-            _timeUntilSpawn = SpawnTime();
+            _timeUntilSpawn = SpawnTime() - Time.fixedDeltaTime;
             float timeMark = _timeUntilSpawn - markDisplayTime;
             float timeSpawnenemy = markDisplayTime;
             if(timeMark < 0)
             {
-                timeMark = 0;
+                timeMark = 0f;
                 timeSpawnenemy = _timeUntilSpawn;
             }
             // делаем марку
+            
             yield return new WaitForSeconds(timeMark);
             Vector3 positionEnemy;
             Vector3 point;
@@ -149,13 +152,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 mark.transform.parent = transform;
             }
-            
+
 
             // спавним врага
             yield return new WaitForSeconds(timeSpawnenemy);
             isBeginningOfWave = false;
             DestroyMark(mark);
             SpawnEnemy(positionEnemy);
+            countOfEnemies++;
         }
     }
 
