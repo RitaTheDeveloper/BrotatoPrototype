@@ -10,26 +10,22 @@ public class TextDamage : MonoBehaviour
     private Camera _camera;
 
     private Vector3 _poolPosition;
+    private Vector3 _pos;
 
     private float _timer;
     private float _time;
 
-    private float _speed;
-
-    public bool IsActive { get; private set; }
-
-    public void InitText(float speed, Vector3 poolPosition, TemporaryMessageManager manager, Camera camera)
+    public void InitText(Vector3 poolPosition, TemporaryMessageManager manager, Camera camera)
     {
         _text = GetComponent<TMP_Text>();
 
-        _speed = speed;
         _poolPosition = poolPosition;
         _manager = manager;
         _camera = camera;
 
         _text.gameObject.SetActive(false);
 
-        IsActive = false;
+        _pos = transform.position;
     }
 
     public void SetSettings(Color color, int sizeText, string text, Vector3 startPosition, float lifeTime)
@@ -41,11 +37,11 @@ public class TextDamage : MonoBehaviour
         _text.text = text;
 
         transform.position = _camera.WorldToScreenPoint(startPosition);
+        _pos = startPosition;
     }
 
     public void StartAnim()
     {
-        IsActive = true;
         _text.gameObject.SetActive(true);
 
         StartCoroutine(AnimateText());
@@ -53,12 +49,23 @@ public class TextDamage : MonoBehaviour
 
     private IEnumerator AnimateText()
     {
+        Color color;
+        float delta;
+        Vector3 pos;
+
         while (true)
         {
             if (_time >= _timer)
                 break;
 
-            transform.position += _speed * Time.deltaTime * new Vector3(1, 1, 0);
+            color = _text.color;
+            color.a = _timer > _time ? _timer - _time : 0;
+            _text.color = color;
+
+            delta = _timer - (_time / _timer);
+            pos = _pos + new Vector3(delta, delta, 0);
+
+            _text.transform.position = _camera.WorldToScreenPoint(pos);
 
             yield return null;
 
@@ -66,7 +73,6 @@ public class TextDamage : MonoBehaviour
         }
 
         _time = 0;
-        IsActive = false;
         _text.gameObject.SetActive(false);
         _manager.AddQueue(this);
     }
