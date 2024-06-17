@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
-    private float _startAnimationSpeed;
+    protected float _startAnimationSpeed;
     protected float _currentTimeOfAttack;
 
     protected float _currentAnimationTime;
@@ -167,7 +167,8 @@ public class Weapon : MonoBehaviour
     }
     protected void SetAnimationSpeed()
     {
-        animator.speed = _currentAnimationTime;
+        animator.speed = 1 + (1 - (_currentAnimationTime / (_startAnimationSpeed / 100) / 100));
+        Debug.Log(animator.speed);
     }
 
     public void PlaySoundAttack()

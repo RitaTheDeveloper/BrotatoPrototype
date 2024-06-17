@@ -64,6 +64,7 @@ public class MeleeWeapon : Weapon
         if (_timer >= _currentAnimationTime)
         {
             _collider.enabled = false;
+            animator.speed = 1;
             RotateWeaponHolder();
         }
     }
