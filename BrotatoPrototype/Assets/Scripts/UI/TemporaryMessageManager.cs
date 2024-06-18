@@ -9,7 +9,6 @@ public class TemporaryMessageManager : MonoBehaviour
     [Space(5)]
     [SerializeField] private int _countTextPool = 30;
     [SerializeField] private TextDamage _damageTextPrefab;
-    [SerializeField] private Transform _poolPosition;
 
     private Transform _currentTransform;
     private Camera _camera;
@@ -27,7 +26,7 @@ public class TemporaryMessageManager : MonoBehaviour
         for (int i = 0; i < _countTextPool; i++)
         {
             TextDamage newText = Instantiate(_damageTextPrefab, _currentTransform);
-            newText.InitText(_poolPosition.position, this, _camera);
+            newText.InitText(this, _camera);
             AddQueue(newText);
         }
     }

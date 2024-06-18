@@ -9,17 +9,15 @@ public class TextDamage : MonoBehaviour
     private TemporaryMessageManager _manager;
     private Camera _camera;
 
-    private Vector3 _poolPosition;
     private Vector3 _pos;
 
     private float _timer;
     private float _time;
 
-    public void InitText(Vector3 poolPosition, TemporaryMessageManager manager, Camera camera)
+    public void InitText(TemporaryMessageManager manager, Camera camera)
     {
         _text = GetComponent<TMP_Text>();
 
-        _poolPosition = poolPosition;
         _manager = manager;
         _camera = camera;
 
