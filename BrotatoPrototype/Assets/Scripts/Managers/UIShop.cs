@@ -369,7 +369,7 @@ public class UIShop : MonoBehaviour
         dimmingPanel.SetActive(isIconPressed);
         Vector2 position = new Vector2(posBtn.x - Screen.width / 10, positionOfInfoPanel.position.y);
         _currentInfoItem = Instantiate(weaponInfoPrefab, position, Quaternion.identity, canvas);
-        _currentInfoItem.GetComponent<WeaponInfoPanel>().SetUp(_info);
+        _currentInfoItem.GetComponent<ItemInfoPanel>().SetUp(_info);
     }
 
     public void DisplayItemInfo(ItemShopInfo _info, bool isIconPressed, Vector2 posBtn)
