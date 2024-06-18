@@ -38,7 +38,6 @@ public class MeleeWeapon : Weapon
     {
         if (_timer > _currentAnimationTime + _currentDelayAttack && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
         {
-            _timer = 0;
             SetAttackSpeed();
             SetAnimationSpeed();
             SetDamage();
@@ -46,6 +45,7 @@ public class MeleeWeapon : Weapon
 
             RotateWeaponHolder();
             Attack();
+            _timer = 0;
 
             // крит или не крит
             if (Random.value < currentCritChance)
@@ -66,7 +66,6 @@ public class MeleeWeapon : Weapon
         {
             _collider.enabled = false;
             animator.speed = 1;
-            //RotateWeaponHolder();
         }
     }
 

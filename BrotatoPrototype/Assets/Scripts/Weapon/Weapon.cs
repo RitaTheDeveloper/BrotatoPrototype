@@ -46,7 +46,9 @@ public class Weapon : MonoBehaviour
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
-    protected float _startAnimationSpeed;
+    protected float _startAnimationTime;
+    protected float _startDelayTime;
+    protected float _currentTimeLoop;
     protected float _currentTimeOfAttack;
 
     protected float _currentAnimationTime;
@@ -74,7 +76,8 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < myAnimatorClip.animationClips.Length; i++)
             myTime = myAnimatorClip.animationClips[i].length;
 
-        _startAnimationSpeed = myTime;
+        _startAnimationTime = myTime;
+        _startDelayTime = _timeLoop - _startAnimationTime;
 
         SetAttackSpeed();
         SetCritChance();
@@ -132,9 +135,10 @@ public class Weapon : MonoBehaviour
 
     protected void SetAttackSpeed()
     {
-        _currentAnimationTime = _startAnimationSpeed - _startAnimationSpeed * (playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f);
-        Debug.Log(_currentAnimationTime + "   " + playerCharacteristics.CurrentAttackSpeedPercentage);
-        _currentDelayAttack = (_timeLoop - _startAnimationSpeed) * (1 - playerCharacteristics.CurrentAttackSpeedPercentage / 100f - startAttackSpeed / 100f);
+        float mod = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
+        _currentAnimationTime = _startAnimationTime / mod;
+        _currentDelayAttack = _startDelayTime / mod;
+        _currentTimeLoop = _currentDelayAttack + _currentAnimationTime;
     }
 
     protected void SetCritChance()
@@ -168,8 +172,7 @@ public class Weapon : MonoBehaviour
     }
     protected void SetAnimationSpeed()
     {
-        animator.speed = 1 + (_currentAnimationTime / (_startAnimationSpeed / 100) / 100);
-        Debug.Log(animator.speed);
+        animator.speed = 1 + (_currentAnimationTime / (_startAnimationTime / 100) / 100);
     }
 
     public void PlaySoundAttack()
