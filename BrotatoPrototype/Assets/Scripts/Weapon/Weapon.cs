@@ -132,7 +132,8 @@ public class Weapon : MonoBehaviour
 
     protected void SetAttackSpeed()
     {
-        _currentAnimationTime = _startAnimationSpeed * (1 - playerCharacteristics.CurrentAttackSpeedPercentage / 100f - startAttackSpeed / 100f);
+        _currentAnimationTime = _startAnimationSpeed - _startAnimationSpeed * (playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f);
+        Debug.Log(_currentAnimationTime + "   " + playerCharacteristics.CurrentAttackSpeedPercentage);
         _currentDelayAttack = (_timeLoop - _startAnimationSpeed) * (1 - playerCharacteristics.CurrentAttackSpeedPercentage / 100f - startAttackSpeed / 100f);
     }
 
@@ -167,7 +168,7 @@ public class Weapon : MonoBehaviour
     }
     protected void SetAnimationSpeed()
     {
-        animator.speed = 1 + (1 - (_currentAnimationTime / (_startAnimationSpeed / 100) / 100));
+        animator.speed = 1 + (_currentAnimationTime / (_startAnimationSpeed / 100) / 100);
         Debug.Log(animator.speed);
     }
 

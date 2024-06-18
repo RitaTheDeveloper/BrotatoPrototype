@@ -36,7 +36,7 @@ public class MeleeWeapon : Weapon
 
     private void FixedUpdate()
     {
-        if (_timer > _timeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
+        if (_timer > _currentAnimationTime + _currentDelayAttack && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
         {
             _timer = 0;
             SetAttackSpeed();
@@ -44,6 +44,7 @@ public class MeleeWeapon : Weapon
             SetDamage();
             SetCritChance();
 
+            RotateWeaponHolder();
             Attack();
 
             // крит или не крит
@@ -65,7 +66,7 @@ public class MeleeWeapon : Weapon
         {
             _collider.enabled = false;
             animator.speed = 1;
-            RotateWeaponHolder();
+            //RotateWeaponHolder();
         }
     }
 
