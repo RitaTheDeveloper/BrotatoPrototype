@@ -14,11 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] public WaveSetting[] listOfWaveSetting;
+    public List<WaveSetting> listOfWaveSetting;
+    
     //[SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
-
+    [SerializeField] private ManagerOfWaves _managerOfWaves;
     private int _currentDifficulty;
     public GameObject player;
     private int _waveCounter;
@@ -47,10 +48,13 @@ public class GameManager : MonoBehaviour
         {
             ResetProgress();
         }
-        foreach (WaveSetting waveC2 in listOfWaveSetting)
-        {
-            waveC2.CreateWave();
-        }
+        listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
+        _managerOfWaves.CreateWaves();
+        
+        //foreach (WaveSetting waveC2 in _listOfWaveSetting)
+        //{
+        //   // waveC2.CreateWave();
+        //}
     }
     private void Start()
     {
@@ -83,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
     public int GetMaxWave()
     {
-        return listOfWaveSetting.Length;
+        return listOfWaveSetting.Count;
     }
     
     public void SetHeroIndex(int index)
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
        //StopTime();
         _waveCounter++;
         //if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
-        if (_waveCounter == listOfWaveSetting.Length)
+        if (_waveCounter == listOfWaveSetting.Count)
         {
             Win();
         }

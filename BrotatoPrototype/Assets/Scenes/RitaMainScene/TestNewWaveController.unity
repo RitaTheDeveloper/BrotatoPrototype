@@ -14005,6 +14005,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dba91dbe79afce469d7b4f8611d5928, type: 3}
+--- !u!1 &721492484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721492486}
+  - component: {fileID: 721492485}
+  m_Layer: 0
+  m_Name: ManagerOfWaves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &721492485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721492484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listOfWaveSettings:
+  - _waveTime: 15
+    _amountOfGoldPerWave: 100
+    _amountOfExpPerWave: 100
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 0
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 0
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - _waveTime: 15
+    _amountOfGoldPerWave: 100
+    _amountOfExpPerWave: 100
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 0
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 0
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+--- !u!4 &721492486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721492484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728071405
 GameObject:
   m_ObjectHideFlags: 0
@@ -17411,10 +17516,25 @@ MonoBehaviour:
   - {fileID: 6707278682496988613, guid: a6ebd1d29565f2544ae81938e53539a0, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
   listOfWaveSetting:
-  - {fileID: 7324628365487239233}
-  - {fileID: 1409487028}
+  - _waveTime: 30
+    _amountOfGoldPerWave: 100
+    _amountOfExpPerWave: 100
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings: []
+  - _waveTime: 30
+    _amountOfGoldPerWave: 100
+    _amountOfExpPerWave: 100
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings: []
   _currentWave: {fileID: 1261627754217777942}
   shop: {fileID: 3800595267031063961}
+  _managerOfWaves: {fileID: 721492485}
   player: {fileID: 0}
   MasterAudioMixer: {fileID: 24300002, guid: 4d62165522bb0d34c96026611e34eb2c, type: 2}
   MusicAudioMixer: {fileID: 6532294489665921160, guid: 4d62165522bb0d34c96026611e34eb2c,
@@ -18580,7 +18700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99086}
+  m_AnchoredPosition: {x: 0, y: 83.136215}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -24889,38 +25009,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveTime: 20
-  _amountOfGoldPerWave: 120
+  _waveTime: 30
+  _amountOfGoldPerWave: 100
   _amountOfExpPerWave: 100
   _enemyStrengthFactors:
-    speedFactor: 0.5
-    damageFactor: 2
-    healthFactor: 1.5
+    speedFactor: 1
+    damageFactor: 1
+    healthFactor: 1
   enemySpawnerSettings:
-  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 20
-    amountOfEnemiesInPack: 5
-    startSpawnTime: 1
-    endSpawnTime: 1
-  - enemy: {fileID: 5524622784430426492, guid: 78bcada3a6b9ffc438e2278f8cc6257d, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 10
-    amountOfEnemiesInPack: 5
-    startSpawnTime: 1
-    endSpawnTime: 1
-  - enemy: {fileID: 2217476828117351108, guid: a5738f9a1d6173644864a94d6e3ac333, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 5
-    amountOfEnemiesInPack: 1
-    startSpawnTime: 1
-    endSpawnTime: 0
-  - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23, type: 3}
-    spawnCd: 3
-    totalAmountOfEnemies: 2
-    amountOfEnemiesInPack: 1
-    startSpawnTime: 1
-    endSpawnTime: 15
+  - {enemy: {fileID: 0}, spawnCd: -1, totalAmountOfEnemies: -1, amountOfEnemiesInPack: 1, radiusOfPack: 0, startSpawnTime: 0, endSpawnTime: 0, radiusOfPlayer: 0, isSpecificPoint: 0, specificPoint: {x: 0,
+      y: 0}}
+  wave: {fileID: 0}
 --- !u!1 &1414828646
 GameObject:
   m_ObjectHideFlags: 0
@@ -28849,8 +28948,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000213
-  m_Size: 0.16565941
+  m_Value: 1.0043546
+  m_Size: 0.1414946
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39820,44 +39919,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7324628365487239233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7683603469570634876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waveTime: 20
-  _amountOfGoldPerWave: 100
-  _amountOfExpPerWave: 50
-  _enemyStrengthFactors:
-    speedFactor: 1
-    damageFactor: 1
-    healthFactor: 1
-  enemySpawnerSettings:
-  - enemy: {fileID: 5223660492763062781, guid: 59292afea152d4744b3f644ea997ed48, type: 3}
-    spawnCd: 0
-    totalAmountOfEnemies: 15
-    amountOfEnemiesInPack: 1
-    startSpawnTime: 1
-    endSpawnTime: 5
-  - enemy: {fileID: 2217476828117351108, guid: a5738f9a1d6173644864a94d6e3ac333, type: 3}
-    spawnCd: 0
-    totalAmountOfEnemies: 30
-    amountOfEnemiesInPack: 1
-    startSpawnTime: 1
-    endSpawnTime: 5
-  - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23, type: 3}
-    spawnCd: 0
-    totalAmountOfEnemies: 15
-    amountOfEnemiesInPack: 5
-    startSpawnTime: 1
-    endSpawnTime: 5
 --- !u!222 &7407394104409435115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40144,7 +40205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2896623338388514879}
-  - component: {fileID: 7324628365487239233}
+  - component: {fileID: 7683603469570634877}
   m_Layer: 0
   m_Name: newWave1
   m_TagString: Untagged
@@ -40152,6 +40213,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7683603469570634877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7683603469570634876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveTime: 30
+  _amountOfGoldPerWave: 100
+  _amountOfExpPerWave: 100
+  _enemyStrengthFactors:
+    speedFactor: 1
+    damageFactor: 1
+    healthFactor: 1
+  enemySpawnerSettings:
+  - {enemy: {fileID: 0}, spawnCd: -1, totalAmountOfEnemies: -1, amountOfEnemiesInPack: 1, radiusOfPack: 4, startSpawnTime: 0, endSpawnTime: 0, radiusOfPlayer: 0, isSpecificPoint: 1, specificPoint: {x: 0,
+      y: 0}}
+  wave: {fileID: 0}
 --- !u!1 &7699365751780921586
 GameObject:
   m_ObjectHideFlags: 0
@@ -40729,6 +40813,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 415540025}
   - {fileID: 966859252}
+  - {fileID: 721492486}
   - {fileID: 7751840459001433222}
   - {fileID: 1641064066}
   - {fileID: 8501044091411880888}

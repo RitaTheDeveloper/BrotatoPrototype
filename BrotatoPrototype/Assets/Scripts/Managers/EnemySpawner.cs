@@ -22,10 +22,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _radiusFromPlayer = 15f;
 
     [Header("√алочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
-    [SerializeField] private bool isNotRandom = false;
+    [SerializeField] private bool _isNotRandom = false;
 
     [Header("≈сли спавнитс€ за раз больше одного юнита, укажите радиус этой кучки врагов")]
-    [SerializeField] private float radius = 2f;
+    [SerializeField] private float _radius = 2f;
 
     [SerializeField] private GameObject markPrefab;
     [SerializeField] private float markDisplayTime = 1f;
@@ -38,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
     float _timeUntilSpawn;
     private WaveController _waveController;
     private int countOfEnemies = 0;
+    private Vector3 _specificPoint;
 
     private void Awake()
     {
@@ -49,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _waveController = GameManager.instance.GetCurrentWave();
         _target = GameManager.instance.player.transform;
-        if (isNotRandom)
+        if (_isNotRandom)
         {
             randomPosition = transform.position;
         }
@@ -82,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
-    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack)
+    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint )
     {
         _enemyPrefab = enemyController.gameObject;
         _startSpawnTime = startSpawnTime;
@@ -90,6 +91,10 @@ public class EnemySpawner : MonoBehaviour
         _minSpawnTime = cdSpawn;
         _maxSpawnTime = cdSpawn;
         _amountOfEnemies = amountOfEnemiesInPack;
+        _isNotRandom = isSpecificPoint;
+        _radiusFromPlayer = radiusFromPlayer;
+        _radius = radiusOfPack;
+        _specificPoint = new Vector3(specificPoint.x, 0, specificPoint.y);
         markPrefab = _enemyPrefab.GetComponent<UnitParameters>().GetMark();
         Debug.Log("cd = " + cdSpawn);
     }
@@ -138,7 +143,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(timeMark);
             Vector3 positionEnemy;
             Vector3 point;
-            if (RandomPoint(randomPosition, radius, out point))
+            if (RandomPoint(randomPosition, _radius, out point))
             {
                 positionEnemy = point;
             }
@@ -216,7 +221,7 @@ public class EnemySpawner : MonoBehaviour
         while (_target)
         {
             yield return new WaitForSeconds(markDisplayTime);
-            if (isNotRandom)
+            if (_isNotRandom)
             {
                 randomPosition = transform.position;
             }
