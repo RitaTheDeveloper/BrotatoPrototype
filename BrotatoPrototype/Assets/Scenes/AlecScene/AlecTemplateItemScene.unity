@@ -8768,17 +8768,17 @@ PrefabInstance:
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
@@ -18600,7 +18600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.999985}
+  m_AnchoredPosition: {x: 0, y: 84.998985}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -28658,8 +28658,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.1656801
+  m_Value: 1.0000023
+  m_Size: 0.16568238
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33659,6 +33659,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8606885030035112093, guid: e39930af749676c45bba23852b18dde1,
+        type: 3}
+      propertyPath: baseItemList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606885030035112093, guid: e39930af749676c45bba23852b18dde1,
+        type: 3}
+      propertyPath: baseItemList.Array.data[0]
+      value: 
+      objectReference: {fileID: -5745586993335421465, guid: 41135ec4251073c45bdb06c38248d97f,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37322,8 +37333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddbc99b474027849999e7867e7a6a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemList:
-  - {fileID: -8907051537149127036, guid: 41135ec4251073c45bdb06c38248d97f, type: 3}
+  baseItemList:
+  - {fileID: -5745586993335421465, guid: 41135ec4251073c45bdb06c38248d97f, type: 3}
+  ItemList: []
   WeaponList:
   - {fileID: 5844762086061995874, guid: 4c47d4b1c879f584c962c3946f52bd99, type: 3}
   - {fileID: 5844762086061995874, guid: 4cd33e5b1d581e74a8e8be81717bb3e6, type: 3}
@@ -39683,17 +39695,17 @@ PrefabInstance:
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}

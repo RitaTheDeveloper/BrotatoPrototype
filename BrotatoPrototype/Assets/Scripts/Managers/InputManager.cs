@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    private readonly IItemFactory itemFactory = new ItemFactory();
+    public List<Item> baseItemList = new List<Item>();
+    public List<StandartItem> ItemList = new List<StandartItem>();
+
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameManager gameManager;
 
@@ -20,6 +25,8 @@ public class InputManager : MonoBehaviour
         }
 
         gameManager.onInit += GameStarted;
+
+        CreateItems();
     }
 
     private void GameStarted()
@@ -57,6 +64,25 @@ public class InputManager : MonoBehaviour
             case "Pause":
                 gameManager.PauseOnTriggered();
                 break;
+        }
+    }
+
+    private void CreateItems()
+    {
+        foreach (Item item in baseItemList)
+        {
+            Item itemT1 = itemFactory.CreateItem(item, TierType.FirstTier);
+            itemT1.SynchronizeAllCharacteristics();
+            ItemList.Add(itemT1.GetComponent<StandartItem>());
+            Item itemT2 = itemFactory.CreateItem(item, TierType.SecondTier);
+            itemT2.SynchronizeAllCharacteristics();
+            ItemList.Add(itemT2.GetComponent<StandartItem>());
+            Item itemT3 = itemFactory.CreateItem(item, TierType.ThirdTier);
+            itemT3.SynchronizeAllCharacteristics();
+            ItemList.Add(itemT3.GetComponent<StandartItem>());
+            Item itemT4 = itemFactory.CreateItem(item, TierType.FourthTier);
+            itemT4.SynchronizeAllCharacteristics();
+            ItemList.Add(itemT4.GetComponent<StandartItem>());
         }
     }
 }

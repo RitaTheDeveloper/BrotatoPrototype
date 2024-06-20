@@ -5,16 +5,16 @@ using UnityEngine;
 public class ItemTemplate : ScriptableObject
 {
     [Header("Tier templates")]
-    [SerializeField] private DataPerTier[] data;
+    [SerializeField] private TemplateData[] data;
 
     [Space(20)]
     [Header("Base step for each characteristic")]
-    [SerializeField] private BaseIncrementCharacteristics baseIncrement;
+    [SerializeField] private BaseCharacteristicsIncrement baseIncrement;
 
     [System.Serializable]
-    public class DataPerTier
+    public class TemplateData
     {
-        public RareItemsDataStruct tier;
+        public TierType tier;
         public float price;
         [Range(0.001f, 1000f)]
         public float baffStrength;
@@ -23,7 +23,7 @@ public class ItemTemplate : ScriptableObject
     }
 
     [System.Serializable]
-    public class BaseIncrementCharacteristics
+    public class BaseCharacteristicsIncrement
     {
         public float percentage = 0.005f;
         public float satiety = 0.05f;
@@ -40,20 +40,15 @@ public class ItemTemplate : ScriptableObject
         public float magneticRadius = 0.1f;
     }
 
-    public DataPerTier GetTierTemplateData(RareItemsDataStruct tier)
+    public TemplateData GetTemplateDataForSpecificTier(TierType tier)
     {
-        DataPerTier dataToReturn = new DataPerTier();
+        TemplateData dataToReturn = new TemplateData();
 
-        if (tier == null)
+        foreach(TemplateData specificData in data)
         {
-            throw new ArgumentNullException("ItemTemplate::GetTierTemplateData() Parameter cannot be null");
-        }
-
-        foreach(DataPerTier datum in data)
-        {
-            if (datum.tier == tier)
+            if (specificData.tier == tier)
             {
-                dataToReturn = datum;
+                dataToReturn = specificData;
                 break;
             }
         }
@@ -61,7 +56,7 @@ public class ItemTemplate : ScriptableObject
         return dataToReturn;
     }
 
-    public BaseIncrementCharacteristics GetBaseIncrement()
+    public BaseCharacteristicsIncrement GetBaseIncrement()
     {
         return baseIncrement;
     }

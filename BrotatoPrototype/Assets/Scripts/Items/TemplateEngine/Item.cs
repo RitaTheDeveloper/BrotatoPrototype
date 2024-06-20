@@ -1,25 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static ItemTemplate;
 
-public enum CharacteristicType
-{
-    Satiety,
-    MaxHealth,
-    RegenerationHP,
-    Dodge,
-    Armor,
-    MoveSpeed,
-    AttackSpeed,
-    Damage,
-    MeleeDamage,
-    RangeDamage,
-    ChanceOfCrit,
-    MagneticRadius
-};
-
-public class ItemCharacteristics : MonoBehaviour
+public class Item : MonoBehaviour
 {
     [Header("Name")]
     [SerializeField] private string inGameNameT1_3;
@@ -34,59 +19,44 @@ public class ItemCharacteristics : MonoBehaviour
 
     [Space]
     [Header("Item Characteristics")]
-
     [Header("Baff multipliers")]
     [SerializeField] private Baff[] baffs;
-
     [Header("Debaff multipliers")]
     [SerializeField] private Debaff[] debaffs;
 
-    [System.Serializable]
-    public class Baff
-    {
-        public CharacteristicType characteristic;
-        [Range(0.0001f, 10f)]
-        public float multiplier;
-    }
-
-    [System.Serializable]
-    public class Debaff
-    {
-        public CharacteristicType characteristic;
-        [Range(0.001f, 10f)]
-        public float multiplier;
-    }
+    // Item characteristics in %
+    private float satiety;
+    private float maxHealth;
+    private float regenerationHP;
+    private float dodge;
+    private float armor;
+    private float moveSpeed;
+    private float attackSpeed;
+    private float damage;
+    private float meleeDamage;
+    private float rangeDamage;
+    private float critChance;
+    private float magneticRadius;
+    public TierType tier = TierType.FirstTier;
+    private PlayerCharacteristics playerCharacteristics;
 
     private Dictionary<CharacteristicType, float> characteristicMap = new Dictionary<CharacteristicType, float>();
 
-    // Item characteristics bonus in %
-    public float satiety { get; private set; }
-    public float maxHealth { get; private set; }
-    public float regenerationHP { get; private set; }
-    public float dodge {  get; private set; }
-    public float armor { get; private set; }
-    public float moveSpeed { get; private set; }
-    public float attackSpeed { get; private set; }
-    public float damage { get; private set; }
-    public float meleeDamage { get; private set; }
-    public float rangeDamage { get; private set; }
-    public float critChance { get; private set; }
-    public float magneticRadius {  get; private set; }
-
-    private RareItemsDataStruct tier;
-
-    private PlayerCharacteristics playerCharacteristics;
-
+    public Item Initialize(TierType tier)
+    {
+        this.tier = tier;
+        Item instancedItem = Instantiate(this);
+        return instancedItem;
+    }
 
     [ContextMenu("CalculateAllCharacteristics")]
     public void CalculateAllChartacteristics()
     {
-        if (baffs.Length == 0 || debaffs.Length == 0) 
+        if (baffs.Length == 0 || debaffs.Length == 0)
             return;
 
-        tier = GetComponent<ItemShopInfo>().GetLevelItem();
-        DataPerTier data = itemTemplate.GetTierTemplateData(tier);
-        BaseIncrementCharacteristics baseIncrement = itemTemplate.GetBaseIncrement();
+        TemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier);
+        BaseCharacteristicsIncrement baseIncrement = itemTemplate.GetBaseIncrement();
         float totalMultiplier = CalculateTotalMultiplierForItem();
 
         foreach (Baff baff in baffs) 
@@ -110,7 +80,7 @@ public class ItemCharacteristics : MonoBehaviour
         return totalMultiplier;
     }
 
-    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseIncrementCharacteristics baseIncrement, float totalMultiplier, float baffStrength)
+    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicsIncrement baseIncrement, float totalMultiplier, float baffStrength)
     {
         switch (characteristic)
         {
@@ -206,4 +176,20 @@ public class ItemCharacteristics : MonoBehaviour
     {
         playerCharacteristics.SynchronizeCharacteristic(characteristic, value);
     }
+}
+
+[System.Serializable]
+public class Baff
+{
+    public CharacteristicType characteristic;
+    [Range(0.0001f, 10f)]
+    public float multiplier;
+}
+
+[System.Serializable]
+public class Debaff
+{
+    public CharacteristicType characteristic;
+    [Range(0.001f, 10f)]
+    public float multiplier;
 }
