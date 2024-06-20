@@ -10,6 +10,9 @@ public class ItemTemplate : ScriptableObject
     [Space(20)]
     [Header("Base step for each characteristic")]
     [SerializeField] private BaseCharacteristicsIncrement baseIncrement;
+    
+    [Space(40)]
+    [SerializeField] private TierPrefabPair[] TierPrefabPairs;
 
     [System.Serializable]
     public class TemplateData
@@ -40,6 +43,14 @@ public class ItemTemplate : ScriptableObject
         public float magneticRadius = 0.1f;
     }
 
+    [System.Serializable]
+    public class TierPrefabPair
+    {
+        public TierType tier;
+        public RareItemsDataStruct dataFromPefab;
+    }
+
+
     public TemplateData GetTemplateDataForSpecificTier(TierType tier)
     {
         TemplateData dataToReturn = new TemplateData();
@@ -56,8 +67,24 @@ public class ItemTemplate : ScriptableObject
         return dataToReturn;
     }
 
+    public RareItemsDataStruct GetPrefabDataForSpecificTier(TierType tier)
+    {
+        RareItemsDataStruct dataFromPrefab = null;
+        foreach (TierPrefabPair pair in TierPrefabPairs)
+        {
+            if ((pair.tier == tier))
+            {
+                dataFromPrefab = pair.dataFromPefab;
+                break;
+            }
+        }
+        return dataFromPrefab;
+    }
+
     public BaseCharacteristicsIncrement GetBaseIncrement()
     {
         return baseIncrement;
     }
 }
+
+

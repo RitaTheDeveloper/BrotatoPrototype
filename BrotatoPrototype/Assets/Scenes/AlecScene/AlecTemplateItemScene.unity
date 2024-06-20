@@ -18600,7 +18600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.998985}
+  m_AnchoredPosition: {x: 0, y: 84.999954}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -28658,8 +28658,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000023
-  m_Size: 0.16568238
+  m_Value: 1.0000001
+  m_Size: 0.16368406
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -30416,6 +30416,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5681e28f41ffa5a418b09b5634029b9c, type: 3}
+--- !u!1 &1808460596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808460598}
+  - component: {fileID: 1808460597}
+  m_Layer: 0
+  m_Name: ItemPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1808460597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808460596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962a441527c2a274d85982b936f1e990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseItemList:
+  - {fileID: -5745586993335421465, guid: 41135ec4251073c45bdb06c38248d97f, type: 3}
+  - {fileID: -5745586993335421465, guid: 027bc61810af57f41ad2b1d888662421, type: 3}
+  - {fileID: -5745586993335421465, guid: 27fd63935944292429bf91a17cb4ddd6, type: 3}
+  itemList: []
+  shopController: {fileID: 3800595267031063961}
+--- !u!4 &1808460598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808460596}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1812040596
 GameObject:
   m_ObjectHideFlags: 0
@@ -37333,8 +37383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddbc99b474027849999e7867e7a6a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseItemList:
-  - {fileID: -5745586993335421465, guid: 41135ec4251073c45bdb06c38248d97f, type: 3}
   ItemList: []
   WeaponList:
   - {fileID: 5844762086061995874, guid: 4c47d4b1c879f584c962c3946f52bd99, type: 3}
@@ -37389,11 +37437,7 @@ MonoBehaviour:
   - {fileID: 6810841495156152097, guid: 0a9f3980b9ba4ec47a58309dc18ffcfd, type: 3}
   ShopSizeList: 4
   CurrentShopLevel: 1
-  RareData:
-  - {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991, type: 3}
-  - {fileID: 7236866929510234708, guid: 3de72545a5f47cd47aeb016ecc89fde9, type: 3}
-  - {fileID: 7787498756051029337, guid: 4784f5abcf2f41b45bfb78b809b96ef2, type: 3}
-  - {fileID: 2311731021754216914, guid: 66775a3df39472143b9f0d3820a5599c, type: 3}
+  RareData: []
   DefaultRerollPrice: 1
   StepRerollPrice: 1
   CurrentRerollPrice: 2
@@ -40428,3 +40472,4 @@ SceneRoots:
   - {fileID: 118824994}
   - {fileID: 508146886}
   - {fileID: 1787733327}
+  - {fileID: 1808460598}

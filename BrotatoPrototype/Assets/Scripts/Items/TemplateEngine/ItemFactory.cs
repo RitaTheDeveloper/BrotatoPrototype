@@ -1,23 +1,34 @@
 
 using System;
+using UnityEngine;
 
 public class ItemFactory : IItemFactory
 {
+    public Transform parent;
+
     public Item CreateItem(Item baseItem, TierType tier)
     {
         switch (tier)
         {
             case TierType.FirstTier:
-                return baseItem.Initialize(TierType.FirstTier);//new Item(TierType.FirstTier);
+                Item itemT1 = baseItem.Initialize(TierType.FirstTier, parent);
+                itemT1.SynchronizeComponents();
+                return itemT1;
                  
             case TierType.SecondTier:
-                return baseItem.Initialize(TierType.SecondTier);//new Item(TierType.SecondTier);
+                Item itemT2 = baseItem.Initialize(TierType.SecondTier, parent);
+                itemT2.SynchronizeComponents();
+                return itemT2;
 
             case TierType.ThirdTier:
-                return baseItem.Initialize(TierType.ThirdTier);//new Item(TierType.ThirdTier);
+                Item itemT3 = baseItem.Initialize(TierType.ThirdTier, parent);
+                itemT3.SynchronizeComponents();
+                return itemT3;
 
             case TierType.FourthTier:
-                return baseItem.Initialize(TierType.FourthTier);// new Item(TierType.FourthTier);
+                Item itemT4 = baseItem.Initialize(TierType.FourthTier, parent);
+                itemT4.SynchronizeComponents();
+                return itemT4;
 
             default: 
                 throw new NotSupportedException($"item of type {baseItem} : {tier} not supported");
@@ -25,8 +36,4 @@ public class ItemFactory : IItemFactory
 
     }
 
-    public void SynchronizeAllCharacteristics(Item item, TierType tier)
-    {
-        throw new System.NotImplementedException();
-    }
 }

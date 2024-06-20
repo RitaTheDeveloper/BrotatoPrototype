@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour, IShopController
 {
-    private readonly IItemFactory itemFactory = new ItemFactory();
 
     public static ShopController instance; 
-    public List<Item> baseItemList = new List<Item>();
     public List<StandartItem> ItemList = new List<StandartItem>();
     public List<Weapon> WeaponList = new List<Weapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
@@ -64,22 +62,6 @@ public class ShopController : MonoBehaviour, IShopController
     {
         //Init();
         //UpdateShop();
-        CreateItems();
-    }
-
-    private void CreateItems()
-    {
-        foreach( Item item in baseItemList ) 
-        {
-            Item itemT1 = itemFactory.CreateItem(item, TierType.FirstTier);
-            ItemList.Add(itemT1.GetComponent<StandartItem>());
-            Item itemT2 = itemFactory.CreateItem(item, TierType.SecondTier);
-            ItemList.Add(itemT2.GetComponent<StandartItem>());
-            Item itemT3 = itemFactory.CreateItem(item, TierType.ThirdTier);
-            ItemList.Add(itemT3.GetComponent<StandartItem>());
-            Item itemT4 = itemFactory.CreateItem(item, TierType.FourthTier);
-            ItemList.Add(itemT4.GetComponent<StandartItem>());
-        }
     }
 
     public void Init()
