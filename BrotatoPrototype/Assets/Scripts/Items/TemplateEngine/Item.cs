@@ -9,7 +9,9 @@ public class Item : MonoBehaviour
     [SerializeField] private string inGameNameT1_3;
     [SerializeField] private string inGameNameT4;
     [Header("Icon")]
-    [SerializeField] private Sprite iconT1_3;
+    [SerializeField] private Sprite iconT1;
+    [SerializeField] private Sprite iconT2;
+    [SerializeField] private Sprite iconT3;
     [SerializeField] private Sprite iconT4;
 
     [Space]
@@ -42,15 +44,13 @@ public class Item : MonoBehaviour
      * To do this needs refactor UI-item's view*/
     private PlayerCharacteristics playerCharacteristics;
 
-    [Space(40)]
-    [Header("Current properties")]
-    public TierType tier = TierType.FirstTier;
-    public string gameName;
-    public string editorName;
-    private Sprite icon;
+    [HideInInspector] public TierType tier = TierType.FirstTier;
+    [HideInInspector] public string gameName;
+    [HideInInspector] public string editorName;
+    [HideInInspector] public Sprite icon;
     private Dictionary<CharacteristicType, float> characteristicMap = new Dictionary<CharacteristicType, float>();
 
-    public Item Initialize(TierType tier, Transform parent)
+    public Item Initialize(TierType tier)
     {
         this.tier = tier;
 
@@ -58,17 +58,17 @@ public class Item : MonoBehaviour
         {
             case TierType.FirstTier:
                 gameName = inGameNameT1_3;
-                icon = iconT1_3;
+                icon = iconT1;
                 break;
 
             case TierType.SecondTier:
                 gameName = inGameNameT1_3;
-                icon = iconT1_3;
+                icon = iconT2;
                 break;
 
             case TierType.ThirdTier:
                 gameName = inGameNameT1_3;
-                icon = iconT1_3;
+                icon = iconT3;
                 break;
 
             case TierType.FourthTier:
@@ -80,7 +80,7 @@ public class Item : MonoBehaviour
 
         AddSuffixToEditorName(tier);
 
-        Item instancedItem = Instantiate(this, parent);
+        Item instancedItem = Instantiate(this);
         RenameInstance(instancedItem, editorName);
         return instancedItem;
     }
@@ -278,6 +278,7 @@ public class Item : MonoBehaviour
         standartItem.IdItem = editorName;
     }
 
+    
 }
 
 [System.Serializable]
