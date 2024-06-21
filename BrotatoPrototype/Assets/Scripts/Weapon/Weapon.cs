@@ -172,7 +172,7 @@ public class Weapon : MonoBehaviour
     }
     protected void SetAnimationSpeed()
     {
-        animator.speed = 1 + (_currentAnimationTime / (_startAnimationTime / 100) / 100);
+        animator.speed = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
     }
 
     public void PlaySoundAttack()
