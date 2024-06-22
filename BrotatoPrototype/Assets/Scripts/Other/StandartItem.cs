@@ -11,18 +11,6 @@ public class StandartItem : MonoBehaviour
     [SerializeField] public PlayerCharacteristics CharacteristicsItem;
     [SerializeField] public ItemShopInfo ShopInfoItem;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private int currentPrice;
 
     public int GetPrice(int wave)
