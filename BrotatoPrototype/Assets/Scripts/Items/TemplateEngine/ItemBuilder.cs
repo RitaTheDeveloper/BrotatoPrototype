@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class ItemFactory : IItemFactory
+public class ItemBuilder : IItemBuilder
 {
     public Item CreateItem(Item baseItem, TierType tier)
     {

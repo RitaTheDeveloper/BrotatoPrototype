@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-public interface IItemFactory 
+public interface IItemBuilder 
 {
     Item CreateItem(Item baseItem, TierType tier);
 
