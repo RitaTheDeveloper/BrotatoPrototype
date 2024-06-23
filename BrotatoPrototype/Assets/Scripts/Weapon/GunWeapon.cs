@@ -34,7 +34,7 @@ public class GunWeapon : Weapon
 
     private void FixedUpdate()
     {
-        if (_timer > _timeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
+        if (_timer > _currentTimeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
             Attack();
 
         _timer += Time.fixedDeltaTime;

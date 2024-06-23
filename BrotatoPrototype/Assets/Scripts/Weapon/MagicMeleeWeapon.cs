@@ -24,7 +24,7 @@ public class MagicMeleeWeapon : MeleeWeapon
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime)
+        if (_timer > _currentTimeLoop)
         {
             Attack();
             //_nextShotTime = Time.time + 1 / currentAttackSpeed;
@@ -32,7 +32,7 @@ public class MagicMeleeWeapon : MeleeWeapon
 
         _timer += Time.deltaTime;
 
-        if(_timer >= 0.5f && drawRadius)
+        if(_timer >= _currentAnimationTime && drawRadius)
             drawRadius.gameObject.SetActive(false);
     }
 
@@ -54,7 +54,6 @@ public class MagicMeleeWeapon : MeleeWeapon
 
         _timer = 0f;
 
-        //base.Attack();
         PlaySoundAttack();
     }
 }

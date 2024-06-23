@@ -27,11 +27,10 @@ public class MeleeWeapon : Weapon
     {
         FindTheNearestEnemy();
 
-        //if (_timer >= _currentAnimationTime)
-        //{
-        //    Debug.Log("Yes");
-        //    RotateWeaponHolder();
-        //}
+        if (nearestEnemy)
+        {
+            RotateWeaponHolder();
+        }
     }
 
     private void FixedUpdate()
@@ -43,7 +42,6 @@ public class MeleeWeapon : Weapon
             SetDamage();
             SetCritChance();
 
-            RotateWeaponHolder();
             Attack();
             _timer = 0;
 
