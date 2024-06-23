@@ -29,7 +29,9 @@ public class GunWeapon : Weapon
     private void Update()
     {
         FindTheNearestEnemy();
-        RotateWeaponHolder();
+
+        if(_timer > _currentAnimationTime)
+            RotateWeaponHolder();
     }
 
     private void FixedUpdate()

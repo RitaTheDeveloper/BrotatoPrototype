@@ -27,10 +27,8 @@ public class MeleeWeapon : Weapon
     {
         FindTheNearestEnemy();
 
-        if (nearestEnemy)
-        {
+        if (_timer > _currentAnimationTime)
             RotateWeaponHolder();
-        }
     }
 
     private void FixedUpdate()
