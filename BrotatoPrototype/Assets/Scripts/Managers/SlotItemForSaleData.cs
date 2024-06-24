@@ -128,8 +128,8 @@ public class SlotItemForSaleData : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         image.sprite = newSprite;
         yield return new WaitForSeconds(0.6f);
-        _potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
-        _potAnimator.gameObject.SetActive(false);
-        
+        //ImageAlphaOff();
+        //_potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
+        //_potAnimator.gameObject.SetActive(false);
     }
 }

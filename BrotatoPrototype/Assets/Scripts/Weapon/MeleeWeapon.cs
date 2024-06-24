@@ -27,22 +27,21 @@ public class MeleeWeapon : Weapon
     {
         FindTheNearestEnemy();
 
-        if (_timer >= _currentTimeOfAttack)
-        {
+        if (_timer > _currentAnimationTime)
             RotateWeaponHolder();
-        }
     }
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
-        {            
+        if (_timer > _currentAnimationTime + _currentDelayAttack && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
+        {
             SetAttackSpeed();
-            SetAnimationSpeed(currentAttackSpeed);
-            SetTimeOfAnimation(currentAttackSpeed);
+            SetAnimationSpeed();
             SetDamage();
             SetCritChance();
+
             Attack();
+            _timer = 0;
 
             // крит или не крит
             if (Random.value < currentCritChance)
@@ -53,17 +52,16 @@ public class MeleeWeapon : Weapon
             {
                 isCritDamage = false;
             }
-
-            _nextShotTime = Time.time + 1 / currentAttackSpeed;
         }
 
         _timer += Time.deltaTime;
 
         // прекратить наносить урон
 
-        if (_timer >= _currentTimeOfAttack)
+        if (_timer >= _currentAnimationTime)
         {
             _collider.enabled = false;
+            animator.speed = 1;
         }
     }
 
@@ -75,6 +73,7 @@ public class MeleeWeapon : Weapon
             _timer = 0;
             animator.SetTrigger("Hit");
         }            
+
         base.Attack();
     }
 
