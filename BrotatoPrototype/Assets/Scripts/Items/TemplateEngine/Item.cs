@@ -221,7 +221,8 @@ public class Item : MonoBehaviour
     private float Calculate(float baseCharacteristicIncrement ,float multiplier, float baffStrength)
     {
         float totalMultiplier = CalculateTotalMultiplierForItem();
-        return baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength;
+        float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength;
+        return Mathf.Round(result * 100.0f) * 0.01f;
     }
 
     [ContextMenu("SynchonizeAllCharacteristics")]

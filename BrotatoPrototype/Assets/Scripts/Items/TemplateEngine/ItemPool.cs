@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class ItemPool : MonoBehaviour
     {
         if(shopController == null)
         {
-            shopController = FindObjectOfType<ShopController>();
+            throw new NotSupportedException($"{shopController} must be valid.");
         }
 
         CreateItems();
