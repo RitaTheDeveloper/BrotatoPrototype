@@ -14043,7 +14043,7 @@ MonoBehaviour:
       damageFactor: 1
       healthFactor: 1
     enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
         type: 3}
       spawnCd: -1
       totalAmountOfEnemies: 30
@@ -14054,7 +14054,7 @@ MonoBehaviour:
       radiusOfPlayer: 30
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
         type: 3}
       spawnCd: -1
       totalAmountOfEnemies: 30
@@ -18700,7 +18700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 83.136215}
+  m_AnchoredPosition: {x: 0, y: 84.999855}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -24974,7 +24974,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1409487027}
-  - component: {fileID: 1409487028}
   m_Layer: 0
   m_Name: newWave2
   m_TagString: Untagged
@@ -24997,29 +24996,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1641064066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1409487028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409487026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waveTime: 30
-  _amountOfGoldPerWave: 100
-  _amountOfExpPerWave: 100
-  _enemyStrengthFactors:
-    speedFactor: 1
-    damageFactor: 1
-    healthFactor: 1
-  enemySpawnerSettings:
-  - {enemy: {fileID: 0}, spawnCd: -1, totalAmountOfEnemies: -1, amountOfEnemiesInPack: 1, radiusOfPack: 0, startSpawnTime: 0, endSpawnTime: 0, radiusOfPlayer: 0, isSpecificPoint: 0, specificPoint: {x: 0,
-      y: 0}}
-  wave: {fileID: 0}
 --- !u!1 &1414828646
 GameObject:
   m_ObjectHideFlags: 0
@@ -28948,8 +28924,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0043546
-  m_Size: 0.1414946
+  m_Value: 1.0000002
+  m_Size: 0.165692
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -40205,7 +40181,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2896623338388514879}
-  - component: {fileID: 7683603469570634877}
   m_Layer: 0
   m_Name: newWave1
   m_TagString: Untagged
@@ -40213,29 +40188,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7683603469570634877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7683603469570634876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0074eb2c144e834fae808f63236e436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waveTime: 30
-  _amountOfGoldPerWave: 100
-  _amountOfExpPerWave: 100
-  _enemyStrengthFactors:
-    speedFactor: 1
-    damageFactor: 1
-    healthFactor: 1
-  enemySpawnerSettings:
-  - {enemy: {fileID: 0}, spawnCd: -1, totalAmountOfEnemies: -1, amountOfEnemiesInPack: 1, radiusOfPack: 4, startSpawnTime: 0, endSpawnTime: 0, radiusOfPlayer: 0, isSpecificPoint: 1, specificPoint: {x: 0,
-      y: 0}}
-  wave: {fileID: 0}
 --- !u!1 &7699365751780921586
 GameObject:
   m_ObjectHideFlags: 0
