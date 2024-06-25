@@ -186,7 +186,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("Не могу найти позицию 1");
             position = Vector3.zero;
         }
 

@@ -56,7 +56,7 @@ public class CharacteristicsUI : MonoBehaviour
         parameterOfDamagePercentage.text = _playerCharacteristics.CurrentDamagePercentage.ToString();
 
         // for melleeDamage
-        parameterOfMelleeDamage.text = _playerCharacteristics.CurrentMelleeDamage.ToString();
+        parameterOfMelleeDamage.text = _playerCharacteristics.CurrentMeleeDamage.ToString();
 
         // for rangedDamage
         parameterOfRangedDamage.text = _playerCharacteristics.CurrentRangedDamage.ToString();

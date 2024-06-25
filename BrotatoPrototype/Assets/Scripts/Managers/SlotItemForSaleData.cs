@@ -90,7 +90,6 @@ public class SlotItemForSaleData : MonoBehaviour
 
     public void OnBuyItem()
     {
-        Debug.Log("хочу купить");
         UIShop.instance.ButtonBuySlot(SlotNumber);
     }
 

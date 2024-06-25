@@ -86,7 +86,6 @@ public class ShopController : MonoBehaviour, IShopController
 
     public void ResetShop()
     {
-        Debug.Log("сбросить весь прогресс!");
         CurrentShopLevel = 1;
         UIShop.instance.DisplayLevelShop(CurrentShopLevel);
         UIShop.instance.ResetUIShop();
@@ -120,7 +119,6 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 PlayNeedMoreGold();
-                Debug.Log("Недостаточно денег");
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;
             }
@@ -140,7 +138,6 @@ public class ShopController : MonoBehaviour, IShopController
                 }
                 else
                 {
-                    Debug.Log("Недостаточно места");
                     PlayMaxSlots();
                     StartCoroutine(UIShop.instance.ShowMessage("Все слоты оружия заполнены", UIShop.instance.pointsForAttentionWindows[1]));
                     return false;
@@ -148,7 +145,6 @@ public class ShopController : MonoBehaviour, IShopController
             }
             else
             {
-                Debug.Log("Недостаточно денег");
                 PlayNeedMoreGold();
                 StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
                 return false;

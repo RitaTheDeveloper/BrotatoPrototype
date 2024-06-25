@@ -130,7 +130,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void SetDamage()
     {
-        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
+        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMeleeDamage * percantageOfMelleDamage / 100f;
         currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
         currentDamage = Mathf.Round(currentDamage);
         if (currentDamage < 1)

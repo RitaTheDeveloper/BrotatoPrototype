@@ -62,7 +62,6 @@ public class TextDamage : MonoBehaviour
 
             delta = _timer - (_time / _timer);
             pos = _pos - new Vector3(delta, delta, 0);
-            Debug.Log(pos);
 
             _text.transform.position = _camera.WorldToScreenPoint(pos);
 

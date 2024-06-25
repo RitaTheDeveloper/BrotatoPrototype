@@ -19,7 +19,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [Header("% к урону:")]
     [SerializeField] private float _startDamagePercentage;
     [Header("+ к урону в ближнем бою:")]
-    [SerializeField] private float _startMelleeDamage;
+    [SerializeField] private float _startMeleeDamage;
     [Header("+ к урону в дальнем бою:")]
     [SerializeField] private float _startRangedDamage;
     [Header("+ % к крит шансу:")]
@@ -46,7 +46,7 @@ public class PlayerCharacteristics : MonoBehaviour
         descriptionForShop.Add(" к радиусу сбора", _startMagnetDistance);
         descriptionForShop.Add("% к скорости атаки", _startAttackSpeedPercentage);
         descriptionForShop.Add("% к урону", _startDamagePercentage);
-        descriptionForShop.Add(" ближний бой", _startMelleeDamage);
+        descriptionForShop.Add(" ближний бой", _startMeleeDamage);
         descriptionForShop.Add(" дальний бой", _startRangedDamage);
         descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
         descriptionForShop.Add("% к броне", _startArmor);
@@ -91,11 +91,11 @@ public class PlayerCharacteristics : MonoBehaviour
         set { _currentAttackSpeedPercentage = value; }
     }
 
-    private float _currentMelleeDamage;
-    public float CurrentMelleeDamage
+    private float _currentMeleeDamage;
+    public float CurrentMeleeDamage
     {
-        get { return _currentMelleeDamage; }
-        set { _currentMelleeDamage = value; }
+        get { return _currentMeleeDamage; }
+        set { _currentMeleeDamage = value; }
     }
 
     private float _currentRangedDamage;
@@ -148,7 +148,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentMagnetDistance = _startMagnetDistance;
         _currentAttackSpeedPercentage = _startAttackSpeedPercentage;
         _currentDamagePercentage = _startDamagePercentage;
-        _currentMelleeDamage = _startMelleeDamage;
+        _currentMeleeDamage = _startMeleeDamage;
         _currentRangedDamage = _startRangedDamage;
         _currentCritChancePercentage = _startCritChancePercentage;
         _currentArmor = _startArmor;
@@ -165,7 +165,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentMagnetDistance += bonus._startMagnetDistance;
         _currentAttackSpeedPercentage += bonus._startAttackSpeedPercentage;
         _currentDamagePercentage += bonus._startDamagePercentage;
-        _currentMelleeDamage += bonus._startMelleeDamage;
+        _currentMeleeDamage += bonus._startMeleeDamage;
         _currentRangedDamage += bonus._startRangedDamage;
         _currentCritChancePercentage += bonus._startCritChancePercentage;
         _currentProbabilityOfDodge += bonus._startProbabilityOfDodge;
@@ -181,7 +181,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentMagnetDistance -= bonus._startMagnetDistance;
         _currentAttackSpeedPercentage -= bonus._startAttackSpeedPercentage;
         _currentDamagePercentage -= bonus._startDamagePercentage;
-        _currentMelleeDamage -= bonus._startMelleeDamage;
+        _currentMeleeDamage -= bonus._startMeleeDamage;
         _currentRangedDamage -= bonus._startRangedDamage;
         _currentCritChancePercentage -= bonus._startCritChancePercentage;
         _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
