@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
     [Header("Baff multipliers")]
     [SerializeField] private Baff[] baffs;
     [Header("Debaff multipliers")]
-    [SerializeField] private Debaff[] debaffs;
+    [SerializeField] private Baff[] debaffs;
 
     // Item characteristics in %
     private float satiety;
@@ -133,12 +133,12 @@ public class Item : MonoBehaviour
 
         foreach (Baff baff in baffs) 
         {
-            CalculateCharacteristic(baff.characteristic, baff.multiplier, baseIncrement, data.baffStrength);
+            CalculateCharacteristic(baff.characteristic, baff.multiplier, baseIncrement, data.baffStrength, false);
         }
 
-        foreach (Debaff debaff in debaffs)
+        foreach (Baff debaff in debaffs)
         {
-            CalculateCharacteristic(debaff.characteristic, debaff.multiplier, baseIncrement, data.debaffStrength);
+            CalculateCharacteristic(debaff.characteristic, debaff.multiplier, baseIncrement, data.debaffStrength, true);
         }
     }
 
@@ -152,77 +152,85 @@ public class Item : MonoBehaviour
         return totalMultiplier;
     }
 
-    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicIncrement baseIncrement, float baffStrength)
+    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicIncrement baseIncrement, float baffStrength, bool isDebaff)
     {
         switch (characteristic)
         {
             case CharacteristicType.Satiety:
-                satiety = Calculate(baseIncrement.satiety, multiplier, baffStrength);
+                satiety = Calculate(baseIncrement.satiety, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = satiety;
                 break;
 
             case CharacteristicType.MaxHealth:
-                maxHealth = Calculate(baseIncrement.maxHealth, multiplier, baffStrength);
+                maxHealth = Calculate(baseIncrement.maxHealth, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = maxHealth;
                 break;
 
             case CharacteristicType.RegenerationHP:
-                regenerationHP = Calculate(baseIncrement.regenerationHP, multiplier, baffStrength);
+                regenerationHP = Calculate(baseIncrement.regenerationHP, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = regenerationHP;
                 break;
 
             case CharacteristicType.Dodge:
-                dodge = Calculate(baseIncrement.dodge, multiplier, baffStrength);
+                dodge = Calculate(baseIncrement.dodge, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = dodge;
                 break;
 
             case CharacteristicType.Armor:
-                armor = Calculate(baseIncrement.armor, multiplier, baffStrength);
+                armor = Calculate(baseIncrement.armor, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = armor;
                 break;
                 
             case CharacteristicType.MoveSpeed:
-                moveSpeed = Calculate(baseIncrement.moveSpeed, multiplier, baffStrength);
+                moveSpeed = Calculate(baseIncrement.moveSpeed, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = moveSpeed;
                 break;
 
             case CharacteristicType.AttackSpeed:
-                attackSpeed = Calculate(baseIncrement.attackSpeed, multiplier, baffStrength);
+                attackSpeed = Calculate(baseIncrement.attackSpeed, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = attackSpeed;
                 break;
 
             case CharacteristicType.Damage:
-                damage = Calculate(baseIncrement.damage, multiplier, baffStrength);
+                damage = Calculate(baseIncrement.damage, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = damage;
                 break;
 
             case CharacteristicType.MeleeDamage:
-                meleeDamage = Calculate(baseIncrement.meleeDamage, multiplier, baffStrength);
+                meleeDamage = Calculate(baseIncrement.meleeDamage, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = meleeDamage;
                 break;
 
             case CharacteristicType.RangeDamage:
-                rangeDamage = Calculate(baseIncrement.rangeDamage, multiplier, baffStrength);
+                rangeDamage = Calculate(baseIncrement.rangeDamage, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = rangeDamage;
                 break;
 
             case CharacteristicType.ChanceOfCrit:
-                critChance = Calculate(baseIncrement.chanceOfCrit, multiplier, baffStrength);
+                critChance = Calculate(baseIncrement.chanceOfCrit, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = critChance;
                 break;
 
             case CharacteristicType.MagneticRadius:
-                magneticRadius = Calculate(baseIncrement.magneticRadius, multiplier, baffStrength);
+                magneticRadius = Calculate(baseIncrement.magneticRadius, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = magneticRadius;
                 break;
         }
     }
 
-    private float Calculate(float baseCharacteristicIncrement ,float multiplier, float baffStrength)
+    private float Calculate(float baseCharacteristicIncrement ,float multiplier, float baffStrength, bool isDebaff)
     {
         float totalMultiplier = CalculateTotalMultiplierForItem();
-        float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength;
-        return Mathf.Round(result * 100.0f) * 0.01f;
+        if (isDebaff)
+        {
+            float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength * (-1);
+            return Mathf.Round(result * 100.0f) * 0.01f;
+        }
+        else
+        {
+            float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength;
+            return Mathf.Round(result * 100.0f) * 0.01f;
+        }
     }
 
     [ContextMenu("SynchonizeAllCharacteristics")]
@@ -240,9 +248,9 @@ public class Item : MonoBehaviour
             SynchronizeCharacteristic(baff.characteristic, characteristicMap[baff.characteristic]);
         }
 
-        foreach (Debaff debaff in debaffs)
+        foreach (Baff debaff in debaffs)
         {
-            SynchronizeCharacteristic(debaff.characteristic, characteristicMap[debaff.characteristic] * (-1));
+            SynchronizeCharacteristic(debaff.characteristic, characteristicMap[debaff.characteristic]);
         }
     }
 
@@ -284,14 +292,6 @@ public class Item : MonoBehaviour
 
 [System.Serializable]
 public class Baff
-{
-    public CharacteristicType characteristic;
-    [Range(0.001f, 10f)]
-    public float multiplier;
-}
-
-[System.Serializable]
-public class Debaff
 {
     public CharacteristicType characteristic;
     [Range(0.001f, 10f)]
