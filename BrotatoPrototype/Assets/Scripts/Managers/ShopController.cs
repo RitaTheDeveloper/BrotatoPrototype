@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour, IShopController
 {
-    public static ShopController instance;
     public List<StandartItem> ItemList = new List<StandartItem>();
     public List<Weapon> WeaponList = new List<Weapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
@@ -52,11 +51,6 @@ public class ShopController : MonoBehaviour, IShopController
     private PlayerInventory playerInventory;
     private int currentWave;
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
     void Start()
     {
         //Init();
@@ -87,8 +81,8 @@ public class ShopController : MonoBehaviour, IShopController
     public void ResetShop()
     {
         CurrentShopLevel = 1;
-        UIShop.instance.DisplayLevelShop(CurrentShopLevel);
-        UIShop.instance.ResetUIShop();
+        uiShop.DisplayLevelShop(CurrentShopLevel);
+        uiShop.ResetUIShop();
     }
 
     public void UpdateShop()
@@ -380,10 +374,6 @@ public class ShopController : MonoBehaviour, IShopController
 
     public int GetRerollCost()
     {
-        //if (AllSlotSold())
-        //{
-        //    return 0;
-        //}
         return CurrentRerollPrice;
     }
 
