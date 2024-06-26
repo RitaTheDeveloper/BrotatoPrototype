@@ -105,7 +105,6 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Не могу найти позицию 2");
                 positionEnemy = randomPosition;
             }
             GameObject mark = CreateMark(positionEnemy);
@@ -186,7 +185,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("Не могу найти позицию 1");
             position = Vector3.zero;
         }
 

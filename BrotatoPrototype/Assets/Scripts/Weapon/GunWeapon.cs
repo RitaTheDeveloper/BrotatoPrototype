@@ -18,6 +18,8 @@ public class GunWeapon : Weapon
     private float _nextShotTime;
     private Transform _container;
 
+    protected float _timer;
+
     private void Start()
     {
         _container = GameObject.Find("Bullets").transform;
@@ -27,36 +29,36 @@ public class GunWeapon : Weapon
     private void Update()
     {
         FindTheNearestEnemy();
-        RotateWeaponHolder();
+
+        if(_timer > _currentAnimationTime)
+            RotateWeaponHolder();
     }
 
     private void FixedUpdate()
     {
-        if (Time.time > _nextShotTime && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
-        {
+        if (_timer > _currentTimeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
             Attack();
-        }
+
+        _timer += Time.fixedDeltaTime;
     }
 
     protected override void Attack()
     {
         if (!GameManager.instance.GameIsOver)
         {
+            _timer = 0;
+
             SetAttackSpeed();
-            SetAnimationSpeed(currentAttackSpeed);
-            SetTimeOfAnimation(currentAttackSpeed);
+            SetAnimationSpeed();
             SetDamage();
             SetCritChance();
+
             if (animator)
-            {
                 animator.SetTrigger("Hit");
-            }
-            _nextShotTime = Time.time + 1 / currentAttackSpeed;
 
             for (int i = 0; i < _numberOfBulletsPershot; i++)
-            {
                 CreateBulletAndPassParametersToIt();
-            }
+
             base.Attack();
         }             
     }

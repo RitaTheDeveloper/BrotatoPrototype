@@ -5,19 +5,16 @@ using UnityEngine;
 
 public class SaveController : MonoBehaviour
 {
-    static SaveController instance;
-
     private SaveData data;
 
     private void Awake()
     {
-        instance = this;
         LoadData();
     }
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("WaveEnded1", data.WaveEnded);
+        PlayerPrefs.SetInt("WaveEnded", data.WaveEnded);
         PlayerPrefs.SetFloat("MasterSoundVolume", data.MasterSoundVolume);
         PlayerPrefs.SetFloat("MusicSondVolume", data.MusicSondVolume);
         PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
@@ -29,7 +26,7 @@ public class SaveController : MonoBehaviour
     {
         SaveData data_tmp = new SaveData();
 
-        data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded1", 0);
+        data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded", 0);
         data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", 0);
         data_tmp.MusicSondVolume = PlayerPrefs.GetFloat("MusicSondVolume", 0);
         data_tmp.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
@@ -39,7 +36,7 @@ public class SaveController : MonoBehaviour
 
     public void SetData(SaveData _data)
     {
-        this.data = _data;
+        data = _data;
     }
 
     public SaveData GetData()
@@ -50,7 +47,7 @@ public class SaveController : MonoBehaviour
     public void ResetData()
     {
         data.WaveEnded = 0;
-        PlayerPrefs.SetInt("WaveEnded1", 0);
+        PlayerPrefs.SetInt("WaveEnded", 0);
     }
 
     public List<GameObject> GetUnlockCharacterList(SaveData new_data)
@@ -61,8 +58,8 @@ public class SaveController : MonoBehaviour
             openCharacters.Add(GameManager.instance.PlayerPrefabs[i].GetComponent<UnlockCharacterComponent>().UnlockCharacter());
         }
 
-        this.SetData(new_data);
-        this.SaveData();
+        SetData(new_data);
+        SaveData();
 
         List<GameObject> result = new List<GameObject>();
 
