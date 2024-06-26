@@ -59,6 +59,8 @@ public class Weapon : MonoBehaviour
     public float StartAttackSpeed { get => startAttackSpeed;}
     public float StartCritChance { get => startCritChance; }
 
+    public WeaponBaff baff;
+
     private void Awake()
     {
         SetCharacteristicsDependingOnTier();
@@ -182,4 +184,11 @@ public class Weapon : MonoBehaviour
             AudioManager.instance.Play(soundName, this.gameObject.transform.position);
         }
     }
+}
+
+[System.Serializable]
+public class WeaponBaff
+{
+    public CharacteristicType characteristic = CharacteristicType.None;
+    public float value = 0f;
 }

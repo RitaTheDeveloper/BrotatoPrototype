@@ -1,5 +1,6 @@
 public enum CharacteristicType
 {
+    None,
     Satiety,
     MaxHealth,
     RegenerationHP,
