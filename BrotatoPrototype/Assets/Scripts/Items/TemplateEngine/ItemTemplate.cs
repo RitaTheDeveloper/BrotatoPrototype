@@ -9,7 +9,7 @@ public class ItemTemplate : ScriptableObject
 
     [Space(20)]
     [Header("Base step for each characteristic")]
-    [SerializeField] private BaseCharacteristicsIncrement baseIncrement;
+    [SerializeField] private BaseCharacteristicIncrement baseIncrement;
     
     [Space(40)]
     [SerializeField] private TierPrefabPair[] TierPrefabPairs;
@@ -23,24 +23,6 @@ public class ItemTemplate : ScriptableObject
         public float baffStrength;
         [Range(0f, 1000f)]
         public float debaffStrength;
-    }
-
-    [System.Serializable]
-    public class BaseCharacteristicsIncrement
-    {
-        public float percentage = 0.005f;
-        public float satiety = 0.05f;
-        public float maxHealth = 0.5f;
-        public float regenerationHP = 0.025f;
-        public float dodge = 0.25f;
-        public float armor = 0.25f;
-        public float moveSpeed = 0.25f;
-        public float attackSpeed = 0.5f;
-        public float damage = 0.5f;
-        public float meleeDamage = 0.2f;
-        public float rangeDamage = 0.2f;
-        public float chanceOfCrit = 0.1f;
-        public float magneticRadius = 0.1f;
     }
 
     [System.Serializable]
@@ -81,7 +63,7 @@ public class ItemTemplate : ScriptableObject
         return dataFromPrefab;
     }
 
-    public BaseCharacteristicsIncrement GetBaseIncrement()
+    public BaseCharacteristicIncrement GetBaseIncrement()
     {
         return baseIncrement;
     }

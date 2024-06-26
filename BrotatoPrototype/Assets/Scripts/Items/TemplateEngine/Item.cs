@@ -129,7 +129,7 @@ public class Item : MonoBehaviour
         }
 
         TemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier);
-        BaseCharacteristicsIncrement baseIncrement = itemTemplate.GetBaseIncrement();
+        BaseCharacteristicIncrement baseIncrement = itemTemplate.GetBaseIncrement();
 
         foreach (Baff baff in baffs) 
         {
@@ -152,7 +152,7 @@ public class Item : MonoBehaviour
         return totalMultiplier;
     }
 
-    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicsIncrement baseIncrement, float baffStrength)
+    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicIncrement baseIncrement, float baffStrength)
     {
         switch (characteristic)
         {
