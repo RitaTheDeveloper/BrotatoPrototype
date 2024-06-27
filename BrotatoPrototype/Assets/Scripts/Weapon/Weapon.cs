@@ -98,29 +98,19 @@ public class Weapon : MonoBehaviour
     {
         nearestEnemy = null;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Dictionary<float, GameObject> distanceAndEnemy = new Dictionary<float, GameObject>();
-
-        if (allEnemies.Length > 0)
+        float distance = Mathf.Infinity;
+        Vector3 position = weaponHolder.position;
+        foreach (GameObject go in allEnemies)
         {
-            for (int i = 0; i < allEnemies.Length; i++)
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
             {
-                try
-                {
-                    distance = Vector3.Distance(weaponHolder.position, allEnemies[i].transform.position);
-                    distanceAndEnemy.Add(distance, allEnemies[i]);
-                }
-                catch (System.ArgumentException)
-                {
-                   // Debug.Log("враги на одинаковом расстоянии");
-                }                
+                nearestEnemy = go;
+                distance = curDistance;
             }
         }
 
-        if (distanceAndEnemy.Count > 0)
-        {
-            float minDistance = distanceAndEnemy.Keys.Min();
-            nearestEnemy = distanceAndEnemy[minDistance];
-        }
     }
 
     protected virtual void RotateWeaponHolder()

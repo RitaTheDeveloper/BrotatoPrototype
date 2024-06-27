@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
-    public static UIShop instance;
-
     [SerializeField] public Image babaYagaImg;
     [SerializeField] private Animator ygaAnimator;
     [SerializeField] private TextMeshProUGUI waveNumberText;
@@ -64,7 +62,6 @@ public class UIShop : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         GetComponentsInChildren<SlotItemForSaleData>(items);
     }
 
@@ -132,8 +129,10 @@ public class UIShop : MonoBehaviour
             for (int i = 0; i < _currentWeapons.Count; i++)
             {
                 GameObject weaponElement = Instantiate(weaponElementPrefab, listSlotsOfWeapons[i]);
-                weaponElement.GetComponent<WeaponSlot>().AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
-                _currentWeaponSlots.Add(weaponElement.GetComponent<WeaponSlot>());
+                WeaponSlot ws = weaponElement.GetComponent<WeaponSlot>();
+                ws.Init(this);
+                ws.AddItem(_currentWeapons[i].GetComponent<ItemShopInfo>());
+                _currentWeaponSlots.Add(ws);
             }
         }
     }
@@ -188,6 +187,7 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i < _items.Count; i++)
         {
             GameObject itemElement = Instantiate(itemElementPrefab, listSlotsOfItems[i]);
+            itemElement.GetComponent<ItemSlot>().Init(this);
             itemElement.GetComponent<ItemSlot>().AddItem(_items[i].GetComponent<ItemShopInfo>());
             _currentItemSlots.Add(itemElement.GetComponent<ItemSlot>());
         }
@@ -307,6 +307,7 @@ public class UIShop : MonoBehaviour
         for (int i = 0; i < items.Count; i++)
         {
             items[i].SlotEntytiID = items_to_slot[items[i].SlotNumber];
+            items[i].Init(this);
             if (shopController.IsWeapon(items[i].SlotEntytiID))
             {
                 ItemShopInfo w = shopController.GetUiInfo(items[i].SlotEntytiID);
@@ -369,6 +370,7 @@ public class UIShop : MonoBehaviour
         dimmingPanel.SetActive(isIconPressed);
         Vector2 position = new Vector2(posBtn.x - Screen.width / 10, positionOfInfoPanel.position.y);
         _currentInfoItem = Instantiate(weaponInfoPrefab, position, Quaternion.identity, canvas);
+        _currentInfoItem.GetComponent<ItemInfoPanel>().Init(this);
         _currentInfoItem.GetComponent<ItemInfoPanel>().SetUp(_info);
     }
 
@@ -378,6 +380,7 @@ public class UIShop : MonoBehaviour
         dimmingPanel.SetActive(isIconPressed);
         Vector2 position = new Vector2(posBtn.x + Screen.width / 10, positionOfInfoPanel.position.y);
         _currentInfoItem = Instantiate(itemInfoPrefab, position, Quaternion.identity, canvas);
+        _currentInfoItem.GetComponent<ItemInfoPanel>().Init(this);
         _currentInfoItem.GetComponent<ItemInfoPanel>().SetUp(_info);
     }
 
@@ -532,4 +535,19 @@ public class UIShop : MonoBehaviour
         upgrateShop.ShopMax(true);
     }
 
+    public void SellItem(bool isWeapon, string id)
+    {
+        ButtonSoldSlot(id);
+        DestroyItemInfo();
+        if (isWeapon)
+        {
+            DeleteAllWeaponElements();
+            CreateWeaponElements(shopController.GetWeaponController().GetAllWeapons());
+        }
+        else
+        {
+            DeleteAllItemElements();
+            CreateItemsElements(shopController.GetPlayerInventory().GetAllItems());
+        }
+    }
 }

@@ -9,10 +9,17 @@ public class ItemInfoPanel : MonoBehaviour
     public TextMeshProUGUI tierItem;
     public Button sellBtn;
     public TextMeshProUGUI price;
-    public string id;
+    public string id;    
     [SerializeField] private CharacteristicsInfoPanelForWeaponAndItem characteristicsInfo;
+    private UIShop _uIShop;
 
     private bool isWeapon;
+
+
+    public void Init(UIShop uIShop)
+    {
+        _uIShop = uIShop;
+    }
 
     public void SetUp(ItemShopInfo itemInfo)
     {
@@ -44,17 +51,6 @@ public class ItemInfoPanel : MonoBehaviour
 
     public void SellItem()
     {
-        UIShop.instance.ButtonSoldSlot(id);
-        UIShop.instance.DestroyItemInfo(); 
-        if (isWeapon)
-        {
-            UIShop.instance.DeleteAllWeaponElements();
-            UIShop.instance.CreateWeaponElements(ShopController.instance.GetWeaponController().GetAllWeapons());
-        }
-        else
-        {
-            UIShop.instance.DeleteAllItemElements();
-            UIShop.instance.CreateItemsElements(ShopController.instance.GetPlayerInventory().GetAllItems());
-        }
+        _uIShop.SellItem(isWeapon, id);
     }
 }
