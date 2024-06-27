@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
-    public static UIShop instance;
-
     [SerializeField] public Image babaYagaImg;
     [SerializeField] private Animator ygaAnimator;
     [SerializeField] private TextMeshProUGUI waveNumberText;
@@ -64,7 +62,6 @@ public class UIShop : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         GetComponentsInChildren<SlotItemForSaleData>(items);
     }
 

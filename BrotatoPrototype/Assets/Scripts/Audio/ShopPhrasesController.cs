@@ -57,7 +57,7 @@ public class ShopPhrasesController : MonoBehaviour
     
     public void OnShopIn()
     {
-        currentShopLevel = UIShop.instance.GetBabaYagaIndex();
+        currentShopLevel = UIManager.instance.GetUIShop().GetBabaYagaIndex();
         PlayIN();
         StartCoroutine(idleCorutine());
     }
@@ -76,7 +76,7 @@ public class ShopPhrasesController : MonoBehaviour
             audioSource.volume = volume > 0 ? volume : 0;
             yield return new WaitForEndOfFrame();
         }
-        currentShopLevel = UIShop.instance.GetBabaYagaIndex();
+        currentShopLevel = UIManager.instance.GetUIShop().GetBabaYagaIndex();
         if (phrasesDictionary.ContainsKey(currentShopLevel))
         {
             switch (nextPhrase)

@@ -38,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
         {
             playerCharacteristics.AddBonus(item.CharacteristicsItem);
             GetComponent<PlayerController>().UpdateCharacteristics();
-            UIShop.instance.UpdateUICharacteristics();
+            UIManager.instance.GetUIShop().UpdateUICharacteristics();
         }
     }
     
@@ -49,7 +49,7 @@ public class PlayerInventory : MonoBehaviour
         {
             playerCharacteristics.DeleteBonus(item.CharacteristicsItem);
             GetComponent<PlayerController>().UpdateCharacteristics();
-            UIShop.instance.UpdateUICharacteristics();
+            UIManager.instance.GetUIShop().UpdateUICharacteristics();
         }
     }
 

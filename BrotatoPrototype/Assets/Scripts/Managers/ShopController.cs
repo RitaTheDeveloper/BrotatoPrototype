@@ -89,7 +89,6 @@ public class ShopController : MonoBehaviour, IShopController
     {
         ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
         uiShop.SetWaveNumberText(currentWave);
-        // uiShop.CreateItemsSlotsForSale(4);
         uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForItems();
@@ -113,7 +112,7 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 PlayNeedMoreGold();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно денег", uiShop.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -125,7 +124,6 @@ public class ShopController : MonoBehaviour, IShopController
                 {
                     playerInventory.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
                     weaponsList.Add(WeaponsDict[itemID]);
-                    //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                     uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
                     PlaySoundBuySold();
                     return true;
@@ -133,14 +131,14 @@ public class ShopController : MonoBehaviour, IShopController
                 else
                 {
                     PlayMaxSlots();
-                    StartCoroutine(UIShop.instance.ShowMessage("Все слоты оружия заполнены", UIShop.instance.pointsForAttentionWindows[1]));
+                    StartCoroutine(uiShop.ShowMessage("Все слоты оружия заполнены", uiShop.pointsForAttentionWindows[1]));
                     return false;
                 }
             }
             else
             {
                 PlayNeedMoreGold();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно денег", uiShop.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -254,7 +252,7 @@ public class ShopController : MonoBehaviour, IShopController
             ShopLevelStruct newLevel = ShopLevelStructsStorage[CurrentShopLevel];
             if (playerInventory.HaveNeedWood(newLevel.levelPrice))
             {
-                UIShop.instance.FireAnim();
+                uiShop.FireAnim();
                 playerInventory.ChangeWood(newLevel.levelPrice * -1);
                 CurrentShopLevel = newLevel.levelNumber;
                 CurrentRerollPrice = DefaultRerollPrice;
@@ -273,13 +271,12 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 PlayNeedMoreWood();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно дерева", uiShop.pointsForAttentionWindows[0]));
             }
         }
         else
         {
-            Debug.Log("Магазини максимального уровня!");
-            UIShop.instance.ShopIsMax();
+            uiShop.ShopIsMax();
         }        
         return false;
     }
@@ -366,8 +363,7 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
-            UIShop.instance.ShopIsMax();
-            Debug.Log("Максимальный уровень магазина!");
+            uiShop.ShopIsMax();
             return 0;
         }
     }
@@ -409,7 +405,7 @@ public class ShopController : MonoBehaviour, IShopController
         else
         {
             PlayNeedMoreWood();
-            StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
+            StartCoroutine(uiShop.ShowMessage("Недостаточно дерева", uiShop.pointsForAttentionWindows[0]));
         }
         return false;
     }
