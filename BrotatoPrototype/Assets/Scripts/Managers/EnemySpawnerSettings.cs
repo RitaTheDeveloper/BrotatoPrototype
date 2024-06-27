@@ -3,9 +3,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class EnemySpawnerSettings
-{
+{    
     [Header("префаб моба")]
-    [SerializeField]
     public EnemyController enemy;
     [Header("кд спавна")]
     public float spawnCd = -1;

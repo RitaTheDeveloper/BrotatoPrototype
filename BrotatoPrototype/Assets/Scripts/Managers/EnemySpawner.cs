@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
         _target = GameManager.instance.player.transform;
         if (_isNotRandom)
         {
-            randomPosition = transform.position;
+            randomPosition = _specificPoint;
         }
         else
         {
@@ -115,6 +115,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy(Vector3 position)
     {
         //PlaySoundOfSpawnEnemy();
+        countOfEnemies++;
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
         var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
@@ -123,14 +124,14 @@ public class EnemySpawner : MonoBehaviour
         enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
         enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
         _waveController.counterOfMobs++;
-        Debug.Log("заспавнен " + _waveController.counterOfMobs + "; время " + (_waveController.time - _waveController.GetCurrentTime()));
+        Debug.Log("заспавнен " + _waveController.counterOfMobs + "; время " + (_waveController.time - _waveController.GetCurrentTime()) + " из " + _waveController.GetAmountOfTotalEnemiesPerWave() + " v " + countOfEnemies) ;
     }
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (_waveController.CurrentTime >= _endSpawnTime + SpawnTime() && countOfEnemies < _waveController.GetAmountOfTotalEnemiesPerWave() && _target)
+        while (countOfEnemies < _waveController.GetAmountOfTotalEnemiesPerWave() && _waveController.CurrentTime >= _endSpawnTime + SpawnTime() && _target)
         {
-            _timeUntilSpawn = SpawnTime() - Time.fixedDeltaTime;
+            _timeUntilSpawn = SpawnTime()- Time.fixedDeltaTime;
             float timeMark = _timeUntilSpawn - markDisplayTime;
             float timeSpawnenemy = markDisplayTime;
             if(timeMark < 0)
@@ -140,7 +141,7 @@ public class EnemySpawner : MonoBehaviour
             }
             // делаем марку
             
-            yield return new WaitForSeconds(timeMark);
+            yield return new WaitForSeconds(timeMark);            
             Vector3 positionEnemy;
             Vector3 point;
             if (RandomPoint(randomPosition, _radius, out point))
@@ -161,10 +162,11 @@ public class EnemySpawner : MonoBehaviour
 
             // спавним врага
             yield return new WaitForSeconds(timeSpawnenemy);
+            
             isBeginningOfWave = false;
             DestroyMark(mark);
             SpawnEnemy(positionEnemy);
-            countOfEnemies++;
+            
         }
     }
 
@@ -223,7 +225,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(markDisplayTime);
             if (_isNotRandom)
             {
-                randomPosition = transform.position;
+                randomPosition = _specificPoint;
             }
             else
             {
