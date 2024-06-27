@@ -544,5 +544,10 @@ public class UIManager : MonoBehaviour
     {
         lowHpImg.SetActive(isOn);
     }
+
+    public UIShop GetUIShop()
+    {
+        return shop;
+    }
 }
 

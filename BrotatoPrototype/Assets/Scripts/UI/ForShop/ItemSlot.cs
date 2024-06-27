@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,6 +8,12 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image icon;
     public Image frame;
     public ItemShopInfo itemInfo;
+    protected UIShop _uiShop;
+
+    public void Init(UIShop uIShop)
+    {
+        _uiShop = uIShop;
+    }
 
     public void AddItem(ItemShopInfo _itemInfo)
     {
@@ -22,24 +26,24 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Destroy(gameObject);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         FrameOn();
-        UIShop.instance.DisplayItemInfo(itemInfo, true, transform.position);
+        _uiShop.DisplayItemInfo(itemInfo, true, transform.position);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         FrameOn();
-        UIShop.instance.DisplayItemInfo(itemInfo, false, transform.position);
+        _uiShop.DisplayItemInfo(itemInfo, false, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if( !UIShop.instance.dimmingPanel.activeInHierarchy)
+        if( !_uiShop.dimmingPanel.activeInHierarchy)
         {
             FrameOff();
-            UIShop.instance.DestroyItemInfo();
+            _uiShop.DestroyItemInfo();
         }
     }
 
@@ -48,7 +52,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         frame.enabled = false;
     }
 
-    private void FrameOn()
+    public void FrameOn()
     {
         frame.enabled = true;
     }

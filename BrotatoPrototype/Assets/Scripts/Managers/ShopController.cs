@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour, IShopController
 {
-
-    public static ShopController instance; 
     public List<StandartItem> ItemList = new List<StandartItem>();
     public List<Weapon> WeaponList = new List<Weapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
@@ -53,16 +51,11 @@ public class ShopController : MonoBehaviour, IShopController
     private PlayerInventory playerInventory;
     private int currentWave;
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    private void Start()
+    void Start()
     {
         //Init();
         //UpdateShop();
-    }
+    }   
 
     public void Init()
     {
@@ -88,15 +81,14 @@ public class ShopController : MonoBehaviour, IShopController
     public void ResetShop()
     {
         CurrentShopLevel = 1;
-        UIShop.instance.DisplayLevelShop(CurrentShopLevel);
-        UIShop.instance.ResetUIShop();
+        uiShop.DisplayLevelShop(CurrentShopLevel);
+        uiShop.ResetUIShop();
     }
 
     public void UpdateShop()
     {
         ShopSizeList = ShopLevelStructsStorage[CurrentShopLevel - 1].slotsData.Count;
         uiShop.SetWaveNumberText(currentWave);
-        // uiShop.CreateItemsSlotsForSale(4);
         uiShop.UpdateNumberOfCurrentWeapons(GetWeaponController().GetAllWeapons().Count, GetWeaponController().GetMaxNumberOfweapons());
         uiShop.CreateSlotsForWeapons(weaponController.GetMaxNumberOfweapons());
         uiShop.CreateSlotsForItems();
@@ -120,7 +112,7 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 PlayNeedMoreGold();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно денег", uiShop.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -132,7 +124,6 @@ public class ShopController : MonoBehaviour, IShopController
                 {
                     playerInventory.ChangeMoney(WeaponsDict[itemID].GetComponent<ItemShopInfo>().GetPrice(currentWave) * -1);
                     weaponsList.Add(WeaponsDict[itemID]);
-                    //uiShop.CreateSlotsForWeapons(dataForShop.maxNumberOfWeapons);
                     uiShop.CreateWeaponElements(weaponController.GetAllWeapons());
                     PlaySoundBuySold();
                     return true;
@@ -140,14 +131,14 @@ public class ShopController : MonoBehaviour, IShopController
                 else
                 {
                     PlayMaxSlots();
-                    StartCoroutine(UIShop.instance.ShowMessage("Все слоты оружия заполнены", UIShop.instance.pointsForAttentionWindows[1]));
+                    StartCoroutine(uiShop.ShowMessage("Все слоты оружия заполнены", uiShop.pointsForAttentionWindows[1]));
                     return false;
                 }
             }
             else
             {
                 PlayNeedMoreGold();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно денег", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно денег", uiShop.pointsForAttentionWindows[0]));
                 return false;
             }
         }
@@ -261,7 +252,7 @@ public class ShopController : MonoBehaviour, IShopController
             ShopLevelStruct newLevel = ShopLevelStructsStorage[CurrentShopLevel];
             if (playerInventory.HaveNeedWood(newLevel.levelPrice))
             {
-                UIShop.instance.FireAnim();
+                uiShop.FireAnim();
                 playerInventory.ChangeWood(newLevel.levelPrice * -1);
                 CurrentShopLevel = newLevel.levelNumber;
                 CurrentRerollPrice = DefaultRerollPrice;
@@ -280,13 +271,12 @@ public class ShopController : MonoBehaviour, IShopController
             else
             {
                 PlayNeedMoreWood();
-                StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
+                StartCoroutine(uiShop.ShowMessage("Недостаточно дерева", uiShop.pointsForAttentionWindows[0]));
             }
         }
         else
         {
-            Debug.Log("Магазини максимального уровня!");
-            UIShop.instance.ShopIsMax();
+            uiShop.ShopIsMax();
         }        
         return false;
     }
@@ -373,18 +363,13 @@ public class ShopController : MonoBehaviour, IShopController
         }
         else
         {
-            UIShop.instance.ShopIsMax();
-            Debug.Log("Максимальный уровень магазина!");
+            uiShop.ShopIsMax();
             return 0;
         }
     }
 
     public int GetRerollCost()
     {
-        //if (AllSlotSold())
-        //{
-        //    return 0;
-        //}
         return CurrentRerollPrice;
     }
 
@@ -420,7 +405,7 @@ public class ShopController : MonoBehaviour, IShopController
         else
         {
             PlayNeedMoreWood();
-            StartCoroutine(UIShop.instance.ShowMessage("Недостаточно дерева", UIShop.instance.pointsForAttentionWindows[0]));
+            StartCoroutine(uiShop.ShowMessage("Недостаточно дерева", uiShop.pointsForAttentionWindows[0]));
         }
         return false;
     }
