@@ -14,14 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    public List<WaveSetting> listOfWaveSetting;
-    
-    //[SerializeField] public DifficultyOfWaves[] wavesByDifficulty;
     [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
     [SerializeField] private ManagerOfWaves _managerOfWaves;
     private int _currentDifficulty;
     public GameObject player;
+    public List<WaveSetting> listOfWaveSetting;
     private int _waveCounter;
     private int _heroIndex = 0;
     private bool _gameIsOver;

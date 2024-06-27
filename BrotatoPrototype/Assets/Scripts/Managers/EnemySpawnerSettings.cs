@@ -28,13 +28,11 @@ public class EnemySpawnerSettings
     public float GetCdSpawn(float timeOfWave)
     {
         float result = (timeOfWave - startSpawnTime - endSpawnTime) / ((float)GetTotalAmountOfEnemies() / (float)amountOfEnemiesInPack);
-        Debug.Log("cd= " + result);
         return result;
     }
 
     public int GetTotalAmountOfEnemies()
     {
-        Debug.Log("totalAmForEnemySpawner " + (totalAmountOfEnemies - totalAmountOfEnemies % amountOfEnemiesInPack));
         return totalAmountOfEnemies - totalAmountOfEnemies % amountOfEnemiesInPack;
     }
 

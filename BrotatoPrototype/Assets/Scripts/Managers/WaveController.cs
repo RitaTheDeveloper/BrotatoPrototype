@@ -81,13 +81,6 @@ public class WaveController : MonoBehaviour
 
     private void AllSpawnersOn()
     {
-        //_enemySpawners = new List<EnemySpawner>();
-        //foreach(EnemySpawner spawner in enemySpawnersPrefabs)
-        //{
-        //    var _enemySpawner = Instantiate(spawner);
-        //    _enemySpawners.Add(_enemySpawner);
-        //    _enemySpawner.transform.parent = transform;
-        //}
         mobSpawnerPrefab = new GameObject("mobSpawnerPrefab");
         foreach (EnemySpawnerSettings enemySetting in enemySpawnerSettings)
         {            
@@ -105,14 +98,11 @@ public class WaveController : MonoBehaviour
             {
                 totalAmountOfenemies = enemySetting.GetTotalAmountOfEnemies(time);
             }
-
-            Debug.Log("totalAmount = " + totalAmountOfenemies);
             _amountOfEnemiesForAllSpawners += totalAmountOfenemies;
-            Debug.Log("totalAmountForAllSpawners = " + _amountOfEnemiesForAllSpawners);
             GameObject mobSpawner = Instantiate(mobSpawnerPrefab, transform);
             mobSpawner.transform.parent = transform;
             EnemySpawner enemySpawner = mobSpawner.AddComponent<EnemySpawner>();
-
+            enemySpawner.SetTotalAmountOfMobs(totalAmountOfenemies);
             enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack, enemySetting.radiusOfPack,enemySetting.radiusOfPlayer, enemySetting.isSpecificPoint, enemySetting.specificPoint);
         }
         Destroy(mobSpawnerPrefab);
@@ -194,7 +184,6 @@ public class DistrubitionOfGoldOrExpToMobs
         secondNumberOfGold = (int)averageNumberOfGoldForMob;
 
         firstNumberOfMobs = amountOfGoldPerWave - amountOfMobsPerWave * secondNumberOfGold;
-        secondNumberOfMobs = amountOfMobsPerWave - firstNumberOfMobs;
-        Debug.Log("average = " + averageNumberOfGoldForMob + "; up = " + firstNumberOfGold + "; down " + secondNumberOfGold + "; 1 группа " + firstNumberOfMobs + "; 2 группа " + secondNumberOfMobs);
+        secondNumberOfMobs = amountOfMobsPerWave - firstNumberOfMobs;       
     }
 }

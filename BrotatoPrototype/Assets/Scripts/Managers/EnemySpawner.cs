@@ -38,6 +38,7 @@ public class EnemySpawner : MonoBehaviour
     float _timeUntilSpawn;
     private WaveController _waveController;
     private int countOfEnemies = 0;
+    private int totalAmountOfenemies = 0;
     private Vector3 _specificPoint;
 
     private void Awake()
@@ -83,6 +84,11 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
+    public void SetTotalAmountOfMobs(int amount)
+    {
+        totalAmountOfenemies = amount;
+    }
+
     public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint )
     {
         _enemyPrefab = enemyController.gameObject;
@@ -96,7 +102,6 @@ public class EnemySpawner : MonoBehaviour
         _radius = radiusOfPack;
         _specificPoint = new Vector3(specificPoint.x, 0, specificPoint.y);
         markPrefab = _enemyPrefab.GetComponent<UnitParameters>().GetMark();
-        Debug.Log("cd = " + cdSpawn);
     }
 
     private float SpawnTime()
@@ -124,12 +129,11 @@ public class EnemySpawner : MonoBehaviour
         enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
         enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
         _waveController.counterOfMobs++;
-        Debug.Log("заспавнен " + _waveController.counterOfMobs + "; время " + (_waveController.time - _waveController.GetCurrentTime()) + " из " + _waveController.GetAmountOfTotalEnemiesPerWave() + " v " + countOfEnemies) ;
     }
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (countOfEnemies < _waveController.GetAmountOfTotalEnemiesPerWave() && _waveController.CurrentTime >= _endSpawnTime + SpawnTime() && _target)
+        while (countOfEnemies < totalAmountOfenemies && _waveController.CurrentTime >= _endSpawnTime + SpawnTime()+ Time.fixedDeltaTime && _target)
         {
             _timeUntilSpawn = SpawnTime()- Time.fixedDeltaTime;
             float timeMark = _timeUntilSpawn - markDisplayTime;
