@@ -15,7 +15,7 @@ public class ItemPool : MonoBehaviour
     {
         if(shopController == null)
         {
-            throw new NotSupportedException($"{shopController} must be valid.");
+            throw new NotSupportedException($"shopController must be valid.");
         }
 
         CreateItems();

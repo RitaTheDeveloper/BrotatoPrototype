@@ -215,6 +215,9 @@ public class Item : MonoBehaviour
                 magneticRadius = Calculate(baseIncrement.magneticRadius, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = magneticRadius;
                 break;
+
+            default:
+                throw new NotSupportedException($"Item {gameObject.name} has not supported characteristic {characteristic}");
         }
     }
 
