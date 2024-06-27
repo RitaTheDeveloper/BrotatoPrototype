@@ -226,7 +226,7 @@ public class PlayerCharacteristics : MonoBehaviour
                 break;
 
             case CharacteristicType.MeleeDamage:
-                _startMelleeDamage = value;   
+                _startMeleeDamage = value;   
                 break;
 
             case CharacteristicType.RangeDamage:
