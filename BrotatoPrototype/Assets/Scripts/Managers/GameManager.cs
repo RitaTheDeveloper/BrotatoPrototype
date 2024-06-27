@@ -34,14 +34,14 @@ public class GameManager : MonoBehaviour
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
     public AudioMixerGroup SFXAudioMixer;
-    public SaveController saveController;
+    private SaveController _saveController;
 
 
     private void Awake()
     {
         instance = this;
         CurrentDifficulty = 0;
-        saveController = gameObject.AddComponent<SaveController>();
+        _saveController = GetComponent<SaveController>();
         if (resetProgress)
         {
             ResetProgress();
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         // _currentWave = _waves[_waveCounter];
         _currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
         UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
-        Debug.Log("�������� ������ �����");
         _currentWave.StartWave();
         if (BackgroundMusicManger.instance != null)
         {
@@ -250,35 +249,35 @@ public class GameManager : MonoBehaviour
 
     private void SaveGameResult()
     {
-        saveController.LoadData();
+        _saveController.LoadData();
         SaveData data = new SaveData();
-        data.WaveEnded = saveController.GetData().WaveEnded;
+        data.WaveEnded = _saveController.GetData().WaveEnded;
         data.WaveEnded += _waveCounter;
-        data.SFXVolume = saveController.GetData().SFXVolume;
-        data.MusicSondVolume = saveController.GetData().MusicSondVolume;
-        data.MasterSoundVolume = saveController.GetData().MasterSoundVolume;
+        data.SFXVolume = _saveController.GetData().SFXVolume;
+        data.MusicSondVolume = _saveController.GetData().MusicSondVolume;
+        data.MasterSoundVolume = _saveController.GetData().MasterSoundVolume;
 
-        List<GameObject> unlockedCharacters = saveController.GetUnlockCharacterList(data);
+        List<GameObject> unlockedCharacters = _saveController.GetUnlockCharacterList(data);
         UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
         Debug.Log("unlocked characters: " + unlockedCharacters.Count);
 
-        saveController.SaveData();
+        _saveController.SaveData();
     }
 
     public void LoadData()
     {
-        saveController.LoadData();
+        _saveController.LoadData();
     }
 
     private void ResetProgress()
     {
-        saveController.ResetData();
+        _saveController.ResetData();
     }
 
     private void InitSoundVolume()
     {
-        saveController.LoadData();
-        SaveData saveData = saveController.GetData();
+        _saveController.LoadData();
+        SaveData saveData = _saveController.GetData();
 
         MasterAudioMixer.audioMixer.SetFloat("MasterVulomeParam", saveData.MasterSoundVolume);
         MusicAudioMixer.audioMixer.SetFloat("BackGroundMusicVolumeParam", saveData.MusicSondVolume);

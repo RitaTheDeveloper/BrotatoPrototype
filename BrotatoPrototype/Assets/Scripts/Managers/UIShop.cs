@@ -456,14 +456,12 @@ public class UIShop : MonoBehaviour
                 currentIndexBabaYaga = babaYagaSprites.Length - 1;
             }
 
-            Debug.Log("current index baba yga " + currentIndexBabaYaga);
             ygaAnimator.SetTrigger("change");
             StartCoroutine(ChangeSpriteYga(babaYagaSprites[currentIndexBabaYaga]));
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.Play("ShopBabaYagaChange");
             }
-            //babaYagaImg.GetComponent<Image>().sprite = babaYagaSprites[currentIndexBabaYaga];
         }        
     }
 

@@ -19,7 +19,6 @@ public class Mine : MonoBehaviour
     {
         if (!activated)
         {
-            Debug.Log("boom!");
             _explosionPrefab.Explode(transform.position, radius, dmg);
             modelOfMine.SetActive(false);
             Destroy(gameObject, 1f);
