@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameManager gameManager;
 
@@ -20,6 +22,7 @@ public class InputManager : MonoBehaviour
         }
 
         gameManager.onInit += GameStarted;
+
     }
 
     private void GameStarted()
@@ -59,4 +62,5 @@ public class InputManager : MonoBehaviour
                 break;
         }
     }
+
 }

@@ -33,6 +33,11 @@ public class ItemShopInfo : MonoBehaviour
         return Price - (int)((float)Price * ((float)DiscountProcent / 100.0f));
     }
 
+    public RareItemsDataStruct GetLevelItem()
+    {
+        return LevelItem;
+    }
+
     private void Awake()
     {
         IdWeapon = gameObject.name;

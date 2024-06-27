@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1822688623039171615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2326469258931864376}
+  - component: {fileID: -5745586993335421465}
+  - component: {fileID: -8907051537149127036}
+  - component: {fileID: 4473149512147709832}
+  - component: {fileID: 2964432388240897800}
+  - component: {fileID: -1560427816102157758}
+  m_Layer: 0
+  m_Name: Perchatki-ubivalki_T1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2326469258931864376
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-5745586993335421465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1650d9c72e00fdb44adcf98630f70ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameNameT1_3: "\u041F\u0435\u0440\u0447\u0430\u0442\u043A\u0438-\u0443\u0431\u0438\u0432\u0430\u043B\u043A\u0438"
+  inGameNameT4: "\u0421\u0443\u043F\u0435\u0440 \u043F\u0443\u043F\u0435\u0440 \u043F\u0435\u0440\u0447\u0430\u0442\u043A\u0438"
+  iconT1: {fileID: 21300000, guid: 382296ebb4e53ea46b59a465da2be9ae, type: 3}
+  iconT2: {fileID: 21300000, guid: 4136f59f906757a47a91811d7d08233d, type: 3}
+  iconT3: {fileID: 21300000, guid: 17098a3618407b3478f5b169aac02181, type: 3}
+  iconT4: {fileID: 21300000, guid: b681a5ddf9f5efc41ae3816d42a8ce13, type: 3}
+  itemTemplate: {fileID: 11400000, guid: 40ed53c0e7a1e884f9da7c9aaa80ddeb, type: 2}
+  baffs:
+  - characteristic: 3
+    multiplier: 10
+  - characteristic: 6
+    multiplier: 5
+  - characteristic: 8
+    multiplier: 5
+  debaffs:
+  - characteristic: 9
+    multiplier: 1
+  tier: 3
+  gameName: "\u0421\u0443\u043F\u0435\u0440 \u043F\u0443\u043F\u0435\u0440 \u043F\u0435\u0440\u0447\u0430\u0442\u043A\u0438"
+  editorName: Perchatki-ubivalki_T4
+  icon: {fileID: 21300000, guid: b681a5ddf9f5efc41ae3816d42a8ce13, type: 3}
+--- !u!114 &-8907051537149127036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d8a93082989aa498960065a38de2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdItem: Sapogi_T1
+  CharacteristicsItem: {fileID: 2964432388240897800}
+  ShopInfoItem: {fileID: -1560427816102157758}
+--- !u!222 &4473149512147709832
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_CullTransparentMesh: 0
+--- !u!114 &2964432388240897800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startMaxHp: 0
+  _startHpRegen: -0
+  _startMoveSpeed: 0
+  _startMagnetDistance: 0
+  _startAttackSpeedPercentage: 0
+  _startDamagePercentage: 0
+  _startMelleeDamage: 0
+  _startRangedDamage: 0
+  _startCritChancePercentage: 0
+  _startArmor: 0
+  _startProbabilityOfDodge: 0
+  _startSatiety: 100
+  _startHunger: 0
+--- !u!114 &-1560427816102157758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdWeapon: Sapogi-scorohodi_T1
+  Price: 8
+  DiscountProcent: 50
+  LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
+    type: 3}
+  NameWeapon: "\u0421\u0430\u043F\u043E\u0433\u0438"
+  IconWeapon: {fileID: 21300000, guid: bb740e2bf21183a409e17c9befd98acb, type: 3}

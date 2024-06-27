@@ -187,5 +187,59 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
         _currentArmor -= bonus._startArmor;
         _currentHunger -= bonus._startHunger;
-    }    
+    } 
+    
+    public void SynchronizeCharacteristic(CharacteristicType characteristic, float value)
+    {
+        switch (characteristic)
+        {
+            case CharacteristicType.Satiety:
+                _startHunger = Mathf.RoundToInt(value);
+                break;
+
+            case CharacteristicType.MaxHealth:
+                _startMaxHp = value;
+                break;
+
+            case CharacteristicType.RegenerationHP:
+                _startHpRegen = value;
+                break;
+
+            case CharacteristicType.Dodge:
+                _startProbabilityOfDodge = value;
+                break;
+
+            case CharacteristicType.Armor:
+                _startArmor = value;
+                break;
+
+            case CharacteristicType.MoveSpeed:
+                _startMoveSpeed = value;
+                break;
+
+            case CharacteristicType.AttackSpeed:
+                _startAttackSpeedPercentage = value;
+                break;
+
+            case CharacteristicType.Damage:
+                _startDamagePercentage = value;
+                break;
+
+            case CharacteristicType.MeleeDamage:
+                _startMeleeDamage = value;   
+                break;
+
+            case CharacteristicType.RangeDamage:
+                _startRangedDamage = value;
+                break;
+
+            case CharacteristicType.ChanceOfCrit:
+                _startCritChancePercentage = value;
+                break;
+
+            case CharacteristicType.MagneticRadius:
+                _startMagnetDistance = value;
+                break;
+        }
+    }
 }

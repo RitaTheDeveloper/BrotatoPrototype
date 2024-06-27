@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour, IShopController
 {
-    public static ShopController instance;
+
+    public static ShopController instance; 
     public List<StandartItem> ItemList = new List<StandartItem>();
     public List<Weapon> WeaponList = new List<Weapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
@@ -57,11 +58,11 @@ public class ShopController : MonoBehaviour, IShopController
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         //Init();
         //UpdateShop();
-    }   
+    }
 
     public void Init()
     {
