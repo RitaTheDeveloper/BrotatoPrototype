@@ -12,8 +12,8 @@ public class ManagerOfWaves : MonoBehaviour
         waveObj.transform.parent = transform;
         WaveController wave = waveObj.AddComponent<WaveController>();
         waveSetting.Wave = wave;
-        wave.time = waveSetting._waveTime;
-        wave.SetWaveSettings(waveSetting.enemySpawnerSettings, waveSetting._amountOfGoldPerWave, waveSetting._amountOfExpPerWave);
+        wave.time = waveSetting.parametersOfWave.waveTime;
+        wave.SetWaveSettings(waveSetting.enemySpawnerSettings, waveSetting.parametersOfWave.amountOfGoldPerWave, waveSetting.parametersOfWave.amountOfExpPerWave);
         Destroy(wavePrefab);
     }
 
