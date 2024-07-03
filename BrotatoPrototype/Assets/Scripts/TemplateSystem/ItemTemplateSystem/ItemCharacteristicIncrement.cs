@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Base Characteristic Increment", menuName = "Items Template/BaseIncrement")]
+[CreateAssetMenu(fileName = "Item Characteristic Increment", menuName = "Templates/Item Characteristic Increment")]
 public class BaseCharacteristicIncrement : ScriptableObject
 {
     public float percentage = 0.005f;

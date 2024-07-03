@@ -128,7 +128,7 @@ public class Item : MonoBehaviour
             throw new NotSupportedException($"{gameObject.name} baff or debaff list sould not be empty!");
         }
 
-        TemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier);
+        ItemTemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier);
         BaseCharacteristicIncrement baseIncrement = itemTemplate.GetBaseIncrement();
 
         foreach (Baff baff in baffs) 

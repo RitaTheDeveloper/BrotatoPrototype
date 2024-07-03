@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73700ebb11bccad4a8cf1ac2f22640d0, type: 3}
+  m_Name: FirstWeaponTemplate
+  m_EditorClassIdentifier: 
+  tierPrefabPairs: {fileID: 11400000, guid: fda5bd84f55904046b185bbd1676a7e6, type: 2}
+  weaponTemplateData:
+  - name: First Tier Data
+    tier: 0
+    price: 20
+    damageStrength: 1
+    critChanceStrength: 1
+    damagePerSecond: 100
+    additionalCharacteristicStrength: 1
+  - name: Second Tier Data
+    tier: 1
+    price: 60
+    damageStrength: 1.2
+    critChanceStrength: 1.4
+    damagePerSecond: 150
+    additionalCharacteristicStrength: 2
+  - name: Third Tier Data
+    tier: 2
+    price: 100
+    damageStrength: 1.5
+    critChanceStrength: 2
+    damagePerSecond: 225
+    additionalCharacteristicStrength: 3
+  - name: Fourth Tier Data
+    tier: 3
+    price: 200
+    damageStrength: 2
+    critChanceStrength: 3
+    damagePerSecond: 350
+    additionalCharacteristicStrength: 4
