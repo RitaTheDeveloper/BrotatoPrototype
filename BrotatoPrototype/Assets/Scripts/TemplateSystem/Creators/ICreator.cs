@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ICreator 
 {
-    BaseItem Create(BaseItem baseItem, TierType tier);
+    Item CreateItem(Item baseItem, TierType tier);
 
-    void SetParentItem(BaseItem item, Transform parent);
+    Weapon CreateWeapon(Weapon baseWeapon, TierType tier);
 }

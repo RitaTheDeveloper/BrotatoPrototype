@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using static ItemTemplate;
 
 public class Item : BaseItem
 {
@@ -23,13 +21,14 @@ public class Item : BaseItem
 
     public override void SynchronizeComponents()
     {
+        //CalculateAllCharacteristics();
         SynchronizePlayerCharacteristics();
         SynchronizeItemShopInfo();
         SynchonizeStandartItem();
     }
 
     [ContextMenu("CalculateAllCharacteristics")]
-    private void CalculateAllChartacteristics()
+    protected override void CalculateAllCharacteristics()
     {
         if (baffs.Length == 0 || debaffs.Length == 0)
         {
@@ -152,8 +151,6 @@ public class Item : BaseItem
         if (playerCharacteristics == null) 
             return;
 
-        CalculateAllChartacteristics();
-
         foreach (ItemBaff baff in baffs)
         {
             SynchronizeCharacteristic(baff.characteristic, characteristicMap[baff.characteristic]);
@@ -169,8 +166,6 @@ public class Item : BaseItem
     {
         playerCharacteristics.SynchronizeCharacteristic(characteristic, value);
     }
-
-
 
     private void SynchonizeStandartItem()
     {
@@ -199,4 +194,5 @@ public class Item : BaseItem
         // IconWeapon property
         itemShopInfo.IconWeapon = icon;
     }
+
 }

@@ -55,6 +55,8 @@ public abstract class BaseItem : MonoBehaviour
 
         BaseItem instancedItem = Instantiate(this);
         RenameInstance(instancedItem, editorName);
+        instancedItem.CalculateAllCharacteristics();
+        instancedItem.SynchronizeComponents();
         return instancedItem;
     }
 
@@ -89,4 +91,6 @@ public abstract class BaseItem : MonoBehaviour
     public abstract void SynchronizeComponents();
 
     protected abstract void SynchronizeItemShopInfo();
+
+    protected abstract void CalculateAllCharacteristics();
 }

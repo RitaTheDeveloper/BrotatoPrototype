@@ -1,30 +1,26 @@
 using System;
 using UnityEngine;
 
-public abstract class Creator
+public class Creator : ICreator
 {
-    protected BaseItem Create(BaseItem baseItem, TierType tier)
+    private BaseItem Create(BaseItem baseItem, TierType tier)
     {
         switch (tier)
         {
             case TierType.FirstTier:
                 BaseItem itemT1 = baseItem.Initialize(TierType.FirstTier);
-                itemT1.SynchronizeComponents();
                 return itemT1;
 
             case TierType.SecondTier:
                 BaseItem itemT2 = baseItem.Initialize(TierType.SecondTier);
-                itemT2.SynchronizeComponents();
                 return itemT2;
 
             case TierType.ThirdTier:
                 BaseItem itemT3 = baseItem.Initialize(TierType.ThirdTier);
-                itemT3.SynchronizeComponents();
                 return itemT3;
 
             case TierType.FourthTier:
                 BaseItem itemT4 = baseItem.Initialize(TierType.FourthTier);
-                itemT4.SynchronizeComponents();
                 return itemT4;
 
             default:
@@ -33,8 +29,28 @@ public abstract class Creator
 
     }
 
-    public void SetParentItem(BaseItem item, Transform parent)
+    public Item CreateItem(Item baseItem, TierType tier)
     {
-        item.transform.SetParent(parent);
+        Item itemToReturn = Create(baseItem, tier) as Item;
+
+        if (itemToReturn == null)
+        {
+            throw new NullReferenceException($"Dynamic cast failed {baseItem} : {tier} must be Item type");
+        }
+
+        return itemToReturn;
     }
+
+    public Weapon CreateWeapon(Weapon baseWeapon, TierType tier)
+    {
+        Weapon weaponToReturn = Create(baseWeapon, tier) as Weapon;
+
+        if (weaponToReturn == null)
+        {
+            throw new NullReferenceException($"Dynamic cast failed {baseWeapon} : {tier} must be Weapon type");
+        }
+
+        return weaponToReturn;
+    }
+
 }

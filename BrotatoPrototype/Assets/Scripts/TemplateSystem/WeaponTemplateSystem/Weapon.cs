@@ -58,4 +58,9 @@ public class Weapon : BaseItem
         // IconWeapon property
         itemShopInfo.IconWeapon = icon;
     }
+
+    protected override void CalculateAllCharacteristics()
+    {
+        throw new System.NotImplementedException();
+    }
 }
