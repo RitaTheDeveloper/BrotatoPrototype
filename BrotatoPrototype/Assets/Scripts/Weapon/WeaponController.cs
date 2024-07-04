@@ -7,10 +7,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject weaponHoldPrefab;
     [SerializeField] private Transform containerOfWeaponHolds;
     //[SerializeField] private Weapon _startingGun;
-    [SerializeField] List<Weapon> listOfWeapons;
+    [SerializeField] List<BaseWeapon> listOfWeapons;
     [SerializeField] private float radisOfWeaponHold = 3f;
     [SerializeField] private int maxNumberOfWeapons = 6;
-    private Weapon equppiedGun;
+    private BaseWeapon equppiedGun;
     List<GameObject> listOfWeaponHolds;
 
     private void Start()
@@ -43,7 +43,7 @@ public class WeaponController : MonoBehaviour
         return listOfWeaponHolds;
     }
 
-    public void SetWeaponsInWeaponHolders(List<Weapon> listOfWeapons)
+    public void SetWeaponsInWeaponHolders(List<BaseWeapon> listOfWeapons)
     {
         DestroyAllWeapons();
 
@@ -51,25 +51,25 @@ public class WeaponController : MonoBehaviour
 
         for (int i = 0; i < listOfWeaponHolds.Count; i++)
         {
-            Weapon newWeapon = Instantiate(listOfWeapons[i]);
+            BaseWeapon newWeapon = Instantiate(listOfWeapons[i]);
             newWeapon.transform.parent = listOfWeaponHolds[i].transform;
             newWeapon.transform.localPosition = listOfWeapons[i].transform.position;
             newWeapon.transform.localRotation = listOfWeapons[i].transform.rotation;
         }
     }
-    public void EquipGun(Weapon gunToEquip)
+    public void EquipGun(BaseWeapon gunToEquip)
     {
         //TODO магазин передает префаб, надо добавить в список
         listOfWeapons.Add(gunToEquip);
     }
 
-    public void UnequipGun(Weapon gunToUnequip)
+    public void UnequipGun(BaseWeapon gunToUnequip)
     {
         //TODO магазин передает префаб, надо убрать из списка
         listOfWeapons.Remove(gunToUnequip);
     }
 
-    public List<Weapon> GetAllWeapons()
+    public List<BaseWeapon> GetAllWeapons()
     {
         return listOfWeapons;
     }

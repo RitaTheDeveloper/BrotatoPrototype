@@ -8,13 +8,13 @@ public class ItemTemplate : BaseTemplate
     [SerializeField] private ItemTemplateData[] itemTemplateData;
 
     [Header("Base step for each characteristic")]
-    [SerializeField] private BaseCharacteristicIncrement baseIncrement;
+    [SerializeField] private ItemCharacteristicIncrement baseIncrement;
 
-    public ItemTemplateData GetTemplateDataForSpecificTier(TierType tier)
+    public override BaseTemplateData GetTemplateDataForSpecificTier(TierType tier)
     {
         ItemTemplateData dataToReturn = new ItemTemplateData();
 
-        foreach(ItemTemplateData specificData in itemTemplateData)
+        foreach (ItemTemplateData specificData in itemTemplateData)
         {
             if (specificData.tier == tier)
             {
@@ -26,21 +26,7 @@ public class ItemTemplate : BaseTemplate
         return dataToReturn;
     }
 
-    public RareItemsDataStruct GetPrefabDataForSpecificTier(TierType tier)
-    {
-        RareItemsDataStruct dataFromPrefab = null;
-        foreach (var pair in tierPrefabPairs.GetPairs())
-        {
-            if ((pair.tier == tier))
-            {
-                dataFromPrefab = pair.dataFromPefab;
-                break;
-            }
-        }
-        return dataFromPrefab;
-    }
-
-    public BaseCharacteristicIncrement GetBaseIncrement()
+    public ItemCharacteristicIncrement GetBaseIncrement()
     {
         return baseIncrement;
     }

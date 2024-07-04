@@ -30,7 +30,7 @@ public interface IShopController
 
     bool IsWeapon(string id);
 
-    Weapon GetWeapon(string id);
+    BaseWeapon GetWeapon(string id);
 
     ItemShopInfo GetUiInfo(string id);
 

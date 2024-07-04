@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class BaseTemplateData 
+public abstract class BaseTemplateData 
 {
     public string name;
     public TierType tier;

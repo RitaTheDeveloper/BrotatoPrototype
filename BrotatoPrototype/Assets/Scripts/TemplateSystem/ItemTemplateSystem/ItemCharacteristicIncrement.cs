@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item Characteristic Increment", menuName = "Templates/Item Characteristic Increment")]
-public class BaseCharacteristicIncrement : ScriptableObject
+public class ItemCharacteristicIncrement : ScriptableObject
 {
     public float percentage = 0.005f;
     public float satiety = 0.05f;

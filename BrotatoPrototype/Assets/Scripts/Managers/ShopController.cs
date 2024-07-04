@@ -7,12 +7,12 @@ using UnityEngine;
 public class ShopController : MonoBehaviour, IShopController
 {
     public List<StandartItem> ItemList = new List<StandartItem>();
-    public List<Weapon> WeaponList = new List<Weapon>();
+    public List<BaseWeapon> WeaponList = new List<BaseWeapon>();
     public Dictionary<int, List<string>> LevelToItems = new Dictionary<int, List<string>>();
     public Dictionary<int, List<string>> LevelToWeapons = new Dictionary<int, List<string>>();
 
     public Dictionary<string, StandartItem> SaleItemsDict = new Dictionary<string, StandartItem>();
-    public Dictionary<string, Weapon> WeaponsDict = new Dictionary<string, Weapon>();
+    public Dictionary<string, BaseWeapon> WeaponsDict = new Dictionary<string, BaseWeapon>();
 
     public Dictionary<int, string> SlotItems = new Dictionary<int, string>();
     public Dictionary<int, bool> LockItemsDict = new Dictionary<int, bool>();
@@ -47,7 +47,7 @@ public class ShopController : MonoBehaviour, IShopController
 
     WeaponController weaponController;
     private GameObject player;
-    private List<Weapon> weaponsList;
+    private List<BaseWeapon> weaponsList;
     private PlayerInventory playerInventory;
     private int currentWave;
 
@@ -325,7 +325,7 @@ public class ShopController : MonoBehaviour, IShopController
         return false;
     }
 
-    public Weapon GetWeapon(string id)
+    public BaseWeapon GetWeapon(string id)
     {
         if (WeaponsDict.ContainsKey(id))
         {

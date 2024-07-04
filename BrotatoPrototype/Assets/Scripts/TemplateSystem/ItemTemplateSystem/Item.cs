@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ItemTemplate;
 
-public class Item : MonoBehaviour
+public class Item : BaseItem
 {
-    [Header("Name")]
-    [SerializeField] private string inGameNameT1_3;
-    [SerializeField] private string inGameNameT4;
-    [Header("Icon")]
-    [SerializeField] private Sprite iconT1;
-    [SerializeField] private Sprite iconT2;
-    [SerializeField] private Sprite iconT3;
-    [SerializeField] private Sprite iconT4;
-
     [Space]
     [Header("Item Template")]
     [SerializeField] private ItemTemplate itemTemplate;
@@ -21,103 +12,20 @@ public class Item : MonoBehaviour
     [Space]
     [Header("Item Characteristics")]
     [Header("Baff multipliers")]
-    [SerializeField] private Baff[] baffs;
+    [SerializeField] protected ItemBaff[] baffs;
     [Header("Debaff multipliers")]
-    [SerializeField] private Baff[] debaffs;
-
-    // Item characteristics in %
-    private float satiety;
-    private float maxHealth;
-    private float regenerationHP;
-    private float dodge;
-    private float armor;
-    private float moveSpeed;
-    private float attackSpeed;
-    private float damage;
-    private float meleeDamage;
-    private float rangeDamage;
-    private float critChance;
-    private float magneticRadius;
+    [SerializeField] protected ItemBaff[] debaffs;
 
 
     /* Needs get rid PlayerCharacteristics component at Item
      * To do this needs refactor UI-item's view*/
     private PlayerCharacteristics playerCharacteristics;
 
-    [HideInInspector] public TierType tier = TierType.FirstTier;
-    [HideInInspector] public string gameName;
-    [HideInInspector] public string editorName;
-    [HideInInspector] public Sprite icon;
-    private Dictionary<CharacteristicType, float> characteristicMap = new Dictionary<CharacteristicType, float>();
-
-    public Item Initialize(TierType tier)
-    {
-        this.tier = tier;
-
-        switch (tier)
-        {
-            case TierType.FirstTier:
-                gameName = inGameNameT1_3;
-                icon = iconT1;
-                break;
-
-            case TierType.SecondTier:
-                gameName = inGameNameT1_3;
-                icon = iconT2;
-                break;
-
-            case TierType.ThirdTier:
-                gameName = inGameNameT1_3;
-                icon = iconT3;
-                break;
-
-            case TierType.FourthTier:
-                gameName = inGameNameT4;
-                icon = iconT4;
-                break;
-
-        }
-
-        AddSuffixToEditorName(tier);
-
-        Item instancedItem = Instantiate(this);
-        RenameInstance(instancedItem, editorName);
-        return instancedItem;
-    }
-
-    public void SynchronizeComponents()
+    public override void SynchronizeComponents()
     {
         SynchronizePlayerCharacteristics();
         SynchronizeItemShopInfo();
         SynchonizeStandartItem();
-    }
-
-    private void AddSuffixToEditorName(TierType tier)
-    {
-        editorName = gameObject.name;
-
-        editorName = editorName.Remove(editorName.Length - 3);
-
-        switch (tier)
-        {
-            case TierType.FirstTier:
-                editorName = editorName + "_T1";
-                break;
-            case TierType.SecondTier:
-                editorName = editorName + "_T2";
-                break;
-            case TierType.ThirdTier:
-                editorName = editorName + "_T3";
-                break;
-            case TierType.FourthTier:
-                editorName = editorName + "_T4";
-                break;
-        }
-    }
-
-    private void RenameInstance(Item item, string newEditorName)
-    {
-        item.gameObject.name = newEditorName;
     }
 
     [ContextMenu("CalculateAllCharacteristics")]
@@ -128,15 +36,15 @@ public class Item : MonoBehaviour
             throw new NotSupportedException($"{gameObject.name} baff or debaff list sould not be empty!");
         }
 
-        ItemTemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier);
-        BaseCharacteristicIncrement baseIncrement = itemTemplate.GetBaseIncrement();
+        ItemTemplateData data = itemTemplate.GetTemplateDataForSpecificTier(tier) as ItemTemplateData;
+        ItemCharacteristicIncrement baseIncrement = itemTemplate.GetBaseIncrement();
 
-        foreach (Baff baff in baffs) 
+        foreach (ItemBaff baff in baffs) 
         {
             CalculateCharacteristic(baff.characteristic, baff.multiplier, baseIncrement, data.baffStrength, false);
         }
 
-        foreach (Baff debaff in debaffs)
+        foreach (ItemBaff debaff in debaffs)
         {
             CalculateCharacteristic(debaff.characteristic, debaff.multiplier, baseIncrement, data.debaffStrength, true);
         }
@@ -145,75 +53,75 @@ public class Item : MonoBehaviour
     private float CalculateTotalMultiplierForItem()
     {
         float totalMultiplier = 0;
-        foreach (Baff baff in baffs)
+        foreach (ItemBaff baff in baffs)
         {
             totalMultiplier += baff.multiplier;
         }
         return totalMultiplier;
     }
 
-    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, BaseCharacteristicIncrement baseIncrement, float baffStrength, bool isDebaff)
+    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, ItemCharacteristicIncrement baseIncrement, float baffStrength, bool isDebaff)
     {
         switch (characteristic)
         {
             case CharacteristicType.Satiety:
-                satiety = Calculate(baseIncrement.satiety, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = satiety;
+                characteristicValues.satiety = Calculate(baseIncrement.satiety, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.satiety;
                 break;
 
             case CharacteristicType.MaxHealth:
-                maxHealth = Calculate(baseIncrement.maxHealth, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = maxHealth;
+                characteristicValues.maxHealth = Calculate(baseIncrement.maxHealth, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.maxHealth;
                 break;
 
             case CharacteristicType.RegenerationHP:
-                regenerationHP = Calculate(baseIncrement.regenerationHP, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = regenerationHP;
+                characteristicValues.regenerationHP = Calculate(baseIncrement.regenerationHP, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.regenerationHP;
                 break;
 
             case CharacteristicType.Dodge:
-                dodge = Calculate(baseIncrement.dodge, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = dodge;
+                characteristicValues.dodge = Calculate(baseIncrement.dodge, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.dodge;
                 break;
 
             case CharacteristicType.Armor:
-                armor = Calculate(baseIncrement.armor, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = armor;
+                characteristicValues.armor = Calculate(baseIncrement.armor, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.armor;
                 break;
                 
             case CharacteristicType.MoveSpeed:
-                moveSpeed = Calculate(baseIncrement.moveSpeed, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = moveSpeed;
+                characteristicValues.moveSpeed = Calculate(baseIncrement.moveSpeed, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.moveSpeed;
                 break;
 
             case CharacteristicType.AttackSpeed:
-                attackSpeed = Calculate(baseIncrement.attackSpeed, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = attackSpeed;
+                characteristicValues.attackSpeed = Calculate(baseIncrement.attackSpeed, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.attackSpeed;
                 break;
 
             case CharacteristicType.Damage:
-                damage = Calculate(baseIncrement.damage, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = damage;
+                characteristicValues.damage = Calculate(baseIncrement.damage, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.damage;
                 break;
 
             case CharacteristicType.MeleeDamage:
-                meleeDamage = Calculate(baseIncrement.meleeDamage, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = meleeDamage;
+                characteristicValues.meleeDamage = Calculate(baseIncrement.meleeDamage, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.meleeDamage;
                 break;
 
             case CharacteristicType.RangeDamage:
-                rangeDamage = Calculate(baseIncrement.rangeDamage, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = rangeDamage;
+                characteristicValues.rangeDamage = Calculate(baseIncrement.rangeDamage, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.rangeDamage;
                 break;
 
             case CharacteristicType.ChanceOfCrit:
-                critChance = Calculate(baseIncrement.chanceOfCrit, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = critChance;
+                characteristicValues.critChance = Calculate(baseIncrement.chanceOfCrit, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.critChance;
                 break;
 
             case CharacteristicType.MagneticRadius:
-                magneticRadius = Calculate(baseIncrement.magneticRadius, multiplier, baffStrength, isDebaff);
-                characteristicMap[characteristic] = magneticRadius;
+                characteristicValues.magneticRadius = Calculate(baseIncrement.magneticRadius, multiplier, baffStrength, isDebaff);
+                characteristicMap[characteristic] = characteristicValues.magneticRadius;
                 break;
 
             default:
@@ -246,12 +154,12 @@ public class Item : MonoBehaviour
 
         CalculateAllChartacteristics();
 
-        foreach (Baff baff in baffs)
+        foreach (ItemBaff baff in baffs)
         {
             SynchronizeCharacteristic(baff.characteristic, characteristicMap[baff.characteristic]);
         }
 
-        foreach (Baff debaff in debaffs)
+        foreach (ItemBaff debaff in debaffs)
         {
             SynchronizeCharacteristic(debaff.characteristic, characteristicMap[debaff.characteristic]);
         }
@@ -262,7 +170,16 @@ public class Item : MonoBehaviour
         playerCharacteristics.SynchronizeCharacteristic(characteristic, value);
     }
 
-    private void SynchronizeItemShopInfo()
+
+
+    private void SynchonizeStandartItem()
+    {
+        StandartItem standartItem = GetComponent<StandartItem>();
+
+        standartItem.IdItem = editorName;
+    }
+
+    protected override void SynchronizeItemShopInfo()
     {
         ItemShopInfo itemShopInfo = GetComponent<ItemShopInfo>();
 
@@ -282,21 +199,4 @@ public class Item : MonoBehaviour
         // IconWeapon property
         itemShopInfo.IconWeapon = icon;
     }
-
-    private void SynchonizeStandartItem()
-    {
-        StandartItem standartItem = GetComponent<StandartItem>();
-
-        standartItem.IdItem = editorName;
-    }
-
-    
-}
-
-[System.Serializable]
-public class Baff
-{
-    public CharacteristicType characteristic;
-    [Range(0.001f, 10f)]
-    public float multiplier;
 }

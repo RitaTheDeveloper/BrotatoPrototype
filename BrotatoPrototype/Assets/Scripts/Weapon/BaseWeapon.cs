@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class Weapon : MonoBehaviour
+public abstract class BaseWeapon : MonoBehaviour
 {
     public enum Tier { one, two, three, four }
     public Tier tier;
@@ -176,9 +176,4 @@ public class Weapon : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class WeaponBaff
-{
-    public CharacteristicType characteristic = CharacteristicType.None;
-    public float value = 0f;
-}
+

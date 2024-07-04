@@ -13,7 +13,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
     {
         DeleteInfo();
         
-        Weapon weapon = itemInfo.GetComponent<Weapon>();
+        BaseWeapon weapon = itemInfo.GetComponent<BaseWeapon>();
         //для оружий
         if (weapon)
         {
@@ -28,7 +28,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
         }
     }
 
-    private void DisplayCharacteristicsForWeapon(Weapon weapon)
+    private void DisplayCharacteristicsForWeapon(BaseWeapon weapon)
     {
         characteristicsList = new TextMeshProUGUI[5];
         for (int i = 0; i < characteristicsList.Length; i++)
@@ -43,7 +43,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
         WriteBaffWeaponCharacteristic(weapon);
     }
 
-    private void WriteBaffWeaponCharacteristic(Weapon weapon)
+    private void WriteBaffWeaponCharacteristic(BaseWeapon weapon)
     {
         switch (weapon.baff.characteristic)
         {

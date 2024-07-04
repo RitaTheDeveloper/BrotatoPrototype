@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunWeapon : Weapon
+public class GunWeapon : BaseWeapon
 {
     [SerializeField] private Transform _muzzle;
     [Tooltip("Префаб пули")]
