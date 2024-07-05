@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Weapon : BaseItem
@@ -14,30 +15,25 @@ public class Weapon : BaseItem
     [Space]
     [Header("Weapon Characteristics")]
     [Min(1f)]
-    [SerializeField] private float damage = 30f;
+    [SerializeField] private float startDamage = 30f;
     [Min(0.001f)]
-    [SerializeField] private float critChance = 0.02f;
-    [Min(0.01f)]
+    [SerializeField] private float startCritChance = 0.02f;
     [SerializeField] private float reductionCoeff = 1f;
-
-    [ReadOnlyInspector] [SerializeField] private float attackSpeed;
+    
+    
+    [Space]
+    [ReadOnlyInspector]
+    [SerializeField] private float damage;
+    [ReadOnlyInspector]
+    [SerializeField] private float critChance;
+    [ReadOnlyInspector]
+    [SerializeField] private float attackSpeed;
 
     public override void SynchronizeComponents()
     {
         SynchronizeItemShopInfo();
     }
 
-    [ContextMenu("CalculateAttackSpeed")]
-    private void CalulateAttackSpeed()
-    {
-        WeaponTemplateData weaponTemplateData = weaponTemplate.GetTemplateDataForSpecificTier(tier) as WeaponTemplateData;
-        float damagePerSecond = weaponTemplateData.damagePerSecond;
-        float critStrength = weaponTemplate.GetCritStrength();
-
-        attackSpeed = damagePerSecond / (damage * (1 - critChance) + damage * critChance * critStrength) / reductionCoeff;
-    }
-
-    [ContextMenu("SynchronizeItemShopInfo")]
     protected override void SynchronizeItemShopInfo()
     {
         ItemShopInfo itemShopInfo = GetComponent<ItemShopInfo>();
@@ -61,6 +57,135 @@ public class Weapon : BaseItem
 
     protected override void CalculateAllCharacteristics()
     {
-        throw new System.NotImplementedException();
+        CalculateWeaponCharacteristics();
+        CalculateAdditionalCharacteristics();
+    }
+
+    private void CalculateWeaponCharacteristics()
+    {
+        WeaponTemplateData data = weaponTemplate.GetTemplateDataForSpecificTier(tier) as WeaponTemplateData;
+
+        CalculateDamage(data);
+        CalculateCritChance(data);
+        CalulateAttackSpeed();
+    }
+
+
+    private void CalculateDamage(WeaponTemplateData data)
+    {
+        damage = startDamage * data.damageStrength;
+    }
+
+    private void CalculateCritChance(WeaponTemplateData data)
+    {
+        critChance = startCritChance * data.critChanceStrength;
+    }
+
+    private void CalulateAttackSpeed()
+    {
+        WeaponTemplateData weaponTemplateData = weaponTemplate.GetTemplateDataForSpecificTier(tier) as WeaponTemplateData;
+        float damagePerSecond = weaponTemplateData.damagePerSecond;
+        float critStrength = weaponTemplate.GetCritStrength();
+
+        attackSpeed = damagePerSecond / (damage * (1 - critChance) + damage * critChance * critStrength) / reductionCoeff;
+    }
+
+    private void CalculateAdditionalCharacteristics()
+    {
+        foreach (WeaponBaff baff in baffs)
+        {
+            CalculateAdditionalCharacteristic(baff, false);
+        }
+
+        foreach (WeaponBaff debaff in debaffs)
+        {
+            CalculateAdditionalCharacteristic(debaff, true);
+        }
+    }
+
+    private void CalculateAdditionalCharacteristic(WeaponBaff weaponBaff, bool isDebaff)
+    {
+        switch (weaponBaff.characteristic)
+        {
+            case CharacteristicType.Satiety:
+                characteristicValues.satiety = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.satiety;
+                break;
+
+            case CharacteristicType.MaxHealth:
+                characteristicValues.maxHealth = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.maxHealth;
+                break;
+
+            case CharacteristicType.RegenerationHP:
+                characteristicValues.regenerationHP = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.regenerationHP;
+                break;
+
+            case CharacteristicType.Dodge:
+                characteristicValues.dodge = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.dodge;
+                break;
+
+            case CharacteristicType.Armor:
+                characteristicValues.armor = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.armor;
+                break;
+
+            case CharacteristicType.MoveSpeed:
+                characteristicValues.moveSpeed = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.moveSpeed;
+                break;
+
+            case CharacteristicType.AttackSpeed:
+                characteristicValues.attackSpeed = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.attackSpeed;
+                break;
+
+            case CharacteristicType.Damage:
+                characteristicValues.damage = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.damage;
+                break;
+
+            case CharacteristicType.MeleeDamage:
+                characteristicValues.meleeDamage = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.meleeDamage;
+                break;
+
+            case CharacteristicType.RangeDamage:
+                characteristicValues.rangeDamage = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.rangeDamage;
+                break;
+
+            case CharacteristicType.ChanceOfCrit:
+                characteristicValues.critChance = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.critChance;
+                break;
+
+            case CharacteristicType.MagneticRadius:
+                characteristicValues.magneticRadius = Calculate(weaponBaff, isDebaff);
+                characteristicMap[weaponBaff.characteristic] = characteristicValues.magneticRadius;
+                break;
+
+            default:
+                throw new NotSupportedException($"Item {gameObject.name} has not supported characteristic {weaponBaff}");
+        }
+    }
+
+    private float Calculate(WeaponBaff weaponBaff, bool isDebaff)
+    {
+        WeaponTemplateData data = weaponTemplate.GetTemplateDataForSpecificTier(tier) as WeaponTemplateData;
+        float additionalCharacteristicStrength = data.additionalCharacteristicStrength;
+
+        if (isDebaff)
+        {
+            float result = weaponBaff.value * additionalCharacteristicStrength * (-1);
+            return Mathf.Round(result * 100.0f) * 0.01f;
+        }
+        else
+        {
+            float result = weaponBaff.value * additionalCharacteristicStrength;
+            return Mathf.Round(result * 100.0f) * 0.01f;
+        }
     }
 }
