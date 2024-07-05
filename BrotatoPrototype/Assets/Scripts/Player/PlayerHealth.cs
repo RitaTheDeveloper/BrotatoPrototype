@@ -68,9 +68,9 @@ public class PlayerHealth : LivingEntity
 
     public override void Die()
     {
-        base.Die();
         DisplayHealth();
         GameManager.instance.Lose();
+        base.Die();
     }
 
     public override void HpRegen()
