@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class PlayerHealth : LivingEntity
 {
+    public Action onPlayerDead;
+
     public bool invulnerability;
     public bool canTakeDmg;
     [SerializeField] private float timeOfInvulnerability = 0.5f;
@@ -68,9 +71,10 @@ public class PlayerHealth : LivingEntity
 
     public override void Die()
     {
-        base.Die();
+        onPlayerDead?.Invoke();
+        base.Die();        
         DisplayHealth();
-        GameManager.instance.Lose();
+       // GameManager.instance.Lose();
     }
 
     public override void HpRegen()
@@ -194,7 +198,7 @@ public class PlayerHealth : LivingEntity
 
     private bool IsDodge()
     {
-        float random = Random.Range(0, 100);
+        float random = UnityEngine.Random.Range(0, 100);
 
         if(random <= _probabilityOfDodge)
         {

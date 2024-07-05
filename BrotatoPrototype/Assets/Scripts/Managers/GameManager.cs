@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool resetProgress = false;
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private Transform playerStartingSpawnPoint;
-    [SerializeField] WaveController _currentWave;
     [SerializeField] private ShopController shop;
     [SerializeField] private ManagerOfWaves _managerOfWaves;
+    [SerializeField] private PoolObject currencyPoolObject;
     private int _currentDifficulty;
     public GameObject player;
     public List<WaveSetting> listOfWaveSetting;
@@ -30,11 +30,13 @@ public class GameManager : MonoBehaviour
     public int WaveCounter { get => _waveCounter; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
     public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
+    public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
     public AudioMixerGroup SFXAudioMixer;
     private SaveController _saveController;
+    private WaveController _currentWave;
 
 
     private void Awake()
@@ -62,10 +64,29 @@ public class GameManager : MonoBehaviour
         //Init();
     }
 
+    private void OnEnable()
+    {
+        if (player)
+        {
+            player.GetComponent<PlayerHealth>().onPlayerDead += Lose;
+        }
+        
+    }
+
+    private void OnDisable()
+    {
+        if (player)
+        {
+            player.GetComponent<PlayerHealth>().onPlayerDead -= Lose;
+        }
+
+    }
+
     public void Init()
     {
         shop.ResetShop();
         SpawnPlayer(_heroIndex);
+        player.GetComponent<PlayerHealth>().onPlayerDead += Lose;
         _isPlaying = true;
         _gameIsOver = false;
         
@@ -251,7 +272,7 @@ public class GameManager : MonoBehaviour
 
     private void RemoveAllCurrency()
     {
-        PoolObject.instance.RemoveAllObjectsFromScene();
+        currencyPoolObject.RemoveAllObjectsFromScene();
     }
 
     private void RemoveAllLoot()
