@@ -13229,318 +13229,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dba91dbe79afce469d7b4f8611d5928, type: 3}
---- !u!1 &721492484
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 721492486}
-  - component: {fileID: 721492485}
-  m_Layer: 0
-  m_Name: ManagerOfWaves
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &721492485
+--- !u!114 &721492485 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 519359935933579938, guid: 523ee5a7efae11c48b523e298ccc0d97,
+    type: 3}
+  m_PrefabInstance: {fileID: 8503450705948049183}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721492484}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listOfWaveSettings:
-  - name: wave5
-    parametersOfWave:
-      waveTime: 15
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 12
-      amountOfEnemiesInPack: 6
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 2
-      radiusOfPlayer: 30
-      isSpecificPoint: 1
-      specificPoint: {x: 15, y: 15}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 10
-      amountOfEnemiesInPack: 2
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 2
-      radiusOfPlayer: 30
-      isSpecificPoint: 1
-      specificPoint: {x: -15, y: 15}
-  - name: wave3
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-  - name: wave1
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-  - name: wave2
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-  - name: wave4
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-  - name: wave4
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-  - name: wave6
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 0}
-      spawnCd: 0
-      totalAmountOfEnemies: 0
-      amountOfEnemiesInPack: 0
-      radiusOfPack: 0
-      startSpawnTime: 0
-      endSpawnTime: 0
-      radiusOfPlayer: 0
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
---- !u!4 &721492486
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721492484}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728071405
 GameObject:
   m_ObjectHideFlags: 0
@@ -16822,7 +16522,6 @@ MonoBehaviour:
     type: 2}
   SFXAudioMixer: {fileID: 9071803832017755623, guid: 4d62165522bb0d34c96026611e34eb2c,
     type: 2}
-  saveController: {fileID: 0}
 --- !u!4 &966859252
 Transform:
   m_ObjectHideFlags: 0
@@ -17924,7 +17623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99989}
+  m_AnchoredPosition: {x: 0, y: 84.99958}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -23933,10 +23632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ebfbb45c2d65b44b944fa2219acd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_size: 20
-  text_color: {r: 1, g: 0, b: 0, a: 1}
-  message_time: 1
-  Text_Prefab: {fileID: 8965745211161935099, guid: 4cca78f0622d3d646b74706a94494b0b,
+  _textSize: 20
+  _textColor: {r: 1, g: 0, b: 0, a: 1}
+  _messageTime: 1
+  _countTextPool: 30
+  _damageTextPrefab: {fileID: 853337589821176814, guid: 4cca78f0622d3d646b74706a94494b0b,
     type: 3}
 --- !u!1 &1417665524
 GameObject:
@@ -27405,8 +27105,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0.165692
+  m_Value: 1.000001
+  m_Size: 0.15655993
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37807,6 +37507,74 @@ Transform:
   - {fileID: 2480086580467533748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8503450705948049183
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837768666294009701, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8168817649663208468, guid: 523ee5a7efae11c48b523e298ccc0d97,
+        type: 3}
+      propertyPath: m_Name
+      value: ManagerOfWaves
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 523ee5a7efae11c48b523e298ccc0d97, type: 3}
 --- !u!222 &8534810700585632331
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38120,7 +37888,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 415540025}
   - {fileID: 966859252}
-  - {fileID: 721492486}
+  - {fileID: 8503450705948049183}
   - {fileID: 8501044091411880888}
   - {fileID: 105700849}
   - {fileID: 778934957}
