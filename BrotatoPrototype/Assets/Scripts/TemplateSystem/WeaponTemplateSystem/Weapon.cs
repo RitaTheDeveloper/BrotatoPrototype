@@ -31,7 +31,39 @@ public class Weapon : BaseItem
 
     public override void SynchronizeComponents()
     {
+        SynchronizeWeaponLogicComponent();
         SynchronizeItemShopInfo();
+    }
+
+    private void SynchronizeWeaponLogicComponent()
+    {
+        BaseWeapon weaponLogicComponent = GetComponent<BaseWeapon>();
+
+        if (weaponLogicComponent == null) 
+        {
+            throw new NullReferenceException($"{gameObject.name} must be attached MeleeWeapon/GunWeapon/MagicWeapon component ");
+        }
+
+        if (weaponLogicComponent is MeleeWeapon)
+        {
+            SynchronizeMeleeWeaponComponent(weaponLogicComponent as MeleeWeapon);
+        }
+        else if (weaponLogicComponent is GunWeapon)
+        {
+
+        }
+        else if (weaponLogicComponent is MagicMeleeWeapon)
+        {
+
+        }
+    }
+
+    private void SynchronizeMeleeWeaponComponent(MeleeWeapon meleeWeapon)
+    {
+        meleeWeapon.SetTier(tier);
+        meleeWeapon.SetStartDamage(damage);
+        meleeWeapon.SetStartAttackSpeed(attackSpeed);
+        meleeWeapon.SetStartCritChance(critChance);
     }
 
     protected override void SynchronizeItemShopInfo()
@@ -67,9 +99,8 @@ public class Weapon : BaseItem
 
         CalculateDamage(data);
         CalculateCritChance(data);
-        CalulateAttackSpeed();
+        CalulateAttackSpeed(data);
     }
-
 
     private void CalculateDamage(WeaponTemplateData data)
     {
@@ -81,10 +112,9 @@ public class Weapon : BaseItem
         critChance = startCritChance * data.critChanceStrength;
     }
 
-    private void CalulateAttackSpeed()
+    private void CalulateAttackSpeed(WeaponTemplateData data)
     {
-        WeaponTemplateData weaponTemplateData = weaponTemplate.GetTemplateDataForSpecificTier(tier) as WeaponTemplateData;
-        float damagePerSecond = weaponTemplateData.damagePerSecond;
+        float damagePerSecond = data.damagePerSecond;
         float critStrength = weaponTemplate.GetCritStrength();
 
         attackSpeed = damagePerSecond / (damage * (1 - critChance) + damage * critChance * critStrength) / reductionCoeff;
@@ -187,5 +217,13 @@ public class Weapon : BaseItem
             float result = weaponBaff.value * additionalCharacteristicStrength;
             return Mathf.Round(result * 100.0f) * 0.01f;
         }
+    }
+
+    [ContextMenu("CalculateAndSynchronize")]
+    private void CalculateAndSynchronize()
+    {
+        tier = TierType.FirstTier;
+        CalculateAllCharacteristics();
+        SynchronizeComponents();
     }
 }

@@ -73,6 +73,8 @@ public class ShopGenerator : MonoBehaviour
                 Weapon weapon = creator.CreateWeapon(baseWeapon, tier);
                 weapon.transform.SetParent(parent);
                 weapons.Add(weapon.GetComponent<BaseWeapon>());
+
+                weapon.gameObject.SetActive(false);
             }
         }
     }

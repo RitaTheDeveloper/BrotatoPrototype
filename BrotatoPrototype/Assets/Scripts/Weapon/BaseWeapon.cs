@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 public abstract class BaseWeapon : MonoBehaviour
 {
     public enum Tier { one, two, three, four }
@@ -17,7 +18,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [Tooltip("начальный урон:")]
     [SerializeField] protected float startDamage;
     [Tooltip("кол-во атак в секунду:")]
-    [SerializeField] protected float startAttackSpeed;
+    [SerializeField] protected float startAttackSpeedPercentage;
     [Tooltip("Basic Loop Attack")]
     [SerializeField] protected float _timeLoop = 2f;
     [Tooltip("вероятность крит шанса:")]
@@ -56,7 +57,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public float AttackRange { get => attackRange; }
     public float StartDamage { get => startDamage; }
-    public float StartAttackSpeed { get => startAttackSpeed;}
+    public float StartAttackSpeed { get => startAttackSpeedPercentage;}
     public float StartCritChance { get => startCritChance; }
 
     public WeaponBaff baff;
@@ -127,10 +128,14 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected void SetAttackSpeed()
     {
-        float mod = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
+        float mod = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeedPercentage / 100f;
         _currentAnimationTime = _startAnimationTime / mod;
         _currentDelayAttack = _startDelayTime / mod;
         _currentTimeLoop = _currentDelayAttack + _currentAnimationTime;
+    }
+    public void SetStartAttackSpeed(float newAttackSpeed)
+    {
+        startAttackSpeedPercentage = newAttackSpeed * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
     }
 
     protected void SetCritChance()
@@ -159,12 +164,12 @@ public abstract class BaseWeapon : MonoBehaviour
         var myWeaponModifiers = modifiers[tier];
 
         startDamage *= myWeaponModifiers.forDamage;
-        startAttackSpeed *= myWeaponModifiers.forAttackSpeed;
+        startAttackSpeedPercentage *= myWeaponModifiers.forAttackSpeed;
         startCritChance *= myWeaponModifiers.forCritChance;
     }
     protected void SetAnimationSpeed()
     {
-        animator.speed = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
+        animator.speed = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeedPercentage / 100f;
     }
 
     public void PlaySoundAttack()
@@ -172,6 +177,43 @@ public abstract class BaseWeapon : MonoBehaviour
         if (AudioManager.instance != null)
         {
             AudioManager.instance.Play(soundName, this.gameObject.transform.position);
+        }
+    }
+
+    public void SetStartDamage(float newDamage)
+    {
+        startDamage = newDamage;
+    }
+
+
+
+    public void SetStartCritChance(float newCritChance)
+    {
+        startCritChance = newCritChance;
+    }
+
+    public void SetTier(TierType tierType)
+    {
+        switch (tierType)
+        {
+            case TierType.FirstTier:
+                tier = Tier.one;
+                break;
+
+            case TierType.SecondTier:
+                tier = Tier.two;
+                break;
+
+            case TierType.ThirdTier:
+                tier = Tier.three;
+                break;
+
+            case TierType.FourthTier:
+                tier = Tier.four;
+                break;
+
+            default:
+                throw new NotSupportedException($"weapon of tier {tierType} not supported");
         }
     }
 }

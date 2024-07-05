@@ -55,6 +55,7 @@ public class WeaponController : MonoBehaviour
             newWeapon.transform.parent = listOfWeaponHolds[i].transform;
             newWeapon.transform.localPosition = listOfWeapons[i].transform.position;
             newWeapon.transform.localRotation = listOfWeapons[i].transform.rotation;
+            newWeapon.gameObject.SetActive(true);
         }
     }
     public void EquipGun(BaseWeapon gunToEquip)

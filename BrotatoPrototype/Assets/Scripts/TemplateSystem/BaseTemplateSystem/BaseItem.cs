@@ -17,7 +17,7 @@ public abstract class BaseItem : MonoBehaviour
     [Header("Characteristics")]
     [SerializeField] protected CharacteristicValues characteristicValues;
 
-    [HideInInspector] public TierType tier = TierType.FirstTier;
+    [ReadOnlyInspector] public TierType tier = TierType.FirstTier;
     [HideInInspector] public string gameName;
     [HideInInspector] public string editorName;
     [HideInInspector] public Sprite icon;
