@@ -5,7 +5,6 @@ public abstract class EnemySetting : ScriptableObject
 {
     [Space(5)]
     [Header("Other Setting")]
-    public string Name;
     public TypeEnemy TypeEnemy;
 
     public virtual EnemyTierSettingStandart GetTierEnemy(TierType tierType)
@@ -56,6 +55,7 @@ public class EnemyRangeSetting : EnemySetting
 [System.Serializable]
 public class EnemyTierSettingStandart
 {
+    public string Name;
     [Space(5)]
     [Header("Visual Setting")]
     public TierType Tier;
