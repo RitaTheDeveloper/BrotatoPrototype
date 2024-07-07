@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [System.Serializable]
@@ -12,7 +11,7 @@ public class EnemySpawnerSettings
     public int totalAmountOfEnemies = -1;
    // [Header("кол-во мобов в пачке")]
     public int amountOfEnemiesInPack = 1;
-   //[Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
+    //[Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     public float radiusOfPack = 0f;
    //[Header("задержка перед первым спавном")]
     public float startSpawnTime;

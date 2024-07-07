@@ -32,7 +32,7 @@ public class ManagerEnemyTier : MonoBehaviour
 
         EnemyController enemy = Instantiate(enemyTierSetting.PrefabTier);
         _lastEnemy = currentEnemy;
-        //enemy.Init(enemyTierSetting);
+        enemy.LoadPar(enemyTierSetting);
 
         return enemy;
     }

@@ -27,18 +27,29 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     public float knockBackTime { get; private set; } = 0.25f;
  
     
-    private void Awake()
+    //private void Awake()
+    //{
+    //    Init();
+    //}
+
+    public virtual void LoadPar(EnemyTierSettingStandart enemyTierSetting)
     {
+        timeBetweenAttacks = enemyTierSetting.TimeBetweenAttacks;
+
+        unitParameters = GetComponent<UnitParameters>();
+
+        unitParameters.Init(enemyTierSetting);
+        livingEntity.SetStartHealpPoint(enemyTierSetting.HealPoint);
         Init();
     }
 
     public virtual void Start()
     {
-        currentState = State.Chasing;
-        _rigidbody = GetComponent<Rigidbody>();
-        target = GameManager.instance.player.transform;
-        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        MoveCoroutine = StartCoroutine(UpdatePath());
+        //currentState = State.Chasing;
+        //_rigidbody = GetComponent<Rigidbody>();
+        //target = GameManager.instance.player.transform;
+        //navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+        //MoveCoroutine = StartCoroutine(UpdatePath());
     }
 
     private void FixedUpdate()
@@ -88,9 +99,14 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     protected virtual void Init()
     {
+        currentState = State.Chasing;
+        _rigidbody = GetComponent<Rigidbody>();
+        target = GameManager.instance.player.transform;
+        navMeshAgent.speed = unitParameters.CurrentMoveSpeed;
+        MoveCoroutine = StartCoroutine(UpdatePath());
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         livingEntity = GetComponent<LivingEntity>();
-        unitParameters = GetComponent<UnitParameters>();
         damage = unitParameters.CurrentDamage;
         startPositionY = transform.position.y;
     }

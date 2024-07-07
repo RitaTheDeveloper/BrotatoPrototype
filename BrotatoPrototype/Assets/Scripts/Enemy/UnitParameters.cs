@@ -67,13 +67,18 @@ public class UnitParameters : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    public void Init(EnemyTierSettingStandart enemyTierSetting)
+    {
         int indexOfWave = GameManager.instance.WaveCounter;
         //_currentHp = (_maxHp + indexOfWave * _amountOfHpPerWave) * GameManager.instance.GetCurrentHealthFactorForEnemy();
         //_currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave) * GameManager.instance.GetCurrentDamageFactorForEnemy();
         _currentHpRegen = _hpRegen;
         //_currentMoveSpeed = _moveSpeed;
-        _currentHp = _maxHp * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
-        _currentDamage = _startDamage * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
-        _currentMoveSpeed = _moveSpeed * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;
+        _currentHp = enemyTierSetting.HealPoint * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
+        _currentDamage = enemyTierSetting.Damage * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
+        _currentMoveSpeed = enemyTierSetting.Speed * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;
     }
 }

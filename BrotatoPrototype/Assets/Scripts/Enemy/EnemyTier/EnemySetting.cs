@@ -64,12 +64,14 @@ public class EnemyTierSettingStandart
     [Header("Standart Setting")]
     public float HealPoint;
     public float Damage;
+    public float TimeBetweenAttacks;
     public float Speed;
     [Space(5)]
     [Header("Direction?")]
     public float Distance;
     public float SpeedDirection;
     public float TimeStopDirection;
+    public float CDDirection;
     [Space(5)]
     [Header("Spawn Unit")]
     public GameObject PrefabSpawnUnit;
@@ -84,7 +86,6 @@ public class EnemyRangeTierSetting : EnemyTierSettingStandart
     [Space(5)]
     [Header("Range")]
     public float RangeAttack;
-    public float TimeBetweenAttack;
 }
 
 [System.Serializable]
