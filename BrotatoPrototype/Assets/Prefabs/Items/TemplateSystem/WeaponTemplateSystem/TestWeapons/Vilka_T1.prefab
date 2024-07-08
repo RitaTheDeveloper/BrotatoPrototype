@@ -70,7 +70,7 @@ MonoBehaviour:
     rangeDamage: 0
     critChance: 0
     magneticRadius: 0
-  tier: 0
+  tier: 3
   gameName: "\u0413\u0438\u0433\u0430 \u0432\u0438\u043B\u043A\u0430"
   editorName: Vilka_T4
   icon: {fileID: 21300000, guid: ec19f19569e4e6447b05877e95147cbe, type: 3}
@@ -97,12 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a2b8a76eb4e94e9122c266e79cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 0
   type: 0
-  weaponModifiers: {fileID: 11400000, guid: 7c7d40e68bf9c414ab0052408a6e484b, type: 2}
   attackRange: 7
   startDamage: 30
-  startAttackSpeed: 3.0864198
+  startAttackSpeedPercentage: 0
   _timeLoop: 2
   startCritChance: 0.02
   knockBack: 0
@@ -216,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888380afc233049ce9e618f9f36c8ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 0}
+  profile: {fileID: 11400000, guid: 4986e15e4b71f444dbf6dddc352f76a8, type: 2}
   profileSync: 0
   previewInEditor: 1
   camerasLayerMask:
@@ -260,8 +258,8 @@ MonoBehaviour:
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
   overlayVisibility: 0
-  outline: 0.443
-  outlineColor: {r: 0.1937256, g: 0.8235294, b: 0.17647056, a: 0.72156864}
+  outline: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.72156864}
   outlineColorStyle: 0
   outlineGradient:
     serializedVersion: 2
@@ -307,12 +305,12 @@ MonoBehaviour:
   outlineBlitDebug: 0
   outlineIndependent: 0
   outlineContourStyle: 1
-  glow: 1
+  glow: 0
   glowWidth: 0.1
   glowQuality: 2
   glowBlurMethod: 1
   glowDownsampling: 1
-  glowHQColor: {r: 0, g: 0.972549, b: 0.053083092, a: 1}
+  glowHQColor: {r: 1, g: 1, b: 1, a: 1}
   glowDithering: 1
   glowDitheringStyle: 0
   glowMagicNumber1: 0.75

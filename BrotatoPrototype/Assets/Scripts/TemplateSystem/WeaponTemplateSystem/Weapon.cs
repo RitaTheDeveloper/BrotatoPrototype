@@ -1,3 +1,4 @@
+using HighlightPlus;
 using System;
 using UnityEngine;
 
@@ -20,7 +21,6 @@ public class Weapon : BaseItem
     [SerializeField] private float startCritChance = 0.02f;
     [SerializeField] private float reductionCoeff = 1f;
     
-    
     [Space]
     [ReadOnlyInspector]
     [SerializeField] private float damage;
@@ -33,6 +33,21 @@ public class Weapon : BaseItem
     {
         SynchronizeWeaponLogicComponent();
         SynchronizeItemShopInfo();
+        SynchronizeHighlightEffect();
+    }
+
+    private void SynchronizeHighlightEffect()
+    {
+        HighlightEffect highlightEffectComponent = GetComponent<HighlightEffect>();
+
+        if (highlightEffectComponent == null)
+        {
+            throw new NullReferenceException($"HighlightEffect.cs component must be attached to {gameObject.name}");
+        }
+
+        HighlightProfile profileToLoad = weaponTemplate.GetHighlightProfileForSprecificTier(tier);
+        highlightEffectComponent.ProfileLoad(profileToLoad);
+        highlightEffectComponent.SetHighlighted(true);
     }
 
     private void SynchronizeWeaponLogicComponent()
@@ -41,29 +56,13 @@ public class Weapon : BaseItem
 
         if (weaponLogicComponent == null) 
         {
-            throw new NullReferenceException($"{gameObject.name} must be attached MeleeWeapon/GunWeapon/MagicWeapon component ");
+            throw new NullReferenceException($"To {gameObject.name} must be attached MeleeWeapon/GunWeapon/MagicWeapon component ");
         }
 
-        if (weaponLogicComponent is MeleeWeapon)
-        {
-            SynchronizeMeleeWeaponComponent(weaponLogicComponent as MeleeWeapon);
-        }
-        else if (weaponLogicComponent is GunWeapon)
-        {
-
-        }
-        else if (weaponLogicComponent is MagicMeleeWeapon)
-        {
-
-        }
-    }
-
-    private void SynchronizeMeleeWeaponComponent(MeleeWeapon meleeWeapon)
-    {
-        meleeWeapon.SetTier(tier);
-        meleeWeapon.SetStartDamage(damage);
-        meleeWeapon.SetStartAttackSpeed(attackSpeed);
-        meleeWeapon.SetStartCritChance(critChance);
+        weaponLogicComponent.SetWeaponBuff(characteristicMap);
+        weaponLogicComponent.SetStartDamage(damage);
+        weaponLogicComponent.SetStartAttackSpeed(attackSpeed);
+        weaponLogicComponent.SetStartCritChance(critChance);
     }
 
     protected override void SynchronizeItemShopInfo()

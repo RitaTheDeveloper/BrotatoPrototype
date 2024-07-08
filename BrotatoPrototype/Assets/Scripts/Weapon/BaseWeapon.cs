@@ -5,19 +5,15 @@ using System.Linq;
 using System;
 public abstract class BaseWeapon : MonoBehaviour
 {
-    public enum Tier { one, two, three, four }
-    public Tier tier;
     public enum Type { Melee, Gun }
     public Type type;
-    [SerializeField] WeaponModifiers weaponModifiers;
-    Dictionary<Tier, WeaponModifiers.Modifiers> modifiers = new Dictionary<Tier, WeaponModifiers.Modifiers>();
 
     [Header("Настраиваемые параметры: ")]
     [Tooltip("дальность:")]
     [SerializeField] protected float attackRange;
     [Tooltip("начальный урон:")]
     [SerializeField] protected float startDamage;
-    [Tooltip("кол-во атак в секунду:")]
+    [Tooltip("бонус к скорости атаки в процентном приращении от базовой скорости атаки:")]
     [SerializeField] protected float startAttackSpeedPercentage;
     [Tooltip("Basic Loop Attack")]
     [SerializeField] protected float _timeLoop = 2f;
@@ -61,11 +57,6 @@ public abstract class BaseWeapon : MonoBehaviour
     public float StartCritChance { get => startCritChance; }
 
     public WeaponBaff baff;
-
-    private void Awake()
-    {
-        SetCharacteristicsDependingOnTier();
-    }
 
     protected void Init()
     {
@@ -128,14 +119,10 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected void SetAttackSpeed()
     {
-        float mod = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeedPercentage / 100f;
-        _currentAnimationTime = _startAnimationTime / mod;
-        _currentDelayAttack = _startDelayTime / mod;
+        float totalSpeedBonus = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeedPercentage / 100f;
+        _currentAnimationTime = _startAnimationTime / totalSpeedBonus;
+        _currentDelayAttack = _startDelayTime / totalSpeedBonus;
         _currentTimeLoop = _currentDelayAttack + _currentAnimationTime;
-    }
-    public void SetStartAttackSpeed(float newAttackSpeed)
-    {
-        startAttackSpeedPercentage = newAttackSpeed * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
     }
 
     protected void SetCritChance()
@@ -154,19 +141,7 @@ public abstract class BaseWeapon : MonoBehaviour
             currentDamage = 1f;
     }
 
-    private void SetCharacteristicsDependingOnTier()
-    {
-        modifiers.Add(Tier.one, weaponModifiers.modifiers[0]);
-        modifiers.Add(Tier.two, weaponModifiers.modifiers[1]);
-        modifiers.Add(Tier.three, weaponModifiers.modifiers[2]);
-        modifiers.Add(Tier.four, weaponModifiers.modifiers[3]);
 
-        var myWeaponModifiers = modifiers[tier];
-
-        startDamage *= myWeaponModifiers.forDamage;
-        startAttackSpeedPercentage *= myWeaponModifiers.forAttackSpeed;
-        startCritChance *= myWeaponModifiers.forCritChance;
-    }
     protected void SetAnimationSpeed()
     {
         animator.speed = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeedPercentage / 100f;
@@ -185,35 +160,23 @@ public abstract class BaseWeapon : MonoBehaviour
         startDamage = newDamage;
     }
 
-
-
     public void SetStartCritChance(float newCritChance)
     {
         startCritChance = newCritChance;
     }
 
-    public void SetTier(TierType tierType)
+    public void SetStartAttackSpeed(float newAttackSpeed)
     {
-        switch (tierType)
+        startAttackSpeedPercentage = newAttackSpeed * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
+    }
+
+    public void SetWeaponBuff(Dictionary<CharacteristicType, float> characteristicMap)
+    {
+        foreach (var characteristicPair in characteristicMap)
         {
-            case TierType.FirstTier:
-                tier = Tier.one;
-                break;
-
-            case TierType.SecondTier:
-                tier = Tier.two;
-                break;
-
-            case TierType.ThirdTier:
-                tier = Tier.three;
-                break;
-
-            case TierType.FourthTier:
-                tier = Tier.four;
-                break;
-
-            default:
-                throw new NotSupportedException($"weapon of tier {tierType} not supported");
+            // needs to refactor!!!
+            baff.characteristic = characteristicPair.Key;
+            baff.value = characteristicPair.Value;
         }
     }
 }

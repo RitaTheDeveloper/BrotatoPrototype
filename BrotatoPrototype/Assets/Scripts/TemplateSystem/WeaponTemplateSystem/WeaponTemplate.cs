@@ -1,3 +1,5 @@
+using HighlightPlus;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +12,11 @@ public class WeaponTemplate : BaseTemplate
 
     [SerializeField] private CritStrength critStrength;
 
+    [SerializeField] private TierHighlightPairs tierHighlightPairs;
+
     public override BaseTemplateData GetTemplateDataForSpecificTier(TierType tier)
     {
-        WeaponTemplateData dataToReturn = new WeaponTemplateData();
+        WeaponTemplateData dataToReturn = null;
 
         foreach (WeaponTemplateData specificData in weaponTemplateData)
         {
@@ -23,7 +27,33 @@ public class WeaponTemplate : BaseTemplate
             }
         }
 
+        if (dataToReturn == null)
+        {
+            throw new NullReferenceException();
+        }
+
         return dataToReturn;
+    }
+
+    public HighlightProfile GetHighlightProfileForSprecificTier(TierType tier)
+    {
+        HighlightProfile profileToReturn = null;
+
+        foreach (var specificData in tierHighlightPairs.highlightProfiles)
+        {
+            if (specificData.tier == tier)
+            {
+                profileToReturn = specificData.profile;
+                break;
+            }
+        }
+
+        if (profileToReturn == null)
+        {
+            throw new NullReferenceException();
+        }
+
+        return profileToReturn;
     }
 
     public float GetCritStrength() { return critStrength.value; }
