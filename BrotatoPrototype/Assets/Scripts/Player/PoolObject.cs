@@ -5,15 +5,12 @@ using UnityEngine.Pool;
 
 public class PoolObject : MonoBehaviour
 {
-    public static PoolObject instance;
-
     [SerializeField] private Currency _currencyPrefab;
     [SerializeField] private int maxPooolSize = 200;
     public ObjectPool<Currency> currencyPool;
 
     private void Awake()
     {
-        instance = this;
         currencyPool = new ObjectPool<Currency>(CreateCurrency, OnTakeCurrencyFromPool, OnReturnCurrencyToPool, OnDestroyCurrency, true, 30, maxPooolSize);
     }
 

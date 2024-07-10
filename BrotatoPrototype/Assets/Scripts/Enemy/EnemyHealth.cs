@@ -53,9 +53,10 @@ public class EnemyHealth : LivingEntity
 
     private void SpawnCurrency()
     {
-        var currency = PoolObject.instance.currencyPool.Get();
+        var currency = GameManager.instance.GetCurrencyPoolObject.currencyPool.Get();
         currency.transform.position = new Vector3(transform.position.x, currency.transform.position.y, transform.position.z);
         currency.SetXP(xpForKill);
+        currency.Gold = GetComponent<UnitParameters>().AmountOfGoldForKill;
     }
 
     protected override void PlaySoundOfTakeHit()
