@@ -61,7 +61,7 @@ public class Weapon : BaseItem
 
         weaponLogicComponent.SetWeaponBuff(characteristicMap);
         weaponLogicComponent.SetStartDamage(damage);
-        weaponLogicComponent.SetStartAttackSpeed(attackSpeed);
+        weaponLogicComponent.SetStartAttackSpeedPercentage(attackSpeed);
         weaponLogicComponent.SetStartCritChance(critChance);
     }
 

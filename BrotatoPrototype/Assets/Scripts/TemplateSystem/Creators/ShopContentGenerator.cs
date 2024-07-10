@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopGenerator : MonoBehaviour
+public class ShopContentGenerator : MonoBehaviour
 {
     private readonly ICreator creator = new Creator();
 

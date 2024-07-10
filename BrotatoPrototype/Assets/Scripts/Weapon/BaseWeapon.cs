@@ -15,6 +15,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] protected float startDamage;
     [Tooltip("бонус к скорости атаки в процентном приращении от базовой скорости атаки:")]
     [SerializeField] protected float startAttackSpeedPercentage;
+    [ReadOnlyInspector] public float attackPerSecond;
     [Tooltip("Basic Loop Attack")]
     [SerializeField] protected float _timeLoop = 2f;
     [Tooltip("вероятность крит шанса:")]
@@ -165,9 +166,10 @@ public abstract class BaseWeapon : MonoBehaviour
         startCritChance = newCritChance;
     }
 
-    public void SetStartAttackSpeed(float newAttackSpeed)
+    public void SetStartAttackSpeedPercentage(float newAttackSpeed)
     {
-        startAttackSpeedPercentage = newAttackSpeed * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
+        attackPerSecond = newAttackSpeed;
+        startAttackSpeedPercentage = attackPerSecond * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
     }
 
     public void SetWeaponBuff(Dictionary<CharacteristicType, float> characteristicMap)
