@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44300658, g: 0.4921953, b: 0.57192475, a: 1}
+  m_IndirectSpecularColor: {r: 0.4430063, g: 0.4921952, b: 0.5719241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5555,6 +5555,7 @@ GameObject:
   - component: {fileID: 255415618}
   - component: {fileID: 255415620}
   - component: {fileID: 255415619}
+  - component: {fileID: 255415621}
   m_Layer: 5
   m_Name: Stove
   m_TagString: Untagged
@@ -5623,6 +5624,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255415617}
   m_CullTransparentMesh: 1
+--- !u!114 &255415621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255415617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTooltip: {fileID: 5741229382854598038, guid: af9418423d21b8648a7b9f08f08b7f1b,
+    type: 3}
+  _tooltipText: 123123
+  _sprite: {fileID: 0}
+  _timeShow: 1
 --- !u!224 &265596218 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1179521831396907913, guid: 5681e28f41ffa5a418b09b5634029b9c,
@@ -17758,7 +17776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99996}
+  m_AnchoredPosition: {x: 0, y: 84.99974}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -27284,8 +27302,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.16562833
+  m_Value: 1.0000006
+  m_Size: 0.16567868
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
