@@ -9,6 +9,8 @@ using System;
 
 public class AnalyticsSystem : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+
     async void Start()
     {
         try
@@ -77,7 +79,12 @@ public class AnalyticsSystem : MonoBehaviour
         Analytics.CustomEvent("gameOver");
     }
 
-    public void OnClickedUpgradeShop()
+    public void OnUpgradeShop()
+    {
+
+    }
+
+    public void OnRerollItems()
     {
 
     }
