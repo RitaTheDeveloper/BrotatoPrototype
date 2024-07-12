@@ -5,10 +5,17 @@ using UnityEngine.EventSystems;
 
 public class UIDimmingPanel : MonoBehaviour, IPointerClickHandler
 {
+    private UIShop _uIShop;
+
+    private void Start()
+    {
+        _uIShop = GetComponentInParent<UIShop>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIShop.instance.FrameOffWeaponSlot();
-        UIShop.instance.FrameOffItemSlot();
-        UIShop.instance.DestroyItemInfo();
+        _uIShop.FrameOffWeaponSlot();
+        _uIShop.FrameOffItemSlot();
+        _uIShop.DestroyItemInfo();
     }
 }

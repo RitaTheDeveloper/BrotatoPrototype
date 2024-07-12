@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float startDamage;
     [Tooltip("кол-во атак в секунду:")]
     [SerializeField] protected float startAttackSpeed;
+    [Tooltip("Basic Loop Attack")]
+    [SerializeField] protected float _timeLoop = 2f;
     [Tooltip("вероятность крит шанса:")]
     [Range(0, 1)]
     [SerializeField] protected float startCritChance;
@@ -44,8 +46,13 @@ public class Weapon : MonoBehaviour
     protected Quaternion startRotationWeaponHolder;
     protected Transform weaponHolder;
     protected PlayerCharacteristics playerCharacteristics;
-    private float _startAnimationSpeed;
+    protected float _startAnimationTime;
+    protected float _startDelayTime;
+    protected float _currentTimeLoop;
     protected float _currentTimeOfAttack;
+
+    protected float _currentAnimationTime;
+    protected float _currentDelayAttack;
 
     public float AttackRange { get => attackRange; }
     public float StartDamage { get => startDamage; }
@@ -59,13 +66,23 @@ public class Weapon : MonoBehaviour
 
     protected void Init()
     {
-        weaponHolder = transform.parent;
         playerCharacteristics = GetComponentInParent<PlayerCharacteristics>();
-        _startAnimationSpeed = animator.speed;
+
+        weaponHolder = transform.parent;
+
+        float myTime = 0;
+        RuntimeAnimatorController myAnimatorClip = animator.runtimeAnimatorController;
+
+        for (int i = 0; i < myAnimatorClip.animationClips.Length; i++)
+            myTime = myAnimatorClip.animationClips[i].length;
+
+        _startAnimationTime = myTime;
+        _startDelayTime = _timeLoop - _startAnimationTime;
+
         SetAttackSpeed();
         SetCritChance();
-        SetAnimationSpeed(currentAttackSpeed);
-        SetTimeOfAnimation(currentAttackSpeed);
+        SetAnimationSpeed();
+
         currentDamage = startDamage;
         startRotationWeaponHolder = weaponHolder.rotation;
     }
@@ -79,29 +96,19 @@ public class Weapon : MonoBehaviour
     {
         nearestEnemy = null;
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Dictionary<float, GameObject> distanceAndEnemy = new Dictionary<float, GameObject>();
-
-        if (allEnemies.Length > 0)
+        float distance = Mathf.Infinity;
+        Vector3 position = weaponHolder.position;
+        foreach (GameObject go in allEnemies)
         {
-            for (int i = 0; i < allEnemies.Length; i++)
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
             {
-                try
-                {
-                    distance = Vector3.Distance(weaponHolder.position, allEnemies[i].transform.position);
-                    distanceAndEnemy.Add(distance, allEnemies[i]);
-                }
-                catch (System.ArgumentException)
-                {
-                   // Debug.Log("враги на одинаковом расстоянии");
-                }                
+                nearestEnemy = go;
+                distance = curDistance;
             }
         }
 
-        if (distanceAndEnemy.Count > 0)
-        {
-            float minDistance = distanceAndEnemy.Keys.Min();
-            nearestEnemy = distanceAndEnemy[minDistance];
-        }
     }
 
     protected virtual void RotateWeaponHolder()
@@ -113,14 +120,15 @@ public class Weapon : MonoBehaviour
             rotation.x = 0f;
             rotation.z = 0f;
             weaponHolder.rotation = rotation;
-
-            //weaponHolder.LookAt(nearestEnemy.transform);
         }
     }
 
     protected void SetAttackSpeed()
     {
-        currentAttackSpeed = startAttackSpeed + startAttackSpeed * playerCharacteristics.CurrentAttackSpeedPercentage / 100f;
+        float mod = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
+        _currentAnimationTime = _startAnimationTime / mod;
+        _currentDelayAttack = _startDelayTime / mod;
+        _currentTimeLoop = _currentDelayAttack + _currentAnimationTime;
     }
 
     protected void SetCritChance()
@@ -130,18 +138,13 @@ public class Weapon : MonoBehaviour
 
     protected virtual void SetDamage()
     {
-        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMelleeDamage * percantageOfMelleDamage / 100f;
+        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMeleeDamage * percantageOfMelleDamage / 100f;
+
         currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
         currentDamage = Mathf.Round(currentDamage);
-        if (currentDamage < 1)
-        {
-            currentDamage = 1f;
-        }
-    }
 
-    protected virtual void ReturnWeponHolderRotationToStarting()
-    {
-        weaponHolder.rotation = startRotationWeaponHolder;
+        if (currentDamage < 1)
+            currentDamage = 1f;
     }
 
     private void SetCharacteristicsDependingOnTier()
@@ -152,32 +155,14 @@ public class Weapon : MonoBehaviour
         modifiers.Add(Tier.four, weaponModifiers.modifiers[3]);
 
         var myWeaponModifiers = modifiers[tier];
-        startDamage = startDamage * myWeaponModifiers.forDamage;
-        startAttackSpeed = startAttackSpeed * myWeaponModifiers.forAttackSpeed;
-        startCritChance = startCritChance * myWeaponModifiers.forCritChance;
-    }
-    protected void SetAnimationSpeed(float currentAttackSpeed)
-    {
-        // нам не нужно уменьшать скорость анимации, только увеличивать
-        if (currentAttackSpeed > 1)
-        {
-            animator.speed = _startAnimationSpeed * currentAttackSpeed;
-            //animator.SetFloat("Speed", _startAnimationSpeed * currentAttackSpeed);
-            //Debug.Log("multiplier"+ _startAnimationSpeed * currentAttackSpeed);
-        }
-    }
 
-    protected void SetTimeOfAnimation(float currentAttackSpeed)
+        startDamage *= myWeaponModifiers.forDamage;
+        startAttackSpeed *= myWeaponModifiers.forAttackSpeed;
+        startCritChance *= myWeaponModifiers.forCritChance;
+    }
+    protected void SetAnimationSpeed()
     {
-        // нам не нужно уменьшать время анимации, только увеличивать
-        if (currentAttackSpeed > 1)
-        {
-            _currentTimeOfAttack = timeOfAttack / currentAttackSpeed;
-        }
-        else
-        {
-            _currentTimeOfAttack = timeOfAttack;
-        }
+        animator.speed = 1 + playerCharacteristics.CurrentAttackSpeedPercentage / 100f + startAttackSpeed / 100f;
     }
 
     public void PlaySoundAttack()

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
@@ -132,7 +133,7 @@ public class UIManager : MonoBehaviour
         textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
         LeanTween.alpha(waveCompletedMenu.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         OpenCloseWindow.OpenWindowWithDelay(waveResultsMenu, 2.5f);
-        textAnim.TypingText(waveResultsTxt, "Итоги волны " + GameManager.instance.WaveCounter + " из 15", 3f);
+        textAnim.TypingText(waveResultsTxt, "Итоги волны " + GameManager.instance.WaveCounter + " из " + GameManager.instance.GetMaxWave(), 3f);
 
         uIWaveResults.UpdateWaveResults(GameManager.instance.player.GetComponent<PlayerCharacteristics>());
     }
@@ -446,6 +447,7 @@ public class UIManager : MonoBehaviour
     public void OpenMenuHeroSelection()
     {
         AllOff();
+        analyticsSystem.OnStart();
         menuWithHeroSelection.SetActive(true);
         _heroSelectionPanel.SelectedIcon();
     }
@@ -543,6 +545,11 @@ public class UIManager : MonoBehaviour
     public void LowHPImageOn(bool isOn)
     {
         lowHpImg.SetActive(isOn);
+    }
+
+    public UIShop GetUIShop()
+    {
+        return shop;
     }
 }
 

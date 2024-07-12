@@ -20,10 +20,17 @@ public class SlotItemForSaleData : MonoBehaviour
     public Button buyBtn;
     [SerializeField] private CharacteristicsInfoPanelForWeaponAndItem characteristicsInfo;
 
+    private UIShop _uIShop;
+
 
     private void Awake()
     {
        // _potAnimator = pot.GetComponentInChildren<Animator>();
+    }
+
+    public void Init(UIShop uIShop)
+    {
+        _uIShop = uIShop;
     }
 
     public void DisplayInfoForWeapon(ItemShopInfo w, int currentWave)
@@ -90,8 +97,8 @@ public class SlotItemForSaleData : MonoBehaviour
 
     public void OnBuyItem()
     {
-        Debug.Log("хочу купить");
-        UIShop.instance.ButtonBuySlot(SlotNumber);
+       // UIShop.instance.ButtonBuySlot(SlotNumber);
+        _uIShop.ButtonBuySlot(SlotNumber);
     }
 
     public void PotOff()
@@ -128,8 +135,8 @@ public class SlotItemForSaleData : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         image.sprite = newSprite;
         yield return new WaitForSeconds(0.6f);
-        _potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
-        _potAnimator.gameObject.SetActive(false);
-        
+        //ImageAlphaOff();
+        //_potAnimator.gameObject.GetComponent<Image>().sprite = effectSprite1;
+        //_potAnimator.gameObject.SetActive(false);
     }
 }

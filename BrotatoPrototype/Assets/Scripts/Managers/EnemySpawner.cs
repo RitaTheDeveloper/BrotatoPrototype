@@ -9,45 +9,51 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
 
     [Header("количество юнитов")]
-    [SerializeField] private int amountOfEnemies;
+    [SerializeField] private int _amountOfEnemies = 1;
 
     [Header("врем€ перед самым первым спавном")]
-    [SerializeField] private float _startSpawnTime;
+    [SerializeField] private float _startSpawnTime = 1;
 
     [Header("ћинимальное врем€ и максимальное врем€ спавна")]
-    [SerializeField] private float _minSpawnTime;
-    [SerializeField] private float _maxSpawnTime;
+    [SerializeField] private float _minSpawnTime = 1;
+    [SerializeField] private float _maxSpawnTime = 2;
 
     [Header("–адиус спавна от игрока")]
     [SerializeField] private float _radiusFromPlayer = 15f;
 
     [Header("√алочка, если нужно задать конкретную позицию, в Transform Position выставите координаты")]
-    [SerializeField] private bool isNotRandom = false;
+    [SerializeField] private bool _isNotRandom = false;
 
     [Header("≈сли спавнитс€ за раз больше одного юнита, укажите радиус этой кучки врагов")]
-    [SerializeField] private float radius = 0f;
+    [SerializeField] private float _radius = 2f;
 
     [SerializeField] private GameObject markPrefab;
     [SerializeField] private float markDisplayTime = 1f;
 
+    private float _endSpawnTime; // врем€ до конца волны, когда перестаем спавнить
     private Transform container;
     private Vector3 randomPosition;
     private bool isBeginningOfWave;
     private Transform _target;
     float _timeUntilSpawn;
+    private WaveController _waveController;
+    private int countOfEnemies = 0;
+    private int totalAmountOfenemies = 0;
+    private Vector3 _specificPoint;
 
     private void Awake()
     {
         container = GameObject.Find("Enemies").transform;
         isBeginningOfWave = true;
-    }
+}
 
     private void Start()
     {
+        _waveController = GameManager.instance.GetCurrentWave();
         _target = GameManager.instance.player.transform;
-        if (isNotRandom)
+        if (_isNotRandom)
         {
-            randomPosition = transform.position;
+            randomPosition = _specificPoint;
         }
         else
         {
@@ -57,6 +63,15 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(ChangeRandomPos());
         Spawn(randomPosition);
        // StartCoroutine(ChangeRandomPos());
+    }
+
+    private void FixedUpdate()
+    {
+        //if(_waveController.CurrentTime <= _endSpawnTime + markDisplayTime)
+        //{
+        //    stopSpawn = true;
+        //    Debug.Log("перестаем спавнить");
+        //}
     }
 
     private void Update()
@@ -69,63 +84,111 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
+    public void SetTotalAmountOfMobs(int amount)
+    {
+        totalAmountOfenemies = amount;
+    }
+
+    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint )
+    {
+        _enemyPrefab = enemyController.gameObject;
+        _startSpawnTime = startSpawnTime;
+        _endSpawnTime = endSpawnTime;
+        _minSpawnTime = cdSpawn;
+        _maxSpawnTime = cdSpawn;
+        _amountOfEnemies = amountOfEnemiesInPack;
+        _isNotRandom = isSpecificPoint;
+        _radiusFromPlayer = radiusFromPlayer;
+        _radius = radiusOfPack;
+        _specificPoint = new Vector3(specificPoint.x, 0, specificPoint.y);
+        markPrefab = _enemyPrefab.GetComponent<UnitParameters>().GetMark();
+    }
+
     private float SpawnTime()
     {
         if (isBeginningOfWave)
         {
-            return Random.Range(_startSpawnTime - 0.2f, _startSpawnTime + 0.2f);
+            return _startSpawnTime;
         }
         else
         {
-            return Random.Range(_minSpawnTime, _maxSpawnTime);
+            //return Random.Range(_minSpawnTime, _maxSpawnTime);
+            return _minSpawnTime;
         }
     }
 
     private void SpawnEnemy(Vector3 position)
     {
-        PlaySoundOfSpawnEnemy();
+        //PlaySoundOfSpawnEnemy();
+        countOfEnemies++;
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
         var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
         enemy.transform.parent = container;
+
+        UnitParameters enemyParameters = enemy.GetComponent<UnitParameters>();
+        enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
+        enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
+        _waveController.counterOfMobs++;
     }
 
     private IEnumerator SpawnOneEnemy()
     {
-        while (_target)
+        while (countOfEnemies < totalAmountOfenemies && _waveController.CurrentTime >= _endSpawnTime + SpawnTime()+ Time.fixedDeltaTime && _target)
         {
-            _timeUntilSpawn = SpawnTime();
-
+            _timeUntilSpawn = SpawnTime()- Time.fixedDeltaTime;
+            float timeMark = _timeUntilSpawn - markDisplayTime;
+            float timeSpawnenemy = markDisplayTime;
+            if(timeMark < 0)
+            {
+                timeMark = 0f;
+                timeSpawnenemy = _timeUntilSpawn;
+            }
             // делаем марку
-            yield return new WaitForSeconds(_timeUntilSpawn - markDisplayTime);
+            
+            yield return new WaitForSeconds(timeMark);            
             Vector3 positionEnemy;
             Vector3 point;
-            if (RandomPoint(randomPosition, radius, out point))
+            if (RandomPoint(randomPosition, _radius, out point))
             {
                 positionEnemy = point;
             }
             else
             {
-                Debug.Log("Ќе могу найти позицию 2");
                 positionEnemy = randomPosition;
             }
             GameObject mark = CreateMark(positionEnemy);
-            mark.transform.parent = transform;
+            if (mark)
+            {
+                mark.transform.parent = transform;
+            }
+
 
             // спавним врага
-            yield return new WaitForSeconds(markDisplayTime);
+            yield return new WaitForSeconds(timeSpawnenemy);
+            
             isBeginningOfWave = false;
             DestroyMark(mark);
             SpawnEnemy(positionEnemy);
+            
         }
     }
 
     private GameObject CreateMark(Vector3 position)
     {
         PlaySoundOfMark();
-        Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
-        var mark = Instantiate(markPrefab, markPosition, markPrefab.transform.rotation);
+        if (markPrefab)
+        {
+            Vector3 markPosition = new Vector3(position.x, markPrefab.transform.position.y, position.z);
+            var mark = Instantiate(markPrefab, markPosition, markPrefab.transform.rotation);
+            return mark;
+        }
+        else
+        {
+            return null;
+        }
+        
        // mark.transform.parent = container.transform;
-        return mark;
+        
     }
 
     private void PlaySoundOfMark()
@@ -151,10 +214,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn(Vector3 position)
     {
-        for (int i = 0; i < amountOfEnemies; i++)
+        for (int i = 0; i < _amountOfEnemies; i++)
         {
             StartCoroutine(SpawnOneEnemy());
         }
+       
     }
 
     private IEnumerator ChangeRandomPos()
@@ -162,9 +226,9 @@ public class EnemySpawner : MonoBehaviour
         while (_target)
         {
             yield return new WaitForSeconds(markDisplayTime);
-            if (isNotRandom)
+            if (_isNotRandom)
             {
-                randomPosition = transform.position;
+                randomPosition = _specificPoint;
             }
             else
             {
@@ -186,7 +250,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ќе могу найти позицию 1");
             position = Vector3.zero;
         }
 

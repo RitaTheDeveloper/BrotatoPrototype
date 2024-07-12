@@ -59,6 +59,8 @@ MonoBehaviour:
   _hpRegen: 0
   _moveSpeed: 2
   _amountOfExperience: 2
+  _markOfSpawnPrefab: {fileID: 7525006951670329389, guid: cb7dee73cffcce94abaf871af2075ed1,
+    type: 3}
 --- !u!195 &5664343470737240570
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -277,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 6891159109901834171, guid: fe1055c6e74e7c846ad288815146bdb0,
     type: 3}
-  amountOfEnemies: 6
+  _amountOfEnemies: 1
   _startSpawnTime: 1
   _minSpawnTime: 4
   _maxSpawnTime: 4

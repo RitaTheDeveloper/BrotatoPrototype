@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
-    public static SettingsUI instance;
+    //public static SettingsUI instance;
 
     [Header("Общая громкость микшер")]
     [SerializeField] public AudioMixerGroup MasterAudioMixer;
@@ -22,6 +22,8 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] public AudioMixerGroup SFXAudioMixer;
     [Header("Громкость звуков slider")]
     [SerializeField] public Slider SFXSlider;
+
+    private SaveController _saveController;
 
     private void SetMasterVolume()
     {
@@ -55,9 +57,7 @@ public class SettingsUI : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-
-
+        _saveController = GetComponent<SaveController>();
         MasterSlider.onValueChanged.AddListener(delegate { SetMasterVolume(); });
         MusicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
         SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
@@ -77,10 +77,9 @@ public class SettingsUI : MonoBehaviour
 
     public void InitSoundsVolume()
     {
-        SaveController saveController = gameObject.AddComponent<SaveController>();
-        saveController.LoadData();
-        SaveData saveData = saveController.GetData();
-        Destroy(saveController);
+        
+        _saveController.LoadData();
+        SaveData saveData = _saveController.GetData();
 
         if (saveData.MasterSoundVolume < -40)
         {
@@ -121,9 +120,8 @@ public class SettingsUI : MonoBehaviour
 
     public void CloseSettings()
     {
-        SaveController saveController = gameObject.AddComponent<SaveController>();
-        saveController.LoadData();
-        SaveData saveData = saveController.GetData();
+        _saveController.LoadData();
+        SaveData saveData = _saveController.GetData();
 
         float value = MasterSlider.value;
         if (value < -40)
@@ -146,10 +144,8 @@ public class SettingsUI : MonoBehaviour
         }
         saveData.SFXVolume = value;
 
-        saveController.SetData(saveData);
-        saveController.SaveData();
-
-        Destroy(saveController);
+        _saveController.SetData(saveData);
+        _saveController.SaveData();
         gameObject.SetActive(false);
     }
 }
