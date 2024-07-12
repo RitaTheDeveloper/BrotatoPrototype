@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
@@ -446,6 +447,7 @@ public class UIManager : MonoBehaviour
     public void OpenMenuHeroSelection()
     {
         AllOff();
+        analyticsSystem.OnStart();
         menuWithHeroSelection.SetActive(true);
         _heroSelectionPanel.SelectedIcon();
     }
