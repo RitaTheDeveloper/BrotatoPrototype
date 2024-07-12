@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
     {
         shop.ResetShop();
         SpawnPlayer(_heroIndex);
-        analyticsSystem.OnStartedPlaying(player.GetComponent<UiPlayerInfo>().nameHero);
+        analyticsSystem.OnStartedPlaying(player.name);
+        Debug.Log("startedPlaying " + player.name);
         _isPlaying = true;
         _gameIsOver = false;
         _waveCounter = 0;
@@ -83,11 +84,11 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        analyticsSystem.OnGameOver();
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
-        analyticsSystem.OnPlayerDead(_waveCounter, player.GetComponent<UiPlayerInfo>().nameHero);
-        Debug.Log(_waveCounter + " " + player.GetComponent<UiPlayerInfo>().nameHero);
+        analyticsSystem.OnPlayerDead(_waveCounter, player.name);
         UIManager.instance.Lose();
         UIManager.instance.RemoveAllUpElements();
         RemoveAllCurrency();
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
        //StopTime();
         _waveCounter++;
-        analyticsSystem.WaveCompleted(_waveCounter, player.GetComponent<UiPlayerInfo>().nameHero);
+        analyticsSystem.WaveCompleted(_waveCounter, player.name);
         if (_waveCounter == wavesByDifficulty[CurrentDifficulty].listOfWaves.Length)
         {
             Win();
