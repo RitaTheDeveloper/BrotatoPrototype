@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PoolObject currencyPoolObject;
     private int _currentDifficulty;
     public GameObject player;
-    public List<WaveSetting> listOfWaveSetting;
+    private List<WaveSetting> listOfWaveSetting;
     private int _waveCounter;
     private int _heroIndex = 0;
     private bool _gameIsOver;
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
     public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
     public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
+    public List<WaveSetting> GetListOfWaveSetting { get => listOfWaveSetting; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
