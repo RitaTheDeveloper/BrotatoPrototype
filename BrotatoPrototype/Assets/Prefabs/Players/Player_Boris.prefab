@@ -3190,6 +3190,7 @@ GameObject:
   - component: {fileID: 1467946387292618942}
   - component: {fileID: 610271406313924933}
   - component: {fileID: 8836840131412569280}
+  - component: {fileID: 6590953781335086692}
   m_Layer: 7
   m_Name: Player_Boris
   m_TagString: Player
@@ -3232,7 +3233,7 @@ MonoBehaviour:
   _startMagnetDistance: 6
   _startAttackSpeedPercentage: 140
   _startDamagePercentage: 0
-  _startMelleeDamage: -100
+  _startMeleeDamage: 0
   _startRangedDamage: 5
   _startCritChancePercentage: 0
   _startArmor: -100
@@ -3436,6 +3437,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wavesRequired: 0
+--- !u!114 &6590953781335086692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707278682496988613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c3c8a33e80f0444b73fce335fd17b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startLvl: 1
+  _maxLvl: 5
+  baffs:
+  - characteristic: 4
+    multiplier: 0.001
+  - characteristic: 6
+    multiplier: 0
 --- !u!1 &6740098540881593597
 GameObject:
   m_ObjectHideFlags: 0
