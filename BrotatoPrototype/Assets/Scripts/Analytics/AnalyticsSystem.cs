@@ -9,7 +9,6 @@ using System;
 
 public class AnalyticsSystem : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
 
     async void Start()
     {
