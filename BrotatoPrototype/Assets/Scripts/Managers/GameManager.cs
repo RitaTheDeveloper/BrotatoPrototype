@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public AudioMixerGroup SFXAudioMixer;
     private SaveController _saveController;
     private WaveController _currentWave;
+    private CharacterLevelingSystem _characterLevelSystem;
 
 
     private void Awake()
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
         _managerOfWaves.CreateWaves();
-        
+        _characterLevelSystem = GetComponent<CharacterLevelingSystem>();
         //foreach (WaveSetting waveC2 in _listOfWaveSetting)
         //{
         //   // waveC2.CreateWave();
@@ -240,6 +241,8 @@ public class GameManager : MonoBehaviour
         }
 
         player = Instantiate(playerPrefabs[index], playerStartingSpawnPoint.position, Quaternion.identity);
+        CharacterLevelSettingScriptable characterLevelSetting = _characterLevelSystem.CharacterLevelSetting;
+        player.GetComponent<PlayerController>().Init(this, characterLevelSetting);
     }
 
     public void DestroyGameScene()
