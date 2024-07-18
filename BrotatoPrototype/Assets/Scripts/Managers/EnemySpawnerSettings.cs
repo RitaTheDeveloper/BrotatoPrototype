@@ -23,7 +23,6 @@ public class EnemySpawnerSettings
     public bool isSpecificPoint = false;
     public Vector2 specificPoint;
 
-
     public float GetCdSpawn(float timeOfWave)
     {
         float result = (timeOfWave - startSpawnTime - endSpawnTime) / ((float)GetTotalAmountOfEnemies() / (float)amountOfEnemiesInPack);

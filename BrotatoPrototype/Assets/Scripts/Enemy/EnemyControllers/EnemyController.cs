@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
         unitParameters = GetComponent<UnitParameters>();
 
-        unitParameters.Init(enemyTierSetting);
+        //unitParameters.Init(enemyTierSetting);
         livingEntity.SetStartHealpPoint(enemyTierSetting.HealPoint);
         Init();
     }
