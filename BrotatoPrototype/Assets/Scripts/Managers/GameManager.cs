@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     public Action onInit;
+    public Action onGameOver;
 
     public static GameManager instance;
 
@@ -50,19 +51,13 @@ public class GameManager : MonoBehaviour
             ResetProgress();
         }
         listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
-        _managerOfWaves.CreateWaves();
-        
-        //foreach (WaveSetting waveC2 in _listOfWaveSetting)
-        //{
-        //   // waveC2.CreateWave();
-        //}
+        _managerOfWaves.CreateWaves();        
     }
     private void Start()
     {
         _heroIndex = 0;
         InitSoundVolume();
-        
-        //Init();
+
     }
 
     private void OnEnable()
@@ -95,7 +90,7 @@ public class GameManager : MonoBehaviour
         // _currentWave = _waves[_waveCounter];
         _currentWave = listOfWaveSetting[_waveCounter].Wave;
         //_currentWave = wavesByDifficulty[CurrentDifficulty].listOfWaves[_waveCounter];
-        UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
+        //UIManager.instance.DisplayWaveNumber(_waveCounter + 1);
         _currentWave.StartWave();
         if (BackgroundMusicManger.instance != null)
         {
@@ -120,29 +115,20 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
-        UIManager.instance.Lose();
-        UIManager.instance.RemoveAllUpElements();
-        RemoveAllCurrency();
-        RemoveAllLoot();
         SaveGameResult();
-        RemoveAllEnemies();
-        RemoveAllBullets();
+        RemoveAllFromArena();
         shop.ResetShop();
-        Debug.Log("Game over!");
+        onGameOver?.Invoke();
     }
 
     public void Win()
     {
+        _isPlaying = false;
         _gameIsOver = true;
-        Debug.Log("Win!");
         _currentWave.StopWave();
-        //StopTime();
         UIManager.instance.Win();
         UIManager.instance.RemoveAllUpElements();
-        RemoveAllCurrency();
-        RemoveAllLoot();
-        RemoveAllEnemies();
-        RemoveAllBullets();
+        RemoveAllFromArena();
         shop.ResetShop();
         SaveGameResult();
     }
@@ -247,15 +233,12 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
-        RemoveAllEnemies();
+
         if (player != null)
         {
             Destroy(player);
         }
-        
-        RemoveAllCurrency();
-        RemoveAllLoot();
-        UIManager.instance.RemoveAllUpElements();
+        RemoveAllFromArena();        
     }
 
     public void Restart()
@@ -265,9 +248,7 @@ public class GameManager : MonoBehaviour
             Destroy(player);
         }
 
-        RemoveAllEnemies();
-        RemoveAllBullets();
-        RemoveAllCurrency();
+        RemoveAllFromArena();
         Init();
     }
 
@@ -283,6 +264,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(loot.gameObject);
         }
+    }
+
+    private void RemoveAllFromArena()
+    {
+        RemoveAllBullets();
+        RemoveAllCurrency();
+        RemoveAllEnemies();
+        RemoveAllLoot();
     }
 
     private void SaveGameResult()
