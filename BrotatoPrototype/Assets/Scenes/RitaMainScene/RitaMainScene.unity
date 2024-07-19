@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0.5882353}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5555,7 +5555,6 @@ GameObject:
   - component: {fileID: 255415618}
   - component: {fileID: 255415620}
   - component: {fileID: 255415619}
-  - component: {fileID: 255415621}
   m_Layer: 5
   m_Name: Stove
   m_TagString: Untagged
@@ -5624,23 +5623,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255415617}
   m_CullTransparentMesh: 1
---- !u!114 &255415621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255415617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabTooltip: {fileID: 5741229382854598038, guid: af9418423d21b8648a7b9f08f08b7f1b,
-    type: 3}
-  _tooltipText: 123123
-  _sprite: {fileID: 0}
-  _timeShow: 1
 --- !u!224 &265596218 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1179521831396907913, guid: 5681e28f41ffa5a418b09b5634029b9c,
@@ -8345,17 +8327,17 @@ PrefabInstance:
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
@@ -17776,7 +17758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99974}
+  m_AnchoredPosition: {x: 0, y: 85.00001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -27302,8 +27284,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1.0000006
-  m_Size: 0.16567868
+  m_Value: 1
+  m_Size: 0.16182584
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -32915,6 +32897,7 @@ GameObject:
   - component: {fileID: 6644469388231996277}
   - component: {fileID: 5461585779316735461}
   - component: {fileID: 1792386745094613043}
+  - component: {fileID: 6644469388231996278}
   m_Layer: 5
   m_Name: RerollBtn
   m_TagString: Untagged
@@ -37141,6 +37124,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284474373780168681}
   m_CullTransparentMesh: 1
+--- !u!114 &6644469388231996278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284474373780168681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTooltip: {fileID: 3301680292528972963, guid: 5b951a40903589f4b88757f428ff4da7,
+    type: 3}
+  _tooltipText: 123123
+  _sprite: {fileID: 0}
+  _canvas: {fileID: 2858656919968936690}
+  _timeShow: 1
 --- !u!1001 &6667470227843572620
 PrefabInstance:
   m_ObjectHideFlags: 0
