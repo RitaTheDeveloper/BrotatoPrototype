@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
@@ -61,7 +63,7 @@ public class UIManager : MonoBehaviour
     private GameObject _woodUp;
     private Color _startTimeColor;
     private HeroSelectionPanel _heroSelectionPanel;
-
+    private PlayerHealth _playerHealth;
     [SerializeField] private ShopPhrasesController shopPhrasesController;
 
     private void Awake()
@@ -77,6 +79,21 @@ public class UIManager : MonoBehaviour
         shopPhrasesController = gameObject.GetComponent<ShopPhrasesController>();
     }
 
+    private void OnEnable()
+    {
+        if (gameManager)
+        {
+            gameManager.onInit += UIInit;
+            gameManager.onGameOver += Lose;
+        }
+        
+    }
+
+    private void UIInit()
+    {
+        _playerHealth = gameManager.player.GetComponent<PlayerHealth>();
+        DisplayWaveNumber(gameManager.WaveCounter + 1);
+    }
     public void ShowTime(float currentTime)
     {
         // string timeString = string.Format("{0:00}:{1:00}", (Mathf.CeilToInt(currentTime) / 60), (Mathf.CeilToInt(currentTime) % 60));
@@ -228,9 +245,8 @@ public class UIManager : MonoBehaviour
         // пишем текст
         textAnim.TypingText(loseTxt, "Поражение!", 0.5f);
         losePanel.SetActive(true);
+        RemoveAllUpElements();
 
-        //restartBtn.SetActive(true);
-        // menuBtn.SetActive(true);
     }
 
     public void OnClickRestart()
@@ -446,6 +462,7 @@ public class UIManager : MonoBehaviour
     public void OpenMenuHeroSelection()
     {
         AllOff();
+        analyticsSystem.OnStart();
         menuWithHeroSelection.SetActive(true);
         _heroSelectionPanel.SelectedIcon();
     }

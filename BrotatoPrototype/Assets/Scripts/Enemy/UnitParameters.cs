@@ -72,8 +72,8 @@ public class UnitParameters : MonoBehaviour
         //_currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave) * GameManager.instance.GetCurrentDamageFactorForEnemy();
         _currentHpRegen = _hpRegen;
         //_currentMoveSpeed = _moveSpeed;
-        _currentHp = _maxHp * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
-        _currentDamage = _startDamage * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
-        _currentMoveSpeed = _moveSpeed * GameManager.instance.listOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;
+        _currentHp = _maxHp * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
+        _currentDamage = _startDamage * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
+        _currentMoveSpeed = _moveSpeed * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;
     }
 }
