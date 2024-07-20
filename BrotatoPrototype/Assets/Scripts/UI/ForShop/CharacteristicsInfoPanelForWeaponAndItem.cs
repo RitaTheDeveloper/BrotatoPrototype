@@ -30,7 +30,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
 
     private void DisplayCharacteristicsForWeapon(BaseWeapon weapon)
     {
-        characteristicsList = new TextMeshProUGUI[5];
+        characteristicsList = new TextMeshProUGUI[4];
         for (int i = 0; i < characteristicsList.Length; i++)
         {
             var characteristic = Instantiate(uiCharscteristicsInfoPrefab, container);
@@ -40,70 +40,11 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
         characteristicsList[1].text = "Дальность: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.AttackRange) + "</color>";
         characteristicsList[2].text = "Скорость атаки: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.attackPerSecond) + "</color>";
         characteristicsList[3].text = "Крит шанс: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.StartCritChance) * 100f + "</color>" + "%";
-        WriteBaffWeaponCharacteristic(weapon);
     }
 
     private float RoundCharacteristicValue(float number)
     {
         return Mathf.Round(number * 100f) / 100f;
-    }
-
-    private void WriteBaffWeaponCharacteristic(BaseWeapon weapon)
-    {
-        switch (weapon.baff.characteristic)
-        {
-            case CharacteristicType.Satiety:
-                characteristicsList[4].text =  "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к сытности";
-                break;
-
-            case CharacteristicType.MaxHealth:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " максимальному здоровью";
-                break;
-
-            case CharacteristicType.RegenerationHP:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к регенерации HP";
-                break;
-
-            case CharacteristicType.Dodge:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к уклонению";
-                break;
-
-            case CharacteristicType.Armor:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к броне";
-                break;
-
-            case CharacteristicType.MoveSpeed:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к скорости";
-                break;
-
-            case CharacteristicType.AttackSpeed:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к скорости атаки";
-                break;
-
-            case CharacteristicType.Damage:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к урону";
-                break;
-
-            case CharacteristicType.MeleeDamage:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + " к урону в ближнем бою";
-                break;
-
-            case CharacteristicType.RangeDamage:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + " к урону в дальнем бою";
-                break;
-
-            case CharacteristicType.ChanceOfCrit:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + "%" + " к крит удару";
-                break;
-
-            case CharacteristicType.MagneticRadius:
-                characteristicsList[4].text = "Доп. хар-ка: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.baff.value) + "</color>" + " к радиусу сбора";
-                break;
-
-            default:
-                characteristicsList[4].text = "";
-                break;
-        }
     }
 
     private void DisplayCharacteristicsForItem(PlayerCharacteristics characteristics)

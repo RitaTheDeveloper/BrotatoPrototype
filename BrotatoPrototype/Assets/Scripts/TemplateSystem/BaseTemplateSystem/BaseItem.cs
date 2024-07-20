@@ -13,15 +13,10 @@ public abstract class BaseItem : MonoBehaviour
     [SerializeField] protected Sprite iconT3;
     [SerializeField] protected Sprite iconT4;
 
-    [Space]
-    [Header("Characteristics")]
-    [SerializeField] protected CharacteristicValues characteristicValues;
-
     [ReadOnlyInspector] public TierType tier = TierType.FirstTier;
     [HideInInspector] public string gameName;
     [HideInInspector] public string editorName;
     [HideInInspector] public Sprite icon;
-    protected Dictionary<CharacteristicType, float> characteristicMap = new Dictionary<CharacteristicType, float>();
 
     public BaseItem Initialize(TierType tier)
     {

@@ -57,7 +57,6 @@ public abstract class BaseWeapon : MonoBehaviour
     public float StartAttackSpeed { get => startAttackSpeedPercentage;}
     public float StartCritChance { get => startCritChance; }
 
-    public WeaponBaff baff;
 
     protected void Init()
     {
@@ -172,15 +171,6 @@ public abstract class BaseWeapon : MonoBehaviour
         startAttackSpeedPercentage = attackPerSecond * 200 - 100; // (startPercentage * 200 - 100) <- attacks per second in %
     }
 
-    public void SetWeaponBuff(Dictionary<CharacteristicType, float> characteristicMap)
-    {
-        foreach (var characteristicPair in characteristicMap)
-        {
-            // needs to refactor!!!
-            baff.characteristic = characteristicPair.Key;
-            baff.value = characteristicPair.Value;
-        }
-    }
 }
 
 

@@ -55,32 +55,17 @@ MonoBehaviour:
   iconT2: {fileID: 21300000, guid: 1215b6b6d49e97f488bed7bf7c7d20cc, type: 3}
   iconT3: {fileID: 21300000, guid: e79cf07da32bb0b4590eb534c37078a9, type: 3}
   iconT4: {fileID: 21300000, guid: 23ce009383c138449a493e8ecce605d8, type: 3}
-  characteristicValues:
-    satiety: 0
-    maxHealth: 0
-    regenerationHP: 0
-    dodge: 0
-    armor: 0
-    moveSpeed: 0
-    attackSpeed: 0
-    damage: 0
-    meleeDamage: 0
-    rangeDamage: 0
-    critChance: 0
-    magneticRadius: 0
-  tier: 3
+  tier: 0
   gameName: "\u0423\u0431\u0435\u0440 \u0441\u0442\u0440\u0435\u043B\u043E\u043C\u0435\u0442"
   editorName: Strelalka_T4
   icon: {fileID: 21300000, guid: 23ce009383c138449a493e8ecce605d8, type: 3}
   weaponTemplate: {fileID: 11400000, guid: f09793553149464428559d9b11bbea89, type: 2}
-  baffs: []
-  debaffs: []
   startDamage: 30
   startCritChance: 0.02
   reductionCoeff: 1
-  damage: 0
-  critChance: 0
-  attackSpeed: 0
+  damage: 30
+  critChance: 0.02
+  attackSpeed: 3.0864198
 --- !u!114 &6896685654037281728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +80,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   attackRange: 30
-  startDamage: 8
-  startAttackSpeedPercentage: 0
+  startDamage: 30
+  startAttackSpeedPercentage: 517.28394
+  attackPerSecond: 3.0864198
   _timeLoop: 2
-  startCritChance: 0.03
+  startCritChance: 0.02
   knockBack: 0
   repulsiveForce: 15
   percantageOfMelleDamage: 0
@@ -107,9 +93,6 @@ MonoBehaviour:
   animator: {fileID: 506258871228136047}
   timeOfAttack: 1.083
   nearestEnemy: {fileID: 0}
-  baff:
-    characteristic: 0
-    value: 0
   _muzzle: {fileID: 315616718815011876}
   _projectile: {fileID: 3512322995166864872, guid: 8e3845bc6ab6017408f93a376d4658ce,
     type: 3}
@@ -128,13 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdWeapon: bow1
-  Price: 19
+  IdWeapon: Strelalka_T4
+  Price: 25
   DiscountProcent: 10
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}
-  NameWeapon: "\u041B\u0443\u043A"
-  IconWeapon: {fileID: 21300000, guid: 20b640608e3d2ae42860dfb3cf60559d, type: 3}
+  NameWeapon: "\u0423\u0431\u0435\u0440 \u0441\u0442\u0440\u0435\u043B\u043E\u043C\u0435\u0442"
+  IconWeapon: {fileID: 21300000, guid: 23ce009383c138449a493e8ecce605d8, type: 3}
 --- !u!114 &-1957543824084061517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +156,7 @@ MonoBehaviour:
   cameraDistanceFadeFar: 1000
   normalsOption: 0
   ignore: 0
-  _highlighted: 0
+  _highlighted: 1
   fadeInDuration: 0
   fadeOutDuration: 0
   flipY: 0

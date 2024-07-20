@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : BaseItem
@@ -13,6 +14,12 @@ public class Item : BaseItem
     [SerializeField] protected ItemBaff[] baffs;
     [Header("Debaff multipliers")]
     [SerializeField] protected ItemBaff[] debaffs;
+
+    [Space]
+    [Header("Characteristics")]
+    [SerializeField] protected CharacteristicValues characteristicValues;
+
+    protected Dictionary<CharacteristicType, float> characteristicMap = new Dictionary<CharacteristicType, float>();
 
 
     /* Needs get rid PlayerCharacteristics component at Item
