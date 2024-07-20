@@ -5,6 +5,8 @@ public class EnemySpawnerSettings
 {    
     //[Header("префаб моба")]
     public EnemyController enemy;
+    public TypeEnemy typeEnemy;
+    public TierType tierType;
     //[Header("кд спавна")]
     public float spawnCd = -1;
     //[Header("общее кол-во мобов за волну")]
