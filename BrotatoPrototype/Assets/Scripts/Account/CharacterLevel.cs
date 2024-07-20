@@ -73,4 +73,10 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         onLevelUp?.Invoke(_currentLvl);
         Debug.Log("level up " + _currentLvl);
     }
+
+    private void UpgradeCharacteristics()
+    {
+        
+    }
+
 }
