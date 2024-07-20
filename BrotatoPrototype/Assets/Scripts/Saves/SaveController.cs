@@ -46,8 +46,9 @@ public class SaveController : MonoBehaviour
 
     public void ResetData()
     {
-        data.WaveEnded = 0;
-        PlayerPrefs.SetInt("WaveEnded", 0);
+        //data.WaveEnded = 0;
+        //PlayerPrefs.SetInt("WaveEnded", 0);
+        PlayerPrefs.DeleteAll();
     }
 
     public List<GameObject> GetUnlockCharacterList(SaveData new_data)
@@ -72,4 +73,38 @@ public class SaveController : MonoBehaviour
         }
         return result;
     }
+
+    public void SaveCharacterLvl(string name, int currentlvl)
+    {
+        string key = GetNameCharacter(name) + "_lvl";
+        Debug.Log(key);
+        PlayerPrefs.SetInt(key, currentlvl);
+        PlayerPrefs.Save();
+    }
+
+    public int GetCharacterLvl(string name)
+    {
+        string key = GetNameCharacter(name) + "_lvl";
+        Debug.Log(key);
+        return PlayerPrefs.GetInt(key);
+    }
+
+    public void SaveCharacterWaveCount(string name, int currentWaveCount)
+    {
+        string key = GetNameCharacter(name) + "_waveCount";
+        PlayerPrefs.SetInt(key, currentWaveCount);
+        PlayerPrefs.Save();
+    }
+
+    public int GetCharacterWaveCount(string name)
+    {
+        string key = GetNameCharacter(name) + "_waveCount";
+        return PlayerPrefs.GetInt(key);
+    }
+
+    private string GetNameCharacter(string name)
+    {
+        return name.Replace("(Clone)", "");
+    }
+
 }

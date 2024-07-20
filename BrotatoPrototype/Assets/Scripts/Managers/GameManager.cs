@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public Action onInit;
     public Action onGameOver;
+    public Action onWaveCompleted;
 
     public static GameManager instance;
 
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
             ResetProgress();
         }
         listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
-        _managerOfWaves.CreateWaves();
+
         _characterLevelSystem = GetComponent<CharacterLevelingSystem>();
         //foreach (WaveSetting waveC2 in _listOfWaveSetting)
         //{
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleted()
     {
+        
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         _isPlaying = false;
@@ -163,7 +165,8 @@ public class GameManager : MonoBehaviour
             RemoveAllEnemies();
             RemoveAllBullets();
             
-        }              
+        }
+        onWaveCompleted?.Invoke();
     }
 
     public void StartNextWave()
