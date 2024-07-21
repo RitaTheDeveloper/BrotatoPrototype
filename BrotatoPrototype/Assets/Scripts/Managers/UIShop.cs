@@ -101,7 +101,7 @@ public class UIShop : MonoBehaviour
 
         DestroyAllSlotsForWeapons();
 
-        List<Weapon> wl = shopController.GetWeaponController().GetAllWeapons();
+        List<BaseWeapon> wl = shopController.GetWeaponController().GetAllWeapons();
 
         for (int i = 0; i < _maxNumberOfWeapons; i++)
         {
@@ -120,7 +120,7 @@ public class UIShop : MonoBehaviour
         listSlotsOfWeapons.Clear();
     }
 
-    public void CreateWeaponElements(List<Weapon> _currentWeapons)
+    public void CreateWeaponElements(List<BaseWeapon> _currentWeapons)
     {
         _currentWeaponSlots = new List<WeaponSlot>();
 

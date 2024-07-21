@@ -13,7 +13,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
     {
         DeleteInfo();
         
-        Weapon weapon = itemInfo.GetComponent<Weapon>();
+        BaseWeapon weapon = itemInfo.GetComponent<BaseWeapon>();
         //для оружий
         if (weapon)
         {
@@ -28,7 +28,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
         }
     }
 
-    private void DisplayCharacteristicsForWeapon(Weapon weapon)
+    private void DisplayCharacteristicsForWeapon(BaseWeapon weapon)
     {
         characteristicsList = new TextMeshProUGUI[4];
         for (int i = 0; i < characteristicsList.Length; i++)
@@ -36,10 +36,15 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
             var characteristic = Instantiate(uiCharscteristicsInfoPrefab, container);
             characteristicsList[i] = characteristic;
         }
-        characteristicsList[0].text = "Урон: " + "<color=#00864F>" + weapon.StartDamage + "</color>";
-        characteristicsList[1].text = "Дальность: " + "<color=#00864F>" + weapon.AttackRange + "</color>";
-        characteristicsList[2].text = "Скорость атаки: " + "<color=#00864F>" + weapon.StartAttackSpeed + "</color>";
-        characteristicsList[3].text = "Крит шанс: " + "<color=#00864F>" + weapon.StartCritChance * 100f + "</color>" + "%";
+        characteristicsList[0].text = "Урон: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.StartDamage) + "</color>";
+        characteristicsList[1].text = "Дальность: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.AttackRange) + "</color>";
+        characteristicsList[2].text = "Скорость атаки: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.attackPerSecond) + "</color>";
+        characteristicsList[3].text = "Крит шанс: " + "<color=#00864F>" + RoundCharacteristicValue(weapon.StartCritChance) * 100f + "</color>" + "%";
+    }
+
+    private float RoundCharacteristicValue(float number)
+    {
+        return Mathf.Round(number * 100f) / 100f;
     }
 
     private void DisplayCharacteristicsForItem(PlayerCharacteristics characteristics)

@@ -31,10 +31,10 @@ public class ItemInfoPanel : MonoBehaviour
         sellBtn.onClick.RemoveAllListeners();
         sellBtn.onClick.AddListener(SellItem);
 
-        isWeapon = itemInfo.gameObject.GetComponent<Weapon>() ? true : false;
+        isWeapon = itemInfo.gameObject.GetComponent<BaseWeapon>() ? true : false;
         if (isWeapon)
         {
-            if (itemInfo.GetComponent<Weapon>().type == Weapon.Type.Melee)
+            if (itemInfo.GetComponent<BaseWeapon>().type == BaseWeapon.Type.Melee)
             {
                 typeItem.text = "ближний бой";
             }

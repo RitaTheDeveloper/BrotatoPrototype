@@ -36,7 +36,7 @@ public class SlotItemForSaleData : MonoBehaviour
     public void DisplayInfoForWeapon(ItemShopInfo w, int currentWave)
     {
         textName.text = w.NameWeapon;
-        if (w.GetComponent<Weapon>().type == Weapon.Type.Melee)
+        if (w.GetComponent<BaseWeapon>().type == BaseWeapon.Type.Melee)
         {
             textType.text = "ближний бой";
         }

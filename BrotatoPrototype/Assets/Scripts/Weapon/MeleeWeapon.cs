@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
-using static Weapon;
+using static BaseWeapon;
 
-public class MeleeWeapon : Weapon
+public class MeleeWeapon : BaseWeapon
 {    
     protected float _nextShotTime;
     private bool isCritDamage = false;
