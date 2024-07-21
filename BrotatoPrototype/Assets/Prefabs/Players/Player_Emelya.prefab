@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: -8086125469120082790}
   - component: {fileID: -2872071167883006049}
   - component: {fileID: 3828613175337702773}
-  - component: {fileID: -7352302464012969452}
   - component: {fileID: 7596855650281657027}
   m_Layer: 7
   m_Name: Player_Emelya
@@ -271,20 +270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wavesRequired: 0
---- !u!114 &-7352302464012969452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585661124780564198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c3c8a33e80f0444b73fce335fd17b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startLvl: 0
-  baffs: []
 --- !u!114 &7596855650281657027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,9 +285,9 @@ MonoBehaviour:
   _startLvl: 0
   baffs:
   - characteristic: 4
-    multiplier: 0.001
-  - characteristic: 6
-    multiplier: 0
+    multiplier: 4
+  - characteristic: 7
+    multiplier: 3
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0

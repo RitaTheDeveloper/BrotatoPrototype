@@ -15,14 +15,18 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
     private GameManager _gameManager;
     private CharacterLevelSettingScriptable _levelSettings;
     private SaveController _saveController;
+    private PlayerCharacteristics playerCharacteristics;
     public int StartLvl => _startLvl;
 
     public int CurrentLvl => _currentLvl;
 
     public int MaxLvl => _maxLvl;
 
+    public Baff[] Baffs { get => baffs;}
+
     public void Init(GameManager gameManager, CharacterLevelSettingScriptable levelSettings)
     {
+        playerCharacteristics = GetComponent<PlayerCharacteristics>();        
         _gameManager = gameManager;
         _levelSettings = levelSettings;
         _saveController = _gameManager.GetComponent<SaveController>();
@@ -51,6 +55,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
             if (_currentNumberOfWavesCompleted >= _levelSettings.levelSettings[_currentLvl].numberOfWaves)
             {
                 IncreaseLvl();
+                UpgradeCharacteristics(playerCharacteristics, 1);
             }
         }
         else
@@ -64,6 +69,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         _currentNumberOfWavesCompleted = _saveController.GetCharacterWaveCount(gameObject.name);
         _currentLvl = _saveController.GetCharacterLvl(gameObject.name);
         _maxLvl = _levelSettings.levelSettings.Length;
+        UpgradeCharacteristics(playerCharacteristics, _saveController.GetCharacterLvl(gameObject.name));
     }
 
     private void IncreaseLvl()
@@ -74,9 +80,16 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         Debug.Log("level up " + _currentLvl);
     }
 
-    private void UpgradeCharacteristics()
+    public void UpgradeCharacteristics(PlayerCharacteristics playerCharacteristics, float level)
     {
-        
+        if (baffs != null)
+        {
+            Debug.Log("обновляем хар-ки");
+            for (int i = 0; i < baffs.Length; i++)
+            {
+                playerCharacteristics.UpdateCurrentCharacteristic(baffs[i].characteristic, level * baffs[i].multiplier);
+            }
+        }
     }
 
 }

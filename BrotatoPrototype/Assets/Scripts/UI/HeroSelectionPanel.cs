@@ -46,20 +46,15 @@ public class HeroSelectionPanel : MonoBehaviour
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         nameHeroTxt.text = _uiPlayerInfo.nameHero;
-        SetHeroLvl();     
+        SetHeroLvl(_player);     
         heroDescription.text = _uiPlayerInfo.description;
-        _player.GetComponent<PlayerCharacteristics>().Init();
-        characteristicsUI.UpdateCharacterisctics(_player.GetComponent<PlayerCharacteristics>());
         if (index != indexOfHero)
         {            
             ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
-            //currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
-            StartCoroutine(ChangeSprite(_player));
-           
+            StartCoroutine(ChangeSprite(_player));           
         }
-        _player.GetComponent<PlayerCharacteristics>().Init();
-        characteristicsUI.UpdateCharacterisctics(_player.GetComponent<PlayerCharacteristics>());
+        UpdateCharacteristics(_player);
         indexOfHero = index;
         choseBtn.interactable = true;
     }
@@ -69,7 +64,7 @@ public class HeroSelectionPanel : MonoBehaviour
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         nameHeroTxt.text = _uiPlayerInfo.nameHero;
-        SetHeroLvl();
+        SetHeroLvl(_player);
         if (index != indexOfHero)
         {
             ImageAlphaOff();
@@ -143,6 +138,8 @@ public class HeroSelectionPanel : MonoBehaviour
                 ss.selectedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
                 ss.pressedSprite = playerPrefabs[i].GetComponent<UiPlayerInfo>().glowIcon;
                 icon.GetComponent<Button>().spriteState = ss;
+               // SetHeroLvl(playerPrefabs[i]);
+               // UpdateCharacteristics(playerPrefabs[i]);
             }
             
             icon.GetComponent<Button>().onClick.AddListener(() => PlaySoundCharacterSelect());
@@ -158,6 +155,8 @@ public class HeroSelectionPanel : MonoBehaviour
     {
         DestroyAndCreateNewIcons();
         _iconsBtns[indexOfHero].Select();
+        SetHeroLvl(_player);
+        UpdateCharacteristics(_player);
         
     }
 
@@ -179,10 +178,26 @@ public class HeroSelectionPanel : MonoBehaviour
         }
     }
 
-    private void SetHeroLvl()
+    private void SetHeroLvl(GameObject player)
     {        
-        heroLvl.text = _saveController.GetCharacterLvl(_player.gameObject.name).ToString();
-        Debug.Log(_saveController.GetCharacterLvl(_player.gameObject.name).ToString());
+        heroLvl.text = _saveController.GetCharacterLvl(player.gameObject.name).ToString();
+        Debug.Log(_saveController.GetCharacterLvl(player.gameObject.name).ToString());
+    }
+
+    private void UpdateCharacteristics(GameObject player)
+    {
+        player.GetComponent<PlayerCharacteristics>().Init();
+        player.GetComponent<CharacterLevel>().UpgradeCharacteristics(player.GetComponent<PlayerCharacteristics>(), _saveController.GetCharacterLvl(player.gameObject.name));
+        characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+        characteristicsUI.RemoveCharacteristicsHighlighting();
+        Baff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
+        if (baffs != null)
+        {
+            foreach(Baff baff in baffs)
+            {
+                characteristicsUI.HighlightUpgradedCharacteristics(baff.characteristic, Color.green);
+            }
+        }
     }
 }
     
