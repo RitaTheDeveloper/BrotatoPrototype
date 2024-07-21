@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IKnockbackable
 {
+    public TierType tierType;
     public enum State { Idle, Chasing, Attacking, RunAway};
     protected State currentState;
     [SerializeField] protected bool knockBack = true;
@@ -27,16 +28,19 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     public float knockBackTime { get; private set; } = 0.25f;
  
     
-    //private void Awake()
-    //{
-    //    Init();
-    //}
+    private void Awake()
+    {
+        livingEntity = GetComponent<LivingEntity>();
+        unitParameters = GetComponent<UnitParameters>();
+        _rigidbody = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
     public virtual void LoadPar(EnemyTierSettingStandart enemyTierSetting)
     {
+        unitParameters.InitParametrs(enemyTierSetting);
         timeBetweenAttacks = enemyTierSetting.TimeBetweenAttacks;
-
-        unitParameters = GetComponent<UnitParameters>();
+        tierType = enemyTierSetting.Tier;
 
         //unitParameters.Init(enemyTierSetting);
         livingEntity.SetStartHealpPoint(enemyTierSetting.HealPoint);
@@ -76,7 +80,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
             //}
         }
 
-        if (target == null)
+        if (target == null && navMeshAgent != null)
         {
             currentState = State.Idle;
             navMeshAgent.enabled = false;
@@ -100,13 +104,9 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     protected virtual void Init()
     {
         currentState = State.Chasing;
-        _rigidbody = GetComponent<Rigidbody>();
         target = GameManager.instance.player.transform;
         navMeshAgent.speed = unitParameters.CurrentMoveSpeed;
         MoveCoroutine = StartCoroutine(UpdatePath());
-
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        livingEntity = GetComponent<LivingEntity>();
         damage = unitParameters.CurrentDamage;
         startPositionY = transform.position.y;
     }

@@ -7,7 +7,6 @@ public class EnemyTierSettingStandart
     [Space(5)]
     [Header("Visual Setting")]
     public TierType Tier;
-    public EnemyController PrefabTier;
     [Space(5)]
     [Header("Standart Setting")]
     public float HealPoint;

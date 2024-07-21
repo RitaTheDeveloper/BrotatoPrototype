@@ -33,7 +33,8 @@ public class EnemyShooterController : EnemyController
         if (enemyRangeTierSetting == null)
             throw new System.NotImplementedException("Not correct settings init!");
 
-        range = enemyRangeTierSetting.RangeAttack;
+        //range = enemyRangeTierSetting.RangeAttack;
+        attackDistance = enemyRangeTierSetting.RangeAttack;
 
         base.LoadPar(enemyTierSetting);
     }

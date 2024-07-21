@@ -28,6 +28,7 @@ public class PlayerHealth : LivingEntity
         invulnerability = false;
         canTakeDmg = false;
         SetMaxHP();
+        Init();
         SetHpRegenPerSecond();
         SetArmor();
         SetProbabilityOfDodge();
@@ -148,6 +149,7 @@ public class PlayerHealth : LivingEntity
     public void SetMaxHP()
     {
         maxStartHealth = playerCharacteristics.CurrentMaxHp;
+        Debug.Log(maxStartHealth + "  " + playerCharacteristics.CurrentMaxHp);
         startingHealth = SetStartHealthDependingOfSatiety();
     }
 
@@ -233,6 +235,7 @@ public class PlayerHealth : LivingEntity
     public override void Init()
     {
         startingHealth = SetStartHealthDependingOfSatiety();
+        Debug.Log(startingHealth + "  " + maxStartHealth);
         base.Init();
     }
 

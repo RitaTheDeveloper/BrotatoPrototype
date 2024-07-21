@@ -19,6 +19,7 @@ public class WaveController : MonoBehaviour
     private int _amountOfGoldForWave = 0;
     private int _amountOfExpForWave = 0;
     private int _amountOfEnemiesForAllSpawners = 0;
+    private ManagerEnemyTier _managerEnemyTier;
     public int counterOfMobs = 0;
     private GameObject mobSpawnerPrefab;
 
@@ -37,11 +38,12 @@ public class WaveController : MonoBehaviour
         }
     }
 
-    public void SetWaveSettings(List<EnemySpawnerSettings> enemySpawnerSettings, int goldForWave, int expForWave)
+    public void SetWaveSettings(List<EnemySpawnerSettings> enemySpawnerSettings, int goldForWave, int expForWave, ManagerEnemyTier managerEnemyTier)
     {
         this.enemySpawnerSettings = enemySpawnerSettings;
         _amountOfGoldForWave = goldForWave;
         _amountOfExpForWave = expForWave;
+        _managerEnemyTier = managerEnemyTier;
     }
 
     public float GetCurrentTime()
@@ -102,8 +104,8 @@ public class WaveController : MonoBehaviour
             GameObject mobSpawner = Instantiate(mobSpawnerPrefab, transform);
             mobSpawner.transform.parent = transform;
             EnemySpawner enemySpawner = mobSpawner.AddComponent<EnemySpawner>();
-            enemySpawner.SetTotalAmountOfMobs(totalAmountOfenemies);
-            enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack, enemySetting.radiusOfPack,enemySetting.radiusOfPlayer, enemySetting.isSpecificPoint, enemySetting.specificPoint);
+            enemySpawner.InitSpawner(_managerEnemyTier, totalAmountOfenemies);
+            enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack, enemySetting.radiusOfPack,enemySetting.radiusOfPlayer, enemySetting.isSpecificPoint, enemySetting.specificPoint, enemySetting.typeEnemy, enemySetting.tierType);
         }
         Destroy(mobSpawnerPrefab);
     }

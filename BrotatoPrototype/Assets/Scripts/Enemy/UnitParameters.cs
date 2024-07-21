@@ -65,13 +65,15 @@ public class UnitParameters : MonoBehaviour
         return _markOfSpawnPrefab;
     }
 
-    private void Awake()
+    public void InitParametrs(EnemyTierSettingStandart enemyTierSetting)
     {
+        _maxHp = enemyTierSetting.HealPoint;
+        _startDamage = enemyTierSetting.Damage;
+        _moveSpeed = enemyTierSetting.Speed;
+
         int indexOfWave = GameManager.instance.WaveCounter;
-        //_currentHp = (_maxHp + indexOfWave * _amountOfHpPerWave) * GameManager.instance.GetCurrentHealthFactorForEnemy();
-        //_currentDamage = (int)(_startDamage + indexOfWave * _amountOfDamagePerWave) * GameManager.instance.GetCurrentDamageFactorForEnemy();
+
         _currentHpRegen = _hpRegen;
-        //_currentMoveSpeed = _moveSpeed;
         _currentHp = _maxHp * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.healthFactor;
         _currentDamage = _startDamage * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.damageFactor;
         _currentMoveSpeed = _moveSpeed * GameManager.instance.GetListOfWaveSetting[indexOfWave].GetEnemyStrengthFactors.speedFactor;

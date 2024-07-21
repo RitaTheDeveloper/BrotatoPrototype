@@ -6,7 +6,13 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Префаб юнита")]
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private EnemyController _enemyPrefab;
+
+    [Header("Тип юнита")]
+    [SerializeField] private TypeEnemy _typeEnemy;
+
+    [Header("Тир юнита")]
+    [SerializeField] private TierType _tierType;
 
     [Header("количество юнитов")]
     [SerializeField] private int _amountOfEnemies = 1;
@@ -40,6 +46,8 @@ public class EnemySpawner : MonoBehaviour
     private int countOfEnemies = 0;
     private int totalAmountOfenemies = 0;
     private Vector3 _specificPoint;
+
+    private ManagerEnemyTier _managerEnemyTier;
 
     private void Awake()
     {
@@ -84,14 +92,17 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
-    public void SetTotalAmountOfMobs(int amount)
+    public void InitSpawner(ManagerEnemyTier managerEnemyTier, int amount)
     {
+        _managerEnemyTier = managerEnemyTier;
         totalAmountOfenemies = amount;
     }
 
-    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint )
+    public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint, TypeEnemy typeEnemy,  TierType tierType)
     {
-        _enemyPrefab = enemyController.gameObject;
+        _enemyPrefab = enemyController;
+        _typeEnemy = typeEnemy;
+        _tierType = tierType;
         _startSpawnTime = startSpawnTime;
         _endSpawnTime = endSpawnTime;
         _minSpawnTime = cdSpawn;
@@ -122,7 +133,18 @@ public class EnemySpawner : MonoBehaviour
         //PlaySoundOfSpawnEnemy();
         countOfEnemies++;
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
-        var enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
+
+        EnemyController enemy;
+
+        if (_typeEnemy != TypeEnemy.NULL)
+        {
+            enemy = _managerEnemyTier.GetSpawnEnemy(_typeEnemy, _tierType, position, transform.rotation);
+        }
+        else
+        {
+            enemy = Instantiate(_enemyPrefab, enemyPosition, transform.rotation);
+        }
+
         enemy.transform.parent = container;
 
         UnitParameters enemyParameters = enemy.GetComponent<UnitParameters>();

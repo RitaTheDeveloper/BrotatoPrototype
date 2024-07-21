@@ -9,8 +9,12 @@ public class EnemyCloserSetting : EnemySetting
     public override EnemyTierSettingStandart GetTierEnemy(TierType tierType)
     {
         foreach (EnemyTierSettingStandart enemyTierSetting in _enemiesTier)
+        {
+            Debug.Log(enemyTierSetting.Tier);
+
             if (enemyTierSetting.Tier == tierType)
                 return enemyTierSetting;
+        }
 
         return null;
     }

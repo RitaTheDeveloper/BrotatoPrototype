@@ -7,11 +7,11 @@ public class ManagerEnemyTier : MonoBehaviour
 
     private EnemySetting _lastEnemy;
 
-    public EnemyController GetSpawnEnemy(TypeEnemy typeEnemy, TierType tierType)
+    public EnemyController GetSpawnEnemy(TypeEnemy typeEnemy, TierType tierType, Vector3 position, Quaternion rotation)
     {
         EnemySetting currentEnemy = null;
 
-        if (_lastEnemy.TypeEnemy == typeEnemy)
+        if (_lastEnemy != null && _lastEnemy.TypeEnemy == typeEnemy)
         {
             currentEnemy = _lastEnemy;
             goto Skip;
@@ -30,7 +30,7 @@ public class ManagerEnemyTier : MonoBehaviour
         if(enemyTierSetting == null)
             throw new System.NotImplementedException("No tier!");
 
-        EnemyController enemy = Instantiate(enemyTierSetting.PrefabTier);
+        EnemyController enemy = Instantiate(currentEnemy.PrefabTier, position, rotation);
         _lastEnemy = currentEnemy;
         enemy.LoadPar(enemyTierSetting);
 
