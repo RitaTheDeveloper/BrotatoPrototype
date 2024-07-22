@@ -24,6 +24,7 @@ public class Weapon : BaseItem
     [ReadOnlyInspector]
     [SerializeField] private float attackSpeed;
 
+
     public override void SynchronizeComponents()
     {
         SynchronizeWeaponLogicComponent();
@@ -113,7 +114,7 @@ public class Weapon : BaseItem
     }
 
     [ContextMenu("CalculateAndSynchronize")]
-    private void CalculateAndSynchronize()
+    public void CalculateAndSynchronize()
     {
         tier = TierType.FirstTier;
         CalculateAllCharacteristics();
