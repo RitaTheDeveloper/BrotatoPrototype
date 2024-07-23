@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4473149512147709832}
   - component: {fileID: 2964432388240897800}
   - component: {fileID: -1560427816102157758}
-  - component: {fileID: 7429654651703191087}
+  - component: {fileID: -5118746943557883905}
   m_Layer: 0
-  m_Name: Girya_T1
+  m_Name: RusskiyDukh_T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d8a93082989aa498960065a38de2b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdItem: Girya_T1
+  IdItem: RusskiyDukh_T1
   CharacteristicsItem: {fileID: 2964432388240897800}
   ShopInfoItem: {fileID: -1560427816102157758}
 --- !u!222 &4473149512147709832
@@ -77,10 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startMaxHp: 0
   _startHpRegen: 0
-  _startMoveSpeed: -2.5
+  _startMoveSpeed: 0
   _startMagnetDistance: 0
   _startAttackSpeedPercentage: 0
-  _startDamagePercentage: 10
+  _startDamagePercentage: 0
   _startMeleeDamage: 0
   _startRangedDamage: 0
   _startCritChancePercentage: 0
@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdWeapon: Girya_T1
+  IdWeapon: RusskiyDukh_T1
   Price: 8
   DiscountProcent: 50
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}
-  NameWeapon: "\u0413\u0438\u0440\u044F"
-  IconWeapon: {fileID: 21300000, guid: c6d470e837297b247a2e6172d0df23d6, type: 3}
---- !u!114 &7429654651703191087
+  NameWeapon: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439 \u0414\u0443\u0445"
+  IconWeapon: {fileID: 21300000, guid: 0b0f326914ef95a46af8352a3238de11, type: 3}
+--- !u!114 &-5118746943557883905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,19 +119,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1650d9c72e00fdb44adcf98630f70ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGameNameT1_3: "\u0413\u0438\u0440\u044F"
-  inGameNameT4: 
-  iconT1: {fileID: 0}
-  iconT2: {fileID: 0}
-  iconT3: {fileID: 0}
-  iconT4: {fileID: 0}
-  tier: 0
-  gameName: 
-  editorName: 
-  icon: {fileID: 0}
-  itemTemplate: {fileID: 0}
-  baffs: []
-  debaffs: []
+  inGameNameT1_3: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439 \u0434\u0443\u0445"
+  inGameNameT4: "\u0414\u0443\u0445 \u043A\u043E\u043C\u043C\u0443\u043D\u0438\u0437\u043C\u0430"
+  iconT1: {fileID: 21300000, guid: 0b0f326914ef95a46af8352a3238de11, type: 3}
+  iconT2: {fileID: 21300000, guid: 04c8a615696ad374e9785304731fc0fa, type: 3}
+  iconT3: {fileID: 21300000, guid: bb76f0de3cf5ac047b3b281c95736e57, type: 3}
+  iconT4: {fileID: 21300000, guid: ef2396926aa232346bcb7d0671764ac2, type: 3}
+  tier: 3
+  gameName: "\u0414\u0443\u0445 \u043A\u043E\u043C\u043C\u0443\u043D\u0438\u0437\u043C\u0430"
+  editorName: RusskiyDukh_T4
+  icon: {fileID: 21300000, guid: ef2396926aa232346bcb7d0671764ac2, type: 3}
+  itemTemplate: {fileID: 11400000, guid: 40ed53c0e7a1e884f9da7c9aaa80ddeb, type: 2}
+  baffs:
+  - characteristic: 2
+    multiplier: 4
+  debaffs:
+  - characteristic: 4
+    multiplier: 2
   characteristicValues:
     satiety: 0
     maxHealth: 0

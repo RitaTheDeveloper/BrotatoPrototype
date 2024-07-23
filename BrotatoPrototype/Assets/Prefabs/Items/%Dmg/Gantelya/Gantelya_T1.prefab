@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4473149512147709832}
   - component: {fileID: 2964432388240897800}
   - component: {fileID: -1560427816102157758}
+  - component: {fileID: 3936068677297674484}
   m_Layer: 0
   m_Name: Gantelya_T1
   m_TagString: Untagged
@@ -80,7 +81,7 @@ MonoBehaviour:
   _startMagnetDistance: 0
   _startAttackSpeedPercentage: 0
   _startDamagePercentage: 5
-  _startMelleeDamage: 0
+  _startMeleeDamage: 0
   _startRangedDamage: 0
   _startCritChancePercentage: 0
   _startArmor: 0
@@ -106,3 +107,45 @@ MonoBehaviour:
     type: 3}
   NameWeapon: "\u0413\u0430\u043D\u0442\u0435\u043B\u044F"
   IconWeapon: {fileID: 21300000, guid: 0109f262fa4665f4dbb0983413ce296b, type: 3}
+--- !u!114 &3936068677297674484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822688623039171615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1650d9c72e00fdb44adcf98630f70ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameNameT1_3: "\u0413\u0430\u043D\u0442\u0435\u043B\u044F"
+  inGameNameT4: "\u0413\u0438\u0433\u0430 \u0433\u0430\u043D\u0442\u0435\u043B\u044F"
+  iconT1: {fileID: 21300000, guid: 0109f262fa4665f4dbb0983413ce296b, type: 3}
+  iconT2: {fileID: 21300000, guid: 15b1c57069aca87468c1dcac894dedb8, type: 3}
+  iconT3: {fileID: 21300000, guid: 244e9064929c35a46a6feb07f021f314, type: 3}
+  iconT4: {fileID: 21300000, guid: 9d8a79b2d77011440b856042139c36ab, type: 3}
+  tier: 3
+  gameName: "\u0421\u0443\u043F\u0435\u0440 \u043F\u0443\u043F\u0435\u0440 \u043F\u0435\u0440\u0447\u0430\u0442\u043A\u0438"
+  editorName: Perchatki-ubivalki_T4
+  icon: {fileID: 21300000, guid: b681a5ddf9f5efc41ae3816d42a8ce13, type: 3}
+  itemTemplate: {fileID: 11400000, guid: 40ed53c0e7a1e884f9da7c9aaa80ddeb, type: 2}
+  baffs:
+  - characteristic: 9
+    multiplier: 3
+  debaffs:
+  - characteristic: 6
+    multiplier: 1
+  characteristicValues:
+    satiety: 0
+    maxHealth: 0
+    regenerationHP: 0
+    dodge: 0
+    armor: 0
+    moveSpeed: 0
+    attackSpeed: 0
+    damage: 0
+    meleeDamage: 0
+    rangeDamage: 0
+    critChance: 0
+    magneticRadius: 0
