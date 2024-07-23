@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
     {
         container = GameObject.Find("Enemies").transform;
         isBeginningOfWave = true;
-}
+    }
 
     private void Start()
     {
@@ -96,6 +96,18 @@ public class EnemySpawner : MonoBehaviour
     {
         _managerEnemyTier = managerEnemyTier;
         totalAmountOfenemies = amount;
+    }
+
+    public void LoadPar(TypeEnemy typeEnemy, TierType tierType, float cdSpawn, int amountOfEnemiesInPack)
+    {
+        _typeEnemy = typeEnemy;
+        _tierType = tierType;
+        _startSpawnTime = cdSpawn;
+        _endSpawnTime = cdSpawn;
+        _minSpawnTime = cdSpawn;
+        _maxSpawnTime = cdSpawn;
+        _amountOfEnemies = amountOfEnemiesInPack;
+        totalAmountOfenemies = amountOfEnemiesInPack;
     }
 
     public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint, TypeEnemy typeEnemy,  TierType tierType)

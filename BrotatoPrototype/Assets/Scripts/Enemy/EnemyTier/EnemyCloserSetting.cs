@@ -10,8 +10,6 @@ public class EnemyCloserSetting : EnemySetting
     {
         foreach (EnemyTierSettingStandart enemyTierSetting in _enemiesTier)
         {
-            Debug.Log(enemyTierSetting.Tier);
-
             if (enemyTierSetting.Tier == tierType)
                 return enemyTierSetting;
         }

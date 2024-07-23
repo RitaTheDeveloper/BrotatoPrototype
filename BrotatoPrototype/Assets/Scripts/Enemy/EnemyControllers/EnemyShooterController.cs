@@ -28,9 +28,7 @@ public class EnemyShooterController : EnemyController
 
     public override void LoadPar(EnemyTierSettingStandart enemyTierSetting)
     {
-        EnemyRangeTierSetting enemyRangeTierSetting = enemyTierSetting as EnemyRangeTierSetting;
-
-        if (enemyRangeTierSetting == null)
+        if (enemyTierSetting is not EnemyRangeTierSetting enemyRangeTierSetting)
             throw new System.NotImplementedException("Not correct settings init!");
 
         //range = enemyRangeTierSetting.RangeAttack;

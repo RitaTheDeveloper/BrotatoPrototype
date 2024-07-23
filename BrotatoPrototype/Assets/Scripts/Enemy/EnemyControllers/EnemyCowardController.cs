@@ -50,6 +50,5 @@ public class EnemyCowardController : EnemyController
             navMeshAgent.acceleration = 300f;
             navMeshAgent.SetDestination(newPos);            
         }
-                
     }
 }

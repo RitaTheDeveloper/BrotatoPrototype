@@ -173,7 +173,9 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     {
         if (knockBack)
         {
-            StopCoroutine(MoveCoroutine);
+            if(MoveCoroutine != null)
+                StopCoroutine(MoveCoroutine);
+
             MoveCoroutine = StartCoroutine(ApplyKnockBack(force));
         }        
     }
