@@ -18,4 +18,5 @@ public enum TypeEnemy
     CrowChargerBoss,
     ArmoredRaven,
     ArmoredRavenBoss,
+    TreeFood,
 }

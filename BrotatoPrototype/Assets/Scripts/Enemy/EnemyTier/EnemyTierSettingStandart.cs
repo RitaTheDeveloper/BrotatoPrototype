@@ -14,6 +14,10 @@ public class EnemyTierSettingStandart
     public float TimeBetweenAttacks;
     public float Speed;
     [Space(5)]
+    [Header("Escape setting")]
+    public float EscapeSpeed;
+    public float DistanceFromPlayer;
+    [Space(5)]
     [Header("Direction?")]
     public float Distance;
     public float SpeedDirection;
