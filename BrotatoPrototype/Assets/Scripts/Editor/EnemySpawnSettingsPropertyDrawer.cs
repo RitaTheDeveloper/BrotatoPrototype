@@ -11,6 +11,8 @@ public class EnemySpawnSettingsPropertyDrawer : PropertyDrawer
         //base.OnGUI(position, property, label);
         EditorGUILayout.LabelField("Enemy Spawner", EditorStyles.boldLabel);
         SerializedProperty enemy = property.FindPropertyRelative("enemy");
+        SerializedProperty typeEnemy = property.FindPropertyRelative("typeEnemy");
+        SerializedProperty tierType = property.FindPropertyRelative("tierType");
         SerializedProperty spawnCd = property.FindPropertyRelative("spawnCd");
         SerializedProperty totalAmountOfEnemies = property.FindPropertyRelative("totalAmountOfEnemies");
         SerializedProperty amountOfEnemiesInPack = property.FindPropertyRelative("amountOfEnemiesInPack");
@@ -26,6 +28,14 @@ public class EnemySpawnSettingsPropertyDrawer : PropertyDrawer
         EditorGUILayout.PropertyField(enemy, new GUIContent("mob prefab"));
 
         EditorGUILayout.Space();
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUIUtility.labelWidth = 150;
+        EditorGUILayout.PropertyField(typeEnemy, new GUIContent("typeEnemy"));
+        EditorGUILayout.PropertyField(tierType, new GUIContent("tierType"));
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.Space();
+
         EditorGUILayout.BeginHorizontal();
         EditorGUIUtility.labelWidth = 150;
         EditorGUILayout.PropertyField(spawnCd, new GUIContent("spawnCd"));

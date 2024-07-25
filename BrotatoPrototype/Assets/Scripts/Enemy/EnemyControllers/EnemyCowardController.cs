@@ -30,6 +30,14 @@ public class EnemyCowardController : EnemyController
         
     }
 
+    public override void LoadPar(EnemyTierSettingStandart enemyTierSetting)
+    {
+        _escapeSpeed = enemyTierSetting.EscapeSpeed != 0 ? enemyTierSetting.EscapeSpeed : enemyTierSetting.Speed;
+        _distanceFromPlayer = enemyTierSetting.DistanceFromPlayer != 0 ? enemyTierSetting.DistanceFromPlayer : _distanceFromPlayer;
+
+        base.LoadPar(enemyTierSetting);
+    }
+
     private void Chase()
     {
         if (navMeshAgent.enabled)
@@ -50,6 +58,5 @@ public class EnemyCowardController : EnemyController
             navMeshAgent.acceleration = 300f;
             navMeshAgent.SetDestination(newPos);            
         }
-                
     }
 }

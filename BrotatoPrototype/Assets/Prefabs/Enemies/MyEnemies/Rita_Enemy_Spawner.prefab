@@ -53,12 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 240
-  _amountOfHpPerWave: 25
   _startDamage: 5
-  _amountOfDamagePerWave: 1
   _hpRegen: 0
   _moveSpeed: 5
   _amountOfExperience: 10
+  _amountOfGoldForKill: 0
   _markOfSpawnPrefab: {fileID: 7525006951670329389, guid: cb7dee73cffcce94abaf871af2075ed1,
     type: 3}
 --- !u!195 &5664343470737240570
@@ -116,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tierType: 0
   knockBack: 1
   attackDistance: 7
   timeBetweenAttacks: 0
@@ -277,15 +277,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372882831b675364d8666ad9069bcd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 3503059046315012686, guid: a5738f9a1d6173644864a94d6e3ac333,
+  _enemyPrefab: {fileID: 2217476828117351108, guid: a5738f9a1d6173644864a94d6e3ac333,
     type: 3}
+  _typeEnemy: 0
+  _tierType: 0
   _amountOfEnemies: 1
   _startSpawnTime: 3
   _minSpawnTime: 9
   _maxSpawnTime: 12
   _radiusFromPlayer: 15
-  isNotRandom: 1
-  radius: 2
+  _isNotRandom: 0
+  _radius: 2
   markPrefab: {fileID: 7525006951670329389, guid: c74ff4c6e7cc5b64eadb1d29f58a15d7,
     type: 3}
   markDisplayTime: 0.5

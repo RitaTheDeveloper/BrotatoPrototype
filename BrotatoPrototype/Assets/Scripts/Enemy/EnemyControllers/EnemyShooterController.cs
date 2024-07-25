@@ -11,11 +11,12 @@ public class EnemyShooterController : EnemyController
 
     private Projectile _projectile;
     private Transform _containerOfBullets;
-    public override void Start()
-    {
-        base.Start();
-        _containerOfBullets = GameObject.Find("Bullets").transform;
-    }
+
+    //public override void Start()
+    //{
+    //    base.Start();
+    //    _containerOfBullets = GameObject.Find("Bullets").transform;
+    //}
 
     private void Update()
     {
@@ -23,6 +24,23 @@ public class EnemyShooterController : EnemyController
         {
             RunAway();
         }
+    }
+
+    public override void LoadPar(EnemyTierSettingStandart enemyTierSetting)
+    {
+        if (enemyTierSetting is not EnemyRangeTierSetting enemyRangeTierSetting)
+            throw new System.NotImplementedException("Not correct settings init!");
+
+        //range = enemyRangeTierSetting.RangeAttack;
+        attackDistance = enemyRangeTierSetting.RangeAttack;
+
+        base.LoadPar(enemyTierSetting);
+    }
+
+    protected override void Init()
+    {
+        _containerOfBullets = GameObject.Find("Bullets").transform;
+        base.Init();
     }
 
     protected virtual void RunAway()

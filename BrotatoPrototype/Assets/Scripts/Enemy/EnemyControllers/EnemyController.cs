@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IKnockbackable
 {
+    public TierType tierType;
     public enum State { Idle, Chasing, Attacking, RunAway};
     protected State currentState;
     [SerializeField] protected bool knockBack = true;
@@ -29,16 +30,30 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     
     private void Awake()
     {
+        livingEntity = GetComponent<LivingEntity>();
+        unitParameters = GetComponent<UnitParameters>();
+        _rigidbody = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    public virtual void LoadPar(EnemyTierSettingStandart enemyTierSetting)
+    {
+        unitParameters.InitParametrs(enemyTierSetting);
+        timeBetweenAttacks = enemyTierSetting.TimeBetweenAttacks;
+        tierType = enemyTierSetting.Tier;
+
+        //unitParameters.Init(enemyTierSetting);
+        livingEntity.SetStartHealpPoint(enemyTierSetting.HealPoint);
         Init();
     }
 
     public virtual void Start()
     {
-        currentState = State.Chasing;
-        _rigidbody = GetComponent<Rigidbody>();
-        target = GameManager.instance.player.transform;
-        navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
-        MoveCoroutine = StartCoroutine(UpdatePath());
+        //currentState = State.Chasing;
+        //_rigidbody = GetComponent<Rigidbody>();
+        //target = GameManager.instance.player.transform;
+        //navMeshAgent.speed = GetComponent<UnitParameters>().CurrentMoveSpeed;
+        //MoveCoroutine = StartCoroutine(UpdatePath());
     }
 
     private void FixedUpdate()
@@ -65,7 +80,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
             //}
         }
 
-        if (target == null)
+        if (target == null && navMeshAgent != null)
         {
             currentState = State.Idle;
             navMeshAgent.enabled = false;
@@ -88,9 +103,10 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     protected virtual void Init()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        livingEntity = GetComponent<LivingEntity>();
-        unitParameters = GetComponent<UnitParameters>();
+        currentState = State.Chasing;
+        target = GameManager.instance.player.transform;
+        navMeshAgent.speed = unitParameters.CurrentMoveSpeed;
+        MoveCoroutine = StartCoroutine(UpdatePath());
         damage = unitParameters.CurrentDamage;
         startPositionY = transform.position.y;
     }
@@ -157,7 +173,9 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     {
         if (knockBack)
         {
-            StopCoroutine(MoveCoroutine);
+            if(MoveCoroutine != null)
+                StopCoroutine(MoveCoroutine);
+
             MoveCoroutine = StartCoroutine(ApplyKnockBack(force));
         }        
     }

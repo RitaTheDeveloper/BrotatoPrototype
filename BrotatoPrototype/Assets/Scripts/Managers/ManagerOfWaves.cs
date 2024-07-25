@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ManagerOfWaves : MonoBehaviour
 {
+    [SerializeField] private ManagerEnemyTier _managerEnemyTier;
     [SerializeField] private List<WaveSetting> _listOfWaveSettings;
 
     private void CreateWave(WaveSetting waveSetting)
@@ -13,7 +14,7 @@ public class ManagerOfWaves : MonoBehaviour
         WaveController wave = waveObj.AddComponent<WaveController>();
         waveSetting.Wave = wave;
         wave.time = waveSetting.parametersOfWave.waveTime;
-        wave.SetWaveSettings(waveSetting.enemySpawnerSettings, waveSetting.parametersOfWave.amountOfGoldPerWave, waveSetting.parametersOfWave.amountOfExpPerWave);
+        wave.SetWaveSettings(waveSetting.enemySpawnerSettings, waveSetting.parametersOfWave.amountOfGoldPerWave, waveSetting.parametersOfWave.amountOfExpPerWave, _managerEnemyTier);
         Destroy(wavePrefab);
     }
 
