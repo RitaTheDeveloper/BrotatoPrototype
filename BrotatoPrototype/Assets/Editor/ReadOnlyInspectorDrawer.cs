@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEditorInternal;
 
 [CustomPropertyDrawer(typeof(ReadOnlyInspectorAttribute))]
 public class ReadOnlyInspectorDrawer : PropertyDrawer

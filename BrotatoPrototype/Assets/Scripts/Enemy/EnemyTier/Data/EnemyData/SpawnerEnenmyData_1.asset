@@ -19,10 +19,12 @@ MonoBehaviour:
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 2000
+    HealPoint: 1500
     Damage: 7
     TimeBetweenAttacks: 0
     Speed: 0
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -30,46 +32,52 @@ MonoBehaviour:
     TypeSpawnEnemy: 1
     TierSpawnUnit: 2
     TimeBetweenSpawn: 1
-    CountSpawnUnit: 1
+    CountSpawnUnit: 5
   - Name: 2
     Tier: 1
-    HealPoint: 2000
+    HealPoint: 1800
     Damage: 7
     TimeBetweenAttacks: 0
-    Speed: 0
+    Speed: 1
+    EscapeSpeed: 1
+    DistanceFromPlayer: 10
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
     CDDirection: 0
-    TypeSpawnEnemy: 1
-    TierSpawnUnit: 3
-    TimeBetweenSpawn: 1
-    CountSpawnUnit: 5
-  - Name: 3
-    Tier: 2
-    HealPoint: 2000
-    Damage: 7
-    TimeBetweenAttacks: 0
-    Speed: 0
-    Distance: 0
-    SpeedDirection: 0
-    TimeStopDirection: 0
-    CDDirection: 0
-    TypeSpawnEnemy: 1
-    TierSpawnUnit: 0
-    TimeBetweenSpawn: 1
-    CountSpawnUnit: 1
-  - Name: 4
-    Tier: 3
-    HealPoint: 2000
-    Damage: 7
-    TimeBetweenAttacks: 0
-    Speed: 0
-    Distance: 0
-    SpeedDirection: 0
-    TimeStopDirection: 0
-    CDDirection: 0
-    TypeSpawnEnemy: 1
+    TypeSpawnEnemy: 15
     TierSpawnUnit: 1
     TimeBetweenSpawn: 1
-    CountSpawnUnit: 1
+    CountSpawnUnit: 6
+  - Name: 3
+    Tier: 2
+    HealPoint: 2100
+    Damage: 10
+    TimeBetweenAttacks: 0
+    Speed: 2
+    EscapeSpeed: 2
+    DistanceFromPlayer: 10
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 5
+    TierSpawnUnit: 0
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 3
+  - Name: 4
+    Tier: 3
+    HealPoint: 2400
+    Damage: 10
+    TimeBetweenAttacks: 0
+    Speed: 2
+    EscapeSpeed: 2
+    DistanceFromPlayer: 10
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 3
+    TierSpawnUnit: 1
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 3

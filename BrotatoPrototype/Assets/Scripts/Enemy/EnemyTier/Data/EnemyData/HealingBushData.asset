@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5de89440ef3421244b1136d611990437, type: 3}
-  m_Name: WolfData
+  m_Name: HealingBushData
   m_EditorClassIdentifier: 
-  TypeEnemy: 11
-  PrefabTier: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+  TypeEnemy: 18
+  PrefabTier: {fileID: -3542300649698883537, guid: 9a99e71019a58c64fbdd196e77ce4fa5,
     type: 3}
   ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 120
-    Damage: 7
-    TimeBetweenAttacks: 0
-    Speed: 20
+    HealPoint: 10
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -35,10 +35,10 @@ MonoBehaviour:
     CountSpawnUnit: 0
   - Name: 2
     Tier: 1
-    HealPoint: 140
-    Damage: 9
-    TimeBetweenAttacks: 0
-    Speed: 25
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -51,10 +51,10 @@ MonoBehaviour:
     CountSpawnUnit: 0
   - Name: 3
     Tier: 2
-    HealPoint: 180
-    Damage: 12
-    TimeBetweenAttacks: 0
-    Speed: 30
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -67,10 +67,10 @@ MonoBehaviour:
     CountSpawnUnit: 0
   - Name: 4
     Tier: 3
-    HealPoint: 210
-    Damage: 15
-    TimeBetweenAttacks: 0
-    Speed: 33
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
