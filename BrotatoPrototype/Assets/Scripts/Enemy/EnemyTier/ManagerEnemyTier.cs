@@ -31,7 +31,7 @@ public class ManagerEnemyTier : MonoBehaviour
         if(enemyTierSetting == null)
             throw new System.NotImplementedException("No tier!");
 
-        enemyTierSetting.SetManager(this);
+        enemyTierSetting.SetOther(this, currentEnemy.PrefabLoot);
 
         EnemyController enemy = Instantiate(currentEnemy.PrefabTier, position, rotation);
         _lastEnemy = currentEnemy;

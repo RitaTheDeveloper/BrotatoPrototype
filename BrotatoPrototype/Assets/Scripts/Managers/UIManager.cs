@@ -377,7 +377,7 @@ public class UIManager : MonoBehaviour
     public void DisplayWoodUp(int numberOfWoodUp)
     {
         PlaySoundOfWoodUp();
-        if (numberOfWoodUp < 2)
+        if (_woodUp == null)
         {
             _woodUp = Instantiate(woodUpUiPrefab, foodAndWoodMenu.transform);
             _woodUp.GetComponentInChildren<TextMeshProUGUI>().enabled = false;

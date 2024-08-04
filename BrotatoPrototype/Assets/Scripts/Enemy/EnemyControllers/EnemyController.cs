@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(LootSpawner))]
 public class EnemyController : MonoBehaviour, IKnockbackable
 {
     public TierType tierType;
@@ -13,17 +14,19 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     [SerializeField] protected float timeBetweenAttacks = 0f;
     [SerializeField] protected float refreshRateOfUpdatePath = 1f;
     [SerializeField] protected Animator animator;
-
     [SerializeField] BoxCollider boxCollider;
     [SerializeField] private float stoppingSpeedForKnockBack = 1f;
+
     protected NavMeshAgent navMeshAgent;
     protected UnitParameters unitParameters;
-    public Transform target;
+    private Rigidbody _rigidbody;
     protected LivingEntity livingEntity;
+    private LootSpawner _lootSpawner;
+
+    public Transform target;
     protected float damage;
     private float nextAttackTime;
     private Coroutine MoveCoroutine;
-    private Rigidbody _rigidbody;
     private float startPositionY;
     public float knockBackTime { get; private set; } = 0.25f;
  
@@ -31,6 +34,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
     private void Awake()
     {
         livingEntity = GetComponent<LivingEntity>();
+        _lootSpawner = GetComponent<LootSpawner>();
         unitParameters = GetComponent<UnitParameters>();
         _rigidbody = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -38,6 +42,7 @@ public class EnemyController : MonoBehaviour, IKnockbackable
 
     public virtual void LoadPar(EnemyTierSettingStandart enemyTierSetting)
     {
+        _lootSpawner.InitSpawner(enemyTierSetting.Loot, enemyTierSetting.LootCount);
         unitParameters.InitParametrs(enemyTierSetting);
         timeBetweenAttacks = enemyTierSetting.TimeBetweenAttacks;
         tierType = enemyTierSetting.Tier;

@@ -7,6 +7,7 @@ public abstract class EnemySetting : ScriptableObject
     public TypeEnemy TypeEnemy;
     public EnemyController PrefabTier;
     public ViewSetting ViewSetting;
+    public Loot PrefabLoot;
 
     public virtual EnemyTierSettingStandart GetTierEnemy(TierType tierType)
     {

@@ -1,11 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
 {
     [SerializeField] private Loot _loot;
     [SerializeField] private int amountOfLoot;
+
+    public void InitSpawner(Loot loot, int count)
+    {
+        if (loot == null)
+            return;
+
+        _loot = loot;
+        amountOfLoot = count;
+    }
 
     public void SpawnLoot()
     {

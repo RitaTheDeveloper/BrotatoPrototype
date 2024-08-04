@@ -13,6 +13,12 @@ public class EnemyTierSettingStandart
     public float Damage;
     public float TimeBetweenAttacks;
     public float Speed;
+    [Range(0, 10000)]
+    public float Exp;
+    [Range(0, 10000)]
+    public int LootCount;
+    [Range(0, 10000)]
+    public int GoldCount;
     [Space(5)]
     [Header("Escape setting")]
     public float EscapeSpeed;
@@ -32,9 +38,11 @@ public class EnemyTierSettingStandart
 
     //Very very very very very very very very very very very very very very very very very very very BAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDDDDD
     public ManagerEnemyTier ManagerEnemyTier { get; private set; }
+    public Loot Loot { get; private set; }
 
-    public void SetManager(ManagerEnemyTier managerEnemyTier)
+    public void SetOther(ManagerEnemyTier managerEnemyTier, Loot loot)
     {
         ManagerEnemyTier = managerEnemyTier;
+        Loot = loot;
     }
 }

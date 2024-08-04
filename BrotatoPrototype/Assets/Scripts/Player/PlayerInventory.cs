@@ -124,7 +124,7 @@ public class PlayerInventory : MonoBehaviour
         _amountOfWoodLifted++;
         _amountOfWoodForWave += wood;
         ChangeWood(wood);
-        UIManager.instance.DisplayWoodUp(_amountOfWoodLifted);
+        UIManager.instance.DisplayWoodUp(_amountOfWoodForWave);
     }
 
     public void ResetAmountOfWoodLiftedAndGoldForWave()
