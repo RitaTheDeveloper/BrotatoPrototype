@@ -45,8 +45,10 @@ GameObject:
   - component: {fileID: 4313850227817638283}
   - component: {fileID: 2973607333899940042}
   - component: {fileID: 1784853767548269748}
+  - component: {fileID: -5173195394320884057}
+  - component: {fileID: -7432461236008213198}
   m_Layer: 0
-  m_Name: Pan 1
+  m_Name: Pan_T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,14 +83,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a2b8a76eb4e94e9122c266e79cacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 0
   type: 1
-  weaponModifiers: {fileID: 11400000, guid: 213026b170911e84b9d93614dd29cdc2, type: 2}
   attackRange: 10
-  startDamage: 25
-  startAttackSpeed: 0.5
+  startDamage: 32
+  startAttackSpeedPercentage: -9.855771
+  attackPerSecond: 0.4507211
   _timeLoop: 3
-  startCritChance: 0.03
+  startCritChance: 0.01
   knockBack: 0
   repulsiveForce: 15
   percantageOfMelleDamage: 0
@@ -164,8 +165,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.7, y: 2.7441072, z: 0.54658103}
-  m_Center: {x: 0, y: 0.97973245, z: 0.23394096}
+  m_Size: {x: 1.7, y: 2.744107, z: 0.546581}
+  m_Center: {x: 0, y: 0.9797325, z: 0.233941}
 --- !u!114 &1784853767548269748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,13 +179,227 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21d9c9f94051a84ebbb7e004c8cf72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdWeapon: pan1
+  IdWeapon: Pan_T1
   Price: 15
   DiscountProcent: 10
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}
-  NameWeapon: "\u0421\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u0430"
+  NameWeapon: "\u0421\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u043A\u0430"
   IconWeapon: {fileID: 21300000, guid: 1994343eccf50294a9f8ae1f431b47fd, type: 3}
+--- !u!114 &-5173195394320884057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268432389961175641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a41799df0b121d479ff59683a4e6756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameNameT1_3: "\u0421\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u043A\u0430"
+  inGameNameT4: "\u0413\u0438\u0433\u0430 \u0441\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u0430"
+  iconT1: {fileID: 21300000, guid: 1994343eccf50294a9f8ae1f431b47fd, type: 3}
+  iconT2: {fileID: 21300000, guid: 84a9c563bf98d3848ae306c08b73f958, type: 3}
+  iconT3: {fileID: 21300000, guid: 09f39e9827dcbe24bb1493f06d22d118, type: 3}
+  iconT4: {fileID: 21300000, guid: 417d8c522e077e74e991efec7f4416b7, type: 3}
+  tier: 0
+  gameName: "\u0421\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u043A\u0430"
+  editorName: Pa_T1
+  icon: {fileID: 21300000, guid: 1994343eccf50294a9f8ae1f431b47fd, type: 3}
+  weaponTemplate: {fileID: 11400000, guid: 9ce8f218368de1c48a336d249fe927b1, type: 2}
+  startDamage: 32
+  startCritChance: 0.01
+  reductionCoeff: 1
+  damage: 32
+  critChance: 0.01
+  attackSpeed: 0.4507211
+--- !u!114 &-7432461236008213198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268432389961175641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888380afc233049ce9e618f9f36c8ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 4986e15e4b71f444dbf6dddc352f76a8, type: 2}
+  profileSync: 0
+  previewInEditor: 1
+  camerasLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  effectGroup: 0
+  effectGroupLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  effectNameFilter: 
+  effectNameUseRegEx: 0
+  combineMeshes: 0
+  alphaCutOff: 0
+  cullBackFaces: 1
+  padding: 0
+  ignoreObjectVisibility: 0
+  reflectionProbes: 0
+  GPUInstancing: 1
+  optimizeSkinnedMesh: 1
+  depthClip: 0
+  cameraDistanceFade: 0
+  cameraDistanceFadeNear: 0
+  cameraDistanceFadeFar: 1000
+  normalsOption: 0
+  ignore: 0
+  _highlighted: 1
+  fadeInDuration: 0
+  fadeOutDuration: 0
+  flipY: 0
+  constantWidth: 1
+  minimumWidth: 0
+  subMeshMask: -1
+  overlay: 0
+  overlayMode: 0
+  overlayColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  overlayAnimationSpeed: 1
+  overlayMinIntensity: 0.5
+  overlayBlending: 1
+  overlayTexture: {fileID: 0}
+  overlayTextureUVSpace: 0
+  overlayTextureScale: 1
+  overlayTextureScrolling: {x: 0, y: 0}
+  overlayVisibility: 0
+  outline: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.72156864}
+  outlineColorStyle: 0
+  outlineGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  outlineGradientInLocalSpace: 0
+  outlineWidth: 0.2
+  outlineBlurPasses: 1
+  outlineQuality: 2
+  outlineEdgeMode: 0
+  outlineEdgeThreshold: 0.995
+  outlineSharpness: 1
+  outlineDownsampling: 1
+  outlineVisibility: 0
+  glowBlendMode: 0
+  outlineOptimalBlit: 1
+  outlineBlitDebug: 0
+  outlineIndependent: 0
+  outlineContourStyle: 1
+  glow: 0
+  glowWidth: 0.1
+  glowQuality: 2
+  glowBlurMethod: 1
+  glowDownsampling: 1
+  glowHQColor: {r: 1, g: 1, b: 1, a: 1}
+  glowDithering: 1
+  glowDitheringStyle: 0
+  glowMagicNumber1: 0.75
+  glowMagicNumber2: 0.5
+  glowAnimationSpeed: 1
+  glowVisibility: 0
+  glowOptimalBlit: 1
+  glowBlitDebug: 0
+  glowBlendPasses: 1
+  glowPasses:
+  - offset: 4
+    alpha: 0.1
+    color: {r: 0.64, g: 1, b: 0, a: 1}
+  - offset: 3
+    alpha: 0.2
+    color: {r: 0.64, g: 1, b: 0, a: 1}
+  - offset: 2
+    alpha: 0.3
+    color: {r: 0.64, g: 1, b: 0, a: 1}
+  - offset: 1
+    alpha: 0.4
+    color: {r: 0.64, g: 1, b: 0, a: 1}
+  glowIgnoreMask: 0
+  innerGlow: 0
+  innerGlowWidth: 1
+  innerGlowColor: {r: 1, g: 1, b: 1, a: 1}
+  innerGlowBlendMode: 0
+  innerGlowVisibility: 0
+  targetFX: 0
+  targetFXTexture: {fileID: 0}
+  targetFXColor: {r: 1, g: 1, b: 1, a: 1}
+  targetFXCenter: {fileID: 0}
+  targetFXRotationSpeed: 50
+  targetFXInitialScale: 4
+  targetFXEndScale: 1.5
+  targetFXScaleToRenderBounds: 1
+  targetFXUseEnclosingBounds: 0
+  targetFXAlignToGround: 0
+  targetFXOffset: {x: 0, y: 0, z: 0}
+  targetFXFadePower: 32
+  targetFXGroundMaxDistance: 10
+  targetFXGroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  targetFXTransitionDuration: 0.5
+  targetFXStayDuration: 1.5
+  targetFXVisibility: 1
+  seeThrough: 2
+  seeThroughOccluderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  seeThroughOccluderThreshold: 0.3
+  seeThroughOccluderMaskAccurate: 0
+  seeThroughOccluderCheckInterval: 1
+  seeThroughOccluderCheckIndividualObjects: 0
+  seeThroughDepthOffset: 0
+  seeThroughMaxDepth: 0
+  seeThroughIntensity: 0.8
+  seeThroughTintAlpha: 0.5
+  seeThroughTintColor: {r: 1, g: 0, b: 0, a: 1}
+  seeThroughNoise: 1
+  seeThroughBorder: 0
+  seeThroughBorderColor: {r: 0, g: 0, b: 0, a: 1}
+  seeThroughBorderOnly: 0
+  seeThroughBorderWidth: 0.45
+  seeThroughOrdered: 0
+  seeThroughTexture: {fileID: 0}
+  seeThroughTextureUVSpace: 0
+  seeThroughTextureScale: 1
+  seeThroughChildrenSortingMode: 0
+  rmsCount: 1
+  hitFxInitialIntensity: 0
+  hitFxMode: 0
+  hitFxFadeOutDuration: 0.25
+  hitFxColor: {r: 1, g: 1, b: 1, a: 1}
+  hitFxRadius: 0.5
 --- !u!1001 &1746494252861420660
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ public class ShopController : MonoBehaviour, IShopController
     private List<BaseWeapon> weaponsList;
     private PlayerInventory playerInventory;
     private int currentWave;
+    private BaseWeapon kostylWeapon;
 
     void Start()
     {
@@ -229,7 +230,19 @@ public class ShopController : MonoBehaviour, IShopController
             ItemShopInfo shopComponent = WeaponsDict[itemID].GetComponent<ItemShopInfo>();
             int priceForSale = shopComponent.GetSalePrice();
             playerInventory.ChangeMoney(priceForSale);
-            weaponsList.Remove(WeaponsDict[itemID]);
+
+            // дальнейший код нужно уничтожить и сделать по-нормальному
+
+            foreach (BaseWeapon kostyl in weaponsList)
+            {
+                if (kostyl.gameObject.name == itemID)
+                {
+                    kostylWeapon = kostyl;
+                    break;
+                }
+            }
+
+            weaponsList.Remove(kostylWeapon);
             PlaySoundBuySold();
             return true;
         }

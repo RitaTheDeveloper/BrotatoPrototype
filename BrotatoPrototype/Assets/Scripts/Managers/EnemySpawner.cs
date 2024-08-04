@@ -46,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
     private int countOfEnemies = 0;
     private int totalAmountOfenemies = 0;
     private Vector3 _specificPoint;
+    private bool _isSpawnerUnit = false;
 
     private ManagerEnemyTier _managerEnemyTier;
 
@@ -107,7 +108,8 @@ public class EnemySpawner : MonoBehaviour
         _minSpawnTime = cdSpawn;
         _maxSpawnTime = cdSpawn;
         _amountOfEnemies = amountOfEnemiesInPack;
-        totalAmountOfenemies = amountOfEnemiesInPack;
+        _isSpawnerUnit = true;
+        totalAmountOfenemies = 3000;
     }
 
     public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint, TypeEnemy typeEnemy,  TierType tierType)
@@ -160,8 +162,16 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.parent = container;
 
         UnitParameters enemyParameters = enemy.GetComponent<UnitParameters>();
-        enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
-        enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
+        if (_isSpawnerUnit)
+        {
+            enemyParameters.AmountOfGoldForKill = 0;
+            enemyParameters.AmountOfExperience = 0;
+        }
+        else
+        {
+            enemyParameters.AmountOfGoldForKill = _waveController.distrubitionOfGoldToMobs.GetNumberOfGoldOrExp();
+            enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
+        }
         _waveController.counterOfMobs++;
     }
 

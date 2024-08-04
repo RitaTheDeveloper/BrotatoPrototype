@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4533431752377730708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.0000000010404316, z: 0.008727774, w: 0.9999619}
+  m_LocalRotation: {x: -0, y: -0.000000001040432, z: 0.008727774, w: 0.9999619}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -52,12 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 350
-  _amountOfHpPerWave: 10
   _startDamage: 15
-  _amountOfDamagePerWave: 3
   _hpRegen: 5
   _moveSpeed: 7
-  _amountOfExperience: 5
+  _amountOfExperience: 0
+  _amountOfGoldForKill: 0
   _markOfSpawnPrefab: {fileID: 7525006951670329389, guid: cb7dee73cffcce94abaf871af2075ed1,
     type: 3}
 --- !u!195 &5401612529891977140
@@ -115,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefae8469b3bbbf41ab4ba0d568c7a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tierType: 0
   knockBack: 0
   attackDistance: 6
   timeBetweenAttacks: 0.5

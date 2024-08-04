@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,21 @@ public abstract class BaseItem : MonoBehaviour
         RenameInstance(instancedItem, editorName);
         instancedItem.CalculateAllCharacteristics();
         instancedItem.SynchronizeComponents();
+
+        // fix weapon
+        if (tier == TierType.FourthTier)
+        {
+            Weapon weapon = this as Weapon;
+            if  (weapon != null)
+            {
+                this.tier = TierType.FirstTier;
+                gameName = inGameNameT1_3;
+                icon = iconT1;
+                AddSuffixToEditorName(TierType.FirstTier);
+                weapon.CalculateAndSynchronize();
+            }
+        }
+
         return instancedItem;
     }
 

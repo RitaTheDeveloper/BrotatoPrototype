@@ -19,4 +19,5 @@ public enum TypeEnemy
     ArmoredRaven,
     ArmoredRavenBoss,
     TreeFood,
+    HealingBush,
 }
