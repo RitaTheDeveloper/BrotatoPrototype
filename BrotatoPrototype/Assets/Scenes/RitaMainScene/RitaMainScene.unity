@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44300658, g: 0.4921953, b: 0.57192475, a: 1}
+  m_IndirectSpecularColor: {r: 0.4430063, g: 0.4921952, b: 0.5719241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0.5882353}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8327,17 +8327,17 @@ PrefabInstance:
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
@@ -32897,6 +32897,7 @@ GameObject:
   - component: {fileID: 6644469388231996277}
   - component: {fileID: 5461585779316735461}
   - component: {fileID: 1792386745094613043}
+  - component: {fileID: 6644469388231996278}
   m_Layer: 5
   m_Name: RerollBtn
   m_TagString: Untagged
@@ -36587,17 +36588,17 @@ PrefabInstance:
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7963668566861794012, guid: 3758889f322c69049a96f00c170a07c5,
         type: 3}
@@ -37123,6 +37124,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284474373780168681}
   m_CullTransparentMesh: 1
+--- !u!114 &6644469388231996278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284474373780168681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTooltip: {fileID: 3301680292528972963, guid: 5b951a40903589f4b88757f428ff4da7,
+    type: 3}
+  _tooltipText: 123123
+  _sprite: {fileID: 0}
 --- !u!1001 &6667470227843572620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37464,17 +37481,17 @@ PrefabInstance:
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523187218688973195, guid: cf4f01ca14e6e104ab59f8502ff742e4,
         type: 3}
