@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerSatiety _satiety;
     private LevelSystem _levelSystem;
     private CharacterLevel _characterLevel;
+    private UnlockCharacterComponent _unlockCharacterComponent;
 
     private void Awake()
     {
@@ -16,10 +17,12 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<PlayerMovement>();
         _levelSystem = GetComponent<LevelSystem>();
         _characterLevel = GetComponent<CharacterLevel>();
+        _unlockCharacterComponent = GetComponent<UnlockCharacterComponent>();
     }
 
     public void Init(GameManager gameManager, CharacterLevelSettingScriptable characterLevelSettings)
     {
+        _unlockCharacterComponent.Init(gameManager);
         _characterLevel.Init(gameManager, characterLevelSettings);
     }
 

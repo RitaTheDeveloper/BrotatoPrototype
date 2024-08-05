@@ -20,8 +20,8 @@ GameObject:
   - component: {fileID: -7883915719805395228}
   - component: {fileID: -8086125469120082790}
   - component: {fileID: -2872071167883006049}
-  - component: {fileID: 3828613175337702773}
   - component: {fileID: 7596855650281657027}
+  - component: {fileID: -5008241400332629987}
   m_Layer: 7
   m_Name: Player_Emelya
   m_TagString: Player
@@ -257,19 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3828613175337702773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585661124780564198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wavesRequired: 0
 --- !u!114 &7596855650281657027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +275,20 @@ MonoBehaviour:
     multiplier: 4
   - characteristic: 7
     multiplier: 3
+--- !u!114 &-5008241400332629987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585661124780564198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wavesRequired: 0
+  _accountLevelReguired: 0
 --- !u!1 &1383933700558331236
 GameObject:
   m_ObjectHideFlags: 0

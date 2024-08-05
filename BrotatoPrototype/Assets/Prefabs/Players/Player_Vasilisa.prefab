@@ -20,8 +20,8 @@ GameObject:
   - component: {fileID: 7035847523430320072}
   - component: {fileID: 938572562102601060}
   - component: {fileID: 232686811214865092}
-  - component: {fileID: 4075723163815060495}
   - component: {fileID: 4440596441711549282}
+  - component: {fileID: 5034360606897215953}
   m_Layer: 7
   m_Name: Player_Vasilisa
   m_TagString: Player
@@ -256,19 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4075723163815060495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326479278294070286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wavesRequired: 20
 --- !u!114 &4440596441711549282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +274,20 @@ MonoBehaviour:
     multiplier: 5
   - characteristic: 5
     multiplier: 10
+--- !u!114 &5034360606897215953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326479278294070286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wavesRequired: 5
+  _accountLevelReguired: 2
 --- !u!1 &4625368791244255720
 GameObject:
   m_ObjectHideFlags: 0

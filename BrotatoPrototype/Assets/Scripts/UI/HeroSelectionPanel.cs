@@ -74,7 +74,7 @@ public class HeroSelectionPanel : MonoBehaviour
         heroDescription.text = _uiPlayerInfo.description;
         indexOfHero = index;
         blockInfo.SetActive(true);
-        blockTextInfo.text = "Доступ к персонажу откроется при прохождении " + "\n" + _player.GetComponent<WaveUnlockComponent>().GetCountWaveRequired() + " волн";
+       // blockTextInfo.text = "Доступ к персонажу откроется при прохождении " + "\n" + _player.GetComponent<WaveUnlockComponent>().GetCountWaveRequired() + " волн";
         choseBtn.interactable = false;
     }
 

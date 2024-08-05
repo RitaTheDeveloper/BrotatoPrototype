@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterLevelSettings", menuName = "Data/CharactertLevelSettings", order = 52)]
 public class CharacterLevelSettingScriptable : ScriptableObject
 {
-    public LevelSettings[] levelSettings;
+    public CharacterLevelSetting[] levelSettings;
 }
 
 [System.Serializable]
-public class LevelSettings
+public class CharacterLevelSetting
 {
     public string name;
     public int numberOfWaves;

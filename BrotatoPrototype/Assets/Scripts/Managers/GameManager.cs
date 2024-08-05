@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ShopController shop;
     [SerializeField] private ManagerOfWaves _managerOfWaves;
     [SerializeField] private PoolObject currencyPoolObject;
+    [SerializeField] private AccountLevel _accountLevel;
     private int _currentDifficulty;
     public GameObject player;
     private List<WaveSetting> listOfWaveSetting;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
     public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
     public List<WaveSetting> GetListOfWaveSetting { get => listOfWaveSetting; }
+    public AccountLevel AccountLevel { get => _accountLevel; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     private SaveController _saveController;
     private WaveController _currentWave;
     private CharacterLevelingSystem _characterLevelSystem;
+    private AccountLevelingSystem _accountLevelingSystem;
 
 
     private void Awake()
@@ -55,6 +58,8 @@ public class GameManager : MonoBehaviour
         listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
 
         _characterLevelSystem = GetComponent<CharacterLevelingSystem>();
+        _accountLevelingSystem = GetComponent<AccountLevelingSystem>();
+        _accountLevel.Init(this, _accountLevelingSystem.AccountLevelSetting);
         //foreach (WaveSetting waveC2 in _listOfWaveSetting)
         //{
         //   // waveC2.CreateWave();
@@ -291,6 +296,7 @@ public class GameManager : MonoBehaviour
         _saveController.LoadData();
         SaveData data = new SaveData();
         data.WaveEnded = _saveController.GetData().WaveEnded;
+        data.CurrentAccountLevel = _saveController.GetData().CurrentAccountLevel;
         data.WaveEnded += _waveCounter;
         data.SFXVolume = _saveController.GetData().SFXVolume;
         data.MusicSondVolume = _saveController.GetData().MusicSondVolume;

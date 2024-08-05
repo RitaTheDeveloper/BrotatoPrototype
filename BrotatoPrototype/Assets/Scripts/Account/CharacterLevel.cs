@@ -15,7 +15,8 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
     private GameManager _gameManager;
     private CharacterLevelSettingScriptable _levelSettings;
     private SaveController _saveController;
-    private PlayerCharacteristics playerCharacteristics;
+    private PlayerCharacteristics _playerCharacteristics;
+    private AccountLevel _accountLevel;
     public int StartLvl => _startLvl;
 
     public int CurrentLvl => _currentLvl;
@@ -26,10 +27,11 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
 
     public void Init(GameManager gameManager, CharacterLevelSettingScriptable levelSettings)
     {
-        playerCharacteristics = GetComponent<PlayerCharacteristics>();        
+        _playerCharacteristics = GetComponent<PlayerCharacteristics>();        
         _gameManager = gameManager;
         _levelSettings = levelSettings;
         _saveController = _gameManager.GetComponent<SaveController>();
+        _accountLevel = gameManager.AccountLevel;
         _gameManager.onWaveCompleted += Upgrade;
         LoadParameters();
     }
@@ -55,7 +57,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
             if (_currentNumberOfWavesCompleted >= _levelSettings.levelSettings[_currentLvl].numberOfWaves)
             {
                 IncreaseLvl();
-                UpgradeCharacteristics(playerCharacteristics, 1);
+                UpgradeCharacteristics(_playerCharacteristics, 1);
             }
         }
         else
@@ -69,13 +71,14 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         _currentNumberOfWavesCompleted = _saveController.GetCharacterWaveCount(gameObject.name);
         _currentLvl = _saveController.GetCharacterLvl(gameObject.name);
         _maxLvl = _levelSettings.levelSettings.Length;
-        UpgradeCharacteristics(playerCharacteristics, _saveController.GetCharacterLvl(gameObject.name));
+        UpgradeCharacteristics(_playerCharacteristics, _saveController.GetCharacterLvl(gameObject.name));
     }
 
     private void IncreaseLvl()
     {
         _currentLvl++;
         _saveController.SaveCharacterLvl(gameObject.name, _currentLvl);
+        _accountLevel.Upgrade();
         onLevelUp?.Invoke(_currentLvl);
         Debug.Log("level up " + _currentLvl);
     }

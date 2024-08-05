@@ -166,8 +166,8 @@ GameObject:
   - component: {fileID: -4992901862861600076}
   - component: {fileID: 1467946387292618942}
   - component: {fileID: 610271406313924933}
-  - component: {fileID: 8836840131412569280}
   - component: {fileID: -4323210807332406823}
+  - component: {fileID: -8020315404234688031}
   m_Layer: 7
   m_Name: Player_Ivan
   m_TagString: Player
@@ -402,19 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8836840131412569280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6707278682496988613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wavesRequired: 1
 --- !u!114 &-4323210807332406823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,12 +414,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c3c8a33e80f0444b73fce335fd17b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startLvl: 0
+  _startLvl: 1
   baffs:
   - characteristic: 9
     multiplier: 2
   - characteristic: 6
     multiplier: 1
+--- !u!114 &-8020315404234688031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707278682496988613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wavesRequired: 5
+  _accountLevelReguired: 1
 --- !u!1001 &3485772002034192063
 PrefabInstance:
   m_ObjectHideFlags: 0

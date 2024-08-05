@@ -520,6 +520,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)
     {
+        Debug.Log("отобразить разблокироанных персонажей");
         if(unlockedPlayers.Count > 0)
         {
             uiUnlockedHeroes.gameObject.SetActive(true);
