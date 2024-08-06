@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de89440ef3421244b1136d611990437, type: 3}
-  m_Name: SkeletonBossData
+  m_Script: {fileID: 11500000, guid: 7c1845d1c553f1d46ada2719d2e076b9, type: 3}
+  m_Name: CrowGrade2Data
   m_EditorClassIdentifier: 
-  TypeEnemy: 2
-  PrefabTier: {fileID: 5223660492763062781, guid: 5501726cd295f0c49b794e08c57299a1,
+  TypeEnemy: 19
+  PrefabTier: {fileID: 2217476828117351108, guid: 8a06e28c73f47ba49a8b5cf4604cb1fc,
     type: 3}
   ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 1200
+    HealPoint: 20
     Damage: 12
-    TimeBetweenAttacks: 0
-    Speed: 11
+    TimeBetweenAttacks: 3
+    Speed: 8
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -33,11 +33,12 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    RangeAttack: 30
   - Name: 2
     Tier: 1
-    HealPoint: 1500
-    Damage: 8
-    TimeBetweenAttacks: 0
+    HealPoint: 40
+    Damage: 16
+    TimeBetweenAttacks: 3
     Speed: 10
     EscapeSpeed: 0
     DistanceFromPlayer: 0
@@ -49,12 +50,13 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    RangeAttack: 30
   - Name: 3
     Tier: 2
-    HealPoint: 30
-    Damage: 3
-    TimeBetweenAttacks: 0
-    Speed: 5
+    HealPoint: 55
+    Damage: 27
+    TimeBetweenAttacks: 3
+    Speed: 12
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -65,12 +67,13 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    RangeAttack: 30
   - Name: 4
     Tier: 3
-    HealPoint: 40
-    Damage: 3
-    TimeBetweenAttacks: 0
-    Speed: 5
+    HealPoint: 65
+    Damage: 32
+    TimeBetweenAttacks: 3
+    Speed: 14
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -81,3 +84,4 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    RangeAttack: 50

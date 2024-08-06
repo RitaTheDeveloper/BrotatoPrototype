@@ -20,4 +20,5 @@ public enum TypeEnemy
     ArmoredRavenBoss,
     TreeFood,
     HealingBush,
+    CrowGrade2,
 }
