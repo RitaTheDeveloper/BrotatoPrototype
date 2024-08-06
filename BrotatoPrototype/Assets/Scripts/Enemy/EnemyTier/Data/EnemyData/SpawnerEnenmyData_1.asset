@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de89440ef3421244b1136d611990437, type: 3}
+  m_Name: SpawnerEnenmyData_1
+  m_EditorClassIdentifier: 
+  TypeEnemy: 9
+  PrefabTier: {fileID: 3880568321400443346, guid: 2b46cbd8ac1df7749a72d5a546b42712,
+    type: 3}
+  ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
+  _enemiesTier:
+  - Name: 1
+    Tier: 0
+    HealPoint: 1500
+    Damage: 7
+    TimeBetweenAttacks: 0
+    Speed: 0
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 1
+    TierSpawnUnit: 2
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 5
+  - Name: 2
+    Tier: 1
+    HealPoint: 1800
+    Damage: 7
+    TimeBetweenAttacks: 0
+    Speed: 1
+    EscapeSpeed: 1
+    DistanceFromPlayer: 10
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 15
+    TierSpawnUnit: 1
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 6
+  - Name: 3
+    Tier: 2
+    HealPoint: 2100
+    Damage: 10
+    TimeBetweenAttacks: 0
+    Speed: 2
+    EscapeSpeed: 2
+    DistanceFromPlayer: 10
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 5
+    TierSpawnUnit: 0
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 3
+  - Name: 4
+    Tier: 3
+    HealPoint: 2400
+    Damage: 10
+    TimeBetweenAttacks: 0
+    Speed: 3
+    EscapeSpeed: 2
+    DistanceFromPlayer: 10
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 3
+    TierSpawnUnit: 1
+    TimeBetweenSpawn: 1
+    CountSpawnUnit: 3
