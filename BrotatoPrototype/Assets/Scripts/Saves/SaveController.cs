@@ -79,7 +79,6 @@ public class SaveController : MonoBehaviour
     public void SaveCharacterLvl(string name, int currentlvl)
     {
         string key = GetNameCharacter(name) + "_lvl";
-        Debug.Log(key);
         PlayerPrefs.SetInt(key, currentlvl);
         PlayerPrefs.Save();
     }
@@ -87,7 +86,6 @@ public class SaveController : MonoBehaviour
     public int GetCharacterLvl(string name)
     {
         string key = GetNameCharacter(name) + "_lvl";
-        Debug.Log(key);
         return PlayerPrefs.GetInt(key);
     }
 

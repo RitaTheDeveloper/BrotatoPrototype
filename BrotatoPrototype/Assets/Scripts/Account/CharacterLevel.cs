@@ -80,14 +80,12 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         _saveController.SaveCharacterLvl(gameObject.name, _currentLvl);
         _accountLevel.Upgrade();
         onLevelUp?.Invoke(_currentLvl);
-        Debug.Log("level up " + _currentLvl);
     }
 
     public void UpgradeCharacteristics(PlayerCharacteristics playerCharacteristics, float level)
     {
         if (baffs != null)
         {
-            Debug.Log("обновляем хар-ки");
             for (int i = 0; i < baffs.Length; i++)
             {
                 playerCharacteristics.UpdateCurrentCharacteristic(baffs[i].characteristic, level * baffs[i].multiplier);

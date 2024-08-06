@@ -128,10 +128,11 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
-        SaveGameResult();
         RemoveAllFromArena();
         shop.ResetShop();
         onGameOver?.Invoke();
+        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
+        ResetListOfNewlyUnlockedCharacters();
     }
 
     public void Win()
@@ -143,7 +144,8 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RemoveAllUpElements();
         RemoveAllFromArena();
         shop.ResetShop();
-        SaveGameResult();
+        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
+        ResetListOfNewlyUnlockedCharacters();
     }
 
     public void WaveCompleted()
@@ -291,21 +293,15 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
     }
 
-    private void SaveGameResult()
+    private List<GameObject> GetListOfNewlyUnlockedCharacters()
     {
-        _saveController.LoadData();
-        SaveData data = new SaveData();
-        data.WaveEnded = _saveController.GetData().WaveEnded;
-        data.CurrentAccountLevel = _saveController.GetData().CurrentAccountLevel;
-        data.WaveEnded += _waveCounter;
-        data.SFXVolume = _saveController.GetData().SFXVolume;
-        data.MusicSondVolume = _saveController.GetData().MusicSondVolume;
-        data.MasterSoundVolume = _saveController.GetData().MasterSoundVolume;
 
-        List<GameObject> unlockedCharacters = _saveController.GetUnlockCharacterList(data);
-        UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
+        return AccountLevel.GetNewlyUnlockedCharacterList();
+    }
 
-        _saveController.SaveData();
+    private void ResetListOfNewlyUnlockedCharacters()
+    {
+        AccountLevel.ResetNewlyUnlockedCharacterList();
     }
 
     public void LoadData()

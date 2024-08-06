@@ -7,8 +7,11 @@ public class AccountLevelUnlockComponent : UnlockCharacterComponent
     [SerializeField] private int _accountLevelReguired = 1;
 
     public override bool UnlockCharacter()
-    {        
-        if (_accountLevelReguired <= gameManager.AccountLevel.CurrentLvl)
+    {
+        if (GameManager.instance == null)
+            return false;
+
+        if (_accountLevelReguired <= GameManager.instance.GetComponent<SaveController>().GetData().CurrentAccountLevel)
         {
             return true;
         }

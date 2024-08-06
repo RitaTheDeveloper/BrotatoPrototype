@@ -179,25 +179,31 @@ public class HeroSelectionPanel : MonoBehaviour
     }
 
     private void SetHeroLvl(GameObject player)
-    {        
-        heroLvl.text = _saveController.GetCharacterLvl(player.gameObject.name).ToString();
-        Debug.Log(_saveController.GetCharacterLvl(player.gameObject.name).ToString());
+    {
+        if (_saveController)
+        {
+            heroLvl.text = _saveController.GetCharacterLvl(player.gameObject.name).ToString();
+        }        
     }
 
     private void UpdateCharacteristics(GameObject player)
     {
-        player.GetComponent<PlayerCharacteristics>().Init();
-        player.GetComponent<CharacterLevel>().UpgradeCharacteristics(player.GetComponent<PlayerCharacteristics>(), _saveController.GetCharacterLvl(player.gameObject.name));
-        characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
-        characteristicsUI.RemoveCharacteristicsHighlighting();
-        Baff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
-        if (baffs != null)
+        if (player)
         {
-            foreach(Baff baff in baffs)
+            player.GetComponent<PlayerCharacteristics>().Init();
+            player.GetComponent<CharacterLevel>().UpgradeCharacteristics(player.GetComponent<PlayerCharacteristics>(), _saveController.GetCharacterLvl(player.gameObject.name));
+            characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
+            characteristicsUI.RemoveCharacteristicsHighlighting();
+            Baff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
+            if (baffs != null)
             {
-                characteristicsUI.HighlightUpgradedCharacteristics(baff.characteristic, Color.green);
+                foreach (Baff baff in baffs)
+                {
+                    characteristicsUI.HighlightUpgradedCharacteristics(baff.characteristic, Color.green);
+                }
             }
         }
+        
     }
 }
     
