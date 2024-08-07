@@ -3189,7 +3189,8 @@ GameObject:
   - component: {fileID: -4992901862861600076}
   - component: {fileID: 1467946387292618942}
   - component: {fileID: 610271406313924933}
-  - component: {fileID: 8836840131412569280}
+  - component: {fileID: -251313726211578781}
+  - component: {fileID: 906377795504120309}
   m_Layer: 7
   m_Name: Player_Dmitry
   m_TagString: Player
@@ -3232,7 +3233,7 @@ MonoBehaviour:
   _startMagnetDistance: 4
   _startAttackSpeedPercentage: 200
   _startDamagePercentage: 0
-  _startMelleeDamage: 100
+  _startMeleeDamage: 0
   _startRangedDamage: 5
   _startCritChancePercentage: 20
   _startArmor: 0
@@ -3423,7 +3424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d521a94dfe9b404f9a9fd0a37799983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8836840131412569280
+--- !u!114 &-251313726211578781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3432,10 +3433,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6707278682496988613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a120af9a7c33d4fa2aae5730765b2e, type: 3}
+  m_Script: {fileID: 11500000, guid: d0c3c8a33e80f0444b73fce335fd17b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wavesRequired: 35
+  _startLvl: 0
+  baffs:
+  - characteristic: 6
+    multiplier: 10
+  - characteristic: 10
+    multiplier: 5
+--- !u!114 &906377795504120309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6707278682496988613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278a2f340d3ab8e4e9c18aeefd706116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _accountLevelReguired: 2
 --- !u!1 &6740098540881593597
 GameObject:
   m_ObjectHideFlags: 0

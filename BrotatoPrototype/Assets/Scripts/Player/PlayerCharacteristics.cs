@@ -242,4 +242,57 @@ public class PlayerCharacteristics : MonoBehaviour
                 break;
         }
     }
+    public void UpdateCurrentCharacteristic(CharacteristicType characteristic, float value)
+    {
+        switch (characteristic)
+        {
+            case CharacteristicType.Satiety:
+                CurrentHunger += Mathf.RoundToInt(value);
+                break;
+
+            case CharacteristicType.MaxHealth:
+                CurrentMaxHp += value;
+                break;
+
+            case CharacteristicType.RegenerationHP:
+                CurrentHpRegen += value;
+                break;
+
+            case CharacteristicType.Dodge:
+                CurrentProbabilityOfDodge += value;
+                break;
+
+            case CharacteristicType.Armor:
+                _currentArmor += value;
+                break;
+
+            case CharacteristicType.MoveSpeed:
+                CurrentMoveSpeed += value;
+                break;
+
+            case CharacteristicType.AttackSpeed:
+                CurrentAttackSpeedPercentage += value;
+                break;
+
+            case CharacteristicType.Damage:
+                CurrentDamagePercentage += value;
+                break;
+
+            case CharacteristicType.MeleeDamage:
+                CurrentMeleeDamage += value;
+                break;
+
+            case CharacteristicType.RangeDamage:
+                CurrentRangedDamage += value;
+                break;
+
+            case CharacteristicType.ChanceOfCrit:
+                CurrentCritChancePercentage += value;
+                break;
+
+            case CharacteristicType.MagneticRadius:
+                CurrentMagnetDistance += value;
+                break;
+        }
+    }
 }

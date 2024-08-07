@@ -15,6 +15,7 @@ public class SaveController : MonoBehaviour
     public void SaveData()
     {
         PlayerPrefs.SetInt("WaveEnded", data.WaveEnded);
+        PlayerPrefs.SetInt("AccountLevel", data.CurrentAccountLevel);
         PlayerPrefs.SetFloat("MasterSoundVolume", data.MasterSoundVolume);
         PlayerPrefs.SetFloat("MusicSondVolume", data.MusicSondVolume);
         PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
@@ -27,6 +28,7 @@ public class SaveController : MonoBehaviour
         SaveData data_tmp = new SaveData();
 
         data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded", 0);
+        data_tmp.CurrentAccountLevel = PlayerPrefs.GetInt("AccountLevel", 0);
         data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", 0);
         data_tmp.MusicSondVolume = PlayerPrefs.GetFloat("MusicSondVolume", 0);
         data_tmp.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
@@ -46,8 +48,9 @@ public class SaveController : MonoBehaviour
 
     public void ResetData()
     {
-        data.WaveEnded = 0;
-        PlayerPrefs.SetInt("WaveEnded", 0);
+        //data.WaveEnded = 0;
+        //PlayerPrefs.SetInt("WaveEnded", 0);
+        PlayerPrefs.DeleteAll();
     }
 
     public List<GameObject> GetUnlockCharacterList(SaveData new_data)
@@ -72,4 +75,36 @@ public class SaveController : MonoBehaviour
         }
         return result;
     }
+
+    public void SaveCharacterLvl(string name, int currentlvl)
+    {
+        string key = GetNameCharacter(name) + "_lvl";
+        PlayerPrefs.SetInt(key, currentlvl);
+        PlayerPrefs.Save();
+    }
+
+    public int GetCharacterLvl(string name)
+    {
+        string key = GetNameCharacter(name) + "_lvl";
+        return PlayerPrefs.GetInt(key);
+    }
+
+    public void SaveCharacterWaveCount(string name, int currentWaveCount)
+    {
+        string key = GetNameCharacter(name) + "_waveCount";
+        PlayerPrefs.SetInt(key, currentWaveCount);
+        PlayerPrefs.Save();
+    }
+
+    public int GetCharacterWaveCount(string name)
+    {
+        string key = GetNameCharacter(name) + "_waveCount";
+        return PlayerPrefs.GetInt(key);
+    }
+
+    private string GetNameCharacter(string name)
+    {
+        return name.Replace("(Clone)", "");
+    }
+
 }
