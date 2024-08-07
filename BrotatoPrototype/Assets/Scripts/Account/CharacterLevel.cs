@@ -8,7 +8,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
     public Action<int> onLevelUp;
 
     [SerializeField] private int _startLvl = 0;
-    [SerializeField] private Baff[] baffs;
+    [SerializeField] private CharacteristicBaff[] baffs;
     private int _currentLvl;
     private int _maxLvl;
     private int _currentNumberOfWavesCompleted;
@@ -23,7 +23,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
 
     public int MaxLvl => _maxLvl;
 
-    public Baff[] Baffs { get => baffs;}
+    public CharacteristicBaff[] Baffs { get => baffs;}
 
     public void Init(GameManager gameManager, CharacterLevelSettingScriptable levelSettings)
     {
@@ -88,7 +88,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         {
             for (int i = 0; i < baffs.Length; i++)
             {
-                playerCharacteristics.UpdateCurrentCharacteristic(baffs[i].characteristic, level * baffs[i].multiplier);
+                playerCharacteristics.UpdateCurrentCharacteristic(baffs[i].characteristic, level * baffs[i].value);
             }
         }
     }
