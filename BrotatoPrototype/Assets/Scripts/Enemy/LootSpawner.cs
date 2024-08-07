@@ -16,6 +16,9 @@ public class LootSpawner : MonoBehaviour
 
     public void SpawnLoot()
     {
+        if(_loot == null)
+            return;
+
         float randomDelay = Random.Range(-3f, 3f);
         Vector3 position = new Vector3(transform.position.x + randomDelay, _loot.transform.position.y, transform.position.z + randomDelay);
         var loot = Instantiate(_loot, position, Quaternion.identity);
