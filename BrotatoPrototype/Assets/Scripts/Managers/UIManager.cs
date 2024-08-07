@@ -88,14 +88,6 @@ public class UIManager : MonoBehaviour
         }
         
     }
-    private void OnDisable()
-    {
-        if (gameManager)
-        {
-            gameManager.onInit -= UIInit;
-            gameManager.onGameOver -= Lose;
-        }
-    }
 
     private void UIInit()
     {

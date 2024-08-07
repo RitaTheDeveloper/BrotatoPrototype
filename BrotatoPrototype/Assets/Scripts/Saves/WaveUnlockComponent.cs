@@ -6,8 +6,18 @@ public class WaveUnlockComponent : UnlockCharacterComponent
 {
     [Tooltip("The number of waves required to unlock this character")]
     [SerializeField] private int _wavesRequired;
-    [SerializeField] private int _accountLevelReguired;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     public override bool UnlockCharacter()
     {
@@ -18,7 +28,6 @@ public class WaveUnlockComponent : UnlockCharacterComponent
             return true;
         }
         return false;
-
     }
 
     public int GetCountWaveRequired()

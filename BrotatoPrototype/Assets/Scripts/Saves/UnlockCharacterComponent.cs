@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class UnlockCharacterComponent : MonoBehaviour
 {
-    protected GameManager gameManager;
 
-    public virtual void Init(GameManager gameManager)
+    // Start is called before the first frame update
+    void Start()
     {
-        this.gameManager = gameManager;
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     public virtual bool UnlockCharacter()
     {
         return true;
     }
-    
 }

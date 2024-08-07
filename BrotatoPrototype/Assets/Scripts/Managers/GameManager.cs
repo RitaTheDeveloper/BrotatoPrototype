@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public Action onInit;
     public Action onGameOver;
-    public Action onWaveCompleted;
 
     public static GameManager instance;
 
@@ -19,7 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ShopController shop;
     [SerializeField] private ManagerOfWaves _managerOfWaves;
     [SerializeField] private PoolObject currencyPoolObject;
-    [SerializeField] private AccountLevel _accountLevel;
     private int _currentDifficulty;
     public GameObject player;
     private List<WaveSetting> listOfWaveSetting;
@@ -35,15 +33,12 @@ public class GameManager : MonoBehaviour
     public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
     public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
     public List<WaveSetting> GetListOfWaveSetting { get => listOfWaveSetting; }
-    public AccountLevel AccountLevel { get => _accountLevel; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;
     public AudioMixerGroup SFXAudioMixer;
     private SaveController _saveController;
     private WaveController _currentWave;
-    private CharacterLevelingSystem _characterLevelSystem;
-    private AccountLevelingSystem _accountLevelingSystem;
 
 
     private void Awake()
@@ -56,14 +51,6 @@ public class GameManager : MonoBehaviour
             ResetProgress();
         }
         listOfWaveSetting = _managerOfWaves.GetListOfWaveSettings();
-
-        _characterLevelSystem = GetComponent<CharacterLevelingSystem>();
-        _accountLevelingSystem = GetComponent<AccountLevelingSystem>();
-        _accountLevel.Init(this, _accountLevelingSystem.AccountLevelSetting);
-        //foreach (WaveSetting waveC2 in _listOfWaveSetting)
-        //{
-        //   // waveC2.CreateWave();
-        //}
         _managerOfWaves.CreateWaves();        
     }
     private void Start()
@@ -128,11 +115,10 @@ public class GameManager : MonoBehaviour
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
+        SaveGameResult();
         RemoveAllFromArena();
         shop.ResetShop();
         onGameOver?.Invoke();
-        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
-        ResetListOfNewlyUnlockedCharacters();
     }
 
     public void Win()
@@ -144,13 +130,11 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RemoveAllUpElements();
         RemoveAllFromArena();
         shop.ResetShop();
-        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
-        ResetListOfNewlyUnlockedCharacters();
+        SaveGameResult();
     }
 
     public void WaveCompleted()
     {
-        
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         _isPlaying = false;
@@ -172,8 +156,7 @@ public class GameManager : MonoBehaviour
             RemoveAllEnemies();
             RemoveAllBullets();
             
-        }
-        onWaveCompleted?.Invoke();
+        }              
     }
 
     public void StartNextWave()
@@ -243,8 +226,6 @@ public class GameManager : MonoBehaviour
         }
 
         player = Instantiate(playerPrefabs[index], playerStartingSpawnPoint.position, Quaternion.identity);
-        CharacterLevelSettingScriptable characterLevelSetting = _characterLevelSystem.CharacterLevelSetting;
-        player.GetComponent<PlayerController>().Init(this, characterLevelSetting);
     }
 
     public void DestroyGameScene()
@@ -293,15 +274,20 @@ public class GameManager : MonoBehaviour
         RemoveAllLoot();
     }
 
-    private List<GameObject> GetListOfNewlyUnlockedCharacters()
+    private void SaveGameResult()
     {
+        _saveController.LoadData();
+        SaveData data = new SaveData();
+        data.WaveEnded = _saveController.GetData().WaveEnded;
+        data.WaveEnded += _waveCounter;
+        data.SFXVolume = _saveController.GetData().SFXVolume;
+        data.MusicSondVolume = _saveController.GetData().MusicSondVolume;
+        data.MasterSoundVolume = _saveController.GetData().MasterSoundVolume;
 
-        return AccountLevel.GetNewlyUnlockedCharacterList();
-    }
+        List<GameObject> unlockedCharacters = _saveController.GetUnlockCharacterList(data);
+        UIManager.instance.DisplayUnLockedNewHeroes(unlockedCharacters);
 
-    private void ResetListOfNewlyUnlockedCharacters()
-    {
-        AccountLevel.ResetNewlyUnlockedCharacterList();
+        _saveController.SaveData();
     }
 
     public void LoadData()

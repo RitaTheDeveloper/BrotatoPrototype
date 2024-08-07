@@ -72,13 +72,9 @@ public class PlayerHealth : LivingEntity
     public override void Die()
     {
         onPlayerDead?.Invoke();
+        base.Die();        
         DisplayHealth();
-        dead = true;
-        PlaySoundOfDeath();
-        Destroy(gameObject);
-
-
-        // GameManager.instance.Lose();
+       // GameManager.instance.Lose();
     }
 
     public override void HpRegen()
