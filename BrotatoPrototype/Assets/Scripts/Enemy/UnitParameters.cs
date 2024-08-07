@@ -12,6 +12,7 @@ public class UnitParameters : MonoBehaviour
     [SerializeField] private int _amountOfGoldForKill;
     [SerializeField] private GameObject _markOfSpawnPrefab;
 
+    private int _goldPlus = 0;
     private float _currentHp;
     public float CurrentHp
     {
@@ -57,7 +58,7 @@ public class UnitParameters : MonoBehaviour
     //    }
     //}
 
-    public int AmountOfGoldForKill { get => _amountOfGoldForKill; set => _amountOfGoldForKill = value; }
+    public int AmountOfGoldForKill { get => _amountOfGoldForKill; set => _amountOfGoldForKill = value + _goldPlus; }
     public float AmountOfExperience { get => _amountOfExperience; set => _amountOfExperience = value; }
 
     public GameObject GetMark()
@@ -70,6 +71,7 @@ public class UnitParameters : MonoBehaviour
         _maxHp = enemyTierSetting.HealPoint;
         _startDamage = enemyTierSetting.Damage;
         _moveSpeed = enemyTierSetting.Speed;
+        _goldPlus = enemyTierSetting.GoldCount;
 
         int indexOfWave = GameManager.instance.WaveCounter;
 

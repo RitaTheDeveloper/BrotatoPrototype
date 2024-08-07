@@ -20,7 +20,6 @@ public class EnemyHealth : LivingEntity
 
     public override void Die()
     {
-        base.Die();
         //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
         if (dieEffecrt != null)
         {
@@ -33,6 +32,8 @@ public class EnemyHealth : LivingEntity
         {
             lootSpawner.SpawnLoot();
         }
+
+        base.Die();
     }
 
     public override void TakeHit(float damage, bool isCrit, bool isProjectile)
