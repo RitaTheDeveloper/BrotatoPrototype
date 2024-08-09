@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2837768666294009701}
   - component: {fileID: 519359935933579938}
+  - component: {fileID: 798072351318693315}
   m_Layer: 0
   m_Name: ManagerOfWaves
   m_TagString: Untagged
@@ -44,87 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _managerEnemyTier: {fileID: 798072351318693315}
   _listOfWaveSettings:
-  - name: wave5
-    parametersOfWave:
-      waveTime: 15
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 12
-      amountOfEnemiesInPack: 6
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 2
-      radiusOfPlayer: 30
-      isSpecificPoint: 1
-      specificPoint: {x: 15, y: 15}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 10
-      amountOfEnemiesInPack: 2
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 2
-      radiusOfPlayer: 30
-      isSpecificPoint: 1
-      specificPoint: {x: -15, y: 15}
-  - name: wave3
-    parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
-    _enemyStrengthFactors:
-      speedFactor: 1
-      damageFactor: 1
-      healthFactor: 1
-    enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
   - name: wave1
     parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
+      waveTime: 20
+      amountOfGoldPerWave: 20
+      amountOfExpPerWave: 19
     _enemyStrengthFactors:
       speedFactor: 1
       damageFactor: 1
@@ -132,107 +59,94 @@ MonoBehaviour:
     enemySpawnerSettings:
     - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
         type: 3}
+      typeEnemy: 1
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 33
+      amountOfEnemiesInPack: 1
       radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
       radiusOfPlayer: 30
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
   - name: wave2
     parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
+      waveTime: 23
+      amountOfGoldPerWave: 24
+      amountOfExpPerWave: 23
     _enemyStrengthFactors:
       speedFactor: 1
       damageFactor: 1
       healthFactor: 1
     enemySpawnerSettings:
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
         type: 3}
+      typeEnemy: 1
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 37
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 0
+      endSpawnTime: 7
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 15
+      amountOfEnemiesInPack: 1
       radiusOfPack: 3
       startSpawnTime: 1
-      endSpawnTime: 0
+      endSpawnTime: 10
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave3
+    parametersOfWave:
+      waveTime: 26
+      amountOfGoldPerWave: 29
+      amountOfExpPerWave: 27
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      typeEnemy: 1
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 38
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 0
+      endSpawnTime: 7
       radiusOfPlayer: 30
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
         type: 3}
+      typeEnemy: 17
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 15
+      amountOfEnemiesInPack: 1
       radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
-      isSpecificPoint: 0
-      specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
-        type: 3}
-      spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
+      startSpawnTime: 0
+      endSpawnTime: 12
+      radiusOfPlayer: 20
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
   - name: wave4
     parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
+      waveTime: 29
+      amountOfGoldPerWave: 35
+      amountOfExpPerWave: 33
     _enemyStrengthFactors:
       speedFactor: 1
       damageFactor: 1
@@ -240,75 +154,1578 @@ MonoBehaviour:
     enemySpawnerSettings:
     - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
         type: 3}
+      typeEnemy: 1
+      tierType: 1
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
-      radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
+      totalAmountOfEnemies: 46
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 4
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 20
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+    - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23,
         type: 3}
+      typeEnemy: 15
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 1
       radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
+      startSpawnTime: 10
+      endSpawnTime: 8
+      radiusOfPlayer: 26
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
-  - name: wave4
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 25
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 0
+      endSpawnTime: 15
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave5
     parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
+      waveTime: 32
+      amountOfGoldPerWave: 41
+      amountOfExpPerWave: 39
     _enemyStrengthFactors:
       speedFactor: 1
       damageFactor: 1
       healthFactor: 1
     enemySpawnerSettings:
-    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+    - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23,
         type: 3}
+      typeEnemy: 15
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 36
+      amountOfEnemiesInPack: 2
       radiusOfPack: 3
-      startSpawnTime: 1
-      endSpawnTime: 0
+      startSpawnTime: 0
+      endSpawnTime: 10
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5223660492763062781, guid: 5501726cd295f0c49b794e08c57299a1,
+        type: 3}
+      typeEnemy: 2
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 2
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 5
+      endSpawnTime: 10
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 2
+      endSpawnTime: 15
       radiusOfPlayer: 30
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
-    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
         type: 3}
+      typeEnemy: 7
+      tierType: 0
       spawnCd: -1
-      totalAmountOfEnemies: 30
-      amountOfEnemiesInPack: 5
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 0
+      endSpawnTime: 12
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 70
+      amountOfEnemiesInPack: 1
       radiusOfPack: 3
       startSpawnTime: 1
-      endSpawnTime: 0
-      radiusOfPlayer: 30
+      endSpawnTime: 8
+      radiusOfPlayer: 15
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
   - name: wave6
     parametersOfWave:
-      waveTime: 30
-      amountOfGoldPerWave: 100
-      amountOfExpPerWave: 100
+      waveTime: 35
+      amountOfGoldPerWave: 50
+      amountOfExpPerWave: 47
     _enemyStrengthFactors:
       speedFactor: 1
       damageFactor: 1
       healthFactor: 1
     enemySpawnerSettings:
-    - enemy: {fileID: 0}
-      spawnCd: 0
-      totalAmountOfEnemies: 0
-      amountOfEnemiesInPack: 0
-      radiusOfPack: 0
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      typeEnemy: 1
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 70
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 5
+      startSpawnTime: 1
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 15, y: 15}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      typeEnemy: 5
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 10
+      endSpawnTime: 6
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: -15, y: 15}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 25
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
       startSpawnTime: 0
-      endSpawnTime: 0
-      radiusOfPlayer: 0
+      endSpawnTime: 14
+      radiusOfPlayer: 20
+      isSpecificPoint: 0
+      specificPoint: {x: -15, y: 15}
+    - enemy: {fileID: -3542300649698883537, guid: 9a99e71019a58c64fbdd196e77ce4fa5,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 14
+      radiusOfPlayer: 20
+      isSpecificPoint: 0
+      specificPoint: {x: -15, y: 15}
+  - name: wave7
+    parametersOfWave:
+      waveTime: 38
+      amountOfGoldPerWave: 60
+      amountOfExpPerWave: 57
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 15
+      endSpawnTime: 3
+      radiusOfPlayer: 40
       isSpecificPoint: 0
       specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      typeEnemy: 5
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 35
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 4
+      startSpawnTime: 1
+      endSpawnTime: 5
+      radiusOfPlayer: 40
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23,
+        type: 3}
+      typeEnemy: 15
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 60
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 10
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 6
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 20
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 7
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 0
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave8
+    parametersOfWave:
+      waveTime: 41
+      amountOfGoldPerWave: 72
+      amountOfExpPerWave: 68
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 1
+      endSpawnTime: 10
+      radiusOfPlayer: 40
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      typeEnemy: 1
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 45
+      amountOfEnemiesInPack: 4
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 8
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6155125870249705178, guid: 034137987390e314ab98f304d2bf6f23,
+        type: 3}
+      typeEnemy: 15
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 12
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 45
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 7
+      startSpawnTime: 0
+      endSpawnTime: 10
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 7
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 7
+      startSpawnTime: 0
+      endSpawnTime: 10
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 7
+      startSpawnTime: 2
+      endSpawnTime: 3
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave9
+    parametersOfWave:
+      waveTime: 44
+      amountOfGoldPerWave: 86
+      amountOfExpPerWave: 82
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 3
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 8
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 25
+      endSpawnTime: 10
+      radiusOfPlayer: 45
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      typeEnemy: 5
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 45
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 5
+      startSpawnTime: 1
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 7
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 7
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 15
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 7
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave10
+    parametersOfWave:
+      waveTime: 47
+      amountOfGoldPerWave: 103
+      amountOfExpPerWave: 98
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 3
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 15
+      radiusOfPlayer: 45
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+        type: 3}
+      typeEnemy: 5
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 5
+      startSpawnTime: 20
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 16
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 4
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 8
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 45
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 24
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 6
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 1
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 6
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 1
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 37
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave11
+    parametersOfWave:
+      waveTime: 50
+      amountOfGoldPerWave: 124
+      amountOfExpPerWave: 118
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 8
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 4
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 8
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 9
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave12
+    parametersOfWave:
+      waveTime: 53
+      amountOfGoldPerWave: 149
+      amountOfExpPerWave: 142
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 8
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 65
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 12
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 10
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave13
+    parametersOfWave:
+      waveTime: 56
+      amountOfGoldPerWave: 178
+      amountOfExpPerWave: 169
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 5
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 5
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 45
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 80
+      amountOfEnemiesInPack: 4
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 3
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 7
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 10
+      radiusOfPlayer: 13
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 2
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 130
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 2
+      radiusOfPlayer: 13
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave14
+    parametersOfWave:
+      waveTime: 59
+      amountOfGoldPerWave: 214
+      amountOfExpPerWave: 203
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 12
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 24
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 2
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 15
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 11
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 10
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave15
+    parametersOfWave:
+      waveTime: 62
+      amountOfGoldPerWave: 256
+      amountOfExpPerWave: 243
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 3
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 3
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 25
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 4
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 150
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave16
+    parametersOfWave:
+      waveTime: 65
+      amountOfGoldPerWave: 308
+      amountOfExpPerWave: 292
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 13
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 660
+      amountOfEnemiesInPack: 4
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 2
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 200
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave17
+    parametersOfWave:
+      waveTime: 68
+      amountOfGoldPerWave: 369
+      amountOfExpPerWave: 351
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 19
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 55
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 13
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 150
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 16
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 6
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 3
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave18
+    parametersOfWave:
+      waveTime: 71
+      amountOfGoldPerWave: 443
+      amountOfExpPerWave: 421
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 3
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 45
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 13
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 19
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 70
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 4
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 6
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 1
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 14
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave19
+    parametersOfWave:
+      waveTime: 74
+      amountOfGoldPerWave: 532
+      amountOfExpPerWave: 505
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 13
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 160
+      amountOfEnemiesInPack: 2
+      radiusOfPack: 4
+      startSpawnTime: 0
+      endSpawnTime: 7
+      radiusOfPlayer: 45
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 5524622784430426492, guid: e2fc555bc3541d24ea483a573935cbff,
+        type: 3}
+      typeEnemy: 17
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 10
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 1
+      endSpawnTime: 25
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 3
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 12
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 100
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 0
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 40
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 60
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave20
+    parametersOfWave:
+      waveTime: 77
+      amountOfGoldPerWave: 638
+      amountOfExpPerWave: 607
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1.1
+    enemySpawnerSettings:
+    - enemy: {fileID: 3947732688180559691, guid: b47dcaccab24f3042a035e4aaa64140a,
+        type: 3}
+      typeEnemy: 9
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 5
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 0
+      startSpawnTime: 0
+      endSpawnTime: 5
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 3
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 2
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 11
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 20
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 18
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 40
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 0
+      endSpawnTime: 0
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 9
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 4
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 120
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 1
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 200
+      amountOfEnemiesInPack: 5
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 5
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 5
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 50
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 15
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 30
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 19
+      tierType: 2
+      spawnCd: -1
+      totalAmountOfEnemies: 25
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 13
+      tierType: 3
+      spawnCd: -1
+      totalAmountOfEnemies: 120
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 6485605913260835666, guid: 8999539cd464f5d4790bbb1934a8d7c6,
+        type: 3}
+      typeEnemy: 6
+      tierType: 1
+      spawnCd: -1
+      totalAmountOfEnemies: 3
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 6
+      startSpawnTime: 10
+      endSpawnTime: 10
+      radiusOfPlayer: 12
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+--- !u!114 &798072351318693315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168817649663208468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2484886e3d54e584881c3468c18a34e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerEnemy: {fileID: 11400000, guid: 1724fbba6a60a6e48903af25b6ce075c, type: 2}
