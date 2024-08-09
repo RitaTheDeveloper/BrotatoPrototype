@@ -47,6 +47,16 @@ public class EnemyBruiserController : EnemyController
         }                       
     }
 
+    public override void LoadPar(EnemyTierSettingStandart enemyTierSetting)
+    {
+        _cdRushTime = enemyTierSetting.CDDirection;
+        _stopTimeBeforeRush = enemyTierSetting.TimeStopDirection;
+        _speedRush = enemyTierSetting.SpeedDirection;
+        _distance = enemyTierSetting.Distance;
+
+        base.LoadPar(enemyTierSetting);
+    }
+
     private void Chase()
     {
         if (navMeshAgent.enabled)

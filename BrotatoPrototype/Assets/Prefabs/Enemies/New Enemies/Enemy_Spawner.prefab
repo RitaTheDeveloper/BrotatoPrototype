@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1502589047257352030}
   - component: {fileID: 5664343470737240570}
   - component: {fileID: 7899934018049744639}
-  - component: {fileID: 3330723677867141333}
+  - component: {fileID: 3880568321400443346}
   - component: {fileID: 4341425903723556933}
   - component: {fileID: 7790268429476158666}
   - component: {fileID: 7574570125000498971}
@@ -53,12 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 2000
-  _amountOfHpPerWave: 20
   _startDamage: 7
-  _amountOfDamagePerWave: 2
   _hpRegen: 0
   _moveSpeed: 0
   _amountOfExperience: 4
+  _amountOfGoldForKill: 0
   _markOfSpawnPrefab: {fileID: 7525006951670329389, guid: cb7dee73cffcce94abaf871af2075ed1,
     type: 3}
 --- !u!195 &5664343470737240570
@@ -104,7 +103,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &3330723677867141333
+--- !u!114 &3880568321400443346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,9 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 786736813332390130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
+  m_Script: {fileID: 11500000, guid: c95000895f2ba7145bcf8af3b2b5471e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tierType: 0
   knockBack: 1
   attackDistance: 6
   timeBetweenAttacks: 0
@@ -277,15 +277,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372882831b675364d8666ad9069bcd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4367304048573700832, guid: d0ccbb88a460ef64d825f8b0b681babb,
+  _enemyPrefab: {fileID: 6155125870249705178, guid: d0ccbb88a460ef64d825f8b0b681babb,
     type: 3}
+  _typeEnemy: 0
+  _tierType: 0
   _amountOfEnemies: 1
   _startSpawnTime: 1
-  _minSpawnTime: 1
-  _maxSpawnTime: 1
-  _radiusFromPlayer: 30
-  isNotRandom: 1
-  radius: 0.1
+  _minSpawnTime: 0.5
+  _maxSpawnTime: 0.5
+  _radiusFromPlayer: 20
+  _isNotRandom: 0
+  _radius: 2
   markPrefab: {fileID: 7525006951670329389, guid: c74ff4c6e7cc5b64eadb1d29f58a15d7,
     type: 3}
   markDisplayTime: 0.2

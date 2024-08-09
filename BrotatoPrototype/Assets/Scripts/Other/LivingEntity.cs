@@ -14,7 +14,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        Init();
+        //Init();
     }
 
     protected virtual void FixedUpdate()
@@ -23,6 +23,12 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             HpRegen();            
         }
+    }
+
+    public void SetStartHealpPoint(float healpPoint)
+    {
+        startingHealth = healpPoint;
+        Init();
     }
 
     public virtual void Init()

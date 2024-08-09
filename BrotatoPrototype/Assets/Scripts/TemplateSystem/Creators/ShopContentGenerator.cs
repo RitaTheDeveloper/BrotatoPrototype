@@ -61,6 +61,7 @@ public class ShopContentGenerator : MonoBehaviour
                 items.Add(item.GetComponent<StandartItem>());
             }
         }
+        items.Remove(items[0]); //лютый костыль, который нужно будет убрать
     }
 
     private void CreateWeapons()
@@ -77,5 +78,7 @@ public class ShopContentGenerator : MonoBehaviour
                 weapon.gameObject.SetActive(false);
             }
         }
+        weapons.Remove(weapons[0]); //лютый костыль, который нужно будет убрать
+
     }
 }

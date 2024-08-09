@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [System.Serializable]
@@ -6,13 +5,15 @@ public class EnemySpawnerSettings
 {    
     //[Header("префаб моба")]
     public EnemyController enemy;
+    public TypeEnemy typeEnemy;
+    public TierType tierType;
     //[Header("кд спавна")]
     public float spawnCd = -1;
     //[Header("общее кол-во мобов за волну")]
     public int totalAmountOfEnemies = -1;
    // [Header("кол-во мобов в пачке")]
     public int amountOfEnemiesInPack = 1;
-   //[Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
+    //[Header("Если спавнится за раз больше одного юнита, укажите радиус этой кучки врагов")]
     public float radiusOfPack = 0f;
    //[Header("задержка перед первым спавном")]
     public float startSpawnTime;
@@ -23,7 +24,6 @@ public class EnemySpawnerSettings
    // [Header("спавнить в конкретной точке")]
     public bool isSpecificPoint = false;
     public Vector2 specificPoint;
-
 
     public float GetCdSpawn(float timeOfWave)
     {

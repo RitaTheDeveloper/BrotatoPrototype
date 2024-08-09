@@ -53,12 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 20
-  _amountOfHpPerWave: 7
   _startDamage: 1
-  _amountOfDamagePerWave: 1
   _hpRegen: 0
   _moveSpeed: 0
   _amountOfExperience: 1
+  _amountOfGoldForKill: 0
   _markOfSpawnPrefab: {fileID: 7525006951670329389, guid: f9bc0b47021e15c4689f4b59da1b2e22,
     type: 3}
 --- !u!195 &5892731783655500246
@@ -116,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb40e4cf6c256041a1875ba35b3707a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tierType: 0
   knockBack: 0
   attackDistance: 0
   timeBetweenAttacks: 1000
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loot: {fileID: 4385634588732090494, guid: ed5e5545d9123d74a86e11a7016518a5, type: 3}
-  amountOfLoot: 4
+  amountOfLoot: 3
 --- !u!1 &7132186645088003600
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class PlayerHealth : LivingEntity
         invulnerability = false;
         canTakeDmg = false;
         SetMaxHP();
+        Init();
         SetHpRegenPerSecond();
         SetArmor();
         SetProbabilityOfDodge();
