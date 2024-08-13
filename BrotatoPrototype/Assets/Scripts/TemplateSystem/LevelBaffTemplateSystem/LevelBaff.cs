@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MockedPlayerInventory : PlayerInventory
+public class LevelBaff : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,15 +14,5 @@ public class MockedPlayerInventory : PlayerInventory
     void Update()
     {
         
-    }
-
-    public override void AddItem(StandartItem item)
-    {
-        inventory.Add(item);
-    }
-
-    public override void DeleteItem(StandartItem item)
-    {
-        inventory.Remove(item);
     }
 }
