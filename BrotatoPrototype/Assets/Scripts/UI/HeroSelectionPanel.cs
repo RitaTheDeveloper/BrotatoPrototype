@@ -194,10 +194,10 @@ public class HeroSelectionPanel : MonoBehaviour
             player.GetComponent<CharacterLevel>().UpgradeCharacteristics(player.GetComponent<PlayerCharacteristics>(), _saveController.GetCharacterLvl(player.gameObject.name));
             characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
             characteristicsUI.RemoveCharacteristicsHighlighting();
-            CharacteristicBaff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
+            CharacteristicBuff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
             if (baffs != null)
             {
-                foreach (CharacteristicBaff baff in baffs)
+                foreach (CharacteristicBuff baff in baffs)
                 {
                     characteristicsUI.HighlightUpgradedCharacteristics(baff.characteristic, Color.green);
                 }

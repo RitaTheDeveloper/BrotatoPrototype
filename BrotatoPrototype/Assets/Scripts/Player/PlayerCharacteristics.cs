@@ -36,6 +36,8 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private int _startSatiety = 100;
     [Header("Голод:")]
     [SerializeField] private int _startHunger; // каждую волну на это число уменьшается сытость
+    [Header("Премудрость:")]
+    [SerializeField] private float _startWisdom;
 
     public Dictionary<string, float> DecriptionChacteristicsForUIShop()
     {
@@ -131,8 +133,10 @@ public class PlayerCharacteristics : MonoBehaviour
         set { _currentSatiety = value; }
     }
     public int CurrentHunger { get => _currentHunger; set => _currentHunger = value; }
+    public float CurrentWisdom { get => _currentWisdom; set => _currentWisdom = value; }
 
     private int _currentHunger;
+    private float _currentWisdom;
     
    
     private void Awake()
@@ -155,6 +159,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentProbabilityOfDodge = _startProbabilityOfDodge;
         _currentSatiety = _startSatiety;
         _currentHunger = _startHunger;
+        _currentWisdom = _startWisdom;
     }
 
     public void AddBonus(PlayerCharacteristics bonus)
@@ -171,6 +176,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentProbabilityOfDodge += bonus._startProbabilityOfDodge;
         _currentArmor += bonus._startArmor;
         _currentHunger += bonus._startHunger;
+        _currentWisdom += bonus._startWisdom;
     }
 
     public void DeleteBonus(PlayerCharacteristics bonus)
@@ -187,6 +193,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentProbabilityOfDodge -= bonus._startProbabilityOfDodge;
         _currentArmor -= bonus._startArmor;
         _currentHunger -= bonus._startHunger;
+        _currentWisdom -= bonus._startWisdom;
     } 
     
     public void SynchronizeCharacteristic(CharacteristicType characteristic, float value)
@@ -292,6 +299,10 @@ public class PlayerCharacteristics : MonoBehaviour
 
             case CharacteristicType.MagneticRadius:
                 CurrentMagnetDistance += value;
+                break;
+
+            case CharacteristicType.Wisdom:
+                CurrentWisdom += value;
                 break;
         }
     }

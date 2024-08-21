@@ -8323,9 +8323,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
+      propertyPath: buffController
+      value: 
+      objectReference: {fileID: 1768953400}
+    - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
+        type: 3}
       propertyPath: shopController
       value: 
       objectReference: {fileID: 3800595267031063961}
+    - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
+        type: 3}
+      propertyPath: baseBuffsPerLvl.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
+        type: 3}
+      propertyPath: baseBuffsPerLvl.Array.data[0]
+      value: 
+      objectReference: {fileID: -1991537723823951880, guid: aec9988a7f2b035488587ad507168cbf,
+        type: 3}
+    - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
+        type: 3}
+      propertyPath: baseBuffsPerLvl.Array.data[1]
+      value: 
+      objectReference: {fileID: -1991537723823951880, guid: 93f4909c165725c4a81e2e9f4217b2d3,
+        type: 3}
     - target: {fileID: 4880984170255923468, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18057,7 +18079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 85.000015}
+  m_AnchoredPosition: {x: 0, y: 84.99914}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -27090,8 +27112,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1958448489}
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.16569203
+  m_Value: 1.000002
+  m_Size: 0.16568677
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28124,6 +28146,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1768953399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1768953401}
+  - component: {fileID: 1768953400}
+  m_Layer: 0
+  m_Name: BuffController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1768953400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768953399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9980e123b3fb62145a648bfcdcea3a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopLevelStructsStorage:
+  - {fileID: -4968717037069860265, guid: e221e7ea4c6e82c4cb6400eb26a9fc9e, type: 3}
+  - {fileID: 3894333453661929116, guid: 772ae8f7888272c42b785316157a76a2, type: 3}
+  - {fileID: -1443535946747989685, guid: c73131c17352cb5458c326715f4b6509, type: 3}
+  - {fileID: 7182773218026552998, guid: 216e08810f054a945b422da9a9752c12, type: 3}
+  - {fileID: -8815304591533747037, guid: 429803e8ac139d94885ef433467c8d44, type: 3}
+  - {fileID: -5816066704287288958, guid: 11ef4962a99d05c4ab7006d814b2efcb, type: 3}
+  - {fileID: -8806520494753484362, guid: fd36b5e266d11f649aad9f4e84bc8cc9, type: 3}
+  _currentBuffShopLevel: 5
+--- !u!4 &1768953401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768953399}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1772962793
 GameObject:
   m_ObjectHideFlags: 0
@@ -37424,3 +37499,4 @@ SceneRoots:
   - {fileID: 1583996473}
   - {fileID: 4229119413579544888}
   - {fileID: 400886773}
+  - {fileID: 1768953401}

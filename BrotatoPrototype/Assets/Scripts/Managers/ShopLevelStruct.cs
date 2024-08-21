@@ -13,15 +13,4 @@ public class ShopLevelStruct : MonoBehaviour
     [Tooltip("Список редкости слотов:")]
     [SerializeField] public List<RareItemsDataStruct> slotsData = new List<RareItemsDataStruct>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

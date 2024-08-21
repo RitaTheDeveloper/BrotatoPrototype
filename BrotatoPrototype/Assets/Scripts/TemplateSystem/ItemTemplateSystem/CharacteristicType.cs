@@ -12,5 +12,6 @@ public enum CharacteristicType
     MeleeDamage,
     RangeDamage,
     ChanceOfCrit,
-    MagneticRadius
+    MagneticRadius,
+    Wisdom
 };
