@@ -74,6 +74,8 @@ public class LevelSystem : MonoBehaviour
     private void LevelUp()
     {
         _currentLvl++;
+        //wisdom up
+        playerCharacteristics.IncreaseWisdomPerLevel();
         _currentXp = 0;
         _requiredXp = GetRequiredXp(_currentLvl);
         numberOfLeveledUpForCurrentWave++;

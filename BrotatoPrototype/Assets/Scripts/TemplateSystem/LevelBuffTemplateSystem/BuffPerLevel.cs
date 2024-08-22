@@ -16,7 +16,9 @@ public class BuffPerLevel : Item
         UIBuffPerLvl uIBuffPerLvl = GetComponent<UIBuffPerLvl>();
         uIBuffPerLvl.mainCharacteristic = baffs[0].characteristic;
         uIBuffPerLvl.value = characteristicMap[baffs[0].characteristic];
+        uIBuffPerLvl.dataTier = itemTemplate.GetPrefabDataForSpecificTier(tier);
         uIBuffPerLvl.tier = itemTemplate.GetPrefabDataForSpecificTier(tier).level;
+        uIBuffPerLvl.icon = icon;
     }
 
     [ContextMenu("CalculateAllCharacteristics")]

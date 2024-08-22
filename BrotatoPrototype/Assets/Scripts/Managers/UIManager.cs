@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIShop shop;
     [SerializeField] private UIWaveResults uIWaveResults;
     [SerializeField] private UIUnlockedHeroes uiUnlockedHeroes;
+    [SerializeField] private UIBuffShopController uIBuffShopController;
     private Animator _animator;
 
     [Header("for player:")]
@@ -122,7 +123,9 @@ public class UIManager : MonoBehaviour
     {
         PlaySoundOfButtonPress();
         WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
-        allAbilities.ChooseAbilitiesForProposeAbilities();       
+        //allAbilities.ChooseAbilitiesForProposeAbilities();
+        uIBuffShopController.GetComponent<BuffShopController>().SetCurrentBuffShopLevel();
+        uIBuffShopController.GetProposedBuffs();
     }
 
     public void OnClickNextWave()

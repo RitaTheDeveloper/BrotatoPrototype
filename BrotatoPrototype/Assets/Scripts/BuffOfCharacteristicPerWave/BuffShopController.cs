@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuffShopController : MonoBehaviour
 {
     [Tooltip("Структура уровней баффов характеристик")]
-    [SerializeField] public List<ShopLevelStruct> ShopLevelStructsStorage = new List<ShopLevelStruct>();
+    [SerializeField] private List<ShopLevelStruct> _shopLevelStructsStorage = new List<ShopLevelStruct>();
 
     // current amount of slots for buffs 
     private int _buffSizeList = 1;
@@ -23,16 +23,29 @@ public class BuffShopController : MonoBehaviour
     private List<UIBuffPerLvl> buffsForSlots;
 
     public List<UIBuffPerLvl> AllBuffs { get => _allBuffs; set => _allBuffs = value; }
+    private List<CharacteristicType> _listOfAlreadySelectedBuffs;
 
-    private void Start()
+    public void SetCurrentBuffShopLevel()
     {
-       // DistributeBuffsAcrossTiers();
+        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+        var currentWisdom = playerCharacteristics.CurrentWisdom;
+        //if ()
+        for (int i = 0; i < _shopLevelStructsStorage.Count; i++)
+        {
+            if (currentWisdom >= _shopLevelStructsStorage[i].levelPrice)
+            {
+                _currentBuffShopLevel = _shopLevelStructsStorage[i].levelNumber;
+            }
+        }
+        Debug.Log("buff level = " + _currentBuffShopLevel);
+
+        PickBuffsForSale();
     }
 
     public void PickBuffsForSale()
     {
         // определяем кол-во слотов
-        _buffSizeList = ShopLevelStructsStorage[_currentBuffShopLevel - 1].slotsData.Count;
+        _buffSizeList = _shopLevelStructsStorage[_currentBuffShopLevel - 1].slotsData.Count;
 
         // берем весь список абилок
         // делим этот список на словари по тирам. словарь(тир, тир абилки)
@@ -45,17 +58,20 @@ public class BuffShopController : MonoBehaviour
         // берем словарь по тирам
 
         buffsForSlots = new List<UIBuffPerLvl>();
-        for(int i = 0; i < _buffSizeList; i++)
+        _listOfAlreadySelectedBuffs = new List<CharacteristicType>();
+        for (int i = 0; i < _buffSizeList; i++)
         {
-            List<UIBuffPerLvl> list = _tierToBuff[ShopLevelStructsStorage[_currentBuffShopLevel - 1].slotsData[i].level];
+            List<UIBuffPerLvl> list = _tierToBuff[_shopLevelStructsStorage[_currentBuffShopLevel - 1].slotsData[i].level];
             int randomBuff = Random.Range(0, list.Count);
+            UIBuffPerLvl buff = list[randomBuff];
+            while (_listOfAlreadySelectedBuffs.Contains(buff.mainCharacteristic))
+            {
+                randomBuff = Random.Range(0, list.Count);
+                buff = list[randomBuff];
+            }
             buffsForSlots.Add(list[randomBuff]);
+            _listOfAlreadySelectedBuffs.Add(buff.mainCharacteristic);
         }
-
-    //    foreach(UIBuffPerLvl b in buffsForSlots)
-    //    {
-    //        Debug.Log()
-    //    }
     }
 
     public void DistributeBuffsAcrossTiers()
@@ -71,6 +87,10 @@ public class BuffShopController : MonoBehaviour
 
         PickBuffsForSale();
 
-       // Debug.Log(_tierToBuff[2][1].mainCharacteristic);
+    }
+
+    public List<UIBuffPerLvl> GetBuffsForSlots()
+    {
+        return buffsForSlots;
     }
 }

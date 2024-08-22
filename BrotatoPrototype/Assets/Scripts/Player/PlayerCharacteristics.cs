@@ -38,6 +38,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private int _startHunger; // каждую волну на это число уменьшается сытость
     [Header("Премудрость:")]
     [SerializeField] private float _startWisdom;
+    [SerializeField] private float _wisdomPerLvl = 5f;
 
     public Dictionary<string, float> DecriptionChacteristicsForUIShop()
     {
@@ -194,7 +195,12 @@ public class PlayerCharacteristics : MonoBehaviour
         _currentArmor -= bonus._startArmor;
         _currentHunger -= bonus._startHunger;
         _currentWisdom -= bonus._startWisdom;
-    } 
+    }
+    
+    public void IncreaseWisdomPerLevel()
+    {
+        _currentWisdom += _wisdomPerLvl;
+    }
     
     public void SynchronizeCharacteristic(CharacteristicType characteristic, float value)
     {
