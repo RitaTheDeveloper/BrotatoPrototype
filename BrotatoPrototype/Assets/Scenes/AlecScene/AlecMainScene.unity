@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44300658, g: 0.4921953, b: 0.57192475, a: 1}
+  m_IndirectSpecularColor: {r: 0.4430063, g: 0.4921952, b: 0.5719241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13308,8 +13308,324 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768426}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768435}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768434}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768433}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768432}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768431}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768430}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768429}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768428}
+    - targetCorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715768427}
   m_SourcePrefab: {fileID: 100100000, guid: 8dba91dbe79afce469d7b4f8611d5928, type: 3}
+--- !u!1 &715768425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699340046727251683, guid: 8dba91dbe79afce469d7b4f8611d5928,
+    type: 3}
+  m_PrefabInstance: {fileID: 715768424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &715768426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Axe
+  soundSources:
+  - soundName: Axe1
+    clip: {fileID: 8300000, guid: 91cce18b100e31d40a03468310d71fb6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Axe2
+    clip: {fileID: 8300000, guid: 56ef778418b9de84bb651a80dff63d40, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -4540682221491482214, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Uhwat
+  soundSources:
+  - soundName: Uhwat1
+    clip: {fileID: 8300000, guid: 4dc21fa097c9afe49be9a23f438519c9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Uhwat2
+    clip: {fileID: 8300000, guid: cd7091f96cae33a429d727d1b71ef92f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -8650716892188584173, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Scroll
+  soundSources:
+  - soundName: Scroll1
+    clip: {fileID: 8300000, guid: abe46ec6cae276d44b8395d8ebeb807a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Scroll2
+    clip: {fileID: 8300000, guid: fcc36edd3538e474eac50b45eefabdcf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -6011678732489318247, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Rose
+  soundSources:
+  - soundName: Rose1
+    clip: {fileID: 8300000, guid: 76aa6f063fbdb084791a8a74ab3d69de, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Rose2
+    clip: {fileID: 8300000, guid: d527efa56b4ae0b49a2a5390d54fc932, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: 1969046674442983315, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: LifeStaff
+  soundSources:
+  - soundName: LifeStaff1
+    clip: {fileID: 8300000, guid: 7af208943ba96224d8b1febc29c056e5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: LifeStaff2
+    clip: {fileID: 8300000, guid: 10a68d086404a0248a99d8eb7dd0023a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: 428376833258594339, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Hammer
+  soundSources:
+  - soundName: Hammer1
+    clip: {fileID: 8300000, guid: dc3ba52d88458344d8e3087dcda3f526, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Hammer2
+    clip: {fileID: 8300000, guid: 4ccb7ba0bab36344cb93fec2c11f0309, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: 9051546506995980173, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: FrostStaff
+  soundSources:
+  - soundName: FrostStaff1
+    clip: {fileID: 8300000, guid: 630726acce1e4d045b7e5261e0edf6b0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: FrostStaff2
+    clip: {fileID: 8300000, guid: a331d82cb6cddc94283c3f9fe5e70e94, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -5143167370911310485, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Crossbow
+  soundSources:
+  - soundName: Crossbow1
+    clip: {fileID: 8300000, guid: 30cd0ba9de3f8aa4992a78bf1db309d1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Crossbow2
+    clip: {fileID: 8300000, guid: 5e09675ae3cd88d4cafb0fdcd4b9be01, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -7493281231385941486, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Book
+  soundSources:
+  - soundName: Book1
+    clip: {fileID: 8300000, guid: dc7b8db030d6a044f908151c3e027f31, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Book2
+    clip: {fileID: 8300000, guid: 5218a3634611abf4cba8fbf8b49a61d8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -7091952712108625129, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
+--- !u!114 &715768435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715768425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493920603d3c454e8fa978c648fa7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlockName: Berdysh
+  soundSources:
+  - soundName: Berdysh1
+    clip: {fileID: 8300000, guid: 198d25e2ebcea5f449c01aea6b4c0e9e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - soundName: Berdysh2
+    clip: {fileID: 8300000, guid: 9b019899842f1e34ca02bbaade80f024, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  delay: 0.2
+  audioMixerGroup: {fileID: -2342166464044715875, guid: 4d62165522bb0d34c96026611e34eb2c,
+    type: 2}
 --- !u!1 &728071405
 GameObject:
   m_ObjectHideFlags: 0
@@ -27469,7 +27785,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1958448488}
   m_Direction: 2
   m_Value: 1.0000001
-  m_Size: 0.165692
+  m_Size: 0.16569199
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
