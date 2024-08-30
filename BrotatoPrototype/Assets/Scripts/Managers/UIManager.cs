@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject characterProgressMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pauseMenu;
@@ -293,6 +294,7 @@ public class UIManager : MonoBehaviour
     private void AllOff()
     {
         mainMenu.SetActive(false);
+        characterProgressMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
         pauseMenu.SetActive(false);
         conformationWindow.SetActive(false);
