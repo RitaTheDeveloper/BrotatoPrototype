@@ -14,7 +14,7 @@ public class UICharacterProgressBar : MonoBehaviour
     CharacterLevelSetting[] _levelSettings;
     private int _maxNumberOfWaves;
 
-    public void CreateProgressBar(CharacterLevelSetting[] levelSettings, int currentNumberOfwaves)
+    public void CreateProgressBar(CharacterLevelSetting[] levelSettings, int currentNumberOfwaves, CharacterLevel characterLevel)
     {
         DestroyAllSegments();
 
@@ -25,7 +25,7 @@ public class UICharacterProgressBar : MonoBehaviour
         {
             var segment = Instantiate(segmentPrefab, segmentsTransform);
             UISegmentCharacterProgressBar uiSegment = segment.GetComponent<UISegmentCharacterProgressBar>();
-            uiSegment.Init(_levelSettings[i].numberOfWaves);
+            uiSegment.Init(_levelSettings[i].numberOfWaves, characterLevel);
         }
 
         DisplayCurrentNumberOfWaves(currentNumberOfwaves);

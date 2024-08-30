@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 3325505261038024347}
   - component: {fileID: 2593826338636646688}
   - component: {fileID: 7622971171430769064}
+  - component: {fileID: 6626622065271059627}
+  - component: {fileID: 5623973635208952005}
   m_Layer: 5
   m_Name: Box
   m_TagString: Untagged
@@ -210,6 +212,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6626622065271059627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238155642884493440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c7c34d46242404eacab5019f8b1d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _descriptionTxt: {fileID: 0}
+--- !u!114 &5623973635208952005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238155642884493440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTooltip: {fileID: 3301680292528972963, guid: 847213c6ded3e2a468687a37dc4232aa,
+    type: 3}
+  _tooltipText: "\u043D\u0430\u0433\u0440\u0430\u0434\u0430"
+  _sprite: {fileID: 0}
 --- !u!1 &6168095326098122139
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,3 +368,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfWavesTxt: {fileID: 3807885433837266433}
+  _uiInfoLevelReward: {fileID: 6626622065271059627}

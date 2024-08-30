@@ -45,6 +45,7 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isWork = true;
+        _tooltip.InitTooltip(_tooltipText, _sprite);
         _tooltip.Enable();
         StartCoroutine(ShowTooltip());
     }
@@ -73,5 +74,10 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         Vector2 newPos = new Vector2(_mousePosition.x + _tooltip.GetSize.x * _rectTransform.localScale.x < _sizeCanvas.x ? 0 : -_tooltip.GetSize.x, _mousePosition.y + _tooltip.GetSize.y * _rectTransform.localScale.y < _sizeCanvas.y ? 0 : -_tooltip.GetSize.y);
         _tooltip.SetPosition(newPos);
+    }
+
+    public void SetText(string s)
+    {
+        _tooltipText = s;
     }
 }

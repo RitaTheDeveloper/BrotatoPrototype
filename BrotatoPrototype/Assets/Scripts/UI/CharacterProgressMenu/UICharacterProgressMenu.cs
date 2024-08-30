@@ -57,7 +57,8 @@ public class UICharacterProgressMenu : MonoBehaviour
 
     private void CreateProgressBar()
     {
-        _uICharacterProgressBar.CreateProgressBar(_levelSettings, _currentNumberOfWaves);
+        CharacterLevel characterLevel = _character.GetComponent<CharacterLevel>();
+        _uICharacterProgressBar.CreateProgressBar(_levelSettings, _currentNumberOfWaves, characterLevel);
     }
 
     private void CurrentNumberOfWavesUpdate()
