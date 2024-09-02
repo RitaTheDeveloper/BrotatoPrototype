@@ -7,6 +7,7 @@ public class Tooltip : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Image _image;
+    [SerializeField] private Transform _panel;
 
     private Canvas _canvas;
     private Vector2 _size;
@@ -44,5 +45,12 @@ public class Tooltip : MonoBehaviour
 
         if(sprite != null)
             _image.sprite = sprite;
+    }
+
+    public void InitTooltip(GameObject prefabUI)
+    {
+        if(prefabUI != null)
+           Instantiate(prefabUI, _panel);
+
     }
 }
