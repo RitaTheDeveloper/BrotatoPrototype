@@ -59,7 +59,10 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _waveController = GameManager.instance.GetCurrentWave();
-        _target = GameManager.instance.player.transform;
+        if (_isSpawnerUnit == false)
+        {
+            _target = GameManager.instance.player.transform;
+        }
         if (_isNotRandom)
         {
             randomPosition = _specificPoint;
@@ -99,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
         totalAmountOfenemies = amount;
     }
 
-    public void LoadPar(TypeEnemy typeEnemy, TierType tierType, float cdSpawn, int amountOfEnemiesInPack)
+    public void LoadPar(TypeEnemy typeEnemy, TierType tierType, float cdSpawn, int amountOfEnemiesInPack, int totalAmountOfunits)
     {
         _typeEnemy = typeEnemy;
         _tierType = tierType;
@@ -109,7 +112,8 @@ public class EnemySpawner : MonoBehaviour
         _maxSpawnTime = cdSpawn;
         _amountOfEnemies = amountOfEnemiesInPack;
         _isSpawnerUnit = true;
-        totalAmountOfenemies = 3000;
+        totalAmountOfenemies = totalAmountOfunits;
+        _target = this.gameObject.transform;
     }
 
     public void SetParameters(EnemyController enemyController, float cdSpawn, float startSpawnTime, float endSpawnTime, int amountOfEnemiesInPack, float radiusOfPack, float radiusFromPlayer, bool isSpecificPoint, Vector2 specificPoint, TypeEnemy typeEnemy,  TierType tierType)

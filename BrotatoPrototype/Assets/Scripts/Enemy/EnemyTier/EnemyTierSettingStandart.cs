@@ -29,6 +29,7 @@ public class EnemyTierSettingStandart
     public TierType TierSpawnUnit;
     public float TimeBetweenSpawn;
     public int CountSpawnUnit;
+    public int totalAmoutOfUnits;
 
     //Very very very very very very very very very very very very very very very very very very very BAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDDDDD
     public ManagerEnemyTier ManagerEnemyTier { get; private set; }

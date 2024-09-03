@@ -19,7 +19,7 @@ MonoBehaviour:
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 1500
+    HealPoint: 3000
     Damage: 7
     TimeBetweenAttacks: 0
     Speed: 0
@@ -32,13 +32,14 @@ MonoBehaviour:
     TypeSpawnEnemy: 1
     TierSpawnUnit: 2
     TimeBetweenSpawn: 1
-    CountSpawnUnit: 5
+    CountSpawnUnit: 1
+    totalAmoutOfUnits: 90
   - Name: 2
     Tier: 1
-    HealPoint: 1800
+    HealPoint: 4500
     Damage: 7
     TimeBetweenAttacks: 0
-    Speed: 1
+    Speed: 0
     EscapeSpeed: 1
     DistanceFromPlayer: 10
     Distance: 0
@@ -46,15 +47,16 @@ MonoBehaviour:
     TimeStopDirection: 0
     CDDirection: 0
     TypeSpawnEnemy: 15
-    TierSpawnUnit: 1
+    TierSpawnUnit: 2
     TimeBetweenSpawn: 1
-    CountSpawnUnit: 6
+    CountSpawnUnit: 1
+    totalAmoutOfUnits: 70
   - Name: 3
     Tier: 2
-    HealPoint: 2100
+    HealPoint: 6000
     Damage: 10
     TimeBetweenAttacks: 0
-    Speed: 2
+    Speed: 0
     EscapeSpeed: 2
     DistanceFromPlayer: 10
     Distance: 0
@@ -62,15 +64,16 @@ MonoBehaviour:
     TimeStopDirection: 0
     CDDirection: 0
     TypeSpawnEnemy: 5
-    TierSpawnUnit: 0
-    TimeBetweenSpawn: 1
-    CountSpawnUnit: 3
+    TierSpawnUnit: 2
+    TimeBetweenSpawn: 1.75
+    CountSpawnUnit: 1
+    totalAmoutOfUnits: 60
   - Name: 4
     Tier: 3
-    HealPoint: 2400
+    HealPoint: 7500
     Damage: 10
     TimeBetweenAttacks: 0
-    Speed: 3
+    Speed: 0
     EscapeSpeed: 2
     DistanceFromPlayer: 10
     Distance: 0
@@ -78,6 +81,7 @@ MonoBehaviour:
     TimeStopDirection: 0
     CDDirection: 0
     TypeSpawnEnemy: 3
-    TierSpawnUnit: 1
+    TierSpawnUnit: 2
     TimeBetweenSpawn: 1
-    CountSpawnUnit: 3
+    CountSpawnUnit: 1
+    totalAmoutOfUnits: 60
