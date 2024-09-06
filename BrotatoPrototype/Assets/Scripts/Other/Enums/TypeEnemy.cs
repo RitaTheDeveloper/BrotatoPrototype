@@ -21,4 +21,5 @@ public enum TypeEnemy
     TreeFood,
     HealingBush,
     CrowGrade2,
+    Rabbit
 }
