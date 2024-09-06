@@ -52,8 +52,8 @@ MonoBehaviour:
   type: 1
   attackRange: 15
   startDamage: 9
-  startAttackSpeedPercentage: -4.214561
-  attackPerSecond: 0.4789272
+  startAttackSpeedPercentage: -23.37165
+  attackPerSecond: 0.38314176
   _timeLoop: 2
   startCritChance: 0.04
   knockBack: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   seeThroughTextureUVSpace: 0
   seeThroughTextureScale: 1
   seeThroughChildrenSortingMode: 0
-  rmsCount: 2
+  rmsCount: 1
   hitFxInitialIntensity: 0
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
@@ -294,7 +294,7 @@ MonoBehaviour:
   iconT4: {fileID: 21300000, guid: 580e6cc31ffaf1246a5348fdcdae7c1a, type: 3}
   tier: 0
   gameName: "\u0420\u043E\u0433\u0430\u0442\u043A\u0430"
-  editorName: Slingsho_T1
+  editorName: Slingshot_T1
   icon: {fileID: 21300000, guid: d247f9485a71ea34187fa3646c23042b, type: 3}
   weaponTemplate: {fileID: 11400000, guid: 9ce8f218368de1c48a336d249fe927b1, type: 2}
   startDamage: 9
@@ -302,7 +302,7 @@ MonoBehaviour:
   reductionCoeff: 3
   damage: 9
   critChance: 0.04
-  attackSpeed: 0.4789272
+  attackSpeed: 0.38314176
 --- !u!1 &3955172120919012297
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,8 +363,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5362835268902649387}
   - {fileID: 5463337759870331344}
+  - {fileID: 5897622866563792555}
   m_Father: {fileID: 7348319519527508090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5502015294336519739
@@ -430,6 +430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: slingshot_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae29b0751e5f5494d8826d2885e0a193,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -472,7 +477,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5502015294336519739}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5613217132962486720
+--- !u!1001 &6220079928998369600
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -503,7 +508,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1168593f05d24414b838ac803c9bb09c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1168593f05d24414b838ac803c9bb09c,
         type: 3}
@@ -545,9 +550,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1168593f05d24414b838ac803c9bb09c, type: 3}
---- !u!4 &5362835268902649387 stripped
+--- !u!4 &5897622866563792555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1168593f05d24414b838ac803c9bb09c,
     type: 3}
-  m_PrefabInstance: {fileID: 5613217132962486720}
+  m_PrefabInstance: {fileID: 6220079928998369600}
   m_PrefabAsset: {fileID: 0}
