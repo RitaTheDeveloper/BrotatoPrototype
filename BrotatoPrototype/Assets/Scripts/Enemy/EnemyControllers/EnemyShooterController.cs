@@ -58,6 +58,11 @@ public class EnemyShooterController : EnemyController
 
     protected override void Attacking()
     {
+        if(animator != null)
+        {
+            animator.SetTrigger("attack");
+        }
+
         if (!GameManager.instance.GameIsOver)
         {
             Vector3 position = new Vector3(target.position.x, transform.position.y, target.position.z);
