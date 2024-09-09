@@ -6,7 +6,7 @@ public class Item : BaseItem
 {
     [Space]
     [Header("Item Template")]
-    [SerializeField] private ItemTemplate itemTemplate;
+    [SerializeField] protected ItemTemplate itemTemplate;
 
     [Space]
     [Header("Item Characteristics")]
@@ -24,7 +24,7 @@ public class Item : BaseItem
 
     /* Needs get rid PlayerCharacteristics component at Item
      * To do this needs refactor UI-item's view*/
-    private PlayerCharacteristics playerCharacteristics;
+    protected PlayerCharacteristics playerCharacteristics;
 
     public override void SynchronizeComponents()
     {
@@ -56,7 +56,7 @@ public class Item : BaseItem
         }
     }
 
-    private float CalculateTotalMultiplierForItem()
+    protected float CalculateTotalMultiplierForItem()
     {
         float totalMultiplier = 0;
         foreach (ItemBaff baff in baffs)
@@ -66,7 +66,7 @@ public class Item : BaseItem
         return totalMultiplier;
     }
 
-    private void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, ItemCharacteristicIncrement baseIncrement, float baffStrength, bool isDebaff)
+    protected void CalculateCharacteristic(CharacteristicType characteristic, float multiplier, ItemCharacteristicIncrement baseIncrement, float baffStrength, bool isDebaff)
     {
         switch (characteristic)
         {
@@ -135,7 +135,7 @@ public class Item : BaseItem
         }
     }
 
-    private float Calculate(float baseCharacteristicIncrement ,float multiplier, float baffStrength, bool isDebaff)
+    protected float Calculate(float baseCharacteristicIncrement ,float multiplier, float baffStrength, bool isDebaff)
     {
         float totalMultiplier = CalculateTotalMultiplierForItem();
         if (isDebaff)
@@ -151,7 +151,7 @@ public class Item : BaseItem
     }
 
     [ContextMenu("SynchonizeAllCharacteristics")]
-    private void SynchronizePlayerCharacteristics()
+    protected void SynchronizePlayerCharacteristics()
     {
         playerCharacteristics = GetComponent<PlayerCharacteristics>();
         
@@ -169,12 +169,12 @@ public class Item : BaseItem
         }
     }
 
-    private void SynchronizeCharacteristic(CharacteristicType characteristic, float value)
+    protected void SynchronizeCharacteristic(CharacteristicType characteristic, float value)
     {
         playerCharacteristics.SynchronizeCharacteristic(characteristic, value);
     }
 
-    private void SynchonizeStandartItem()
+    protected void SynchonizeStandartItem()
     {
         StandartItem standartItem = GetComponent<StandartItem>();
 

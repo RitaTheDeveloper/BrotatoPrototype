@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
     public List<WaveSetting> GetListOfWaveSetting { get => listOfWaveSetting; }
     public AccountLevel AccountLevel { get => _accountLevel; }
+    public CharacterLevelingSystem CharacterLevelSystem { get => _characterLevelSystem; }
 
     public AudioMixerGroup MasterAudioMixer;
     public AudioMixerGroup MusicAudioMixer;

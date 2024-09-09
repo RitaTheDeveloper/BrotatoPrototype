@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class HeroSelectionPanel : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject characterProgressMenu;
     [SerializeField] private Image currentImgHero;
     [SerializeField] private TextMeshProUGUI nameHeroTxt;
     [SerializeField] private CharacteristicsUI characteristicsUI;
@@ -194,16 +195,24 @@ public class HeroSelectionPanel : MonoBehaviour
             player.GetComponent<CharacterLevel>().UpgradeCharacteristics(player.GetComponent<PlayerCharacteristics>(), _saveController.GetCharacterLvl(player.gameObject.name));
             characteristicsUI.UpdateCharacterisctics(player.GetComponent<PlayerCharacteristics>());
             characteristicsUI.RemoveCharacteristicsHighlighting();
-            CharacteristicBaff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
+            CharacteristicBuff[] baffs = player.GetComponent<CharacterLevel>().Baffs;
             if (baffs != null)
             {
-                foreach (CharacteristicBaff baff in baffs)
+                foreach (CharacteristicBuff baff in baffs)
                 {
                     characteristicsUI.HighlightUpgradedCharacteristics(baff.characteristic, Color.green);
                 }
             }
         }
         
+    }
+
+    public void OnClickCharacterProgressMenu()
+    {
+        mainMenu.SetActive(false);
+        characterProgressMenu.SetActive(true);
+        characterProgressMenu.GetComponent<UICharacterProgressMenu>().Init();
+        characterProgressMenu.GetComponent<UICharacterProgressMenu>().UpgradeUIParameters(_player);
     }
 }
     

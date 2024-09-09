@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject characterProgressMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pauseMenu;
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIShop shop;
     [SerializeField] private UIWaveResults uIWaveResults;
     [SerializeField] private UIUnlockedHeroes uiUnlockedHeroes;
+    [SerializeField] private UIBuffShopController uIBuffShopController;
     private Animator _animator;
 
     [Header("for player:")]
@@ -122,7 +124,9 @@ public class UIManager : MonoBehaviour
     {
         PlaySoundOfButtonPress();
         WaveCompletedMenuOn(_numberOfLeveledUpForCurrentWave);
-        allAbilities.ChooseAbilitiesForProposeAbilities();       
+        //allAbilities.ChooseAbilitiesForProposeAbilities();
+        uIBuffShopController.GetComponent<BuffShopController>().SetCurrentBuffShopLevel();
+        uIBuffShopController.GetProposedBuffs();
     }
 
     public void OnClickNextWave()
@@ -290,6 +294,7 @@ public class UIManager : MonoBehaviour
     private void AllOff()
     {
         mainMenu.SetActive(false);
+        characterProgressMenu.SetActive(false);
         winAndLosePanel.SetActive(false);
         pauseMenu.SetActive(false);
         conformationWindow.SetActive(false);

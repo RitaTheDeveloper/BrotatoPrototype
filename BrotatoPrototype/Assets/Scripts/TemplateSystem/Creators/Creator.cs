@@ -53,4 +53,16 @@ public class Creator : ICreator
         return weaponToReturn;
     }
 
+    public BuffPerLevel CreateBuffPerLevel(BuffPerLevel buffPerLvl, TierType tier)
+    {
+        BuffPerLevel itemToReturn = Create(buffPerLvl, tier) as BuffPerLevel;
+
+        if (itemToReturn == null)
+        {
+            throw new NullReferenceException($"Dynamic cast failed {buffPerLvl} : {tier} must be Item type");
+        }
+
+        return itemToReturn;
+    }
+
 }

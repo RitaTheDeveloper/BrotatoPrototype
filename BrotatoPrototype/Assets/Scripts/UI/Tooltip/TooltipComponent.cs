@@ -7,6 +7,7 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private Tooltip _prefabTooltip;
     [SerializeField] private string _tooltipText;
     [SerializeField] private Sprite _sprite = null;
+    [SerializeField] private GameObject uiPrefab = null;
 
     private Tooltip _tooltip;
     private Vector2 _sizeCanvas;
@@ -19,6 +20,7 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         _tooltip = Instantiate(_prefabTooltip, transform);
         _tooltip.InitTooltip(_tooltipText, _sprite);
+        _tooltip.InitTooltip(uiPrefab);
         _tooltip.Disable();
 
         GameObject obj = transform.parent.gameObject;
@@ -45,6 +47,8 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isWork = true;
+        _tooltip.InitTooltip(_tooltipText, _sprite);
+        _tooltip.InitTooltip(uiPrefab);
         _tooltip.Enable();
         StartCoroutine(ShowTooltip());
     }
@@ -73,5 +77,15 @@ public class TooltipComponent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         Vector2 newPos = new Vector2(_mousePosition.x + _tooltip.GetSize.x * _rectTransform.localScale.x < _sizeCanvas.x ? 0 : -_tooltip.GetSize.x, _mousePosition.y + _tooltip.GetSize.y * _rectTransform.localScale.y < _sizeCanvas.y ? 0 : -_tooltip.GetSize.y);
         _tooltip.SetPosition(newPos);
+    }
+
+    public void SetText(string s)
+    {
+        _tooltipText = s;
+    }
+
+    public void SetUIPrefab(GameObject prefab)
+    {
+        uiPrefab = prefab;
     }
 }

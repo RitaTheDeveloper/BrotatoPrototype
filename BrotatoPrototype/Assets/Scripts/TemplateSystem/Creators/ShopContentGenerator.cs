@@ -7,19 +7,23 @@ public class ShopContentGenerator : MonoBehaviour
     private readonly ICreator creator = new Creator();
 
     [SerializeField] ShopController shopController;
+    [SerializeField] BuffShopController buffController;
 
     [Space]
     [Header("To Create")]
     [SerializeField] List<Item> baseItems = new List<Item>();
     [SerializeField] List<Weapon> baseWeapons = new List<Weapon>();
+    [SerializeField] List<BuffPerLevel> baseBuffsPerLvl = new List<BuffPerLevel>();
     
     [Space]
     [Header("Created")]
     [SerializeField] List<StandartItem> items = new List<StandartItem>();
     [SerializeField] List<BaseWeapon> weapons = new List<BaseWeapon>();
+    [SerializeField] List<UIBuffPerLvl> buffsPelLvl = new List<UIBuffPerLvl>();
 
     private Transform itemParent;
     private Transform weaponParent;
+    private Transform buffPerLvlParent;
 
     private void Start()
     {
@@ -32,6 +36,7 @@ public class ShopContentGenerator : MonoBehaviour
         // preparing child transforms to store created items/weapons
         itemParent = CreateEmptyChildren("Items").transform;
         weaponParent = CreateEmptyChildren("Weapons").transform;
+        buffPerLvlParent = CreateEmptyChildren("BuffsPerLvl").transform;
 
         // creating items
         CreateItems();
@@ -40,6 +45,11 @@ public class ShopContentGenerator : MonoBehaviour
         // creating weapons
         CreateWeapons();
         shopController.WeaponList = weapons;
+
+        // creating buffs per level
+        CreateBuffsPerLvl();
+        buffController.AllBuffs = buffsPelLvl;
+        buffController.DistributeBuffsAcrossTiers();
     }
 
     private GameObject CreateEmptyChildren(string name)
@@ -80,5 +90,21 @@ public class ShopContentGenerator : MonoBehaviour
         }
         weapons.Remove(weapons[0]); //лютый костыль, который нужно будет убрать
 
+    }
+
+    // переписать метод standart item - не нужен
+    private void CreateBuffsPerLvl()
+    {
+        Transform parent = buffPerLvlParent;
+        foreach (Item baseItem in baseBuffsPerLvl)
+        {
+            foreach (TierType tier in Enum.GetValues(typeof(TierType)))
+            {
+                Item buffPerLvl = creator.CreateItem(baseItem, tier);
+                buffPerLvl.transform.SetParent(parent);
+                buffsPelLvl.Add(buffPerLvl.GetComponent<UIBuffPerLvl>());
+            }
+        }
+       // buffsPelLvl.Remove(buffsPelLvl[0]); //лютый костыль, который нужно будет убрать
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ProposedAbility : MonoBehaviour
 {
     [SerializeField] private Image iconImg;
+    [SerializeField] private Image background;
     [SerializeField] public Ability ability = null;
     [SerializeField] private Button okBtn;
     [SerializeField] private TextMeshProUGUI nameTxt;
@@ -15,7 +16,7 @@ public class ProposedAbility : MonoBehaviour
 
     private void Start()
     {
-        SetUIForProposedAbility();
+       // SetUIForProposedAbility();
     }
 
     public void SetUIForProposedAbility()
@@ -25,5 +26,15 @@ public class ProposedAbility : MonoBehaviour
         descriptionTxt.text = ability.GetDescription();
         okBtn.onClick.RemoveAllListeners();
         okBtn.onClick.AddListener(ability.UseAbility);
+    }
+
+    public void SetUIForProposedBuff(UIBuffPerLvl uiBuff)
+    {
+        iconImg.sprite = uiBuff.icon;
+        background.sprite = uiBuff.dataTier.backgroundSprite;
+        ReturnBuffIncreaseDescription buffDes = new ReturnBuffIncreaseDescription();
+        descriptionTxt.text = "+ " + uiBuff.value + buffDes.BuffIncreaseDescription(uiBuff.mainCharacteristic);
+        okBtn.onClick.RemoveAllListeners();
+        okBtn.onClick.AddListener(uiBuff.UseBuff);
     }
 }
