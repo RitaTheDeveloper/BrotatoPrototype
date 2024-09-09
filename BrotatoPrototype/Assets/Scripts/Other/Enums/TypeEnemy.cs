@@ -21,6 +21,8 @@ public enum TypeEnemy
     TreeFood,
     HealingBush,
     CrowGrade2,
+    TreeFoodBoss,
+    TreeWoodBoss,
     Rabbit,
     Goose,
     Horse

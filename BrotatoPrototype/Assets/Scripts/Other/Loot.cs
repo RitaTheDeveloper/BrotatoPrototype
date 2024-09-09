@@ -10,6 +10,7 @@ public class Loot : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            gameObject.SetActive(false);
             AddLoot(other.gameObject);
             Destroy(gameObject);
         }

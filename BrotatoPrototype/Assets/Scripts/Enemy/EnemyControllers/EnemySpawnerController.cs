@@ -9,7 +9,7 @@ public class EnemySpawnerController : EnemyController
     {
         _enemySpawner = GetComponent<EnemySpawner>();
         _enemySpawner.InitSpawner(enemyTierSetting.ManagerEnemyTier, 0);//Very baaaaaad
-        _enemySpawner.LoadPar(enemyTierSetting.TypeSpawnEnemy, enemyTierSetting.TierSpawnUnit, enemyTierSetting.TimeBetweenSpawn, enemyTierSetting.CountSpawnUnit);
+        _enemySpawner.LoadPar(enemyTierSetting.TypeSpawnEnemy, enemyTierSetting.TierSpawnUnit, enemyTierSetting.TimeBetweenSpawn, enemyTierSetting.CountSpawnUnit, enemyTierSetting.totalAmoutOfUnits);
         base.LoadPar(enemyTierSetting);
     }
 }

@@ -63,6 +63,10 @@ public class Item : BaseItem
         {
             totalMultiplier += baff.multiplier;
         }
+        foreach (ItemBaff debaff in debaffs)
+        {
+            totalMultiplier += debaff.multiplier;
+        }
         return totalMultiplier;
     }
 
@@ -106,6 +110,7 @@ public class Item : BaseItem
                 break;
 
             case CharacteristicType.Damage:
+                float totalMultiplier = CalculateTotalMultiplierForItem();
                 characteristicValues.damage = Calculate(baseIncrement.damage, multiplier, baffStrength, isDebaff);
                 characteristicMap[characteristic] = characteristicValues.damage;
                 break;
@@ -141,12 +146,12 @@ public class Item : BaseItem
         if (isDebaff)
         {
             float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength * (-1);
-            return Mathf.Round(result * 100.0f) * 0.01f;
+            return Mathf.Round(result * 10.0f) * 0.1f;
         }
         else
         {
             float result = baseCharacteristicIncrement * multiplier / totalMultiplier * baffStrength;
-            return Mathf.Round(result * 100.0f) * 0.01f;
+            return Mathf.Round(result * 10.0f) * 0.1f;
         }
     }
 

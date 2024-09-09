@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1845d1c553f1d46ada2719d2e076b9, type: 3}
-  m_Name: CrowData
+  m_Script: {fileID: 11500000, guid: 5de89440ef3421244b1136d611990437, type: 3}
+  m_Name: TreeBossFoodData
   m_EditorClassIdentifier: 
-  TypeEnemy: 5
-  PrefabTier: {fileID: 2217476828117351108, guid: 11fe6e5f1ed5c6b46a98d9271774369f,
+  TypeEnemy: 20
+  PrefabTier: {fileID: 5524622784430426492, guid: ea759de9e798af34f865dfaf23590138,
     type: 3}
   ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 10
-    Damage: 7
-    TimeBetweenAttacks: 3
-    Speed: 8
+    HealPoint: 2000
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -33,16 +33,14 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
-    totalAmoutOfUnits: 0
-    RangeAttack: 30
   - Name: 2
     Tier: 1
-    HealPoint: 120
-    Damage: 12
-    TimeBetweenAttacks: 3
-    Speed: 12
-    EscapeSpeed: 16
-    DistanceFromPlayer: 5
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -51,16 +49,14 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
-    totalAmoutOfUnits: 0
-    RangeAttack: 30
   - Name: 3
     Tier: 2
-    HealPoint: 220
-    Damage: 16
-    TimeBetweenAttacks: 3
-    Speed: 14
-    EscapeSpeed: 18
-    DistanceFromPlayer: 5
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -69,16 +65,14 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
-    totalAmoutOfUnits: 0
-    RangeAttack: 30
   - Name: 4
     Tier: 3
-    HealPoint: 320
-    Damage: 20
-    TimeBetweenAttacks: 3
-    Speed: 18
-    EscapeSpeed: 20
-    DistanceFromPlayer: 5
+    HealPoint: 20
+    Damage: 1
+    TimeBetweenAttacks: 1000
+    Speed: 0
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -87,5 +81,3 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
-    totalAmoutOfUnits: 0
-    RangeAttack: 50

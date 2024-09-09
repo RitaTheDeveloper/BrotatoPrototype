@@ -19,12 +19,12 @@ MonoBehaviour:
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 5000
-    Damage: 5
+    HealPoint: 4000
+    Damage: 12
     TimeBetweenAttacks: 0.5
-    Speed: 2
-    EscapeSpeed: 0
-    DistanceFromPlayer: 0
+    Speed: 10
+    EscapeSpeed: 20
+    DistanceFromPlayer: 8
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -33,15 +33,16 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 35
   - Name: 2
     Tier: 1
-    HealPoint: 10000
+    HealPoint: 30000
     Damage: 6
     TimeBetweenAttacks: 0.5
     Speed: 2
-    EscapeSpeed: 0
-    DistanceFromPlayer: 0
+    EscapeSpeed: 25
+    DistanceFromPlayer: 10
     Distance: 0
     SpeedDirection: 0
     TimeStopDirection: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 35
   - Name: 3
     Tier: 2
@@ -67,6 +69,7 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 30
   - Name: 4
     Tier: 3
@@ -84,4 +87,5 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 50
