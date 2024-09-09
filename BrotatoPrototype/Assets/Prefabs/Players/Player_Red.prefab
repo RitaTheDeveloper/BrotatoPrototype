@@ -103,6 +103,8 @@ MonoBehaviour:
   _startProbabilityOfDodge: 0
   _startSatiety: 100
   _startHunger: -10
+  _startWisdom: 0
+  _wisdomPerLvl: 5
 --- !u!143 &6578908997837697688
 CharacterController:
   m_ObjectHideFlags: 0
@@ -266,12 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960f999d3e7c5994ebb651782840cbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: a8e5354d0d929ef4d81f75889c5790ca, type: 3}
-  glowIcon: {fileID: 21300000, guid: 00ced93cda31e504bbf0c9508ec35ae2, type: 3}
-  unlockIcon: {fileID: 21300000, guid: 35d70f2605c02ea42a65e5cbc736af57, type: 3}
-  unlockIconGlow: {fileID: 21300000, guid: f72c982733a46d7488d135eee8f001ef, type: 3}
-  player2d: {fileID: 21300000, guid: e3c71491a04d2a646ac3b72f8db01a0d, type: 3}
-  nameHero: "\u0417\u0430\u0431\u0430\u0432\u0430"
+  icon: {fileID: 21300000, guid: 79c0d0c73a5f42c45a7fd3cdfba46963, type: 3}
+  glowIcon: {fileID: 21300000, guid: 69b9974e166220d43bd888eb90c28dd6, type: 3}
+  unlockIcon: {fileID: 21300000, guid: d8cfa1bbf44281042a6c2acf5e15e776, type: 3}
+  unlockIconGlow: {fileID: 21300000, guid: db1665ab013555a4d910d95e8f16970f, type: 3}
+  player2d: {fileID: 21300000, guid: 864e7d2bb67f20345bed965b6d5346fa, type: 3}
+  nameHero: "\u041A\u0440\u0430\u0441\u043D\u0430\u044F \u0448\u0430\u043F\u043A\u0430"
   description: "4 \u0441\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u044B \u0432 \u043D\u0430\u043B\u0438\u0447\u0438\u0438,
     \u0443\u043C\u0435\u0435\u0442 \u0443\u043F\u0440\u0430\u0432\u043B\u044F\u0442\u044C
     \u0441\u0440\u0430\u0437\u0443 8 \u043E\u0440\u0443\u0434\u0438\u044F\u043C\u0438.
@@ -518,11 +520,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 8c0443b5081635b4d805b892974ee159, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -8883512463308972942, guid: 197512c606f61f9478e0fdc54586d8d0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 197512c606f61f9478e0fdc54586d8d0,
         type: 3}
-      insertIndex: 5
+      insertIndex: -1
       addedObject: {fileID: 8758252368223671241}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 197512c606f61f9478e0fdc54586d8d0,

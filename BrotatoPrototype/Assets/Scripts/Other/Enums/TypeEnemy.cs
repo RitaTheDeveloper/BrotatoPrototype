@@ -22,5 +22,6 @@ public enum TypeEnemy
     HealingBush,
     CrowGrade2,
     Rabbit,
-    Goose
+    Goose,
+    Horse
 }
