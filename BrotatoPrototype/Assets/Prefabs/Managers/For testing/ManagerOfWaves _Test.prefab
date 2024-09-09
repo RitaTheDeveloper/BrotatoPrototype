@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7990112956235043157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7781045815524586992}
+  - component: {fileID: 9030291058832656217}
+  - component: {fileID: 3011337432341468620}
+  m_Layer: 0
+  m_Name: ManagerOfWaves _Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7781045815524586992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990112956235043157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9030291058832656217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990112956235043157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _managerEnemyTier: {fileID: 3011337432341468620}
+  _listOfWaveSettings:
+  - name: wave1
+    parametersOfWave:
+      waveTime: 20
+      amountOfGoldPerWave: 20
+      amountOfExpPerWave: 19
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      typeEnemy: 21
+      tierType: 0
+      spawnCd: 5
+      totalAmountOfEnemies: -1
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 5
+      radiusOfPlayer: 30
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+  - name: wave2
+    parametersOfWave:
+      waveTime: 23
+      amountOfGoldPerWave: 24
+      amountOfExpPerWave: 23
+    _enemyStrengthFactors:
+      speedFactor: 1
+      damageFactor: 1
+      healthFactor: 1
+    enemySpawnerSettings:
+    - enemy: {fileID: 5223660492763062781, guid: 1ceaf14e6c877d742aa3343eb6aa24f7,
+        type: 3}
+      typeEnemy: 1
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 37
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 0
+      endSpawnTime: 7
+      radiusOfPlayer: 25
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+    - enemy: {fileID: 4628488769005604218, guid: d414c1cbc4f023e44bf73281cde150e6,
+        type: 3}
+      typeEnemy: 7
+      tierType: 0
+      spawnCd: -1
+      totalAmountOfEnemies: 15
+      amountOfEnemiesInPack: 1
+      radiusOfPack: 3
+      startSpawnTime: 1
+      endSpawnTime: 10
+      radiusOfPlayer: 35
+      isSpecificPoint: 0
+      specificPoint: {x: 0, y: 0}
+--- !u!114 &3011337432341468620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990112956235043157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2484886e3d54e584881c3468c18a34e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerEnemy: {fileID: 11400000, guid: 1724fbba6a60a6e48903af25b6ce075c, type: 2}
