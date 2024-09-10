@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2349393902107787531}
   - component: {fileID: 5776774504449581080}
-  - component: {fileID: 7522623501473152233}
   - component: {fileID: 6459088100143395243}
   - component: {fileID: 4045245801649021}
+  - component: {fileID: 478072975966655690}
   - component: {fileID: -3042665310841873622}
   - component: {fileID: 7000490772107043313}
   - component: {fileID: -7393357449704921018}
@@ -63,30 +63,9 @@ MonoBehaviour:
   percantageOfMelleDamage: 100
   percantageOfRangedDamage: 0
   soundName: SwordAttack
-  animator: {fileID: 7522623501473152233}
+  animator: {fileID: 478072975966655690}
   timeOfAttack: 0.61
   nearestEnemy: {fileID: 0}
---- !u!95 &7522623501473152233
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678555817528853990}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ffd9daf157aa4214b8f0e89a5d3a16b4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &6459088100143395243
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,8 +112,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.67, y: 0.5, z: 2.4}
-  m_Center: {x: 0, y: 0, z: 0.6334499}
+  m_Size: {x: 0.67, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &478072975966655690
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678555817528853990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ffd9daf157aa4214b8f0e89a5d3a16b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-3042665310841873622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,10 +397,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 103897332922461643}
+  - {fileID: 2106018245293010082}
   m_Father: {fileID: 2349393902107787531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &503179881170422304
+--- !u!1001 &1923227337593391945
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -411,7 +411,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 06c8f3b1cdb980148adde25f98bbf863,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0023297786
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06c8f3b1cdb980148adde25f98bbf863,
         type: 3}
@@ -431,7 +431,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 06c8f3b1cdb980148adde25f98bbf863,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06c8f3b1cdb980148adde25f98bbf863,
         type: 3}
@@ -468,9 +468,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c8f3b1cdb980148adde25f98bbf863, type: 3}
---- !u!4 &103897332922461643 stripped
+--- !u!4 &2106018245293010082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 06c8f3b1cdb980148adde25f98bbf863,
     type: 3}
-  m_PrefabInstance: {fileID: 503179881170422304}
+  m_PrefabInstance: {fileID: 1923227337593391945}
   m_PrefabAsset: {fileID: 0}
