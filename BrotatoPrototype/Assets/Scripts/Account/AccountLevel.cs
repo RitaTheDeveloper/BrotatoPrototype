@@ -10,16 +10,20 @@ public class AccountLevel : MonoBehaviour, IUpgradable
     private GameManager _gameManager;
     private SaveController _saveController;
     private AccountLevelSettingScriptable _accountLevelSettingScriptable;
+    private AccountLevelSetting[] _accountLevelSettings;
     public int StartLvl => _startLvl;
     private List<GameObject> newlyUnlockedCharacterList = new List<GameObject>();
 
     public int CurrentLvl => _currentLvl;
+
+    public AccountLevelSetting[] AccountLevelSettings { get => _accountLevelSettings; }
 
     public void Init(GameManager gameManager, AccountLevelSettingScriptable accountLevelSettingScriptable)
     {
         _gameManager = gameManager;
         _saveController = gameManager.GetComponent<SaveController>();
         _accountLevelSettingScriptable = accountLevelSettingScriptable;
+        _accountLevelSettings = accountLevelSettingScriptable.accountLevelSettings;
         LoadCurrentLevel();
     }
 
@@ -37,7 +41,7 @@ public class AccountLevel : MonoBehaviour, IUpgradable
       
     }
 
-    private int GetSumOfLvlsOfOpenCharacters()
+    public int GetSumOfLvlsOfOpenCharacters()
     {
         int sum = 0;
         for(int i=0; i < _gameManager.PlayerPrefabs.Length; i++)

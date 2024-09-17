@@ -13,4 +13,5 @@ public class AccountLevelSetting
 {
     public string name;
     public int numberOfCharacterLevels;
+    public GameObject unlockable—haracter;
 }

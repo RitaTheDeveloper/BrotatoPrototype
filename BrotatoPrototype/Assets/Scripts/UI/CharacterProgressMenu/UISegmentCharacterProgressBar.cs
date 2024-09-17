@@ -14,4 +14,6 @@ public class UISegmentCharacterProgressBar : MonoBehaviour
         _numberOfWavesTxt.text = numberOfWaves.ToString() + " волн";
         _uiInfoLevelReward.SetDescriptionLevelReward(characterLevel);
     }
+
+
 }
