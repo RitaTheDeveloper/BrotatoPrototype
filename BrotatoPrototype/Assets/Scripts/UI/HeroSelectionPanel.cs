@@ -18,8 +18,13 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] private Transform panelOfIcons;
     [SerializeField] private GameObject blockInfo;
     [SerializeField] private TextMeshProUGUI blockTextInfo;
+    [SerializeField] private GameObject heroLvlObj;
     [SerializeField] private TextMeshProUGUI heroLvl;
     [SerializeField] private Button choseBtn;
+    [SerializeField] private UIAccountBtnMenuHeroSelection accountBtn;
+    [SerializeField] private GameObject accountProgressMenu;
+    
+
     public GameObject[] playerPrefabs;
     private int indexOfHero = 0;
     private List<Button> _iconsBtns;
@@ -27,6 +32,7 @@ public class HeroSelectionPanel : MonoBehaviour
     private GameObject _player;
     private UiPlayerInfo _uiPlayerInfo;
     private SaveController _saveController;
+    private GameManager _gameManager;
     private void Awake()
     {
         //CreateIconsForMenu();
@@ -34,8 +40,10 @@ public class HeroSelectionPanel : MonoBehaviour
     }
     private void Start()
     {
-        _saveController = GameManager.instance.GetComponent<SaveController>();
+        _gameManager = GameManager.instance;
+        _saveController = _gameManager.GetComponent<SaveController>();
         currentImgHero.sprite = playerPrefabs[indexOfHero].GetComponent<UiPlayerInfo>().player2d;
+        DisplayParametersAccountBtn();
         OnClickIconHero(indexOfHero);
         SelectedIcon();
         blockInfo.SetActive(false);
@@ -47,13 +55,14 @@ public class HeroSelectionPanel : MonoBehaviour
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         nameHeroTxt.text = _uiPlayerInfo.nameHero;
+        heroLvlObj.SetActive(true);
         SetHeroLvl(_player);     
         heroDescription.text = _uiPlayerInfo.description;
         if (index != indexOfHero)
         {            
             ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
-            StartCoroutine(ChangeSprite(_player));           
+            StartCoroutine(ChangeSprite(_player, false));           
         }
         UpdateCharacteristics(_player);
         indexOfHero = index;
@@ -65,12 +74,13 @@ public class HeroSelectionPanel : MonoBehaviour
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         nameHeroTxt.text = _uiPlayerInfo.nameHero;
-        SetHeroLvl(_player);
+        heroLvlObj.SetActive(false);
+       // SetHeroLvl(_player);
         if (index != indexOfHero)
         {
             ImageAlphaOff();
             effectSmokeAnimator.SetTrigger("change");
-            StartCoroutine(ChangeSprite(_player));
+            StartCoroutine(ChangeSprite(_player, true));
         }
         heroDescription.text = _uiPlayerInfo.description;
         indexOfHero = index;
@@ -79,10 +89,18 @@ public class HeroSelectionPanel : MonoBehaviour
         choseBtn.interactable = false;
     }
 
-    private IEnumerator ChangeSprite(GameObject player)
+    private IEnumerator ChangeSprite(GameObject player, bool isLocked)
     {
         yield return new WaitForSeconds(0.4f);
-        currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
+        if (isLocked)
+        {
+            currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2dLock;
+        }
+        else
+        {
+            currentImgHero.sprite = player.GetComponent<UiPlayerInfo>().player2d;
+        }
+
     }
 
     public void ChooseTheHero()
@@ -213,6 +231,16 @@ public class HeroSelectionPanel : MonoBehaviour
         characterProgressMenu.SetActive(true);
         characterProgressMenu.GetComponent<UICharacterProgressMenu>().Init();
         characterProgressMenu.GetComponent<UICharacterProgressMenu>().UpgradeUIParameters(_player);
+    }
+
+    public void DisplayParametersAccountBtn()
+    {
+        accountBtn.Init(_gameManager.AccountLevel);
+    }
+
+    public void OnClickAccountProgressMenu()
+    {
+        accountProgressMenu.SetActive(true);
     }
 }
     

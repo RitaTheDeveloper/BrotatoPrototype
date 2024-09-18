@@ -252,8 +252,11 @@ public class GameManager : MonoBehaviour
     {
         _isPlaying = false;
         _gameIsOver = true;
-        _currentWave.StopWave();
-
+        if(_currentWave != null)
+        {
+            _currentWave.StopWave();
+        }
+        
         if (player != null)
         {
             Destroy(player);

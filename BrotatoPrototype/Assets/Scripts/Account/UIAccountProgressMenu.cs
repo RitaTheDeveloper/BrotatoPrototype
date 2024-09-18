@@ -29,4 +29,9 @@ public class UIAccountProgressMenu : MonoBehaviour
         _accountLvlTxt.text = _accountLevel.CurrentLvl.ToString();
     }
 
+    public void OnClickBackBtn()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
