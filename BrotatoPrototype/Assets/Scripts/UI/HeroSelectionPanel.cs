@@ -174,6 +174,7 @@ public class HeroSelectionPanel : MonoBehaviour
     {
         DestroyAndCreateNewIcons();
         _iconsBtns[indexOfHero].Select();
+        DisplayParametersAccountBtn();
         SetHeroLvl(_player);
         UpdateCharacteristics(_player);
         

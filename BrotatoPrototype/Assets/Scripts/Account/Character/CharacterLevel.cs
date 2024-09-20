@@ -56,8 +56,9 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
         {
             if (_currentNumberOfWavesCompleted >= _levelSettings.levelSettings[_currentLvl].numberOfWaves)
             {
-                IncreaseLvl();
+                IncreaseLvl();                
                 UpgradeCharacteristics(_playerCharacteristics, 1);
+                _accountLevel.resultsOfRace.CharacterLvlWasUpgraded(true, this);
             }
         }
         else

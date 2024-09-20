@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AccountLevel : MonoBehaviour, IUpgradable
 {
+    public ResultsOfRace resultsOfRace;
+
     private int _startLvl = 0;
     private int _currentLvl;
     private GameManager _gameManager;
@@ -37,6 +39,7 @@ public class AccountLevel : MonoBehaviour, IUpgradable
         if(GetSumOfLvlsOfOpenCharacters() >= _accountLevelSettingScriptable.accountLevelSettings[_currentLvl].numberOfCharacterLevels)
         {
             IncreaseLvl();
+            resultsOfRace.AccountWasUpgraded(true, CurrentLvl);
         }
       
     }
@@ -93,4 +96,10 @@ public class AccountLevel : MonoBehaviour, IUpgradable
     {
         newlyUnlockedCharacterList = new List<GameObject>();
     }
+
+    public void ResultsOfGame()
+    {
+
+    }
+
 }

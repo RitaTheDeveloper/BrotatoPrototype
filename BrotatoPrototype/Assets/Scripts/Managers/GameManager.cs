@@ -151,7 +151,8 @@ public class GameManager : MonoBehaviour
 
     public void WaveCompleted()
     {
-        
+        onWaveCompleted?.Invoke();
+
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         _isPlaying = false;
@@ -174,7 +175,6 @@ public class GameManager : MonoBehaviour
             RemoveAllBullets();
             
         }
-        onWaveCompleted?.Invoke();
     }
 
     public void StartNextWave()
