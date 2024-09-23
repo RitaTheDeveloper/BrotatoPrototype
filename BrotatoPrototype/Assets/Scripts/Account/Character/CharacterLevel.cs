@@ -24,6 +24,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
     public int MaxLvl => _maxLvl;
 
     public CharacteristicBuff[] Baffs { get => baffs;}
+    public int CurrentNumberOfWavesCompleted { get => _currentNumberOfWavesCompleted; set => _currentNumberOfWavesCompleted = value; }
 
     public void Init(GameManager gameManager, CharacterLevelSettingScriptable levelSettings)
     {
@@ -51,6 +52,7 @@ public class CharacterLevel : MonoBehaviour, IUpgradable
     {
         _currentNumberOfWavesCompleted++;
         _saveController.SaveCharacterWaveCount(gameObject.name, _currentNumberOfWavesCompleted);
+        _accountLevel.resultsOfRace.DefaultResults(this);
 
         if(_currentLvl < _maxLvl)
         {

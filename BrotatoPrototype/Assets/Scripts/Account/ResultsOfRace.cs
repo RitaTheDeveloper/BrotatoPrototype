@@ -9,6 +9,7 @@ public class ResultsOfRace : MonoBehaviour
 
     ResultOfRace resultOfRace = new ResultOfRace(false, false);
     public int accountLvl;
+    public int numberOfWaves;
     private CharacterDataForResults characterData;
 
     public ResultOfRace ResultOfRace { get => resultOfRace; set => resultOfRace = value; }
@@ -21,6 +22,12 @@ public class ResultsOfRace : MonoBehaviour
         characterData = new CharacterDataForResults();
         characterData.name = characterLvl.gameObject.GetComponent<UiPlayerInfo>().nameHero;
         characterData.lvl = characterLvl.CurrentLvl;
+        characterData.numberOfwaves = characterLvl.CurrentNumberOfWavesCompleted;
+    }
+
+    public void DefaultResults(CharacterLevel characterLvl)
+    {
+        numberOfWaves = characterLvl.CurrentNumberOfWavesCompleted;
     }
 
     public void AccountWasUpgraded(bool wasUpgraded, int lvl)
@@ -38,12 +45,15 @@ public class ResultsOfRace : MonoBehaviour
 
 }
 
+[System.Serializable]
 public class CharacterDataForResults
 {
     public string name;
     public int lvl;
+    public int numberOfwaves;
 }
 
+[System.Serializable]
 public class ResultOfRace
 {
     public bool characterLvlUp;

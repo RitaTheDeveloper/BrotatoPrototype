@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject characterProgressMenu;
     [SerializeField] private GameObject menuWithHeroSelection;
+    [SerializeField] private GameObject uiProgressMenu;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject conformationWindow;
@@ -521,6 +522,13 @@ public class UIManager : MonoBehaviour
     private void PromptAnimation()
     {
         _animator.SetTrigger("ShowPrompt");
+    }
+
+    public void DisplayResultsOfRace(List<GameObject> unlockedPlayers, ResultsOfRace resultsOfRace)
+    {
+        DisplayUnLockedNewHeroes(unlockedPlayers);
+        uiProgressMenu.SetActive(true);
+        uiProgressMenu.GetComponent<UIProgressMenu>().Init(resultsOfRace);
     }
 
     public void DisplayUnLockedNewHeroes(List<GameObject> unlockedPlayers)

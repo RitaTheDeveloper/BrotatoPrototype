@@ -13,8 +13,33 @@ public class UIProgressMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _characterLvlTxt;
 
 
-    public void Init()
+    public void Init(ResultsOfRace resultsOfrace)
     {
-         
+        _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.numberOfWaves.ToString() + " волн";
+
+        if (resultsOfrace.characterWasUpgraded)
+        {
+            _characterObj.SetActive(true);
+
+            _characterNameTxt.text = resultsOfrace.CharacterData.name;
+            _characterLvlTxt.text = resultsOfrace.CharacterData.lvl.ToString();
+            _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.CharacterData.numberOfwaves.ToString() + " волн";
+        }
+        else
+        {
+            _characterObj.SetActive(false);
+        }
+
+        if (resultsOfrace.accountWasUpgraded)
+        {
+            _accountObj.SetActive(true);
+            _currentLvlAccount.text = resultsOfrace.accountLvl.ToString();
+        }
+        else
+        {
+            _accountObj.SetActive(false);
+        }
     }
+
+
 }

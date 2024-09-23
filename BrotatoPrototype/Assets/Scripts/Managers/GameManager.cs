@@ -132,7 +132,8 @@ public class GameManager : MonoBehaviour
         RemoveAllFromArena();
         shop.ResetShop();
         onGameOver?.Invoke();
-        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
+        UIManager.instance.DisplayResultsOfRace(GetListOfNewlyUnlockedCharacters(), AccountLevel.resultsOfRace);
+        AccountLevel.resultsOfRace.ResetResults();
         ResetListOfNewlyUnlockedCharacters();
     }
 
@@ -145,7 +146,8 @@ public class GameManager : MonoBehaviour
         UIManager.instance.RemoveAllUpElements();
         RemoveAllFromArena();
         shop.ResetShop();
-        UIManager.instance.DisplayUnLockedNewHeroes(GetListOfNewlyUnlockedCharacters());
+        UIManager.instance.DisplayResultsOfRace(GetListOfNewlyUnlockedCharacters(), AccountLevel.resultsOfRace);
+        AccountLevel.resultsOfRace.ResetResults();
         ResetListOfNewlyUnlockedCharacters();
     }
 
