@@ -4836,6 +4836,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 523ee5a7efae11c48b523e298ccc0d97, type: 3}
+--- !u!114 &157305421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519359935933579938, guid: 523ee5a7efae11c48b523e298ccc0d97,
+    type: 3}
+  m_PrefabInstance: {fileID: 157305420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &164844293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19043,7 +19055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09557b56551a169428aac3da1e1dd703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetProgress: 1
+  resetProgress: 0
   playerPrefabs:
   - {fileID: 585661124780564198, guid: ec1bfeb1b99eeb5488fa7059256bc988, type: 3}
   - {fileID: 6707278682496988613, guid: b6003b1cbb19e984b8f56af0167e9ab4, type: 3}
@@ -19053,7 +19065,7 @@ MonoBehaviour:
   - {fileID: 585661124780564198, guid: 7f24cb95b92f9964f87c8dce626f4d0b, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
   shop: {fileID: 3800595267031063961}
-  _managerOfWaves: {fileID: 1220227507}
+  _managerOfWaves: {fileID: 157305421}
   currencyPoolObject: {fileID: 118824993}
   _accountLevel: {fileID: 1267772196}
   player: {fileID: 0}
@@ -23396,18 +23408,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216871247}
   m_CullTransparentMesh: 1
---- !u!114 &1220227507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9030291058832656217, guid: 88e2d68d0db698f44bd697d1a6fae3ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 307597912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1227665878
 GameObject:
   m_ObjectHideFlags: 0

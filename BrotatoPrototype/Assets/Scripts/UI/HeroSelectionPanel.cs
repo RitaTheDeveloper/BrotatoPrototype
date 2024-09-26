@@ -37,13 +37,14 @@ public class HeroSelectionPanel : MonoBehaviour
     {
         //CreateIconsForMenu();
         indexOfHero = 0;
+        _gameManager = GameManager.instance;
     }
     private void Start()
     {
-        _gameManager = GameManager.instance;
+        
         _saveController = _gameManager.GetComponent<SaveController>();
         currentImgHero.sprite = playerPrefabs[indexOfHero].GetComponent<UiPlayerInfo>().player2d;
-        DisplayParametersAccountBtn();
+       // DisplayParametersAccountBtn();
         OnClickIconHero(indexOfHero);
         SelectedIcon();
         blockInfo.SetActive(false);
