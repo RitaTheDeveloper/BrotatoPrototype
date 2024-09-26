@@ -3228,16 +3228,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startMaxHp: 40
-  _startHpRegen: 2
-  _startMoveSpeed: 60
+  _startHpRegen: 2.5
+  _startMoveSpeed: 50
   _startMagnetDistance: 6
   _startAttackSpeedPercentage: 10000
-  _startDamagePercentage: 1000
-  _startMeleeDamage: 0
-  _startRangedDamage: 5
-  _startCritChancePercentage: 0
+  _startDamagePercentage: -90
+  _startMeleeDamage: -10
+  _startRangedDamage: -10
+  _startCritChancePercentage: -20
   _startArmor: -100
-  _startProbabilityOfDodge: 60
+  _startProbabilityOfDodge: 50
   _startSatiety: 100
   _startHunger: -14
 --- !u!143 &3096899062759002954
@@ -3299,7 +3299,7 @@ MonoBehaviour:
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
   - {fileID: 240998036831228480, guid: 219ec21525128ce4081054e8ec18db35, type: 3}
-  - {fileID: 240998036831228480, guid: 219ec21525128ce4081054e8ec18db35, type: 3}
+  - {fileID: 6896685654037281728, guid: 862624121d9f5ab418c1fd38191b838b, type: 3}
   radisOfWeaponHold: 3
   maxNumberOfWeapons: 2
 --- !u!114 &6632754515298849247
@@ -3439,9 +3439,9 @@ MonoBehaviour:
   _startLvl: 0
   baffs:
   - characteristic: 4
-    value: 5.5
+    value: 0.001
   - characteristic: 3
-    value: 3.8
+    value: 0.001
 --- !u!114 &6075048633139200149
 MonoBehaviour:
   m_ObjectHideFlags: 0
