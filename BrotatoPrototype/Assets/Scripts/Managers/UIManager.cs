@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private UIComicsController uIComicsController;
     [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] private GameObject lowHpImg;
     [SerializeField] private GameObject mainMenu;
@@ -191,7 +192,8 @@ public class UIManager : MonoBehaviour
             {
                 characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             }
-            OpenShop();
+            //OpenShop(); было
+            uIComicsController.ComicsCheck(this);
         }
     }
 
