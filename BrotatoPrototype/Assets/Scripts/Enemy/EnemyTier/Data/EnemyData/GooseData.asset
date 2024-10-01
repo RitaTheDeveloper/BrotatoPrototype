@@ -12,33 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1845d1c553f1d46ada2719d2e076b9, type: 3}
   m_Name: GooseData
   m_EditorClassIdentifier: 
-  TypeEnemy: 21
+  TypeEnemy: 23
   PrefabTier: {fileID: 2217476828117351108, guid: 98a31f7615d0a0947b109ad0f9dd7e9c,
     type: 3}
   ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 10
-    Damage: 7
-    TimeBetweenAttacks: 3
-    Speed: 8
-    EscapeSpeed: 0
-    DistanceFromPlayer: 0
-    Distance: 0
-    SpeedDirection: 0
-    TimeStopDirection: 0
-    CDDirection: 0
-    TypeSpawnEnemy: 0
-    TierSpawnUnit: 0
-    TimeBetweenSpawn: 0
-    CountSpawnUnit: 0
-    RangeAttack: 30
-  - Name: 2
-    Tier: 1
-    HealPoint: 20
-    Damage: 10
-    TimeBetweenAttacks: 3
+    HealPoint: 300
+    Damage: 5
+    TimeBetweenAttacks: 0.75
     Speed: 10
     EscapeSpeed: 0
     DistanceFromPlayer: 0
@@ -50,12 +33,31 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
+    RangeAttack: 30
+  - Name: 2
+    Tier: 1
+    HealPoint: 500
+    Damage: 10
+    TimeBetweenAttacks: 0.75
+    Speed: 11
+    EscapeSpeed: 0
+    DistanceFromPlayer: 0
+    Distance: 0
+    SpeedDirection: 0
+    TimeStopDirection: 0
+    CDDirection: 0
+    TypeSpawnEnemy: 0
+    TierSpawnUnit: 0
+    TimeBetweenSpawn: 0
+    CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 30
   - Name: 3
     Tier: 2
-    HealPoint: 25
-    Damage: 14
-    TimeBetweenAttacks: 3
+    HealPoint: 700
+    Damage: 15
+    TimeBetweenAttacks: 0.75
     Speed: 12
     EscapeSpeed: 0
     DistanceFromPlayer: 0
@@ -67,13 +69,14 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 30
   - Name: 4
     Tier: 3
-    HealPoint: 30
-    Damage: 17
-    TimeBetweenAttacks: 3
-    Speed: 14
+    HealPoint: 1000
+    Damage: 20
+    TimeBetweenAttacks: 0.75
+    Speed: 13
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 0
@@ -84,4 +87,5 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
     RangeAttack: 50
