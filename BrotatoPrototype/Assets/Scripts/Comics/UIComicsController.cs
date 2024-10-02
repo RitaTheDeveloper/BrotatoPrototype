@@ -13,7 +13,8 @@ public class UIComicsController : MonoBehaviour
     private ComicsOfWave[] _comicsOfWaves;
 
     private Sprite[] _currentComics = null;
-    private bool isShow = false;
+    private bool _isShow = false;
+    int _currentWave;
 
     private void Start()
     {
@@ -24,17 +25,17 @@ public class UIComicsController : MonoBehaviour
     {
         _uiManager = uiManager;
         Debug.Log("check comics");
-        var currentWave = _gameManager.WaveCounter;
-        isShow = false;
+        _currentWave = _gameManager.WaveCounter;
+        _isShow = false;
         foreach (var go in _comicsOfWaves)
         {
-            if (currentWave == go.numberOfWave && go.comicsSprites != null)
+            if (_currentWave == go.numberOfWave && go.comicsSprites.Length > 0)
             {
                 _currentComics = go.comicsSprites;
-                isShow = true;
+                _isShow = true;
             }
         }
-        ShowComics(isShow);
+        ShowComics(_isShow);
     }
 
     private void ShowComics(bool isShow)
@@ -42,6 +43,8 @@ public class UIComicsController : MonoBehaviour
         if (isShow)
         {
             Debug.Log("show comics");
+
+            SetImages();
             ShowComic(0);            
         }
         else
@@ -52,18 +55,28 @@ public class UIComicsController : MonoBehaviour
 
     public void OnClickClose()
     {
+        PlaySoundOfButtonPress();
         LeanTween.alpha(_comicsObj.GetComponent<RectTransform>(), 0f, 1f).setEase(LeanTweenType.easeInOutQuad);
         _comicsObj.SetActive(false);
-        _uiManager.OpenShop();
+        if (_currentWave == _comicsOfWaves.Length)
+        {
+            _uiManager.OnClickMenu();
+        }
+        else
+        {
+            _uiManager.OpenShop();
+        }       
     }
 
     public void OnClickNextComics()
     {
+        PlaySoundOfButtonPress();
         ShowComic(1);
     }
 
     public void OnClickBack()
     {
+        PlaySoundOfButtonPress();
         ShowComic(0);
     }
 
@@ -93,6 +106,22 @@ public class UIComicsController : MonoBehaviour
         foreach (var go in _comics)
         {
             go.SetActive(false);
+        }
+    }
+
+    private void PlaySoundOfButtonPress()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
+    }
+
+    private void SetImages()
+    {
+        for (int i = 0; i < _currentComics.Length; i++)
+        {
+            _comics[i].GetComponent<UIForComic>().SetImage(_currentComics[i]);
         }
     }
 
