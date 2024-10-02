@@ -50,6 +50,7 @@ public class SlotItemForSaleData : MonoBehaviour
         _potAnimator.gameObject.SetActive(true);
         ImageAlphaOff();
         _potAnimator.SetTrigger("change");
+
         if (gameObject.activeInHierarchy)
         {
             StartCoroutine(ChangeSprite(w.IconWeapon));
