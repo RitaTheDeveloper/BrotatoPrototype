@@ -15,4 +15,9 @@ public class UIForComic : MonoBehaviour
         if(closeBtn) closeBtn.gameObject.SetActive(isLast);
         if(nextComicBtn) nextComicBtn.gameObject.SetActive(!isLast);
     }
+
+    public void SetImage(Sprite comic)
+    {
+        comicImg.sprite = comic;
+    }
 }
