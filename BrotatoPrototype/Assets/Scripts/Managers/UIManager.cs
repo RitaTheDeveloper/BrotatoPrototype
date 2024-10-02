@@ -278,9 +278,18 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void OnClickNextAfterWin()
+    {
+        AllOff();
+        RemoveAllUpElements();
+        GameManager.instance.DestroyGameScene();
+       // ResetMusic();
+        uIComicsController.ComicsCheck(this);
+    }
+
     public void OnClickMenu()
     {
-        // SceneManager.LoadScene(0);
+        PlaySoundOfButtonPress();
         AllOff();
         RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();

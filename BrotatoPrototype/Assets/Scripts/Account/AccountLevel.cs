@@ -36,7 +36,7 @@ public class AccountLevel : MonoBehaviour, IUpgradable
 
     public void Upgrade()
     {
-        if(GetSumOfLvlsOfOpenCharacters() >= _accountLevelSettingScriptable.accountLevelSettings[_currentLvl].numberOfCharacterLevels)
+        if(GetSumOfLvlsOfOpenCharacters() >= _accountLevelSettingScriptable.accountLevelSettings[_currentLvl].numberOfCharacterLevels && CurrentLvl < _accountLevelSettingScriptable.accountLevelSettings.Length)
         {
             IncreaseLvl();
             resultsOfRace.AccountWasUpgraded(true, CurrentLvl);
