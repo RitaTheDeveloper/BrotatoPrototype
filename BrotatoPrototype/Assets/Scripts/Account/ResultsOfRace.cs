@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ResultsOfRace : MonoBehaviour
 {
+    [SerializeField] private GameManager _gameManager;
     public bool characterWasUpgraded = false;
     public bool accountWasUpgraded = false;
 
     ResultOfRace resultOfRace = new ResultOfRace(false, false);
     public int accountLvl;
     public int numberOfWaves;
+    public int numberOfWavesCompletedForRace;
     private CharacterDataForResults characterData;
 
     public ResultOfRace ResultOfRace { get => resultOfRace; set => resultOfRace = value; }
@@ -28,6 +30,7 @@ public class ResultsOfRace : MonoBehaviour
     public void DefaultResults(CharacterLevel characterLvl)
     {
         numberOfWaves = characterLvl.CurrentNumberOfWavesCompleted;
+        numberOfWavesCompletedForRace = _gameManager.WaveCounter;
     }
 
     public void AccountWasUpgraded(bool wasUpgraded, int lvl)
@@ -41,6 +44,7 @@ public class ResultsOfRace : MonoBehaviour
     {
         characterWasUpgraded = false;
         accountWasUpgraded = false;
+        numberOfWavesCompletedForRace = 0;
     }
 
 }
@@ -58,6 +62,7 @@ public class ResultOfRace
 {
     public bool characterLvlUp;
     public bool accountLvlUp;
+    public int numberOfWavesCompleted;
 
     public ResultOfRace(bool characterLvlUp, bool accountLvlUp)
     {

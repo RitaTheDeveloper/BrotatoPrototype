@@ -315,7 +315,7 @@ public class GameManager : MonoBehaviour
         _saveController.LoadData();
     }
 
-    private void ResetProgress()
+    public void ResetProgress()
     {
         _saveController.ResetData();
     }
