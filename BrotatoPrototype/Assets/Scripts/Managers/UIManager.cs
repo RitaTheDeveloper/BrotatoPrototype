@@ -283,8 +283,12 @@ public class UIManager : MonoBehaviour
         AllOff();
         RemoveAllUpElements();
         GameManager.instance.DestroyGameScene();
-       // ResetMusic();
-        uIComicsController.ComicsCheck(this);
+        // ResetMusic();
+        if (!uIComicsController.ComicsCheck(this))
+        {
+            OnClickMenu();
+        }
+
     }
 
     public void OnClickMenu()

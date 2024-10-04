@@ -6911,7 +6911,7 @@ PrefabInstance:
     - target: {fileID: 9030291058832656217, guid: 88e2d68d0db698f44bd697d1a6fae3ed,
         type: 3}
       propertyPath: _listOfWaveSettings.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9030291058832656217, guid: 88e2d68d0db698f44bd697d1a6fae3ed,
         type: 3}
@@ -20622,7 +20622,7 @@ GameObject:
   - component: {fileID: 1032762326}
   - component: {fileID: 1032762325}
   m_Layer: 5
-  m_Name: MenuBtn
+  m_Name: NextBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32527,6 +32527,11 @@ PrefabInstance:
       objectReference: {fileID: 1880681665}
     - target: {fileID: 317508094598012579, guid: bc34c3140e59abe45bed792af30ee0d5,
         type: 3}
+      propertyPath: uiComicsController
+      value: 
+      objectReference: {fileID: 1814177993}
+    - target: {fileID: 317508094598012579, guid: bc34c3140e59abe45bed792af30ee0d5,
+        type: 3}
       propertyPath: accountProgressMenu
       value: 
       objectReference: {fileID: 269839733}
@@ -36660,6 +36665,11 @@ PrefabInstance:
       objectReference: {fileID: 966859251}
     - target: {fileID: 7935070485883597744, guid: 3082e5802457d8a4f9e589d2bac86e70,
         type: 3}
+      propertyPath: _heroSelectionPanel
+      value: 
+      objectReference: {fileID: 811377470}
+    - target: {fileID: 7935070485883597744, guid: 3082e5802457d8a4f9e589d2bac86e70,
+        type: 3}
       propertyPath: _comics.Array.data[0]
       value: 
       objectReference: {fileID: 75724617}
@@ -36712,7 +36722,6 @@ GameObject:
   - component: {fileID: 6644469388231996277}
   - component: {fileID: 5461585779316735461}
   - component: {fileID: 1792386745094613043}
-  - component: {fileID: 6644469388231996278}
   m_Layer: 5
   m_Name: RerollBtn
   m_TagString: Untagged
@@ -41166,23 +41175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284474373780168681}
   m_CullTransparentMesh: 1
---- !u!114 &6644469388231996278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284474373780168681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d12d240fc00a974eb0e61e7e91cb081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabTooltip: {fileID: 3301680292528972963, guid: 5b951a40903589f4b88757f428ff4da7,
-    type: 3}
-  _tooltipText: 123123
-  _sprite: {fileID: 0}
-  uiPrefab: {fileID: 0}
 --- !u!1001 &6667470227843572620
 PrefabInstance:
   m_ObjectHideFlags: 0

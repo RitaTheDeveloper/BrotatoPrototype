@@ -6,7 +6,8 @@ public class UIComicsController : MonoBehaviour
 {
     public ComicsOfWaveScriptable comicsOfWaveScriptable;
 
-    [SerializeField] private GameManager _gameManager;    
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private HeroSelectionPanel _heroSelectionPanel;
     [SerializeField] private GameObject _comicsObj;
     [SerializeField] private GameObject[] _comics;
     private UIManager _uiManager;
@@ -21,7 +22,7 @@ public class UIComicsController : MonoBehaviour
         _comicsOfWaves = comicsOfWaveScriptable.comicsOfWaves;
     }
 
-    public void ComicsCheck(UIManager uiManager)
+    public bool ComicsCheck(UIManager uiManager)
     {
         _uiManager = uiManager;
         Debug.Log("check comics");
@@ -36,6 +37,7 @@ public class UIComicsController : MonoBehaviour
             }
         }
         ShowComics(_isShow);
+        return _isShow;
     }
 
     private void ShowComics(bool isShow)
@@ -49,7 +51,14 @@ public class UIComicsController : MonoBehaviour
         }
         else
         {
-            _uiManager.OpenShop();
+            if(_currentWave == 0)
+            {
+                _heroSelectionPanel.OnClickPlay();
+            }
+            else
+            {
+                _uiManager.OpenShop();
+            }            
         }        
     }
 
@@ -58,7 +67,11 @@ public class UIComicsController : MonoBehaviour
         PlaySoundOfButtonPress();
         LeanTween.alpha(_comicsObj.GetComponent<RectTransform>(), 0f, 1f).setEase(LeanTweenType.easeInOutQuad);
         _comicsObj.SetActive(false);
-        if (_currentWave == _comicsOfWaves.Length)
+        if(_currentWave == 0)
+        {
+            _heroSelectionPanel.OnClickPlay();
+        }
+        else if (_currentWave == _gameManager.GetListOfWaveSetting.Count)
         {
             _uiManager.OnClickMenu();
         }
@@ -95,7 +108,7 @@ public class UIComicsController : MonoBehaviour
         AllComicsOff();
         _comicsObj.SetActive(true);
         _comics[index].SetActive(true);
-        LeanTween.alpha(_comicsObj.GetComponent<RectTransform>(), 0f, 0f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.alpha(_comicsObj.GetComponent<RectTransform>(), 0.5f, 0f).setEase(LeanTweenType.easeInOutQuad);
         LeanTween.alpha(_comicsObj.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInOutQuad);
     }
 
@@ -124,5 +137,6 @@ public class UIComicsController : MonoBehaviour
             _comics[i].GetComponent<UIForComic>().SetImage(_currentComics[i]);
         }
     }
+
 
 }
