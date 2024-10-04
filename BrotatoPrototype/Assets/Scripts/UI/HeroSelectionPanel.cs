@@ -23,6 +23,7 @@ public class HeroSelectionPanel : MonoBehaviour
     [SerializeField] private Button choseBtn;
     [SerializeField] private UIAccountBtnMenuHeroSelection accountBtn;
     [SerializeField] private GameObject accountProgressMenu;
+    [SerializeField] private UIComicsController uiComicsController;
     
 
     public GameObject[] playerPrefabs;
@@ -33,15 +34,16 @@ public class HeroSelectionPanel : MonoBehaviour
     private UiPlayerInfo _uiPlayerInfo;
     private SaveController _saveController;
     private GameManager _gameManager;
+    private UIManager _uIManager;
     private void Awake()
     {
         //CreateIconsForMenu();
         indexOfHero = 0;
         _gameManager = GameManager.instance;
+        _uIManager = UIManager.instance;
     }
     private void Start()
-    {
-        
+    {        
         _saveController = _gameManager.GetComponent<SaveController>();
         currentImgHero.sprite = playerPrefabs[indexOfHero].GetComponent<UiPlayerInfo>().player2d;
        // DisplayParametersAccountBtn();
@@ -107,7 +109,18 @@ public class HeroSelectionPanel : MonoBehaviour
     public void ChooseTheHero()
     {
         ImageAlphaOff();
-        //effectSmokeAnimator.gameObject.SetActive(false);
+        //effectSmokeAnimator.gameObject.SetActive(false);        
+        _gameManager.WaveCounter = 0;
+        if (!uiComicsController.ComicsCheck(_uIManager))
+        {
+            
+            OnClickPlay();
+        }
+       
+    }
+
+    public void OnClickPlay()
+    {
         mainMenu.SetActive(false);
         GameManager.instance.SetHeroIndex(indexOfHero);
         GameManager.instance.Init();

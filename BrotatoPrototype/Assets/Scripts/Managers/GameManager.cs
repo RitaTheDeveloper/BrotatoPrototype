@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private bool _isPlaying;
     public bool IsPlaying { get => _isPlaying; }
-    public int WaveCounter { get => _waveCounter; }
+    public int WaveCounter { get => _waveCounter; set => _waveCounter = value; }
     public GameObject[] PlayerPrefabs { get => playerPrefabs; }
     public int CurrentDifficulty { get => _currentDifficulty; set => _currentDifficulty = value; }
     public PoolObject GetCurrencyPoolObject { get => currencyPoolObject; }
