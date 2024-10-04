@@ -15,7 +15,8 @@ public class UIProgressMenu : MonoBehaviour
 
     public void Init(ResultsOfRace resultsOfrace)
     {
-        _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.numberOfWaves.ToString() + " волн";
+        // _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.numberOfWaves.ToString() + " волн";
+        _numberOfWavesPassedTxt.text = "пройдено волн: " + (GameManager.instance.WaveCounter);
 
         if (resultsOfrace.characterWasUpgraded)
         {
@@ -23,7 +24,7 @@ public class UIProgressMenu : MonoBehaviour
 
             _characterNameTxt.text = resultsOfrace.CharacterData.name;
             _characterLvlTxt.text = resultsOfrace.CharacterData.lvl.ToString();
-            _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.CharacterData.numberOfwaves.ToString() + " волн";
+           // _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.CharacterData.numberOfwaves.ToString() + " волн";
         }
         else
         {

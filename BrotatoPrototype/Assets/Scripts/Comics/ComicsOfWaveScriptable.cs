@@ -14,6 +14,7 @@ public class ComicsOfWave
     public string name;
     public int numberOfWave;
     public Sprite[] comicsSprites;
+    public bool alreadyShown = false;
 
 
     public Sprite[] GetArrayOfComics()

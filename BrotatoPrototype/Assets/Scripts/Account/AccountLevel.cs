@@ -36,7 +36,7 @@ public class AccountLevel : MonoBehaviour, IUpgradable
 
     public void Upgrade()
     {
-        if(GetSumOfLvlsOfOpenCharacters() >= _accountLevelSettingScriptable.accountLevelSettings[_currentLvl].numberOfCharacterLevels && CurrentLvl < _accountLevelSettingScriptable.accountLevelSettings.Length)
+        if(CurrentLvl < _accountLevelSettingScriptable.accountLevelSettings.Length && GetSumOfLvlsOfOpenCharacters() >= _accountLevelSettingScriptable.accountLevelSettings[_currentLvl].numberOfCharacterLevels )
         {
             IncreaseLvl();
             resultsOfRace.AccountWasUpgraded(true, CurrentLvl);
@@ -57,7 +57,10 @@ public class AccountLevel : MonoBehaviour, IUpgradable
     private void IncreaseLvl()
     {
         List<GameObject> list1 = GetUnlockCharacterList();
-        _currentLvl++;
+        if(CurrentLvl < _accountLevelSettingScriptable.accountLevelSettings.Length)
+        {
+            _currentLvl++;
+        }        
         SaveData data = _saveController.GetData();
         data.CurrentAccountLevel = _currentLvl;
         _saveController.SaveData();
