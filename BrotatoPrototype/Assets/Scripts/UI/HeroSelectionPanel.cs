@@ -111,12 +111,16 @@ public class HeroSelectionPanel : MonoBehaviour
         ImageAlphaOff();
         //effectSmokeAnimator.gameObject.SetActive(false);        
         _gameManager.WaveCounter = 0;
-        if (!uiComicsController.ComicsCheck(_uIManager))
+        if (uiComicsController)
         {
-            
-            OnClickPlay();
+            if (!uiComicsController.ComicsCheck(_uIManager))
+            {
+
+                OnClickPlay();
+            }
         }
-       
+        OnClickPlay();
+
     }
 
     public void OnClickPlay()

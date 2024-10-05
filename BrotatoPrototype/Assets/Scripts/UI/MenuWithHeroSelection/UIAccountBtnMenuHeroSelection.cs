@@ -20,6 +20,7 @@ public class UIAccountBtnMenuHeroSelection : MonoBehaviour
         _lvlTxt.text = _accountLevel.CurrentLvl.ToString();
 
         int currentLvl = _accountLevel.CurrentLvl;
+        currentLvl = 4;
         int maxLvsForUnlockingHero = _accountLevel.AccountLevelSettings[currentLvl].numberOfCharacterLevels;
         int currentSumOflvls = _accountLevel.GetSumOfLvlsOfOpenCharacters();
         SetTxtForSlider(maxLvsForUnlockingHero, currentSumOflvls);
