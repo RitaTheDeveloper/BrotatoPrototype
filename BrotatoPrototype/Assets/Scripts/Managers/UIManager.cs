@@ -192,8 +192,7 @@ public class UIManager : MonoBehaviour
             {
                 characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
             }
-            //OpenShop(); было
-            uIComicsController.ComicsCheck(this);
+            OpenShop();
         }
     }
 
