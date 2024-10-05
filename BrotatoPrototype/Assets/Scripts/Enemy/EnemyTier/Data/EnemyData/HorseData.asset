@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de89440ef3421244b1136d611990437, type: 3}
   m_Name: HorseData
   m_EditorClassIdentifier: 
-  TypeEnemy: 22
+  TypeEnemy: 24
   PrefabTier: {fileID: 5223660492763062781, guid: 9495a7f47e4e3dd4a8ef85d8fed7f7c1,
     type: 3}
   ViewSetting: {fileID: 11400000, guid: 10b38f302293b4644b0fc6574f825565, type: 2}
   _enemiesTier:
   - Name: 1
     Tier: 0
-    HealPoint: 350
-    Damage: 15
+    HealPoint: 700
+    Damage: 12
     TimeBetweenAttacks: 0
-    Speed: 7
+    Speed: 12
     EscapeSpeed: 0
     DistanceFromPlayer: 30
     Distance: 40
@@ -33,12 +33,13 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
   - Name: 2
     Tier: 1
-    HealPoint: 450
-    Damage: 20
+    HealPoint: 1000
+    Damage: 14
     TimeBetweenAttacks: 0
-    Speed: 11
+    Speed: 13
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 40
@@ -49,10 +50,11 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
   - Name: 3
     Tier: 2
-    HealPoint: 500
-    Damage: 25
+    HealPoint: 1400
+    Damage: 18
     TimeBetweenAttacks: 0
     Speed: 14
     EscapeSpeed: 0
@@ -65,12 +67,13 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0
   - Name: 4
     Tier: 3
-    HealPoint: 550
-    Damage: 30
+    HealPoint: 1900
+    Damage: 20
     TimeBetweenAttacks: 0
-    Speed: 18
+    Speed: 17
     EscapeSpeed: 0
     DistanceFromPlayer: 0
     Distance: 40
@@ -81,3 +84,4 @@ MonoBehaviour:
     TierSpawnUnit: 0
     TimeBetweenSpawn: 0
     CountSpawnUnit: 0
+    totalAmoutOfUnits: 0

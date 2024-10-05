@@ -9,8 +9,6 @@ public class ItemShopInfo : MonoBehaviour
     [SerializeField] public string IdWeapon;
     [Tooltip("Стоимость оружия:")]
     [SerializeField] public int Price;
-    [Tooltip("Скидка при продаже %:")]
-    [SerializeField] public int DiscountProcent;
     [Tooltip("Уровень предмета:")]
     [SerializeField] public RareItemsDataStruct LevelItem;
 
@@ -21,6 +19,7 @@ public class ItemShopInfo : MonoBehaviour
     [SerializeField] public Sprite IconWeapon;
 
     private int currentPrice;
+    public float DiscountProcent = 30.0f;
 
     public int GetPrice(int wave)
     {
@@ -30,7 +29,7 @@ public class ItemShopInfo : MonoBehaviour
 
     public int GetSalePrice()
     {
-        return Price - (int)((float)Price * ((float)DiscountProcent / 100.0f));
+        return Price - (int)((float)Price * (30.0f / 100.0f));
     }
 
     public RareItemsDataStruct GetLevelItem()

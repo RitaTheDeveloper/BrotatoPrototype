@@ -91,19 +91,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 125
-  _startHpRegen: 1
-  _startMoveSpeed: 120
-  _startMagnetDistance: 5
+  _startMaxHp: 50
+  _startHpRegen: 0.5
+  _startMoveSpeed: 150
+  _startMagnetDistance: 2
   _startAttackSpeedPercentage: 0
   _startDamagePercentage: 0
   _startMeleeDamage: 0
-  _startRangedDamage: 7
+  _startRangedDamage: 0
   _startCritChancePercentage: 0
   _startArmor: 0
   _startProbabilityOfDodge: 0
   _startSatiety: 100
-  _startHunger: -10
+  _startHunger: -15
   _startWisdom: 0
   _wisdomPerLvl: 5
 --- !u!143 &6578908997837697688
@@ -165,8 +165,10 @@ MonoBehaviour:
   containerOfWeaponHolds: {fileID: 657595685309503170}
   listOfWeapons:
   - {fileID: 3573727161873608435, guid: 47fbe6fa7bb9e6a439a4ce4cdf472fc0, type: 3}
+  - {fileID: 2960794746483798122, guid: 51e2a6eb291b19b4dbacf303e6980fde, type: 3}
+  - {fileID: 5844762086061995874, guid: b4943d53119d636498a69e6503f894c7, type: 3}
   radisOfWeaponHold: 3
-  maxNumberOfWeapons: 8
+  maxNumberOfWeapons: 10
 --- !u!114 &5974007143320626426
 MonoBehaviour:
   m_ObjectHideFlags: 0
