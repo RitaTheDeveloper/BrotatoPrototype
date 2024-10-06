@@ -5,6 +5,10 @@ using UnityEngine;
 public class HealingPotion : MonoBehaviour
 {
     [SerializeField] private float amountOfHp;
+    [SerializeField] private GameObject _vfxEffect;
+    private GameObject _projectile;
+    private Vector3 _position;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +16,9 @@ public class HealingPotion : MonoBehaviour
         {
             Debug.Log("хватай хилку");
             other.GetComponent<LivingEntity>().AddHealth(amountOfHp);
+            _position = gameObject.transform.position;
+            _position.y = _position.y + 2.1f;
+            _projectile = Instantiate(_vfxEffect, _position, gameObject.transform.rotation);
             Destroy(gameObject);
             PlaySoundTakeHealing();
         }
