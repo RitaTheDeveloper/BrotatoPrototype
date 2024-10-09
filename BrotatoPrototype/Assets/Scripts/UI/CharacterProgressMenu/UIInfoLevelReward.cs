@@ -10,20 +10,22 @@ public class UIInfoLevelReward : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] private GameObject _iconAndTxtPrefab;
     [SerializeField] private GameObject _panelPrefab;
     [SerializeField] private Sprite _glowBox;
+    [SerializeField] private Sprite _glowOpenedBox;
     [SerializeField] UICharacteristicScriptable uICharacteristicScriptable;
     CharacterLevel _characterLevel;
     private CharacteristicBuff[] _baffs;
     private TooltipComponent tooltipComponent;
     private Sprite _normalBox;
+    public bool BoxIsOpened { get; set; }
 
-    private void Awake()
+    private void Start()
     {
         _normalBox = GetComponent<Image>().sprite;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {        
-        ChangeSprite(_glowBox);
+        ChangeSprite(GetBoxSprite(BoxIsOpened));
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -65,6 +67,18 @@ public class UIInfoLevelReward : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private void ChangeSprite(Sprite sprite)
     {
         GetComponent<Image>().sprite = sprite;
+    }
+
+    private Sprite GetBoxSprite(bool boxIsOpened)
+    {
+        if (boxIsOpened)
+        {
+            return _glowOpenedBox;
+        }
+        else
+        {
+            return _glowBox;
+        }
     }
 
 }
