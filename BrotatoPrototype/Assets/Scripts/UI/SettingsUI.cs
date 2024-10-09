@@ -146,6 +146,15 @@ public class SettingsUI : MonoBehaviour
 
         _saveController.SetData(saveData);
         _saveController.SaveData();
+        PlaySoundOfButtonPress();
         gameObject.SetActive(false);
+    }
+
+    private void PlaySoundOfButtonPress()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
     }
 }

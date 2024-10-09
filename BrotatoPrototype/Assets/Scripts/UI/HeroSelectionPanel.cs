@@ -44,7 +44,7 @@ public class HeroSelectionPanel : MonoBehaviour
     }
     private void Start()
     {        
-        _saveController = _gameManager.GetComponent<SaveController>();
+        _saveController = GameManager.instance.GetComponent<SaveController>();
         currentImgHero.sprite = playerPrefabs[indexOfHero].GetComponent<UiPlayerInfo>().player2d;
        // DisplayParametersAccountBtn();
         OnClickIconHero(indexOfHero);
@@ -110,7 +110,7 @@ public class HeroSelectionPanel : MonoBehaviour
     {
         ImageAlphaOff();
         //effectSmokeAnimator.gameObject.SetActive(false);        
-        _gameManager.WaveCounter = 0;
+        GameManager.instance.WaveCounter = 0;
         if (!uiComicsController.ComicsCheck(_uIManager))
         {
             
@@ -212,6 +212,14 @@ public class HeroSelectionPanel : MonoBehaviour
         }
     }
 
+    public void PlaySoundOfButtonPress()
+    {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.Play("ClickElement");
+        }
+    }
+
     private void SetHeroLvl(GameObject player)
     {
         if (_saveController)
@@ -250,7 +258,7 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void DisplayParametersAccountBtn()
     {
-        accountBtn.Init(_gameManager.AccountLevel);
+        accountBtn.Init(GameManager.instance.AccountLevel);
     }
 
     public void OnClickAccountProgressMenu()
