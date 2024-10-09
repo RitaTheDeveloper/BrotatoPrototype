@@ -21,10 +21,13 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        Vector3 _position = transform.position;
+        _position.y = _position.y + 2.1f;
+        dieEffecrt = Resources.Load<GameObject>("P_Wisp_01_Common");
         //audioSource.PlayOneShot(AudioManager.instance.GetAudioClip("EnemyDeath"));
         if (dieEffecrt != null)
         {
-            Instantiate(dieEffecrt, transform.position, Quaternion.identity);
+            Instantiate(dieEffecrt, _position, Quaternion.identity);
         }
         
         SpawnCurrency();
