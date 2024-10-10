@@ -58,7 +58,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelTxt;
 
     [SerializeField] private CharacteristicsUI [] characteristicsUIs;
-    [SerializeField] private AllAbilities allAbilities;
 
     private TextAnim textAnim;
     private int _numberOfLeveledUpForCurrentWave;

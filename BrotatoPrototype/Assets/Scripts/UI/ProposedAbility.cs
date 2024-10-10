@@ -8,25 +8,9 @@ public class ProposedAbility : MonoBehaviour
 {
     [SerializeField] private Image iconImg;
     [SerializeField] private Image background;
-    [SerializeField] public Ability ability = null;
     [SerializeField] private Button okBtn;
     [SerializeField] private TextMeshProUGUI nameTxt;
     [SerializeField] private TextMeshProUGUI descriptionTxt;
-
-
-    private void Start()
-    {
-       // SetUIForProposedAbility();
-    }
-
-    public void SetUIForProposedAbility()
-    {
-        iconImg.sprite = ability.GetSprite();
-        nameTxt.text = ability.GetName();
-        descriptionTxt.text = ability.GetDescription();
-        okBtn.onClick.RemoveAllListeners();
-        okBtn.onClick.AddListener(ability.UseAbility);
-    }
 
     public void SetUIForProposedBuff(UIBuffPerLvl uiBuff)
     {
