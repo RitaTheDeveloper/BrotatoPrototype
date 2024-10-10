@@ -18,7 +18,7 @@ public class UICharacterProgressBar : MonoBehaviour
     public void CreateProgressBar(CharacterLevelSetting[] levelSettings, int currentNumberOfwaves, CharacterLevel characterLevel)
     {
         DestroyAllSegments();
-
+        _numberOfWavesOfSegmentList = new List<int>();
         _levelSettings = levelSettings;
         var size = _levelSettings.Length;
 
@@ -58,14 +58,14 @@ public class UICharacterProgressBar : MonoBehaviour
             baseStep = 1f / (float)_numberOfWavesOfSegmentList.Count;
             myValue = 0f;
             int lastnumberOfWavesCompleted = 0;
-            int lastNumberNotCompleted = 0;
+            int lastNumberNotCompleted = _numberOfWavesOfSegmentList[0];
             for (int i = 0; i < _numberOfWavesOfSegmentList.Count; i++)
             {
                 if (currentNumberOfwaves >= _numberOfWavesOfSegmentList[i])
                 {
                     myValue += baseStep;
                     lastnumberOfWavesCompleted = _numberOfWavesOfSegmentList[i];
-                    if (i < _numberOfWavesOfSegmentList.Count - 1)
+                    if (i < _numberOfWavesOfSegmentList.Count)
                     {
                         lastNumberNotCompleted = _numberOfWavesOfSegmentList[i + 1];
                     }
@@ -77,11 +77,11 @@ public class UICharacterProgressBar : MonoBehaviour
             }
             int diffOflastSegments = lastNumberNotCompleted - lastnumberOfWavesCompleted;
             int partOfCurrentNumber = currentNumberOfwaves - lastnumberOfWavesCompleted;
-            partValue = (float)partOfCurrentNumber / (float)diffOflastSegments;
 
+            partValue = (float)partOfCurrentNumber / (float)diffOflastSegments;                       
         }
 
-
+        
         progressSlider.value = myValue + baseStep * partValue;
     }
 }

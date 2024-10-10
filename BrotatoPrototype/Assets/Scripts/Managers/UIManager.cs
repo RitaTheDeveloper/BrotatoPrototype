@@ -277,6 +277,18 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void OnClickMenuAfterLose()
+    {
+        AllOff();
+        RemoveAllUpElements();
+        GameManager.instance.DestroyGameScene();
+        GameManager.instance.WaveCounter = -1;
+        if (!uIComicsController.ComicsCheck(this))
+        {
+            OnClickMenu();
+        }
+    }
+
     public void OnClickNextAfterWin()
     {
         AllOff();

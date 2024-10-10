@@ -80,7 +80,7 @@ public class UIComicsController : MonoBehaviour
         {
             _heroSelectionPanel.OnClickPlay();
         }
-        else if (_currentWave == _gameManager.GetListOfWaveSetting.Count)
+        else if (_currentWave == _gameManager.GetListOfWaveSetting.Count || _currentWave == -1)
         {
             _uiManager.OnClickMenu();
         }

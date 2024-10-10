@@ -2099,7 +2099,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9149427189713556408}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickMenu
+        m_MethodName: OnClickMenuAfterLose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11549,6 +11549,11 @@ PrefabInstance:
     - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
@@ -11558,13 +11563,38 @@ PrefabInstance:
       objectReference: {fileID: 269839735}
     - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 811377470}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClickBackBtn
       objectReference: {fileID: 0}
     - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySoundOfButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIAccountProgressMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HeroSelectionPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805285348996637655, guid: d6aaec785e79b164b9673011c7e3b04e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2632901607763320241, guid: d6aaec785e79b164b9673011c7e3b04e,
         type: 3}
@@ -14298,6 +14328,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1283196778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &604507179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519359935933579938, guid: 523ee5a7efae11c48b523e298ccc0d97,
+    type: 3}
+  m_PrefabInstance: {fileID: 157305420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &604803986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20269,7 +20311,7 @@ MonoBehaviour:
   - {fileID: 585661124780564198, guid: 7f24cb95b92f9964f87c8dce626f4d0b, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
   shop: {fileID: 3800595267031063961}
-  _managerOfWaves: {fileID: 1220227507}
+  _managerOfWaves: {fileID: 604507179}
   currencyPoolObject: {fileID: 118824993}
   _accountLevel: {fileID: 1267772196}
   player: {fileID: 0}
@@ -24734,18 +24776,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216871247}
   m_CullTransparentMesh: 1
---- !u!114 &1220227507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9030291058832656217, guid: 88e2d68d0db698f44bd697d1a6fae3ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 307597912}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1227665878
 GameObject:
   m_ObjectHideFlags: 0
