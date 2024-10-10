@@ -17784,6 +17784,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5af0345db3ea4574bb773d0f6f4a747e, type: 3}
+--- !u!1001 &938666800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.099998474
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.22877064
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97348034
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -153.551
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b6bc627becc7def4691b91a23136e307,
+        type: 3}
+      propertyPath: m_Name
+      value: Koschey_g
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6bc627becc7def4691b91a23136e307, type: 3}
 --- !u!1 &946104074
 GameObject:
   m_ObjectHideFlags: 0
@@ -19424,7 +19492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 84.99932}
+  m_AnchoredPosition: {x: 0, y: 84.99934}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1022732969
@@ -41814,10 +41882,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  uIComicsController: {fileID: 0}
   analyticsSystem: {fileID: 0}
   lowHpImg: {fileID: 1101455748}
   mainMenu: {fileID: 200751520}
+  characterProgressMenu: {fileID: 0}
   menuWithHeroSelection: {fileID: 811377468}
+  uiProgressMenu: {fileID: 0}
   settingsPanel: {fileID: 988441859499618486}
   pauseMenu: {fileID: 217557157}
   conformationWindow: {fileID: 1672360439}
@@ -41851,6 +41922,7 @@ MonoBehaviour:
   shop: {fileID: 2976894618448768704}
   uIWaveResults: {fileID: 2054836636}
   uiUnlockedHeroes: {fileID: 171417007}
+  uIBuffShopController: {fileID: 0}
   uIHealths:
   - {fileID: 3860534240470180215}
   - {fileID: 2140678844}
@@ -41865,7 +41937,6 @@ MonoBehaviour:
   characteristicsUIs:
   - {fileID: 1110730901}
   - {fileID: 463086875}
-  allAbilities: {fileID: 491669902}
   shopPhrasesController: {fileID: 0}
 --- !u!114 &9149427189713556409
 MonoBehaviour:
@@ -42017,3 +42088,4 @@ SceneRoots:
   - {fileID: 1328881734}
   - {fileID: 1624216696}
   - {fileID: 938339927}
+  - {fileID: 938666800}
