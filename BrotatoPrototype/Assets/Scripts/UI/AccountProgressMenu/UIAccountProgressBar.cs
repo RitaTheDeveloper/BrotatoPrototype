@@ -14,10 +14,12 @@ public class UIAccountProgressBar : MonoBehaviour
     AccountLevelSetting[] _accountLevelSettings;
     private int _maxNumberOfLevels;
 
+    private List<int> _numberOfLevelsOfSegmentList = new List<int>();
+
     public void CreateProgressBar(AccountLevelSetting[] accountLevelSettings, int sumOfLevels)
     {
         DestroyAllSegments();
-
+        _numberOfLevelsOfSegmentList = new List<int>();
         _accountLevelSettings = accountLevelSettings;
         var size = _accountLevelSettings.Length;
 
@@ -30,6 +32,7 @@ public class UIAccountProgressBar : MonoBehaviour
             if (sumOfLevels >= _accountLevelSettings[i].numberOfCharacterLevels)
                 unlocked = true;
             uiSegment.Init(info, _accountLevelSettings[i].numberOfCharacterLevels, unlocked);
+            _numberOfLevelsOfSegmentList.Add(_accountLevelSettings[i].numberOfCharacterLevels);
         }
 
         DisplayCurrentNumberOfLevels(sumOfLevels);
@@ -45,10 +48,45 @@ public class UIAccountProgressBar : MonoBehaviour
 
     private void DisplayCurrentNumberOfLevels(int currentNumberOfLevels)
     {
-        var size = _accountLevelSettings.Length;
-        _maxNumberOfLevels = _accountLevelSettings[size - 1].numberOfCharacterLevels;
-        progressSlider.value = (float)currentNumberOfLevels / (float)_maxNumberOfLevels;
+        //var size = _accountLevelSettings.Length;
+        //_maxNumberOfLevels = _accountLevelSettings[size - 1].numberOfCharacterLevels;
+        //progressSlider.value = (float)currentNumberOfLevels / (float)_maxNumberOfLevels;
 
         currentNumberOfLevelsTxt.text = currentNumberOfLevels.ToString();
+
+        float baseStep = 0f;
+        float myValue = 0f;
+        float partValue = 0f;
+
+        if (currentNumberOfLevels != 0)
+        {
+            baseStep = 1f / (float)_numberOfLevelsOfSegmentList.Count;
+            myValue = 0f;
+            int lastnumberOfWavesCompleted = 0;
+            int lastNumberNotCompleted = _numberOfLevelsOfSegmentList[0];
+            for (int i = 0; i < _numberOfLevelsOfSegmentList.Count; i++)
+            {
+                if(currentNumberOfLevels >= _numberOfLevelsOfSegmentList[i])
+                {
+                    myValue += baseStep;
+                    lastnumberOfWavesCompleted = _numberOfLevelsOfSegmentList[i];
+                    if (i < _numberOfLevelsOfSegmentList.Count)
+                    {
+                        lastNumberNotCompleted = _numberOfLevelsOfSegmentList[i + 1];
+                    }
+                    else
+                    {
+                        lastNumberNotCompleted = _numberOfLevelsOfSegmentList[i];
+                    }
+                }
+            }
+            int diffOflastSegments = lastNumberNotCompleted - lastnumberOfWavesCompleted;
+            int partOfCurrentNumber = currentNumberOfLevels - lastnumberOfWavesCompleted;
+
+            partValue = (float)partOfCurrentNumber / (float)diffOflastSegments;
+        }
+
+        Debug.Log("myValue = " + myValue + " baseStep = " + baseStep + "partvalue = " + partValue);
+        progressSlider.value = myValue + baseStep * partValue;
     }
 }
