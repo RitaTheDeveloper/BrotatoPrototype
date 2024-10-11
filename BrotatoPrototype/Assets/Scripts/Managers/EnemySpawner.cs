@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         _waveController = GameManager.instance.GetCurrentWave();
         if (_isSpawnerUnit == false)
         {
-            _target = GameManager.instance.player.transform;
+            _target = GameManager.instance.player.transform;           
         }
         if (_isNotRandom)
         {

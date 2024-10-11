@@ -25,5 +25,6 @@ public enum TypeEnemy
     TreeWoodBoss,
     Rabbit,
     Goose,
-    Horse
+    Horse,
+    Koschei
 }
