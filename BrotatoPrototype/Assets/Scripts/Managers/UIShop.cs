@@ -508,6 +508,7 @@ public class UIShop : MonoBehaviour
 
     public void DestroyAllPopUpWindows()
     {
+        DestroyItemInfo();
         foreach (Transform popUpWindow in containerForPopUpWindows)
         {
             Destroy(popUpWindow.gameObject);
