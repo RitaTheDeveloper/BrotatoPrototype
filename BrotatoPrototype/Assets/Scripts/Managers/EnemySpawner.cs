@@ -149,7 +149,6 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy(Vector3 position)
     {
         //PlaySoundOfSpawnEnemy();
-        countOfEnemies++;
         var enemyPosition = new Vector3(position.x, _enemyPrefab.transform.position.y, position.z);
 
         EnemyController enemy;
@@ -177,6 +176,8 @@ public class EnemySpawner : MonoBehaviour
             enemyParameters.AmountOfExperience = _waveController.distrubitionOfExpToMobs.GetNumberOfGoldOrExp();
         }
         _waveController.counterOfMobs++;
+        countOfEnemies++;
+        Debug.Log(countOfEnemies);
     }
 
     private IEnumerator SpawnOneEnemy()

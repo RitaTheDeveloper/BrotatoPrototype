@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveController : MonoBehaviour
 {
     public float time;
-    public List<EnemySpawner> enemySpawnersPrefabs;
+    public List<EnemySpawner> enemySpawnersPrefabs = new List<EnemySpawner>();
 
     private List<EnemySpawnerSettings> enemySpawnerSettings;
     private float _currentTime;
@@ -13,7 +13,7 @@ public class WaveController : MonoBehaviour
     private bool _soundStart = false;
     float timerTick = 0;
 
-    private List<EnemySpawner> _enemySpawners;
+    private List<EnemySpawner> _enemySpawners = new List<EnemySpawner>();
     public DistrubitionOfGoldOrExpToMobs distrubitionOfGoldToMobs = new DistrubitionOfGoldOrExpToMobs();
     public DistrubitionOfGoldOrExpToMobs distrubitionOfExpToMobs = new DistrubitionOfGoldOrExpToMobs();
     private int _amountOfGoldForWave = 0;
@@ -84,6 +84,7 @@ public class WaveController : MonoBehaviour
     private void AllSpawnersOn()
     {
         mobSpawnerPrefab = new GameObject("mobSpawnerPrefab");
+        Debug.Log("делаем спавнеры");
         foreach (EnemySpawnerSettings enemySetting in enemySpawnerSettings)
         {            
             float spawnCd = enemySetting.spawnCd;
@@ -106,6 +107,7 @@ public class WaveController : MonoBehaviour
             EnemySpawner enemySpawner = mobSpawner.AddComponent<EnemySpawner>();
             enemySpawner.InitSpawner(_managerEnemyTier, totalAmountOfenemies);
             enemySpawner.SetParameters(enemySetting.enemy, spawnCd, enemySetting.startSpawnTime, enemySetting.endSpawnTime, enemySetting.amountOfEnemiesInPack, enemySetting.radiusOfPack,enemySetting.radiusOfPlayer, enemySetting.isSpecificPoint, enemySetting.specificPoint, enemySetting.typeEnemy, enemySetting.tierType);
+            _enemySpawners.Add(enemySpawner);
         }
         Destroy(mobSpawnerPrefab);
     }
@@ -128,6 +130,7 @@ public class WaveController : MonoBehaviour
 
     public void StartWave()
     {
+        Debug.Log("начинаем волну");
         _stopTime = false;
         _currentTime = time;
         AllSpawnersOn();
