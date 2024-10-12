@@ -30,9 +30,9 @@ public class UIComicsController : MonoBehaviour
         _isShow = false;
         foreach (var go in _comicsOfWaves)
         {
-            if (_currentWave == go.numberOfWave && go.comicsSprites.Length > 0) //&& !go.alreadyShown)
+            if (_currentWave == go.numberOfWave && go.comicsSprites.Length > 0 && !go.alreadyShown)
             {
-                //go.alreadyShown = true;
+                go.alreadyShown = true;
                 _currentComics = go.comicsSprites;
                 _isShow = true;
             }
