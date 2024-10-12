@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGameNameT1_3: "\u0429\u0438\u0442"
-  inGameNameT4: "\u0413\u0438\u0433\u0430 \u0449\u0438\u0442"
+  inGameNameT4: "\u0429\u0438\u0442"
   iconT1: {fileID: 21300000, guid: b7544ea4929fa5d4e8e81946f195815f, type: 3}
   iconT2: {fileID: 21300000, guid: 468ad47f2532d994b8f2fc6a58b2d4e3, type: 3}
   iconT3: {fileID: 21300000, guid: e5b44b74957590a408dace4a5bb634ca, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   reductionCoeff: 0.9
   damage: 40
   critChance: 0.05
-  attackSpeed: 0.25
+  attackSpeed: 0.2777778
 --- !u!114 &8191647243664329808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,8 +83,8 @@ MonoBehaviour:
   type: 0
   attackRange: 7
   startDamage: 40
-  startAttackSpeedPercentage: -50
-  attackPerSecond: 0.25
+  startAttackSpeedPercentage: -44.44444
+  attackPerSecond: 0.2777778
   _timeLoop: 2
   startCritChance: 0.05
   knockBack: 1
@@ -162,8 +162,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.67, y: 0.5, z: 2.4}
-  m_Center: {x: 0, y: 0, z: 0.6334499}
+  m_Size: {x: 3.127375, y: 3.0875163, z: 0.73878443}
+  m_Center: {x: -0.14927971, y: 0.022966146, z: -0.1435706}
 --- !u!114 &4085420792034552254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,11 +178,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IdWeapon: Shield_T1
   Price: 15
-  DiscountProcent: 10
   LevelItem: {fileID: 3604925324220637081, guid: 0edf585f992a3da4a97012f1e2784991,
     type: 3}
   NameWeapon: "\u0429\u0438\u0442"
   IconWeapon: {fileID: 21300000, guid: b7544ea4929fa5d4e8e81946f195815f, type: 3}
+  DiscountProcent: 10
 --- !u!114 &-7232290730903620439
 MonoBehaviour:
   m_ObjectHideFlags: 0

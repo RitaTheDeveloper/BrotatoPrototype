@@ -1405,6 +1405,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29494456}
   m_CullTransparentMesh: 1
+--- !u!114 &32293968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3862059105156820004, guid: e818693f168a2a24186821127fa9f6d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 419714434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33310883
 GameObject:
   m_ObjectHideFlags: 0
@@ -10214,18 +10226,18 @@ PrefabInstance:
     - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
       propertyPath: baseWeapons.Array.size
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
       propertyPath: baseBuffsPerLvl.Array.size
-      value: 4
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
       propertyPath: baseWeapons.Array.data[10]
       value: 
-      objectReference: {fileID: -7972295244767881081, guid: c68f3ee2e2fcff647bdacf2076a062a4,
+      objectReference: {fileID: 4587720564308958088, guid: fa009d3f87599724fac3d4a5a1d660fd,
         type: 3}
     - target: {fileID: 3555660859997559321, guid: 84a9822b913e91e4ebfa98725524a2be,
         type: 3}
@@ -10577,6 +10589,74 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 415547405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &419714434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570681800110068195, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895572259044229778, guid: e818693f168a2a24186821127fa9f6d6,
+        type: 3}
+      propertyPath: m_Name
+      value: AlmostFinalManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e818693f168a2a24186821127fa9f6d6, type: 3}
 --- !u!224 &420483852 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2632901607763320241, guid: d6aaec785e79b164b9673011c7e3b04e,
@@ -20382,15 +20462,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetProgress: 0
   playerPrefabs:
-  - {fileID: 585661124780564198, guid: ec1bfeb1b99eeb5488fa7059256bc988, type: 3}
   - {fileID: 6707278682496988613, guid: b6003b1cbb19e984b8f56af0167e9ab4, type: 3}
   - {fileID: 843176903461962620, guid: 72ad14c7650f25446a7e3f0b4c2b0e3c, type: 3}
-  - {fileID: 1326479278294070286, guid: 452b5ecebd9105f41893e9a2868d6e8a, type: 3}
-  - {fileID: 843176903461962620, guid: c85230cc3f5d8474c9b71e5a3eae27ee, type: 3}
   - {fileID: 6707278682496988613, guid: f98792a3fa51e24488443ac1bc44730a, type: 3}
+  - {fileID: 585661124780564198, guid: ec1bfeb1b99eeb5488fa7059256bc988, type: 3}
+  - {fileID: 843176903461962620, guid: c85230cc3f5d8474c9b71e5a3eae27ee, type: 3}
+  - {fileID: 1326479278294070286, guid: 452b5ecebd9105f41893e9a2868d6e8a, type: 3}
   playerStartingSpawnPoint: {fileID: 2113465113}
   shop: {fileID: 3800595267031063961}
-  _managerOfWaves: {fileID: 1523804513}
+  _managerOfWaves: {fileID: 32293968}
   currencyPoolObject: {fileID: 118824993}
   _accountLevel: {fileID: 1267772196}
   _analyticsSystem: {fileID: 1583996472}
@@ -28492,18 +28572,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 132353447}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1523804513 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 519359935933579938, guid: 523ee5a7efae11c48b523e298ccc0d97,
-    type: 3}
-  m_PrefabInstance: {fileID: 157305420}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432009d30f4a7204182a3536f89e18e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1530035871 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1179521831396907913, guid: 5681e28f41ffa5a418b09b5634029b9c,
@@ -43590,6 +43658,7 @@ SceneRoots:
   - {fileID: 415540025}
   - {fileID: 966859252}
   - {fileID: 157305420}
+  - {fileID: 419714434}
   - {fileID: 307597912}
   - {fileID: 8501044091411880888}
   - {fileID: 105700849}
