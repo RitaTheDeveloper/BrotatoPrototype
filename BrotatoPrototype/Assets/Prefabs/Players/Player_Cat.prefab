@@ -205,19 +205,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8cf393d5ff4ac469c64fc17955a2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startMaxHp: 80
-  _startHpRegen: 0.5
-  _startMoveSpeed: 100
-  _startMagnetDistance: 4
-  _startAttackSpeedPercentage: 5
+  _startMaxHp: 228
+  _startHpRegen: 2
+  _startMoveSpeed: 65
+  _startMagnetDistance: 2
+  _startAttackSpeedPercentage: 0
   _startDamagePercentage: 0
   _startMeleeDamage: 0
-  _startRangedDamage: 5
-  _startCritChancePercentage: 0
+  _startRangedDamage: 12
+  _startCritChancePercentage: -4
   _startArmor: 0
   _startProbabilityOfDodge: 0
   _startSatiety: 100
-  _startHunger: -17
+  _startHunger: -15
   _startWisdom: 0
   _wisdomPerLvl: 5
 --- !u!143 &3096899062759002954
@@ -278,9 +278,9 @@ MonoBehaviour:
     type: 3}
   containerOfWeaponHolds: {fileID: 4778145553813644007}
   listOfWeapons:
-  - {fileID: 6896685654037281728, guid: 862624121d9f5ab418c1fd38191b838b, type: 3}
+  - {fileID: 240998036831228480, guid: 219ec21525128ce4081054e8ec18db35, type: 3}
   radisOfWeaponHold: 3
-  maxNumberOfWeapons: 6
+  maxNumberOfWeapons: 5
 --- !u!114 &6632754515298849247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 50
-  _startWood: 50
+  _startMoney: 25
+  _startWood: 0
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,14 +386,13 @@ MonoBehaviour:
   unlockIconGlow: {fileID: 21300000, guid: 2bab06cfbb93dc84681ffe5da787f6ee, type: 3}
   player2d: {fileID: 21300000, guid: cec37ec7694cb8042884445bebba4e4d, type: 3}
   player2dLock: {fileID: 21300000, guid: 0a6d2fcd357324944a68b8ae615e3d87, type: 3}
-  nameHero: "\u0421\u0443\u043F\u0435\u0440 \u041A\u043E\u0442"
-  description: "\u041C\u0435\u0442\u043A\u0438\u0439 \u043B\u0443\u043A \u0437\u0430
-    \u043F\u043B\u0435\u0447\u0430\u043C\u0438, \u0432\u043C\u0435\u0441\u0442\u0435
-    \u0441 \u043A\u043E\u0448\u0435\u043B\u044C\u043A\u043E\u043C \u0438 \u0432\u044F\u0437\u0430\u043D\u043A\u043E\u0439
-    \u0434\u0440\u043E\u0432\u0438\u0448\u0435\u043A. \u0413\u043E\u0442\u043E\u0432
-    \u043A \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F\u043C.
-    \u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C: \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u0430\u044F.
-    \u0414\u0430\u043B\u044C\u043D\u0438\u0439 \u0431\u043E\u0439"
+  nameHero: "\u0427\u0451\u0442\u043A\u0438\u0439 \u0411\u0430\u044E\u043D"
+  description: "\u041D\u0435\u0442 \u0431\u043E\u043B\u0435\u0435 \u0445\u0443\u043B\u0438\u0433\u0430\u043D\u0441\u043A\u043E\u0433\u043E
+    \u043E\u0440\u0443\u0436\u0438\u044F \u0447\u0435\u043C \u0440\u043E\u0433\u0430\u0442\u043A\u0430, 
+    \u0435\u0451 \u043E\u043D \u0432\u0441\u0435\u0433\u0434\u0430 \u043D\u043E\u0441\u0438\u0442
+    \u0441 \u0441\u043E\u0431\u043E\u0439. \u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C:
+    \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u0430\u044F \u0414\u0430\u043B\u044C\u043D\u0438\u0439
+    \u0431\u043E\u0439"
 --- !u!114 &610271406313924933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,10 +419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startLvl: 1
   baffs:
-  - characteristic: 9
-    value: 3.6
-  - characteristic: 6
-    value: 2.9
+  - characteristic: 12
+    value: 0.6
+  - characteristic: 3
+    value: 1.5
 --- !u!114 &-301442616638116052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a2f340d3ab8e4e9c18aeefd706116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accountLevelReguired: 0
+  _accountLevelReguired: 2
 --- !u!114 &6673604998990770359
 MonoBehaviour:
   m_ObjectHideFlags: 0

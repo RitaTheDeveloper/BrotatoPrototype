@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
-  _startMoney: 50
-  _startWood: 50
+  _startMoney: 30
+  _startWood: 0
 --- !u!114 &1467946387292618942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,9 +389,8 @@ MonoBehaviour:
   nameHero: "\u0418\u0432\u0430\u043D \u0426\u0430\u0440\u0435\u0432\u0438\u0447"
   description: "\u041C\u0435\u0442\u043A\u0438\u0439 \u043B\u0443\u043A \u0437\u0430
     \u043F\u043B\u0435\u0447\u0430\u043C\u0438, \u0432\u043C\u0435\u0441\u0442\u0435
-    \u0441 \u043A\u043E\u0448\u0435\u043B\u044C\u043A\u043E\u043C \u0438 \u0432\u044F\u0437\u0430\u043D\u043A\u043E\u0439
-    \u0434\u0440\u043E\u0432\u0438\u0448\u0435\u043A. \u0413\u043E\u0442\u043E\u0432
-    \u043A \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F\u043C.
+    \u0441 \u043A\u043E\u0448\u0435\u043B\u044C\u043A\u043E\u043C \u0437\u043E\u043B\u043E\u0442\u0438\u0448\u043A\u0430.
+    \u0413\u043E\u0442\u043E\u0432 \u043A \u043F\u0440\u0438\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F\u043C.
     \u0421\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u044C: \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u0430\u044F.
     \u0414\u0430\u043B\u044C\u043D\u0438\u0439 \u0431\u043E\u0439"
 --- !u!114 &610271406313924933
@@ -420,10 +419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startLvl: 1
   baffs:
-  - characteristic: 9
-    value: 3.6
+  - characteristic: 10
+    value: 3
   - characteristic: 6
-    value: 2.9
+    value: 1.5
 --- !u!114 &-301442616638116052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278a2f340d3ab8e4e9c18aeefd706116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accountLevelReguired: 1
+  _accountLevelReguired: 0
 --- !u!114 &6673604998990770359
 MonoBehaviour:
   m_ObjectHideFlags: 0

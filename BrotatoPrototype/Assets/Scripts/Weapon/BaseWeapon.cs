@@ -132,7 +132,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected virtual void SetDamage()
     {
-        var dmg = startDamage + playerCharacteristics.CurrentRangedDamage * percantageOfRangedDamage / 100f + playerCharacteristics.CurrentMeleeDamage * percantageOfMelleDamage / 100f;
+        var dmg = startDamage * ((1f + playerCharacteristics.CurrentRangedDamage/100f) * percantageOfRangedDamage / 100f + (1f + playerCharacteristics.CurrentMeleeDamage / 100f) * percantageOfMelleDamage / 100f);
 
         currentDamage = dmg + dmg * playerCharacteristics.CurrentDamagePercentage / 100f;
         currentDamage = Mathf.Round(currentDamage);
