@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ItemInfoPanel : MonoBehaviour
+public class ItemInfoPanel : MonoBehaviour, IPointerClickHandler
 {
     public TextMeshProUGUI nameItem;
     public TextMeshProUGUI typeItem;
@@ -52,5 +53,12 @@ public class ItemInfoPanel : MonoBehaviour
     public void SellItem()
     {
         _uIShop.SellItem(isWeapon, id);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _uIShop.FrameOffWeaponSlot();
+        _uIShop.FrameOffItemSlot();
+        _uIShop.DestroyItemInfo();
     }
 }
