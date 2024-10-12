@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSatiety : MonoBehaviour
 {
     private int _startSatiety = 100;
-    private int _currentSatiety;
+    private float _currentSatiety;
     private PlayerCharacteristics _playerCharacteristics;
     private int _counterOfFoodLifted;
     private bool isFull = false;
@@ -29,7 +29,7 @@ public class PlayerSatiety : MonoBehaviour
         UIManager.instance.DisplaySatiety(_currentSatiety, _startSatiety, isFull);        
     }
 
-    public void ChangeSatiety(int hunger)
+    public void ChangeSatiety(float hunger)
     {
         _currentSatiety += hunger;
         if (_currentSatiety < 0)
