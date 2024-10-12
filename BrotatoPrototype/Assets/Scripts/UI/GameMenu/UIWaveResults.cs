@@ -24,7 +24,7 @@ public class UIWaveResults : MonoBehaviour
         amountOfLevelUpsForWaveTMP.text = playerCharacteristics.GetComponent<LevelSystem>().NumberOfLeveledUpForCurrentWave.ToString() + "<sup>х</sup>";
 
         float currentSatiety = playerCharacteristics.CurrentSatiety;
-        float percentageReductionMaxHealth = 100 - currentSatiety;
+        float percentageReductionMaxHealth = (float)System.Math.Round(100 - currentSatiety, 1);
         if (percentageReductionMaxHealth < 0) percentageReductionMaxHealth = 0;
 
         percentageReductionMaxHealthTMP.text = "максимальное здоровье \n снижено на " + percentageReductionMaxHealth + "%";

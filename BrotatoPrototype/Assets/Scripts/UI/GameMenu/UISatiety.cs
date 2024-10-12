@@ -13,7 +13,7 @@ public class UISatiety : MonoBehaviour
     public void DisplaySatiety(float currentSatiety, float startSatiety, bool isFull)
     {
         satietySlider.value = currentSatiety / startSatiety;
-        satietyTxt.text = currentSatiety + "/" + startSatiety;
+        satietyTxt.text = (float)System.Math.Round(currentSatiety, 1) + "/" + startSatiety;
         pointer.SetActive(!isFull);
     }
 }
