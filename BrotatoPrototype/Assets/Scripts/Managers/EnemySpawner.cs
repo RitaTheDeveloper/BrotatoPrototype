@@ -177,7 +177,6 @@ public class EnemySpawner : MonoBehaviour
         }
         _waveController.counterOfMobs++;
         countOfEnemies++;
-        Debug.Log(countOfEnemies);
     }
 
     private IEnumerator SpawnOneEnemy()

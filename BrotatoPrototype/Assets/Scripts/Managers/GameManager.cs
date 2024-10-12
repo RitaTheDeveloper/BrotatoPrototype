@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ManagerOfWaves _managerOfWaves;
     [SerializeField] private PoolObject currencyPoolObject;
     [SerializeField] private AccountLevel _accountLevel;
+    [SerializeField] private AnalyticsSystem _analyticsSystem;
     private int _currentDifficulty;
     public GameObject player;
     private List<WaveSetting> listOfWaveSetting;
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void Init()
-    {
+    {        
         shop.ResetShop();
         SpawnPlayer(_heroIndex);
         player.GetComponent<PlayerHealth>().onPlayerDead += Lose;
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
             BackgroundMusicManger.instance.ResetState();
             BackgroundMusicManger.instance.PlayBackgroundMusicFromMainMenuMusic();
         }
-
+        _analyticsSystem.OnStartedPlaying(player.gameObject.name);
         onInit?.Invoke();
     }
     public int GetMaxWave()
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        _analyticsSystem.OnPlayerDead(WaveCounter, player.gameObject.name);
         _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        _isPlaying = false;
+       _isPlaying = false;
         _gameIsOver = true;
         _currentWave.StopWave();
         UIManager.instance.Win();
@@ -154,7 +156,7 @@ public class GameManager : MonoBehaviour
     public void WaveCompleted()
     {
         onWaveCompleted?.Invoke();
-
+        _analyticsSystem.WaveCompleted(WaveCounter, player.gameObject.name);
         LevelSystem playerLevelSystem = player.GetComponent<LevelSystem>();
         int numberOfleveledUpForCurrentWave = playerLevelSystem.NumberOfLeveledUpForCurrentWave;
         _isPlaying = false;

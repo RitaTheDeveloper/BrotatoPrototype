@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
+    [SerializeField] private AnalyticsSystem analyticsSystem;
     [SerializeField] public Image babaYagaImg;
     [SerializeField] private Animator ygaAnimator;
     [SerializeField] private TextMeshProUGUI waveNumberText;
@@ -259,6 +260,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.UpgrateShop())
         {
+            analyticsSystem.OnUpgradeShop();
             ChangeSpriteOfBabaYga(shopController.GetShopLevel());
             totalAmountOfWoodText.text = shopController.GetPlayerInventory().GetWood().ToString();
             priceForUpgradeShopTxt.text = shopController.GetShopLevelUpCost().ToString();
@@ -276,6 +278,7 @@ public class UIShop : MonoBehaviour
     {
         if (shopController.RerollShop())
         {
+            analyticsSystem.OnRerollItems();
             FireAnim();
             shopController.ResetsSlots();
             CreateItemsSlotsForSale(shopController.GetSlotCount());

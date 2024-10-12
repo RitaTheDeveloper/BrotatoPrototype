@@ -84,7 +84,6 @@ public class WaveController : MonoBehaviour
     private void AllSpawnersOn()
     {
         mobSpawnerPrefab = new GameObject("mobSpawnerPrefab");
-        Debug.Log("делаем спавнеры");
         foreach (EnemySpawnerSettings enemySetting in enemySpawnerSettings)
         {            
             float spawnCd = enemySetting.spawnCd;
@@ -130,7 +129,6 @@ public class WaveController : MonoBehaviour
 
     public void StartWave()
     {
-        Debug.Log("начинаем волну");
         _stopTime = false;
         _currentTime = time;
         AllSpawnersOn();

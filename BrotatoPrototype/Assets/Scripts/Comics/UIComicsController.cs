@@ -25,7 +25,6 @@ public class UIComicsController : MonoBehaviour
     public bool ComicsCheck(UIManager uiManager)
     {
         _uiManager = uiManager;
-        Debug.Log("check comics");
         _currentWave = _gameManager.WaveCounter;
         _isShow = false;
         foreach (var go in _comicsOfWaves)
