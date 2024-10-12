@@ -35,7 +35,7 @@ public class PlayerCharacteristics : MonoBehaviour
     [Range(0, 100)]
     [SerializeField] private int _startSatiety = 100;
     [Header("Голод:")]
-    [SerializeField] private int _startHunger; // каждую волну на это число уменьшается сытость
+    [SerializeField] private float _startHunger; // каждую волну на это число уменьшается сытость
     [Header("Премудрость:")]
     [SerializeField] private float _startWisdom;
     [SerializeField] private float _wisdomPerLvl = 5f;
@@ -128,15 +128,15 @@ public class PlayerCharacteristics : MonoBehaviour
     private float _currentLifeStealPercentage;
     public float CurrentLifeStealPercentage { get => _currentLifeStealPercentage; set => _currentLifeStealPercentage = value; }
 
-    private int _currentSatiety;
-    public int CurrentSatiety { 
+    private float _currentSatiety;
+    public float CurrentSatiety { 
         get { return _currentSatiety; } 
         set { _currentSatiety = value; }
     }
-    public int CurrentHunger { get => _currentHunger; set => _currentHunger = value; }
+    public float CurrentHunger { get => _currentHunger; set => _currentHunger = value; }
     public float CurrentWisdom { get => _currentWisdom; set => _currentWisdom = value; }
 
-    private int _currentHunger;
+    private float _currentHunger;
     private float _currentWisdom;
     
    
@@ -207,7 +207,7 @@ public class PlayerCharacteristics : MonoBehaviour
         switch (characteristic)
         {
             case CharacteristicType.Satiety:
-                _startHunger = Mathf.RoundToInt(value);
+                _startHunger = value;
                 break;
 
             case CharacteristicType.MaxHealth:

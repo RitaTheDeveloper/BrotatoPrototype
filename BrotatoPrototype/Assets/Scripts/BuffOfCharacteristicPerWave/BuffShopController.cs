@@ -37,7 +37,6 @@ public class BuffShopController : MonoBehaviour
                 _currentBuffShopLevel = _shopLevelStructsStorage[i].levelNumber;
             }
         }
-        Debug.Log("buff level = " + _currentBuffShopLevel);
 
         PickBuffsForSale();
     }
