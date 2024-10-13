@@ -68,10 +68,10 @@ public class CharacteristicsUI : MonoBehaviour
         parameterOfProbabilityOfDodge.text = _playerCharacteristics.CurrentProbabilityOfDodge.ToString();
 
         // for Armor
-        parameterOfArmor.text = _playerCharacteristics.CurrentArmor.ToString();
+        parameterOfArmor.text = ((float)System.Math.Round(_playerCharacteristics.CurrentArmor, 2)).ToString();
 
         // for Magnet Distance
-        parameterOfMagnetDistance.text = _playerCharacteristics.CurrentMagnetDistance.ToString();
+        parameterOfMagnetDistance.text = ((float)System.Math.Round(_playerCharacteristics.CurrentMagnetDistance, 1)).ToString();
 
     }
 

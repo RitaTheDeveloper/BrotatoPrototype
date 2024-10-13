@@ -49,8 +49,8 @@ public class PlayerCharacteristics : MonoBehaviour
         descriptionForShop.Add(" к радиусу сбора", _startMagnetDistance);
         descriptionForShop.Add("% к скорости атаки", _startAttackSpeedPercentage);
         descriptionForShop.Add("% к урону", _startDamagePercentage);
-        descriptionForShop.Add(" ближний бой", _startMeleeDamage);
-        descriptionForShop.Add(" дальний бой", _startRangedDamage);
+        descriptionForShop.Add("% к ближний бою", _startMeleeDamage);
+        descriptionForShop.Add("% дальнему бою", _startRangedDamage);
         descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
         descriptionForShop.Add("% к броне", _startArmor);
         descriptionForShop.Add("% к уклонению", _startProbabilityOfDodge);
