@@ -70,7 +70,7 @@ public class UIAccountProgressBar : MonoBehaviour
                 {
                     myValue += baseStep;
                     lastnumberOfWavesCompleted = _numberOfLevelsOfSegmentList[i];
-                    if (i < _numberOfLevelsOfSegmentList.Count)
+                    if (i + 1 < _numberOfLevelsOfSegmentList.Count)
                     {
                         lastNumberNotCompleted = _numberOfLevelsOfSegmentList[i + 1];
                     }

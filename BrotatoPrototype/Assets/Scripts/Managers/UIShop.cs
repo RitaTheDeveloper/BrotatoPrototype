@@ -421,11 +421,15 @@ public class UIShop : MonoBehaviour
 
     public void UpdateUICharacteristics()
     {
-        PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
-        foreach(var characteristicsUI in characteristicsUIs)
+        if (GameManager.instance.player != null)
         {
-            characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
-        }        
+            PlayerCharacteristics playerCharacteristics = GameManager.instance.player.GetComponent<PlayerCharacteristics>();
+            foreach (var characteristicsUI in characteristicsUIs)
+            {
+                characteristicsUI.UpdateCharacterisctics(playerCharacteristics);
+            }
+        }
+            
     }
 
     private void PlayRerollSound()

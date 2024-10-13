@@ -118,7 +118,7 @@ public class PlayerHealth : LivingEntity
                 base.TakeHit(resultDamage, isCrit, false);
                 PlaySoundOfTakeHit();
                 TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
-                Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+               // Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
             }
         }
         else
@@ -135,7 +135,7 @@ public class PlayerHealth : LivingEntity
                     base.TakeHit(resultDamage, isCrit, false);
                     PlaySoundOfTakeHit();
                     TemporaryMessageManager.Instance.AddMessageOnScreen("-" + resultDamage.ToString(), this.gameObject.transform.position, Color.red);
-                    Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
+                  //  Camera.main.GetComponent<PostEffectController>().PlayDammageEffect();
                 }
 
                 canTakeDmg = true;
