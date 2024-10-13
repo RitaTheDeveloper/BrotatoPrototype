@@ -29,7 +29,7 @@ public class SaveController : MonoBehaviour
 
         data_tmp.WaveEnded = PlayerPrefs.GetInt("WaveEnded", 0);
         data_tmp.CurrentAccountLevel = PlayerPrefs.GetInt("AccountLevel", 0);
-        data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", 0);
+        data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", -18f);
         data_tmp.MusicSondVolume = PlayerPrefs.GetFloat("MusicSondVolume", 0);
         data_tmp.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
 
