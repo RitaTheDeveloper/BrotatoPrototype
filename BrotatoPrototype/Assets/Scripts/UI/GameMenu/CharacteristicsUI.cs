@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class CharacteristicsUI : MonoBehaviour
 {
@@ -36,42 +37,39 @@ public class CharacteristicsUI : MonoBehaviour
         nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;
 
         //for hunger
-        parameterOfHunger.text = _playerCharacteristics.CurrentHunger.ToString();
+        parameterOfHunger.text = ((float)Math.Round(_playerCharacteristics.CurrentHunger, 2)).ToString();
 
         //for maxHp
-        parameterOfMaxHp.text = _playerCharacteristics.CurrentMaxHp.ToString();
-
+        parameterOfMaxHp.text = ((float)Math.Round(_playerCharacteristics.CurrentMaxHp, 2)).ToString();
         // for speed
         var parameter = Mathf.Round(_playerCharacteristics.CurrentMoveSpeed * 10) / 10;
         parameterOfSpeed.text = parameter.ToString();
 
         // for hpRegen
-        parameterOfHpRegen.text = _playerCharacteristics.CurrentHpRegen.ToString();
+        parameterOfHpRegen.text = ((float)Math.Round(_playerCharacteristics.CurrentHpRegen, 2)).ToString(); 
 
         // for attackSpeed
         var paramOfAttackSpeed = Mathf.Round(_playerCharacteristics.CurrentAttackSpeedPercentage * 10) / 10;
         parameterOfAttackSpeed.text = paramOfAttackSpeed.ToString();
 
         // for damage percentage
-        parameterOfDamagePercentage.text = _playerCharacteristics.CurrentDamagePercentage.ToString();
+        parameterOfDamagePercentage.text = ((float)Math.Round(_playerCharacteristics.CurrentDamagePercentage, 2)).ToString();
 
         // for melleeDamage
-        parameterOfMelleeDamage.text = _playerCharacteristics.CurrentMeleeDamage.ToString();
+        parameterOfMelleeDamage.text = ((float)Math.Round(_playerCharacteristics.CurrentMeleeDamage, 2)).ToString(); 
 
         // for rangedDamage
-        parameterOfRangedDamage.text = _playerCharacteristics.CurrentRangedDamage.ToString();
+        parameterOfRangedDamage.text = ((float)Math.Round(_playerCharacteristics.CurrentRangedDamage, 2)).ToString();
 
         // for critChance
-        parameterOfCritChance.text = _playerCharacteristics.CurrentCritChancePercentage.ToString();
-
+        parameterOfCritChance.text = ((float)Math.Round(_playerCharacteristics.CurrentCritChancePercentage, 2)).ToString();
         // for Dodge
-        parameterOfProbabilityOfDodge.text = _playerCharacteristics.CurrentProbabilityOfDodge.ToString();
-
+        parameterOfProbabilityOfDodge.text = ((float)Math.Round(_playerCharacteristics.CurrentProbabilityOfDodge, 2)).ToString();
         // for Armor
-        parameterOfArmor.text = ((float)System.Math.Round(_playerCharacteristics.CurrentArmor, 2)).ToString();
+        parameterOfArmor.text = ((float)Math.Round(_playerCharacteristics.CurrentArmor, 2)).ToString();
 
         // for Magnet Distance
-        parameterOfMagnetDistance.text = ((float)System.Math.Round(_playerCharacteristics.CurrentMagnetDistance, 1)).ToString();
+        parameterOfMagnetDistance.text = ((float)Math.Round(_playerCharacteristics.CurrentMagnetDistance, 1)).ToString();
 
     }
 

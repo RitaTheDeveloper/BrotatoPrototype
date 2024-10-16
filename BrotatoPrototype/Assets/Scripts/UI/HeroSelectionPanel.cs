@@ -245,6 +245,7 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void OnClickCharacterProgressMenu()
     {
+        ImageAlphaOff();
         mainMenu.SetActive(false);
         characterProgressMenu.SetActive(true);
         characterProgressMenu.GetComponent<UICharacterProgressMenu>().Init();
@@ -258,6 +259,7 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void OnClickAccountProgressMenu()
     {
+        ImageAlphaOff();
         accountProgressMenu.SetActive(true);
     }
 }

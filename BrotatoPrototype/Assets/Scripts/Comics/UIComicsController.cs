@@ -63,6 +63,10 @@ public class UIComicsController : MonoBehaviour
             {
                 _heroSelectionPanel.OnClickPlay();
             }
+            else if(_currentWave == -1)
+            {
+                _uiManager.OnClickMenu();
+            }
             else
             {
                 _uiManager.OpenShop();
