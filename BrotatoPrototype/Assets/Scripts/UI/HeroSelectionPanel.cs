@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class HeroSelectionPanel : MonoBehaviour
@@ -54,13 +55,18 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void OnClickIconHero(int index)
     {
+        LocalizeStringEvent localize;
         blockInfo.SetActive(false);
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
-        nameHeroTxt.text = _uiPlayerInfo.nameHero;
+        localize = nameHeroTxt.GetComponent<LocalizeStringEvent>();
+        localize.SetTable(_uiPlayerInfo.localizeNamePathTable);
+        localize.SetEntry(_uiPlayerInfo.localizeNamePath);
         heroLvlObj.SetActive(true);
         SetHeroLvl(_player);     
-        heroDescription.text = _uiPlayerInfo.description;
+        localize = heroDescription.GetComponent<LocalizeStringEvent>();
+        localize.SetTable(_uiPlayerInfo.localizeNamePathTable);
+        localize.SetEntry(_uiPlayerInfo.localizeDescPath);
         if (index != indexOfHero)
         {            
             ImageAlphaOff();
@@ -74,9 +80,12 @@ public class HeroSelectionPanel : MonoBehaviour
 
     public void OnClickLockHero(int index)
     {
+        LocalizeStringEvent localize;
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
-        nameHeroTxt.text = _uiPlayerInfo.nameHero;
+        localize = nameHeroTxt.GetComponent<LocalizeStringEvent>();
+        localize.SetTable(_uiPlayerInfo.localizeNamePath);
+        localize.SetEntry(_uiPlayerInfo.localizeNamePathTable);
         heroLvlObj.SetActive(false);
        // SetHeroLvl(_player);
         if (index != indexOfHero)

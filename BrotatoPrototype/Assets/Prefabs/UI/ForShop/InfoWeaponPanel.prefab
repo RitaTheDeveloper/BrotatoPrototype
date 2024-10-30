@@ -819,7 +819,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiCharscteristicsInfoPrefab: {fileID: 6532091819974605917, guid: 77d9c307244509240a88944b82e83951,
     type: 3}
+  uiCharscteristicsNumbersInfoPrefab: {fileID: 2163466351775164869, guid: 286feb7ff79513244885e341e98a2669,
+    type: 3}
   container: {fileID: 4821155684617219528}
+  containerForNumbers: {fileID: 7246168390865499343}
 --- !u!1 &8564924148880732445
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +982,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -101
       objectReference: {fileID: 0}
+    - target: {fileID: 2833472203180397358, guid: 6db68c1cf8b2b6c4fb1efde87eda4ff2,
+        type: 3}
+      propertyPath: containerForNumbers
+      value: 
+      objectReference: {fileID: 7246168390865499343}
+    - target: {fileID: 2833472203180397358, guid: 6db68c1cf8b2b6c4fb1efde87eda4ff2,
+        type: 3}
+      propertyPath: uiCharscteristicsNumbersInfoPrefab
+      value: 
+      objectReference: {fileID: 2163466351775164869, guid: 286feb7ff79513244885e341e98a2669,
+        type: 3}
     - target: {fileID: 2915744868972195160, guid: 6db68c1cf8b2b6c4fb1efde87eda4ff2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1348,6 +1362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7246168390865499343 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 69439601072044965, guid: 6db68c1cf8b2b6c4fb1efde87eda4ff2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7239885158701977450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7691990825273892952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1064623950669967154, guid: 6db68c1cf8b2b6c4fb1efde87eda4ff2,

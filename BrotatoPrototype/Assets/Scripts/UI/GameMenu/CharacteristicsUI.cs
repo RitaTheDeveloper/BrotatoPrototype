@@ -34,8 +34,6 @@ public class CharacteristicsUI : MonoBehaviour
     
     public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
     {
-        nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;
-
         //for hunger
         parameterOfHunger.text = ((float)Math.Round(_playerCharacteristics.CurrentHunger, 2)).ToString();
 
