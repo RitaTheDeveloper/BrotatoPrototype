@@ -43,18 +43,7 @@ public class BuffShopController : MonoBehaviour
 
     public void PickBuffsForSale()
     {
-        // определяем кол-во слотов
         _buffSizeList = _shopLevelStructsStorage[_currentBuffShopLevel - 1].slotsData.Count;
-
-        // берем весь список абилок
-        // делим этот список на словари по тирам. словарь(тир, тир абилки)
-
-        // для каждого слота выбираем абилку
-        // бафф левел стракт список - берем элемент по текущему уровню бафф контроллера
-        // берем из него список слот дата
-        // в слот баффов(индекс) - кладем элемент из словаря по тирам (слот дата (индекс))(рандом из тиров абилок)
-        // из списка тиров абилок убираем эту абилку - можно просто создать список индексов, в которых уже есть эта хар-ка, и проверять, если есть, то опять рандом
-        // берем словарь по тирам
 
         buffsForSlots = new List<UIBuffPerLvl>();
         _listOfAlreadySelectedBuffs = new List<CharacteristicType>();
@@ -85,7 +74,6 @@ public class BuffShopController : MonoBehaviour
         }
 
         PickBuffsForSale();
-
     }
 
     public List<UIBuffPerLvl> GetBuffsForSlots()

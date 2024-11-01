@@ -42,11 +42,11 @@ public class ReturnBuffIncreaseDescription
                 break;
 
             case CharacteristicType.MeleeDamage:
-                result = " ближний бой";
+                result = "% к ближнему урону";
                 break;
 
             case CharacteristicType.RangeDamage:
-                result = " дальний бой";
+                result = "% к дальнему урону";
                 break;
 
             case CharacteristicType.ChanceOfCrit:

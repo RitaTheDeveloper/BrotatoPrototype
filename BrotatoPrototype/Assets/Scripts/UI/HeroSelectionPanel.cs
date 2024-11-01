@@ -261,6 +261,7 @@ public class HeroSelectionPanel : MonoBehaviour
     {
         ImageAlphaOff();
         accountProgressMenu.SetActive(true);
+        accountProgressMenu.GetComponent<UIAccountProgressMenu>().Init();
     }
 }
     

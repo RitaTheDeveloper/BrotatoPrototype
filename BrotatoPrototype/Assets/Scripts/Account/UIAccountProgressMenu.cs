@@ -15,13 +15,13 @@ public class UIAccountProgressMenu : MonoBehaviour
     private void Start()
     {
         Init();
-        SetAccontLvl();
     }
 
     public void Init()
     {
         _accountLevel = _gameManager.AccountLevel;
         accountProgressBar.CreateProgressBar(_accountLevel.AccountLevelSettings, _accountLevel.GetSumOfLvlsOfOpenCharacters());
+        SetAccontLvl();
     }
 
     public void SetAccontLvl()
