@@ -61,7 +61,7 @@ public class HeroSelectionPanel : MonoBehaviour
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         localize = nameHeroTxt.GetComponent<LocalizeStringEvent>();
         localize.SetTable(_uiPlayerInfo.localizeNamePathTable);
-        localize.SetEntry(_uiPlayerInfo.localizeNamePath);
+        localize.SetEntry(_uiPlayerInfo.nameHero);
         heroLvlObj.SetActive(true);
         SetHeroLvl(_player);     
         localize = heroDescription.GetComponent<LocalizeStringEvent>();

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization.Components;
 
 public class UIManager : MonoBehaviour
 {
@@ -68,6 +69,11 @@ public class UIManager : MonoBehaviour
     private HeroSelectionPanel _heroSelectionPanel;
     private PlayerHealth _playerHealth;
     [SerializeField] private ShopPhrasesController shopPhrasesController;
+
+    public int currentWaveLocalization;
+    public int maxWaveLocalization;
+    public int waveNumberLocalization;
+    public int currentLevelCharacterLocalization;
 
     private void Awake()
     {
@@ -159,10 +165,24 @@ public class UIManager : MonoBehaviour
         }
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // анимация
+        LocalizeStringEvent localize;
+
+        localize = waveCompletedTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
+        waveCompletedStr = waveCompletedTxt.text;
+        waveCompletedTxt.text = "";
+
         textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
         LeanTween.alpha(waveCompletedMenu.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         OpenCloseWindow.OpenWindowWithDelay(waveResultsMenu, 2.5f);
-        textAnim.TypingText(waveResultsTxt, "Итоги волны " + GameManager.instance.WaveCounter + " из " + GameManager.instance.GetMaxWave(), 3f);
+
+        currentWaveLocalization = GameManager.instance.WaveCounter;
+        maxWaveLocalization = GameManager.instance.GetMaxWave();
+
+        localize = waveResultsTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
+
+        textAnim.TypingText(waveResultsTxt, waveResultsTxt.text, 3f);
 
         uIWaveResults.UpdateWaveResults(GameManager.instance.player.GetComponent<PlayerCharacteristics>());
     }
@@ -240,7 +260,15 @@ public class UIManager : MonoBehaviour
         // делаем виньетку
         LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         //OpenCloseWindow.OpenWindowWithDelay(winSun, 1f);
-        textAnim.TypingText(winTxt, "Победа!", 0.5f);
+
+        LocalizeStringEvent localize;
+
+        localize = winTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
+        string temp = winTxt.text;
+        winTxt.text = "";
+
+        textAnim.TypingText(winTxt, temp, 0.5f);
         winPanel.SetActive(true);
         //restartBtn.SetActive(true);
         //menuBtn.SetActive(true);
@@ -257,7 +285,14 @@ public class UIManager : MonoBehaviour
         // делаем виньетку
         LeanTween.alpha(winAndLosePanel.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         // пишем текст
-        textAnim.TypingText(loseTxt, "Поражение!", 0.5f);
+        LocalizeStringEvent localize;
+
+        localize = loseTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
+        string temp = loseTxt.text;
+        loseTxt.text = "";
+
+        textAnim.TypingText(loseTxt, temp, 0.5f);
         losePanel.SetActive(true);
         RemoveAllUpElements();
 
@@ -370,13 +405,19 @@ public class UIManager : MonoBehaviour
 
     public void DisplayWaveNumber(int waveNumber)
     {
-        waveNumberTxt.text = "волна " + waveNumber;
+        waveNumberLocalization = waveNumber;
+        LocalizeStringEvent localize;
+        localize = waveNumberTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
     }
 
     public void DisplayLevel(int currentLvl, float XpPercentage)
     {
         levelSlider.value = XpPercentage;
-        levelTxt.text = "ур." + currentLvl;
+        currentLevelCharacterLocalization = currentLvl;
+        LocalizeStringEvent localize;
+        localize = levelTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
     }
 
     public void DisplayAmountOfCurrency(int totalAmountOfCurrency)

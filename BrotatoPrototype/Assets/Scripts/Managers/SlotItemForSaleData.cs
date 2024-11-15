@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;
+
 
 public class SlotItemForSaleData : MonoBehaviour
 {
@@ -35,16 +37,30 @@ public class SlotItemForSaleData : MonoBehaviour
 
     public void DisplayInfoForWeapon(ItemShopInfo w, int currentWave)
     {
-        textName.text = w.NameWeapon;
+        LocalizeStringEvent localize;
+        localize = textName.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(w.NameWeapon);
+        localize.RefreshString();
         if (w.GetComponent<BaseWeapon>().type == BaseWeapon.Type.Melee)
         {
-            textType.text = "ближний бой";
+            localize = textType.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry("ближний бой");
+            localize.RefreshString();
         }
         else
         {
-            textType.text = "дальний бой";
+            localize = textType.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry("дальний бой");
+            localize.RefreshString();
         }
-        textTier.text = w.LevelItem.TierString;
+
+        localize = textTier.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(w.LevelItem.TierString);
+        localize.RefreshString();
 
         textCost.text = w.GetPrice(currentWave).ToString();
         _potAnimator.gameObject.SetActive(true);
@@ -69,9 +85,23 @@ public class SlotItemForSaleData : MonoBehaviour
 
     public void DisplayInfoForItem(StandartItem it, int currentWave)
     {
-        textName.text = it.ShopInfoItem.NameWeapon;
-        textType.text = "снаряжение";
-        textTier.text = it.ShopInfoItem.LevelItem.TierString;
+
+        LocalizeStringEvent localize;
+        localize = textName.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(it.ShopInfoItem.NameWeapon);
+        localize.RefreshString();
+
+        localize = textType.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry("снаряжение");
+        localize.RefreshString();
+
+        localize = textTier.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(it.ShopInfoItem.LevelItem.TierString);
+        localize.RefreshString();
+
         textCost.text = it.ShopInfoItem.GetPrice(currentWave).ToString();
         _potAnimator.gameObject.SetActive(true);
         ImageAlphaOff();

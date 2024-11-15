@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 
 public class UIWaveResults : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UIWaveResults : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountOfLevelUpsForWaveTMP;
     [SerializeField] private TextMeshProUGUI amountGoldForWaveTMP;
     [SerializeField] private TextMeshProUGUI amountWoodForWaveTMP;
+    public float percentageReductionMaxHealth;
 
 
     public void UpdateWaveResults(PlayerCharacteristics playerCharacteristics)
@@ -24,10 +26,12 @@ public class UIWaveResults : MonoBehaviour
         amountOfLevelUpsForWaveTMP.text = playerCharacteristics.GetComponent<LevelSystem>().NumberOfLeveledUpForCurrentWave.ToString() + "<sup>х</sup>";
 
         float currentSatiety = playerCharacteristics.CurrentSatiety;
-        float percentageReductionMaxHealth = (float)System.Math.Round(100 - currentSatiety, 1);
+        percentageReductionMaxHealth = (float)System.Math.Round(100 - currentSatiety, 1);
         if (percentageReductionMaxHealth < 0) percentageReductionMaxHealth = 0;
 
-        percentageReductionMaxHealthTMP.text = "максимальное здоровье \n снижено на " + percentageReductionMaxHealth + "%";
+        LocalizeStringEvent localize;
+        localize = percentageReductionMaxHealthTMP.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
 
         PlayerInventory inventory = playerCharacteristics.GetComponent<PlayerInventory>();
         int goldForWave = inventory.GetAmountOfMoneyForWave();

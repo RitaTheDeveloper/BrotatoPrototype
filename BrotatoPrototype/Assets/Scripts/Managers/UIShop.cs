@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;
 
 public class UIShop : MonoBehaviour
 {
@@ -61,6 +62,14 @@ public class UIShop : MonoBehaviour
 
     private int maxCountWeapons { set; get; }
 
+    public string levelOfShop;
+
+    public int numberOfCurrentWeaponsLocalization;
+    public int numberOfMaxweaponsLocalization;
+
+    public int numberOfNextWaveLocalization;
+
+
     private void Awake()
     {
         GetComponentsInChildren<SlotItemForSaleData>(items);
@@ -78,7 +87,13 @@ public class UIShop : MonoBehaviour
 
     public void SetWaveNumberText(int _waveNumber)
     {
-        waveNumberText.text = "(волна " + (_waveNumber + 1).ToString() + ")";
+        numberOfNextWaveLocalization = _waveNumber + 1;
+
+        LocalizeStringEvent localize;
+        localize = waveNumberText.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry("волна номер");
+        localize.RefreshString();
     }
 
     public void SetTotalAmountOfGoldText(int _totalAmountOfGold)
@@ -271,7 +286,12 @@ public class UIShop : MonoBehaviour
 
     public void DisplayLevelShop(int value)
     {
-        shopLevelValue.text = "(уровень " + value.ToString() + ")";
+        LocalizeStringEvent localize;
+
+        levelOfShop = value.ToString();
+        
+        localize = shopLevelValue.GetComponent<LocalizeStringEvent>();
+        localize.RefreshString();
     }
 
     public void RerollClick()
@@ -357,7 +377,14 @@ public class UIShop : MonoBehaviour
 
     public void UpdateNumberOfCurrentWeapons(int numberOfCurrentWeapons, int numberOfMaxweapons)
     {
-        numberOfWeapons.text = "Оружие (" + numberOfCurrentWeapons.ToString() + "/" + numberOfMaxweapons + ")";
+        numberOfCurrentWeaponsLocalization = numberOfCurrentWeapons;
+        numberOfMaxweaponsLocalization = numberOfMaxweapons;
+
+        LocalizeStringEvent localize;
+        localize = numberOfWeapons.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry("amountOfGuns");
+        localize.RefreshString();
     }
 
     public void ButtonSoldSlot(string name)

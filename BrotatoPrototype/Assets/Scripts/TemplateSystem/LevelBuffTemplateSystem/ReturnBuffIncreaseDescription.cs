@@ -10,23 +10,23 @@ public class ReturnBuffIncreaseDescription
         switch (characteristic)
         {
             case CharacteristicType.Satiety:
-                result = " изменение сытости";
+                result = "сытость волна";
                 break;
 
             case CharacteristicType.MaxHealth:
-                result = " макс. здоровье";
+                result = "Макс здровье";
                 break;
 
             case CharacteristicType.RegenerationHP:
-                result = " к хп реген. в сек.";
+                result = "хп реген в сек";
                 break;
 
             case CharacteristicType.Dodge:
-                result = "% к уклонению";
+                result = "уклонение";
                 break;
 
             case CharacteristicType.Armor:
-                result = "% к броне";
+                result = "% брони";
                 break;
 
             case CharacteristicType.MoveSpeed:
@@ -34,7 +34,7 @@ public class ReturnBuffIncreaseDescription
                 break;
 
             case CharacteristicType.AttackSpeed:
-                result = "% к скорости атаки";
+                result = "attackSpeed";
                 break;
 
             case CharacteristicType.Damage:
@@ -42,19 +42,19 @@ public class ReturnBuffIncreaseDescription
                 break;
 
             case CharacteristicType.MeleeDamage:
-                result = " ближний бой";
+                result = "meleeDamage";
                 break;
 
             case CharacteristicType.RangeDamage:
-                result = " дальний бой";
+                result = "урон в дальнем бою";
                 break;
 
             case CharacteristicType.ChanceOfCrit:
-                result = "% к крит шансу";
+                result = "% для крит удара";
                 break;
 
             case CharacteristicType.MagneticRadius:
-                result = " к радиусу сбора";
+                result = "радиус сбора";
                 break;
         }
         return result;
