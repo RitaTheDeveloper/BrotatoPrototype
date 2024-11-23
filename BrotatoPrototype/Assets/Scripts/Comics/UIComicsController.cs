@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class UIComicsController : MonoBehaviour
 {
+    public ComicsOfWaveScriptable enComicsOfWaveScriptable;
+    public ComicsOfWaveScriptable ruComicsOfWaveScriptable;
     public ComicsOfWaveScriptable comicsOfWaveScriptable;
 
     [SerializeField] private GameManager _gameManager;
@@ -19,12 +22,27 @@ public class UIComicsController : MonoBehaviour
 
     private void Start()
     {
+        SwitchComicLocalize();
+    }
+
+    private void SwitchComicLocalize()
+    {
+        if (LocalizationSettings.SelectedLocale == LocalizationSettings.AvailableLocales.Locales[0])
+        {
+            comicsOfWaveScriptable = enComicsOfWaveScriptable;
+        }
+        else if (LocalizationSettings.SelectedLocale == LocalizationSettings.AvailableLocales.Locales[1])
+        {
+            comicsOfWaveScriptable = ruComicsOfWaveScriptable;
+        }
+
         _comicsOfWaves = comicsOfWaveScriptable.comicsOfWaves;
     }
 
     public bool ComicsCheck(UIManager uiManager)
     {
-        _uiManager = uiManager;
+        SwitchComicLocalize();
+         _uiManager = uiManager;
         _currentWave = _gameManager.WaveCounter;
         _isShow = false;
         foreach (var go in _comicsOfWaves)

@@ -47,16 +47,25 @@ public class ItemInfoPanel : MonoBehaviour, IPointerClickHandler
         {
             if (itemInfo.GetComponent<BaseWeapon>().type == BaseWeapon.Type.Melee)
             {
-                typeItem.text = "ближний бой";
+                localize = typeItem.GetComponent<LocalizeStringEvent>();
+                localize.SetTable("UI Text");
+                localize.SetEntry("ближний бой");
+                localize.RefreshString();
             }
             else
             {
-                typeItem.text = "дальний бой";
+                localize = typeItem.GetComponent<LocalizeStringEvent>();
+                localize.SetTable("UI Text");
+                localize.SetEntry("дальний бой");
+                localize.RefreshString();
             }
         }
         else
         {
-            typeItem.text = "снаряжение";
+            localize = typeItem.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry("снаряжение");
+            localize.RefreshString();
         }
     }
 

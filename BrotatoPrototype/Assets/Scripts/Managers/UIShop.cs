@@ -535,7 +535,11 @@ public class UIShop : MonoBehaviour
         var popupWindow = Instantiate(attentionWindowPrefab, transform.position, Quaternion.identity, canvas);
         popupWindow.transform.SetParent(containerForPopUpWindows);
         popupWindow.transform.localPosition = point;
-        popupWindow.GetComponentInChildren<TextMeshProUGUI>().text = message;
+        LocalizeStringEvent localize;
+        localize = popupWindow.GetComponentInChildren<TextMeshProUGUI>().GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(message);
+        localize.RefreshString();
         yield return new WaitForSeconds(delayAttentionWindow);
         Destroy(popupWindow);
     }

@@ -84,8 +84,8 @@ public class HeroSelectionPanel : MonoBehaviour
         _player = playerPrefabs[index];
         _uiPlayerInfo = _player.GetComponent<UiPlayerInfo>();
         localize = nameHeroTxt.GetComponent<LocalizeStringEvent>();
-        localize.SetTable(_uiPlayerInfo.localizeNamePath);
-        localize.SetEntry(_uiPlayerInfo.localizeNamePathTable);
+        localize.SetTable(_uiPlayerInfo.localizeNamePathTable);
+        localize.SetEntry(_uiPlayerInfo.nameHero);
         heroLvlObj.SetActive(false);
        // SetHeroLvl(_player);
         if (index != indexOfHero)
@@ -94,7 +94,9 @@ public class HeroSelectionPanel : MonoBehaviour
             effectSmokeAnimator.SetTrigger("change");
             StartCoroutine(ChangeSprite(_player, true));
         }
-        heroDescription.text = _uiPlayerInfo.description;
+        localize = heroDescription.GetComponent<LocalizeStringEvent>();
+        localize.SetTable(_uiPlayerInfo.localizeNamePathTable);
+        localize.SetEntry(_uiPlayerInfo.localizeDescPath);
         indexOfHero = index;
         blockInfo.SetActive(true);
        // blockTextInfo.text = "Доступ к персонажу откроется при прохождении " + "\n" + _player.GetComponent<WaveUnlockComponent>().GetCountWaveRequired() + " волн";
