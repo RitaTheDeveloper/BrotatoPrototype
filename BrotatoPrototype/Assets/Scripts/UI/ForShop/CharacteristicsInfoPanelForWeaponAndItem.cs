@@ -93,7 +93,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
                 localize = characteristic.GetComponent<LocalizeStringEvent>();
                 localize.SetTable("UI Text");
                 localize.SetEntry(nameAndFloat.Key);
-                characteristicNumber.text = "<color=#00864F>" + "+" + nameAndFloat.Value;
+                characteristicNumber.text = "<color=#00864F>" + "+" + nameAndFloat.Value +  "</color>";
             }
             else if (nameAndFloat.Value < 0f)
             {
@@ -103,7 +103,7 @@ public class CharacteristicsInfoPanelForWeaponAndItem : MonoBehaviour
                 localize = characteristic.GetComponent<LocalizeStringEvent>();
                 localize.SetTable("UI Text");
                 localize.SetEntry(nameAndFloat.Key);
-                characteristicNumber.text = "<color=#BE0A0A>" + nameAndFloat.Value;
+                characteristicNumber.text = "<color=#BE0A0A>" + nameAndFloat.Value + "</color>";
 
             }
 
