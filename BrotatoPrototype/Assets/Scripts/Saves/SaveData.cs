@@ -9,4 +9,5 @@ public class SaveData
     public float MasterSoundVolume = 0;
     public float MusicSondVolume = 0;
     public float SFXVolume = 0;
+    public string SelectedLocalization = "russian";
 }

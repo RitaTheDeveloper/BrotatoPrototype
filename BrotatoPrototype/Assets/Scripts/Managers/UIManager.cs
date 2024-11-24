@@ -166,13 +166,14 @@ public class UIManager : MonoBehaviour
         _numberOfLeveledUpForCurrentWave = numberOfLeveledUpForCurrentWave;
         // анимация
         LocalizeStringEvent localize;
+        waveCompletedTxt.gameObject.SetActive(true);
 
         localize = waveCompletedTxt.gameObject.GetComponent<LocalizeStringEvent>();
         localize.RefreshString();
         waveCompletedStr = waveCompletedTxt.text;
         waveCompletedTxt.text = "";
 
-        textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f);
+        textAnim.TypingText(waveCompletedTxt, waveCompletedStr, 0.5f, true);
         LeanTween.alpha(waveCompletedMenu.GetComponent<RectTransform>(), 1f, 1f).setEase(LeanTweenType.easeInCirc);
         OpenCloseWindow.OpenWindowWithDelay(waveResultsMenu, 2.5f);
 
