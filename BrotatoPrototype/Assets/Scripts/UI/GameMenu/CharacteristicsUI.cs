@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.Localization.Components;
 
 public class CharacteristicsUI : MonoBehaviour
 {
@@ -34,7 +35,11 @@ public class CharacteristicsUI : MonoBehaviour
     
     public void UpdateCharacterisctics(PlayerCharacteristics _playerCharacteristics)
     {
-        nameHeroTxt.text = _playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero;
+        LocalizeStringEvent localize;
+        localize = nameHeroTxt.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(_playerCharacteristics.GetComponent<UiPlayerInfo>().nameHero);
+        localize.RefreshString();
 
         //for hunger
         parameterOfHunger.text = ((float)Math.Round(_playerCharacteristics.CurrentHunger, 2)).ToString();

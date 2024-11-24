@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     private WaveController _currentWave;
     private CharacterLevelingSystem _characterLevelSystem;
     private AccountLevelingSystem _accountLevelingSystem;
+    public SwitchLanguage _switchLanguage;
 
 
     private void Awake()
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         _characterLevelSystem = GetComponent<CharacterLevelingSystem>();
         _accountLevelingSystem = GetComponent<AccountLevelingSystem>();
         _accountLevel.Init(this, _accountLevelingSystem.AccountLevelSetting);
+        _switchLanguage.Init(this);
         //foreach (WaveSetting waveC2 in _listOfWaveSetting)
         //{
         //   // waveC2.CreateWave();

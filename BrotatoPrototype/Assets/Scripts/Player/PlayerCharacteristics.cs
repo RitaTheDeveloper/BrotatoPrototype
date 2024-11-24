@@ -43,18 +43,18 @@ public class PlayerCharacteristics : MonoBehaviour
     public Dictionary<string, float> DecriptionChacteristicsForUIShop()
     {
         Dictionary<string, float> descriptionForShop = new Dictionary<string, float>();
-        descriptionForShop.Add(" макс. здоровье", _startMaxHp);
-        descriptionForShop.Add(" к хп реген. в сек.", _startHpRegen);
-        descriptionForShop.Add("% к скорости", _startMoveSpeed);
-        descriptionForShop.Add(" к радиусу сбора", _startMagnetDistance);
-        descriptionForShop.Add("% к скорости атаки", _startAttackSpeedPercentage);
-        descriptionForShop.Add("% к урону", _startDamagePercentage);
-        descriptionForShop.Add("% к ближнему урону", _startMeleeDamage);
-        descriptionForShop.Add("% к дальнему урону", _startRangedDamage);
-        descriptionForShop.Add("% к крит шансу", _startCritChancePercentage);
-        descriptionForShop.Add("% к броне", _startArmor);
-        descriptionForShop.Add("% к уклонению", _startProbabilityOfDodge);
-        descriptionForShop.Add(" изменение сытости", _startHunger);
+        descriptionForShop.Add("maxHP", _startMaxHp);
+        descriptionForShop.Add("regen", _startHpRegen);
+        descriptionForShop.Add("speed", _startMoveSpeed);
+        descriptionForShop.Add("magnetDistance", _startMagnetDistance);
+        descriptionForShop.Add("attackSpeed", _startAttackSpeedPercentage);
+        descriptionForShop.Add("damagePercentage", _startDamagePercentage);
+        descriptionForShop.Add("meleeDamage", _startMeleeDamage);
+        descriptionForShop.Add("rangedDamage", _startRangedDamage);
+        descriptionForShop.Add("critChance", _startCritChancePercentage);
+        descriptionForShop.Add("armor", _startArmor);
+        descriptionForShop.Add("dodge", _startProbabilityOfDodge);
+        descriptionForShop.Add("hunger", _startHunger);
 
         return descriptionForShop;
     }

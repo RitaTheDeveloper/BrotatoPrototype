@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class UICharacterProgressMenu : MonoBehaviour
@@ -42,7 +43,11 @@ public class UICharacterProgressMenu : MonoBehaviour
 
     private void NameUpdate()
     {
-        _characterName.text = uiPlayerInfo.nameHero;
+        LocalizeStringEvent localize;
+        localize = _characterName.gameObject.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(uiPlayerInfo.nameHero);
+        localize.RefreshString();
     }
 
     private void LevelUpdate()

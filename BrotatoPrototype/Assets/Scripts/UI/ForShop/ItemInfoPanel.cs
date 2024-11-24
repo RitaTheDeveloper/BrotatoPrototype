@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Components;
 
 public class ItemInfoPanel : MonoBehaviour, IPointerClickHandler
 {
@@ -24,8 +25,17 @@ public class ItemInfoPanel : MonoBehaviour, IPointerClickHandler
 
     public void SetUp(ItemShopInfo itemInfo)
     {
-        nameItem.text = itemInfo.NameWeapon;
-        tierItem.text = itemInfo.LevelItem.TierString;
+        LocalizeStringEvent localize;
+        localize = nameItem.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(itemInfo.NameWeapon);
+        localize.RefreshString();
+
+        localize = tierItem.GetComponent<LocalizeStringEvent>();
+        localize.SetTable("UI Text");
+        localize.SetEntry(itemInfo.LevelItem.TierString);
+        localize.RefreshString();
+
         characteristicsInfo.SetDescriptionOfCharacteristics(itemInfo);
         price.text = itemInfo.GetSalePrice().ToString();
         id = itemInfo.IdWeapon;
@@ -37,16 +47,25 @@ public class ItemInfoPanel : MonoBehaviour, IPointerClickHandler
         {
             if (itemInfo.GetComponent<BaseWeapon>().type == BaseWeapon.Type.Melee)
             {
-                typeItem.text = "ближний бой";
+                localize = typeItem.GetComponent<LocalizeStringEvent>();
+                localize.SetTable("UI Text");
+                localize.SetEntry("ближний бой");
+                localize.RefreshString();
             }
             else
             {
-                typeItem.text = "дальний бой";
+                localize = typeItem.GetComponent<LocalizeStringEvent>();
+                localize.SetTable("UI Text");
+                localize.SetEntry("дальний бой");
+                localize.RefreshString();
             }
         }
         else
         {
-            typeItem.text = "снаряжение";
+            localize = typeItem.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry("снаряжение");
+            localize.RefreshString();
         }
     }
 

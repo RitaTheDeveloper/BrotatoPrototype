@@ -19,6 +19,7 @@ public class SaveController : MonoBehaviour
         PlayerPrefs.SetFloat("MasterSoundVolume", data.MasterSoundVolume);
         PlayerPrefs.SetFloat("MusicSondVolume", data.MusicSondVolume);
         PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
+        PlayerPrefs.SetString("SelectedLocalization", data.SelectedLocalization);
 
         PlayerPrefs.Save();
     }
@@ -32,6 +33,7 @@ public class SaveController : MonoBehaviour
         data_tmp.MasterSoundVolume = PlayerPrefs.GetFloat("MasterSoundVolume", -18f);
         data_tmp.MusicSondVolume = PlayerPrefs.GetFloat("MusicSondVolume", 0);
         data_tmp.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
+        data_tmp.SelectedLocalization = PlayerPrefs.GetString("SelectedLocalization", "russian");
 
         data = data_tmp;
     }
@@ -74,6 +76,17 @@ public class SaveController : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void SaveSelectedLocalization(string localization)
+    {
+        PlayerPrefs.SetString("SelectedLocalization", localization);
+        PlayerPrefs.Save();
+    }
+
+    public string GetSelectedLocalization()
+    {
+        return PlayerPrefs.GetString("SelectedLocalization");
     }
 
     public void SaveCharacterLvl(string name, int currentlvl)
