@@ -25,9 +25,9 @@ public class ProposedAbility : MonoBehaviour
         localize.SetTable("UI Text");
         localize.SetEntry(buffDes.BuffIncreaseDescription(uiBuff.mainCharacteristic));
         localize.RefreshString();
-        descriptionTxt.text = descriptionTxt.text + " +" + uiBuff.value;
+        descriptionTxt.text = descriptionTxt.text + "<color=#00864F>" + " +" + uiBuff.value + "</color>";
 
-        valueTxt.text = "";
+        //valueTxt.text = "";
         okBtn.onClick.RemoveAllListeners();
         okBtn.onClick.AddListener(uiBuff.UseBuff);
     }
