@@ -22,12 +22,6 @@ public class BackgroundSoundController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void PlaySound()
     {
         if (movementSource == null)

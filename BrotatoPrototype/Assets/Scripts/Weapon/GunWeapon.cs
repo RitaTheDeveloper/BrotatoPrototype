@@ -26,7 +26,7 @@ public class GunWeapon : BaseWeapon
         Init();
     }
 
-    private void Update()
+    protected override void Run()
     {
         FindTheNearestEnemy();
 
@@ -34,7 +34,7 @@ public class GunWeapon : BaseWeapon
             RotateWeaponHolder();
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (_timer > _currentTimeLoop && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) < attackRange)
             Attack();

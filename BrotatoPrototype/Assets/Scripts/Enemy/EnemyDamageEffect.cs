@@ -1,9 +1,10 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyDamageEffect : MonoBehaviour
+public class EnemyDamageEffect : MonoCache
 {
     [SerializeField] protected Material damageMaterial = null;
     [SerializeField] protected float damageTime = 1.0f;
@@ -39,7 +40,7 @@ public class EnemyDamageEffect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Run()
     {
         if (isDamage)
         {

@@ -15,9 +15,9 @@ public class EnemyBruiserController : EnemyController
 
     private float _timer = 0f;
     Vector3 dirToTarget = Vector3.zero;
-    Vector3 startPos = Vector3.zero;    
+    Vector3 startPos = Vector3.zero;
 
-    private void Update()
+    protected override void Run()
     {
         if (target && !GameManager.instance.GameIsOver)
         {

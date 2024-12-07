@@ -1,9 +1,10 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour, IKnockbackable
+public class EnemyController : MonoCache, IKnockbackable
 {
     public TierType tierType;
     public enum State { Idle, Chasing, Attacking, RunAway};
@@ -56,28 +57,15 @@ public class EnemyController : MonoBehaviour, IKnockbackable
         //MoveCoroutine = StartCoroutine(UpdatePath());
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (Time.time > nextAttackTime && target)
         {
             if (target && Vector3.Distance(target.position, transform.position) < attackDistance)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
-
-                if (animator != null)
-                {
-                    //animator.SetTrigger("attack");
-                }
-
                 Attacking();
             }
-            //else
-            //{
-            //    if (animator != null)
-            //    {
-            //        animator.SetBool("attack", false);
-            //    }
-            //}
         }
 
         if (target == null && navMeshAgent != null)

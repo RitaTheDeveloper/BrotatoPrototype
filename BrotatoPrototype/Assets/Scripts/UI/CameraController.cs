@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoCache
 {
     private Transform _player;
     private Cinemachine.CinemachineVirtualCamera cinVirtCam;
@@ -11,7 +12,7 @@ public class CameraController : MonoBehaviour
     {
         cinVirtCam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
     }
-    private void Update()
+    protected override void Run()
     {
         if (!_player)
         {

@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelSystem : MonoBehaviour
+public class LevelSystem : MonoCache
 {
     [SerializeField] private int _startLvl = 0;
     [SerializeField] private float _maxMagnetDistance = 20f;
@@ -22,7 +23,7 @@ public class LevelSystem : MonoBehaviour
         Init();
     }
 
-    private void Update()
+    protected override void Run()
     {
         ConsumeAllCurrencyInRange(_magnetDistance);        
     }

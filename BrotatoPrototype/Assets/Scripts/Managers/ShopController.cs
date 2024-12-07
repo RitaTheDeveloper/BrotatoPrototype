@@ -294,12 +294,6 @@ public class ShopController : MonoBehaviour, IShopController
         return false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void InitRareStorage()
     {
         for (int i = 0; i < ItemList.Count; i++)

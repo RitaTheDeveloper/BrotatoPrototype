@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-public abstract class BaseWeapon : MonoBehaviour
+using NTC.MonoCache;
+
+public abstract class BaseWeapon : MonoCache
 {
     public enum Type { Melee, Gun }
     public Type type;

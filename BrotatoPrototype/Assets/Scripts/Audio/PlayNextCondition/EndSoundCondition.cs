@@ -20,12 +20,6 @@ public class EndSoundCondition : ConditionClass
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public override bool CanPlayNext()
     {
         return !BackgroundMusicManger.instance.backgroundSource.isPlaying;

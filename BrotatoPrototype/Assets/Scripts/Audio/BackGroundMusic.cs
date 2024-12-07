@@ -17,12 +17,6 @@ public class BackGroundMusic : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public bool CanPlayNext()
     {
         return endMusicCondition.CanPlayNext();

@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyEffect : MonoBehaviour
+public class DestroyEffect : MonoCache
 {
     private float _delay = 2;
     private float _timeOnDestroy;
@@ -12,7 +13,7 @@ public class DestroyEffect : MonoBehaviour
         _timeOnDestroy = Time.time + _delay;
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (Time.time > _timeOnDestroy)
             Destroy(gameObject);

@@ -48,12 +48,6 @@ public class ShopPhrasesController : MonoBehaviour
         }
         audioSource.outputAudioMixerGroup = mixerGroup;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void OnShopIn()
     {

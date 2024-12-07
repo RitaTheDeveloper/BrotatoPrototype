@@ -1,9 +1,10 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static BaseWeapon;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoCache
 {
     [SerializeField] private float _speed = 20f;
     [SerializeField] private int penetration = 1;
@@ -55,7 +56,7 @@ public class Projectile : MonoBehaviour
         repulsiveForce = amount;
     }
 
-    private void Update()
+    protected override void Run()
     {
         Move();
         CheckCollsion(_speed * Time.deltaTime);        

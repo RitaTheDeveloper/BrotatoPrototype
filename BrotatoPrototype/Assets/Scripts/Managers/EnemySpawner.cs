@@ -1,9 +1,10 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoCache
 {
     [Header("Префаб юнита")]
     [SerializeField] private EnemyController _enemyPrefab;
@@ -77,16 +78,7 @@ public class EnemySpawner : MonoBehaviour
        // StartCoroutine(ChangeRandomPos());
     }
 
-    private void FixedUpdate()
-    {
-        //if(_waveController.CurrentTime <= _endSpawnTime + markDisplayTime)
-        //{
-        //    stopSpawn = true;
-        //    Debug.Log("перестаем спавнить");
-        //}
-    }
-
-    private void Update()
+    protected override void Run()
     {
         //Vector3 point;
         //if (RandomPoint(_target.position, _radiusFromPlayer, out point))

@@ -22,9 +22,4 @@ public class ShopPhrasesLevel : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

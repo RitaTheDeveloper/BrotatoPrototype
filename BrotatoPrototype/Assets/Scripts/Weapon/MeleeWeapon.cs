@@ -23,7 +23,7 @@ public class MeleeWeapon : BaseWeapon
      
     }
 
-    private void Update()
+    protected override void Run()
     {
         FindTheNearestEnemy();
 
@@ -31,7 +31,7 @@ public class MeleeWeapon : BaseWeapon
             RotateWeaponHolder();
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (_timer > _currentAnimationTime + _currentDelayAttack && nearestEnemy && Vector3.Distance(transform.position, nearestEnemy.transform.position) - nearestEnemy.GetComponent<NavMeshAgent>().radius < attackRange)
         {

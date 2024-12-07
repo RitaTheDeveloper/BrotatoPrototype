@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour
+public class WaveController : MonoCache
 {
     public float time;
     public List<EnemySpawner> enemySpawnersPrefabs = new List<EnemySpawner>();
@@ -30,7 +31,7 @@ public class WaveController : MonoBehaviour
         _stopTime = true;
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (!_stopTime)
         {

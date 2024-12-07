@@ -69,12 +69,6 @@ public class SettingsUI : MonoBehaviour
         InitSoundsVolume();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void InitSoundsVolume()
     {
         

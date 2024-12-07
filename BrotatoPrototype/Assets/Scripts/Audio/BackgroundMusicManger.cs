@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using NTC.MonoCache;
 
 public enum StateMusicManager
 {
@@ -13,7 +14,7 @@ public enum StateMusicManager
     StopAll,
 }
 
-public class BackgroundMusicManger : MonoBehaviour
+public class BackgroundMusicManger : MonoCache
 {
     public static BackgroundMusicManger instance;
 
@@ -74,7 +75,7 @@ public class BackgroundMusicManger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Run()
     {
 
         if (stateMusicManager == StateMusicManager.MainMenu)

@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : MonoCache
 {
     [Header("Префаб юнита")]
     [SerializeField] private GameObject _enemyPrefab;
@@ -27,7 +28,7 @@ public class Spawner : MonoBehaviour
         livingEntity = GetComponent<LivingEntity>();
         _container = GameObject.Find("Enemies").transform;
     }
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (livingEntity.dead)
         {

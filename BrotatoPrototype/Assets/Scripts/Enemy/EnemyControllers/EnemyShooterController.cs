@@ -18,7 +18,7 @@ public class EnemyShooterController : EnemyController
     //    _containerOfBullets = GameObject.Find("Bullets").transform;
     //}
 
-    private void Update()
+    protected override void Run()
     {
         if (currentState == State.RunAway && target && !GameManager.instance.GameIsOver)
         {

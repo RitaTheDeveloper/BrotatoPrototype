@@ -22,7 +22,7 @@ public class MagicMeleeWeapon : MeleeWeapon
         _timer = 0;
     }
 
-    private void FixedUpdate()
+    protected override void FixedRun()
     {
         if (_timer > _currentTimeLoop)
         {

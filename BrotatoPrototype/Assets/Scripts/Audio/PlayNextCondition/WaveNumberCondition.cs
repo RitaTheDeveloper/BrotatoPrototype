@@ -26,9 +26,4 @@ public class WaveNumberCondition : ConditionClass
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -36,9 +36,9 @@ public class PlayerHealth : LivingEntity
         DisplayHealth();
     }
 
-    protected override void FixedUpdate()
+    protected override void FixedRun()
     {
-        base.FixedUpdate();
+        base.FixedRun();
 
         // для того, чтобы все враги которые рядом могли нанести урон в кадр
         if (canTakeDmg)
@@ -58,7 +58,7 @@ public class PlayerHealth : LivingEntity
         }               
     }
 
-    private void Update()
+    protected override void Run()
     {
         if (health < startingHealth * 0.45f)
         {

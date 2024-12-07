@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoCache
 {
     [Header("Скорость поворота")]
     [SerializeField] private float _turnSpeed = 6f;
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         yPosition = transform.position.y;
     }
 
-    private void Update()
+    protected override void FixedRun()
     {
         if (GameManager.instance.IsPlaying)
         {

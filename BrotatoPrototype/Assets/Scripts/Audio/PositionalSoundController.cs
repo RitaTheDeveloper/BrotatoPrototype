@@ -1,9 +1,10 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PositionalSoundController : MonoBehaviour
+public class PositionalSoundController : MonoCache
 {
     [Tooltip("Название блока звуков")]
     [SerializeField] public string soundBlockName;
@@ -28,7 +29,7 @@ public class PositionalSoundController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Run()
     {
         if (timer > 0)
         {

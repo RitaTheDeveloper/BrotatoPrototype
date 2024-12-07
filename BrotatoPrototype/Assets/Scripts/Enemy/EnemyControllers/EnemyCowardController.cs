@@ -8,7 +8,7 @@ public class EnemyCowardController : EnemyController
     [SerializeField] private float _escapeSpeed;
     private float distanceDelay = 1f;
 
-    private void Update()
+    protected override void Run()
     {
         if (target && !GameManager.instance.GameIsOver)
         {
@@ -24,7 +24,7 @@ public class EnemyCowardController : EnemyController
             //}
             else if (distance < _distanceFromPlayer)
             {
-                Run();
+                RunAway();
             }
         }
         
@@ -48,7 +48,7 @@ public class EnemyCowardController : EnemyController
         }        
     }
 
-    private void Run()
+    private void RunAway()
     {
         Vector3 dirToTarget = (target.position - transform.position).normalized;
         Vector3 newPos = transform.position - dirToTarget * 10f;

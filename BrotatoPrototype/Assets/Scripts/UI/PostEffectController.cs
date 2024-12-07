@@ -1,8 +1,9 @@
+using NTC.MonoCache;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PostEffectController : MonoBehaviour
+public class PostEffectController : MonoCache
 {
 
     public Shader postEffectDamagaShader;
@@ -26,7 +27,7 @@ public class PostEffectController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Run()
     {
         if (activate)
         {

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using NTC.MonoCache;
 
-public class LivingEntity : MonoBehaviour, IDamageable
+public class LivingEntity : MonoCache, IDamageable
 {
     [SerializeField] protected float startingHealth;
     [SerializeField] protected float health;
@@ -17,7 +18,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         //Init();
     }
 
-    protected virtual void FixedUpdate()
+    protected override void FixedRun()
     {
         if (regenOn && health < startingHealth && !dead && health > 0f)
         {
