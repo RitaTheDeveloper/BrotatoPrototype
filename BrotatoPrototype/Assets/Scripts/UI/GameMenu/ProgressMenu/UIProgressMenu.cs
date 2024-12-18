@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Localization.Components;
 
 public class UIProgressMenu : MonoBehaviour
 {
@@ -16,13 +17,18 @@ public class UIProgressMenu : MonoBehaviour
     public void Init(ResultsOfRace resultsOfrace)
     {
         // _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.numberOfWaves.ToString() + " волн";
-        _numberOfWavesPassedTxt.text = "пройдено волн: " + (GameManager.instance.WaveCounter);
+        _numberOfWavesPassedTxt.text = "" + (GameManager.instance.WaveCounter);
+
+        LocalizeStringEvent localize;
+
 
         if (resultsOfrace.characterWasUpgraded)
         {
             _characterObj.SetActive(true);
 
-            _characterNameTxt.text = resultsOfrace.CharacterData.name;
+            localize = _characterNameTxt.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry(resultsOfrace.CharacterData.name);
             _characterLvlTxt.text = resultsOfrace.CharacterData.lvl.ToString();
            // _numberOfWavesPassedTxt.text = "пройдено " + resultsOfrace.CharacterData.numberOfwaves.ToString() + " волн";
         }

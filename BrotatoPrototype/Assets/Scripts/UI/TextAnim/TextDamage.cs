@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 
 [RequireComponent(typeof(TMP_Text))]
 public class TextDamage : MonoBehaviour
@@ -33,6 +34,14 @@ public class TextDamage : MonoBehaviour
         _text.color = color;
         _text.fontSize = sizeText;
         _text.text = text;
+
+        if (text == "уклонение")
+        {
+            LocalizeStringEvent localize;
+            localize = _text.GetComponent<LocalizeStringEvent>();
+            localize.SetTable("UI Text");
+            localize.SetEntry("уклонение сцена");
+        }
 
         transform.position = _camera.WorldToScreenPoint(startPosition);
         _pos = startPosition;

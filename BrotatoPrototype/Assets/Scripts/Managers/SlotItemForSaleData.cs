@@ -136,15 +136,18 @@ public class SlotItemForSaleData : MonoBehaviour
     {
         pot.SetActive(false);
         buyBtn.gameObject.SetActive(false);
-        textName.text = "";
-        textTier.text = "";
-        textType.text = "";
+        textName.gameObject.SetActive(false);
+        textTier.gameObject.SetActive(false);
+        textType.gameObject.SetActive(false);
         characteristicsInfo.DeleteInfo();
     }
 
     public void PotOn()
     {
         pot.SetActive(true);
+        textName.gameObject.SetActive(true);
+        textTier.gameObject.SetActive(true);
+        textType.gameObject.SetActive(true);
         buyBtn.gameObject.SetActive(true);
     }   
 
